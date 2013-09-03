@@ -1,7 +1,6 @@
 package org.imie.transactionalFramework;
 
 import java.lang.reflect.Proxy;
-import java.sql.Connection;
 
 public class TransactionalFactory<T extends ITransactional> {
 	

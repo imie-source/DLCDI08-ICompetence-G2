@@ -1,6 +1,5 @@
 package org.imie.DAO.interfaces;
 
-import java.sql.Connection;
 import java.util.List;
 
 import org.imie.DTO.CompetenceDTO;
