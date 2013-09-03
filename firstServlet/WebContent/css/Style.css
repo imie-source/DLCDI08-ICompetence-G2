@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+/* 
+page liste  
+*/
+
+ .conteneur{
+	margin: auto; 
+	width: 1000px;
+}
+
+.ligneTableau {
+	margin-top: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	display: inline-block;
+}
+
+.celluleTableau {
+	display: inline-block;
+}
+
+ .largeur350 {
+	width: 350px;
+}
+
+.largeur100 {
+	width: 100px;
+} 
+
+a {
+	color: black;
+	text-decoration: none;
+}
+.contenu{
+	width: 900px;
+}
+
+/* 
+page User 
+*/
+
+.bottommenu  {
+	display:inline-block;
+	margin: 10px;	
+} 
+
+.infouser {
+	padding: 50px;
+} 
+
+fieldset {
+	margin:auto;
+	width: 50%;
+}
