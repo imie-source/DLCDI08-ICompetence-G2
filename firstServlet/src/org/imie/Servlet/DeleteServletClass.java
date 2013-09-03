@@ -1,6 +1,7 @@
 package org.imie.Servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.imie.DTO.UserDTO;
-import org.imie.IHM.Ecran;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
 import org.imie.service.interfaces.IUserService;
