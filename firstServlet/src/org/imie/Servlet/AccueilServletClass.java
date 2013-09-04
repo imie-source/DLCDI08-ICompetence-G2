@@ -1,11 +1,9 @@
 package org.imie.Servlet;
 
 import java.io.IOException;
-
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -46,7 +44,7 @@ public class AccueilServletClass extends HttpServlet {
 				.createUserService(null);
 		response.setContentType("text/html");
 
-		// creation de la session 
+		// creation de la session
 
 		HttpSession session = request.getSession();
 		List<UserDTO> userDTOs = null;
@@ -65,8 +63,8 @@ public class AccueilServletClass extends HttpServlet {
 
 			session.setAttribute("listuser", userDTOs);
 			Integer userRead = Integer.valueOf(ligne);
-			
-			//recuperation de la liste 
+
+			// recuperation de la liste
 			List<UserDTO> listuser = (List<UserDTO>) session
 					.getAttribute("listuser");
 
@@ -84,9 +82,9 @@ public class AccueilServletClass extends HttpServlet {
 			session.setAttribute("listuser", userDTOs);
 			// et affichage de la liste
 
-			request.getRequestDispatcher("./liste.jsp").forward(request,response);
+			request.getRequestDispatcher("./liste.jsp").forward(request,
+					response);
 		}
-
 	}
 
 }
