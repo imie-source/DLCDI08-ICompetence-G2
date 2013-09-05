@@ -140,10 +140,11 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
             {
             	
             	int last_inserted_id = resultSet.getInt(i);
-                System.out.println(last_inserted_id);
+               
                 i++;
                 adresseDTOCreated.setId_adresse(last_inserted_id);
-                System.out.println(adresseToCreate.getId_adresse());
+               // System.out.println(adresseDTOCreated.getId_adresse());
+                
             }
 			
             
@@ -168,6 +169,8 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
 			}
 		}
 		return adresseDTOCreated;
+		
+		
 		
 	}
 

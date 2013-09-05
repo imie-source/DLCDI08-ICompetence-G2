@@ -155,8 +155,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
-			String insertInstruction = "insert into utilisateur (nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation,id_adresse) "
-					+ "values (?,?,?,?,?,?,?,?) returning nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse ";
+			String insertInstruction = "insert into utilisateur (nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse) "
+					+ "values (?,?,?,?,?,?,?,?,?) returning nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse ";
 			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
 			preparedStatement.setString(1, userToInsert.getNom());
 			preparedStatement.setString(2, userToInsert.getPrenom());
@@ -167,8 +167,6 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			preparedStatement.setString(7, userToInsert.getPwd());
 			preparedStatement.setInt(8, userToInsert.getCursus().getId());
 			preparedStatement.setInt(9, userToInsert.getAdresse().getId_adresse());
-			
-
 			preparedStatement.executeQuery();
 			/*
 			 * if (resultSet.next()) { userDTOinserted = buildDTO(resultSet); }

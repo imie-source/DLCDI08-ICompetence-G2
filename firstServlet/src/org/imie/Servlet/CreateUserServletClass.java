@@ -109,7 +109,7 @@ public class CreateUserServletClass extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-
+System.out.println(nouvelleAdresse.getId_adresse());
 		String userNomParam = request.getParameter("nom");
 		String userPrenomParam = request.getParameter("prenom");
 		String userDisponibleParam = request.getParameter("disponible");
@@ -156,7 +156,7 @@ public class CreateUserServletClass extends HttpServlet {
 				newUser.setCursus(cursusDTO);
 				newUser.setDisponible(disponible);
 				System.out.println( "\n je suis ici "+disponible);
-				newUser.addAdresse(nouvelleAdresse);
+				newUser.setAdresse(nouvelleAdresse);
 				try {
 					userService.insertUser(newUser);
 				} catch (TransactionalConnectionException e) {

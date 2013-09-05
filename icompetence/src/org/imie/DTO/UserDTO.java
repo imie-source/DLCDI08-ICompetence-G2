@@ -30,6 +30,10 @@ public class UserDTO {
 	private List<AdresseDTO> adresses;
 	private AdresseDTO adresse;
 
+	public void setAdresse(AdresseDTO adresse) {
+		this.adresse = adresse;
+	}
+
 	// constructeur
 	// Ce constructeur par défaut est necessaire pour initialiser la liste des
 	// compétence pour être sur que cette liste ne soit pas vide lors de
@@ -168,5 +172,6 @@ public class UserDTO {
 	public AdresseDTO getAdresse() {
 		return adresse;
 	}
+	
 
 }
