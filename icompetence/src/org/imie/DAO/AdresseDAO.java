@@ -15,6 +15,11 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 
 public class AdresseDAO extends ATransactional implements IAdresseDAO {
 	
+	
+
+
+
+
 	public List<AdresseDTO> getAdresseByUser(UserDTO userDTO) throws TransactionalConnectionException {
 
 		List<AdresseDTO> adresseDTOs = new ArrayList<AdresseDTO>();
@@ -115,21 +120,35 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
 		Statement statement = null;
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
-		AdresseDTO adresseDTOCreated = null;
+		AdresseDTO adresseDTOCreated = new AdresseDTO();;
 		try {
 
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
 			String insertInstruction = "insert into adresse (code_postal, ville, adresse) "
-					+ "values (?,?,?) returning code_postal, ville, adresse ";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
+					+ "values (?,?,?) ";
+			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction, Statement.RETURN_GENERATED_KEYS);
+			
 			preparedStatement.setInt(1, adresseToCreate.getCode_postal());
 			preparedStatement.setString(2, adresseToCreate.getVille());
 			preparedStatement.setString(3, adresseToCreate.getLibelle());
-		
-			preparedStatement.executeQuery();
-		
-
+			
+			preparedStatement.executeUpdate();
+			resultSet = preparedStatement.getGeneratedKeys();
+			int i = 1;
+            if(resultSet.next())
+            {
+            	
+            	int last_inserted_id = resultSet.getInt(i);
+                System.out.println(last_inserted_id);
+                i++;
+                adresseDTOCreated.setId_adresse(last_inserted_id);
+                System.out.println(adresseToCreate.getId_adresse());
+            }
+			
+            
+			
+			
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 

@@ -170,8 +170,7 @@ public class UpdateServletClass extends HttpServlet {
 						userDTOToUpdate.setDisponible(disponible);
 						userDTOToUpdate.setIdentifiant(userIdentifiantParam);
 						
-						System.out.println(userIdentifiantParam);
-						System.out.println(userDTOToUpdate.getIdentifiant());
+					
 
 						try {
 							userService.updateUser(userDTOToUpdate);

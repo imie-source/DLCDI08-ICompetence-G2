@@ -83,8 +83,8 @@
 			<fieldset>
 				<legend>Etes vous disponible?</legend>
 				<br /> <input type="radio" checked="checked" name="disponible"
-					value="true" /> oui <input type="radio" name="disponible"
-					value="false" /> non<br />
+					value="true" /> oui <input type="radio"  name="disponible"
+					value="false" />non<br />
 			</fieldset>
 			<br /> <input type="submit" value="ajouter" />
 
