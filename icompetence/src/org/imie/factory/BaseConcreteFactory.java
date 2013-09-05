@@ -4,11 +4,13 @@ import org.imie.DAO.AdresseDAO;
 import org.imie.DAO.CompetenceDAO;
 import org.imie.DAO.CursusDAO;
 import org.imie.DAO.GroupWorkDAO;
+import org.imie.DAO.NiveauDAO;
 import org.imie.DAO.UserDAO;
 import org.imie.DAO.interfaces.IAdresseDAO;
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.ICursusDAO;
 import org.imie.DAO.interfaces.IGroupWorkDAO;
+import org.imie.DAO.interfaces.INiveauDAO;
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.CursusService;
 import org.imie.service.UserService;
@@ -49,57 +51,32 @@ public class BaseConcreteFactory implements IFactory {
 		return instance;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.imie.factory.IFactory#createUserService()
-	 */
-	@Override
+	
 	public IUserService createUserService(ITransactional caller) {
 		TransactionalFactory<UserService> fact = (TransactionalFactory<UserService>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new UserService(), caller);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.imie.factory.IFactory#createCursusSerice()
-	 */
-	@Override
+	
 	public ICursusService createCursusService(ITransactional caller) {
 		TransactionalFactory<CursusService> fact = (TransactionalFactory<CursusService>) TransactionalFactory
 				.getInstance();
 		return fact.createTransactionalService(new CursusService(), caller);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.imie.factory.IFactory#createUserDAO()
-	 */
-	@Override
+	
 	public IUserDAO createUserDAO(ITransactional caller) {
 		TransactionalFactory<UserDAO> fact = (TransactionalFactory<UserDAO>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new UserDAO(), caller);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.imie.factory.IFactory#createCursusDAO()
-	 */
-	@Override
+	
 	public ICursusDAO createCursusDAO(ITransactional caller) {
 		TransactionalFactory<CursusDAO> fact = (TransactionalFactory<CursusDAO>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new CursusDAO(), caller);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.imie.factory.IFactory#createCompetenceDAO()
-	 */
-	@Override
+	
 	public ICompetenceDAO createCompetenceDAO(ITransactional caller) {
 		TransactionalFactory<CompetenceDAO> fact = (TransactionalFactory<CompetenceDAO>) TransactionalFactory
 				.getInstance();
@@ -113,12 +90,18 @@ public class BaseConcreteFactory implements IFactory {
 		return fact.createTransactionalService(new GroupWorkDAO(), caller);
 	}
 
-	@Override
+	
 	public IAdresseDAO createAdresseDAO(ITransactional caller) {
 		TransactionalFactory<AdresseDAO> fact = (TransactionalFactory<AdresseDAO>) TransactionalFactory
 				.getInstance();
 		return fact.createTransactionalService(new AdresseDAO(), caller);
 		
+	}
+
+	
+	public INiveauDAO createNiveauDAO(ITransactional caller) {
+		TransactionalFactory<NiveauDAO> fact = (TransactionalFactory<NiveauDAO>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new NiveauDAO(), caller);
 	}
 	
 }

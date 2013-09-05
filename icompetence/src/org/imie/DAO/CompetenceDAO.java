@@ -30,6 +30,8 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	 */
 	@Override
 	public List<CompetenceDTO> getCompetenceByUser(UserDTO userDTO) throws TransactionalConnectionException {
+		
+		
 		// initialisation de la liste qui servira au retour
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 		// déclaration de la variable de statement
@@ -64,7 +66,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				NiveauDTO niveauDTO = new NiveauDTO();
 				
 				niveauDTO.setLibelle(resultSet.getString("libelle"));				
-				niveauDTO.setId(resultSet.getInt("id_niveau_comp"));				
+				niveauDTO.setId(resultSet.getInt("niveau"));				
 				
 				competenceDTO.setNiveau(niveauDTO);
 				

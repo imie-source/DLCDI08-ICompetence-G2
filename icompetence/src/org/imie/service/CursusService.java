@@ -12,12 +12,12 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 
 public class CursusService extends ATransactional implements ICursusService {
 
-	@Override
+	
 	public List<CursusDTO> findAll() throws TransactionalConnectionException{
 		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance().createCursusDAO(this);
 		return cursusDAO.findAll();
 	}
-	@Override
+	
 	public CursusDTO findbyid(Integer cursusid) throws TransactionalConnectionException {
 		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance().createCursusDAO(this);
 		return cursusDAO.findById(cursusid);

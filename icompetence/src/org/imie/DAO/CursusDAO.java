@@ -17,18 +17,18 @@ import org.imie.transactionalFramework.ATransactional;
 import org.imie.transactionalFramework.TransactionalConnectionException;
 
 /**
- * DAO de la table cursus
+ * DAO de la table cursus(formation de l'utilisateur)
  * 
  * @author imie
  * 
  */
 public class CursusDAO extends ATransactional implements ICursusDAO {
-	/*
-	 * (non-Javadoc)
+	
+	/**
 	 * 
-	 * @see org.imie.DAO.IUserDAO#findByUser(org.imie.DTO.UserDTO)
+	 * renvoie un dto le cursus (la formation) d'un utilisateur
+	 *
 	 */
-	@Override
 	public CursusDTO findByUser(UserDTO userDTO) throws TransactionalConnectionException {
 
 		// initialisation de la liste qui servira au retour
@@ -76,12 +76,11 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		return cursusDTO;
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * renvoie la liste des formations (liste de DTO)	 
 	 * 
-	 * @see org.imie.DAO.IUserDAO#findAll()
 	 */
-	@Override
+	
 	public List<CursusDTO> findAll() throws TransactionalConnectionException {
 
 		// initialisation de la liste qui servira au retour
@@ -125,7 +124,11 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		}
 		return cursusDTOs;
 	}
-	@Override
+	
+
+	/**
+	 * renvoie un cursusDTO quand on envoie un id (de formation/cursus), libelle et id
+	 */
 	public CursusDTO findById(Integer cursusid) throws TransactionalConnectionException {
 		// initialisation du dto qui servira au retour
 		CursusDTO cursusDTO = new CursusDTO();

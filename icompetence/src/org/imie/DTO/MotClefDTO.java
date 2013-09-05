@@ -4,6 +4,8 @@ package org.imie.DTO;
 public class MotClefDTO {
 
 	private Integer id;
+	
+	
 	private String libelle;
 	
 	public String getLibelle() {
@@ -16,7 +18,9 @@ public class MotClefDTO {
 		return id;
 	}
 	
-
+	public void setId(Integer id) {
+		this.id = id;
+	}
 	
 	
 	
