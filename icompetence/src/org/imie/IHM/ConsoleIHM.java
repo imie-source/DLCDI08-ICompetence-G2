@@ -14,7 +14,6 @@ import org.imie.DTO.CursusDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
-
 import org.imie.service.interfaces.ICursusService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.TransactionalConnectionException;
@@ -23,13 +22,9 @@ public class ConsoleIHM {
 
 	private static final String ADRESSE = "adresse";
 
-	private static final String LIBELLE = "libelle";
-
 	private static final String IDENTIFIANT = "identifiant";
 
 	private static final String ADRESSE_MAIL = "adresse mail";
-
-	private static final String DISPONIBLE = "disponible";
 
 	private static ConsoleIHM instance = null;
 
@@ -126,14 +121,16 @@ public class ConsoleIHM {
 	}
 
 	private void afficherFormulaireUserUpdate() {
-		IUserService userService = BaseConcreteFactory.getInstance().createUserService(null);
+		IUserService userService = BaseConcreteFactory.getInstance()
+				.createUserService(null);
 		String s;
 		// affichage du formulaire du user
 		// utilisateur courrant de travail de l'application utilisé sans
 		// avoir besoin d'utiliser un DAO
 
-		System.out.println(NOM + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS + currentUserDTO.getNom()
-				+ ENDING_PARENTESIS + SEPARATEUR_DOUBLE_DOT);
+		System.out.println(NOM + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS
+				+ currentUserDTO.getNom() + ENDING_PARENTESIS
+				+ SEPARATEUR_DOUBLE_DOT);
 		s = null;
 		while (s == null) {
 			s = currentUserDTO.getNom();
@@ -148,8 +145,9 @@ public class ConsoleIHM {
 		}
 		currentUserDTO.setNom(s);
 
-		System.out.println(PRENOM + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS + currentUserDTO.getPrenom()
-				+ ENDING_PARENTESIS + SEPARATEUR_DOUBLE_DOT);
+		System.out.println(PRENOM + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS
+				+ currentUserDTO.getPrenom() + ENDING_PARENTESIS
+				+ SEPARATEUR_DOUBLE_DOT);
 		try {
 			s = getStringInput();
 			currentUserDTO.setPrenom(s);
@@ -161,8 +159,9 @@ public class ConsoleIHM {
 		if (currentUserDTO.getDateNaiss() != null) {
 			dateUser2 = dateFormat.format(currentUserDTO.getDateNaiss());
 		}
-		System.out.println(DATE_DE_NAISSANCE + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS + dateUser2
-				+ ENDING_PARENTESIS + SEPARATEUR_DOUBLE_DOT);
+		System.out.println(DATE_DE_NAISSANCE + SEPARATEUR_DOUBLE_DOT
+				+ STARTIN_PARENTESIS + dateUser2 + ENDING_PARENTESIS
+				+ SEPARATEUR_DOUBLE_DOT);
 		Date inputDateNaiss = null;
 		try {
 			inputDateNaiss = getDateInput();
@@ -176,7 +175,8 @@ public class ConsoleIHM {
 		if (currentUserDTO.getCursus() != null) {
 			s = currentUserDTO.getCursus().getLibelle();
 		}
-		System.out.println(CURSUS + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS + s + ENDING_PARENTESIS);
+		System.out.println(CURSUS + SEPARATEUR_DOUBLE_DOT + STARTIN_PARENTESIS
+				+ s + ENDING_PARENTESIS);
 
 		try {
 			CursusDTO cursusDTOselected;
@@ -197,9 +197,9 @@ public class ConsoleIHM {
 	}
 
 	private void afficherFormulaireUserCreate() {
-		
-		
-		IUserService userService = BaseConcreteFactory.getInstance().createUserService(null);
+
+		IUserService userService = BaseConcreteFactory.getInstance()
+				.createUserService(null);
 		String s;
 		// affichage du formulaire du user
 		// utilisateur courrant de travail de l'application utilisé sans
@@ -278,20 +278,25 @@ public class ConsoleIHM {
 	}
 
 	private void afficherFormulaireUser() {
-		IUserService userService = BaseConcreteFactory.getInstance().createUserService(null);
+		IUserService userService = BaseConcreteFactory.getInstance()
+				.createUserService(null);
 		// affichage du formulaire du user
 		// utilisateur courrant de travail de l'application utilisé sans
 		// avoir besoin d'utiliser un DAO
-		System.out.println(NOM + SEPARATEUR_DOUBLE_DOT + currentUserDTO.getNom());
-		System.out.println(PRENOM + SEPARATEUR_DOUBLE_DOT + currentUserDTO.getPrenom());
-		
+		System.out.println(NOM + SEPARATEUR_DOUBLE_DOT
+				+ currentUserDTO.getNom());
+		System.out.println(PRENOM + SEPARATEUR_DOUBLE_DOT
+				+ currentUserDTO.getPrenom());
+
 		String dateUser = "";
 		if (currentUserDTO.getDateNaiss() != null) {
 			dateUser = dateFormat.format(currentUserDTO.getDateNaiss());
 		}
-		System.out.println(DATE_DE_NAISSANCE + SEPARATEUR_DOUBLE_DOT + dateUser);
-		System.out.println(AGE + SEPARATEUR_DOUBLE_DOT + currentUserDTO.getAge());
-		
+		System.out
+				.println(DATE_DE_NAISSANCE + SEPARATEUR_DOUBLE_DOT + dateUser);
+		System.out.println(AGE + SEPARATEUR_DOUBLE_DOT
+				+ currentUserDTO.getAge());
+
 		CursusDTO cursusDTO = currentUserDTO.getCursus();
 		String cursusUser = null;
 		if (cursusDTO != null) {
@@ -301,13 +306,15 @@ public class ConsoleIHM {
 
 		System.out.println(COMPETENCES + SEPARATEUR_DOUBLE_DOT);
 		for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
-			System.out.println("{libelle:" + competenceDTO.getLibelle() + ";niveau:" + competenceDTO.getNiveau() + "}");
+			System.out.println("{libelle:" + competenceDTO.getLibelle()
+					+ ";niveau:" + competenceDTO.getNiveau() + "}");
 		}
 
 		System.out.println(ADRESSE + SEPARATEUR_DOUBLE_DOT);
 		for (AdresseDTO adresseDTO : currentUserDTO.getAdresses()) {
-			System.out.println("{libelle:" + adresseDTO.getLibelle() + "ville:" + adresseDTO.getVille()
-					+ "code_postal:" + adresseDTO.getCode_postal() + "}");
+			System.out.println("{libelle:" + adresseDTO.getLibelle() + "ville:"
+					+ adresseDTO.getVille() + "code_postal:"
+					+ adresseDTO.getCode_postal() + "}");
 		}
 
 		// affichage du menu
@@ -360,7 +367,8 @@ public class ConsoleIHM {
 	}
 
 	private void afficherListeUsers() {
-		IUserService userService = BaseConcreteFactory.getInstance().createUserService(null);
+		IUserService userService = BaseConcreteFactory.getInstance()
+				.createUserService(null);
 		Integer choix;
 		// initialisation de la liste des users à afficher
 		List<UserDTO> userDTOs = null;
@@ -380,8 +388,8 @@ public class ConsoleIHM {
 		for (UserDTO userDTO : userDTOs) {
 			// affichage de chaque user en exploitant les attributs
 			// des DTO
-			System.out.println(i + " {identité:" + userDTO.getNom() + " " + userDTO.getPrenom() + ";age:"
-					+ userDTO.getAge() + "}");
+			System.out.println(i + " {identité:" + userDTO.getNom() + " "
+					+ userDTO.getPrenom() + ";age:" + userDTO.getAge() + "}");
 			// incrémentation du compteur de ligne
 			i++;
 		}
@@ -460,8 +468,10 @@ public class ConsoleIHM {
 		return endApplication;
 	}
 
-	private CursusDTO selectCursus() throws PassThroughInputException, TransactionalConnectionException {
-		ICursusService cursusService = BaseConcreteFactory.getInstance().createCursusService(null);
+	private CursusDTO selectCursus() throws PassThroughInputException,
+			TransactionalConnectionException {
+		ICursusService cursusService = BaseConcreteFactory.getInstance()
+				.createCursusService(null);
 		System.out.println(SELECTIONNER_UN_CURSUS);
 		List<CursusDTO> cursusDTOs = cursusService.findAll();
 		Integer j = 1;
@@ -539,5 +549,4 @@ public class ConsoleIHM {
 		return choix;
 	}
 
-	
 }
