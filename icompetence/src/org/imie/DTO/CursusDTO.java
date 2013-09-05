@@ -14,6 +14,10 @@ public class CursusDTO {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}

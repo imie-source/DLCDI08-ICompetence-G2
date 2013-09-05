@@ -1,5 +1,7 @@
 package org.imie.DTO;
 
+import java.util.List;
+
 /**
  * Le DTO représente une compétence. Ce DTO est concu en fonction des besoins de
  * l'interface Il ne peut pas être utilisé pour afficher les niveaux des Users
@@ -14,6 +16,7 @@ public class CompetenceDTO {
 	private String libelle;
 	private NiveauDTO niveau;
 	private int id;
+	private List<MotClefDTO> motClef;
 	
 	public int getId() {
 		return id;
@@ -34,6 +37,21 @@ public class CompetenceDTO {
 	public void setNiveau(NiveauDTO niveau) {
 		this.niveau = niveau;
 	}
+	
+	
+	// remplacement du setMotClef par les methodes de l'API List
+	public void addMotClef(MotClefDTO motClef) {
+		this.motClef.add(motClef);
+	}
+
+	public void removeMotClef(MotClefDTO motClef) {
+		this.motClef.remove(motClef);
+	}
+
+	public List<MotClefDTO> getMotClef() {
+		return motClef;
+	}
+	
 	
 }
 

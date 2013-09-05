@@ -15,6 +15,11 @@ public class NiveauDTO {
 	}
 	
 	
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+
 	public String getLibelle() {
 		return libelle;
 	}
