@@ -3,12 +3,12 @@ package org.imie.factory;
 import org.imie.DAO.AdresseDAO;
 import org.imie.DAO.CompetenceDAO;
 import org.imie.DAO.CursusDAO;
-import org.imie.DAO.GroupWorkDAO;
+import org.imie.DAO.GroupeDeTravailDAO;
 import org.imie.DAO.UserDAO;
 import org.imie.DAO.interfaces.IAdresseDAO;
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.ICursusDAO;
-import org.imie.DAO.interfaces.IGroupWorkDAO;
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.CursusService;
 import org.imie.service.UserService;
@@ -107,10 +107,10 @@ public class BaseConcreteFactory implements IFactory {
 	}
 		
 		
-	public IGroupWorkDAO createGroupWorkDAO(ITransactional caller){
-		TransactionalFactory<GroupWorkDAO> fact = (TransactionalFactory<GroupWorkDAO>) TransactionalFactory
+	public IGroupeDeTravailDAO createGroupWorkDAO(ITransactional caller){
+		TransactionalFactory<GroupeDeTravailDAO> fact = (TransactionalFactory<GroupeDeTravailDAO>) TransactionalFactory
 				.getInstance();
-		return fact.createTransactionalService(new GroupWorkDAO(), caller);
+		return fact.createTransactionalService(new GroupeDeTravailDAO(), caller);
 	}
 
 	@Override

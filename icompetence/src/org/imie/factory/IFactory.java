@@ -3,7 +3,7 @@ package org.imie.factory;
 import org.imie.DAO.interfaces.IAdresseDAO;
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.ICursusDAO;
-import org.imie.DAO.interfaces.IGroupWorkDAO;
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.interfaces.ICursusService;
 import org.imie.service.interfaces.IUserService;
@@ -65,7 +65,7 @@ public interface IFactory {
 	 */
 	public abstract ICompetenceDAO createCompetenceDAO(ITransactional caller);
 	
-	public abstract IGroupWorkDAO createGroupWorkDAO(ITransactional caller);
+	public abstract IGroupeDeTravailDAO createGroupWorkDAO(ITransactional caller);
 	
 	public abstract IAdresseDAO createAdresseDAO(ITransactional caller);
 
