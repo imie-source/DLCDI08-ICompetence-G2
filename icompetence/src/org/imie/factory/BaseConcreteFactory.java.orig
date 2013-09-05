@@ -3,14 +3,22 @@ package org.imie.factory;
 import org.imie.DAO.AdresseDAO;
 import org.imie.DAO.CompetenceDAO;
 import org.imie.DAO.CursusDAO;
-import org.imie.DAO.GroupeDeTravailDAO;
+<<<<<<< HEAD
+import org.imie.DAO.GroupWorkDAO;
 import org.imie.DAO.NiveauDAO;
+=======
+import org.imie.DAO.GroupeDeTravailDAO;
+>>>>>>> 44c0036a1fd2d38dbc21901c95984dc5594729df
 import org.imie.DAO.UserDAO;
 import org.imie.DAO.interfaces.IAdresseDAO;
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.ICursusDAO;
-import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
+<<<<<<< HEAD
+import org.imie.DAO.interfaces.IGroupWorkDAO;
 import org.imie.DAO.interfaces.INiveauDAO;
+=======
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
+>>>>>>> 44c0036a1fd2d38dbc21901c95984dc5594729df
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.CursusService;
 import org.imie.service.UserService;
