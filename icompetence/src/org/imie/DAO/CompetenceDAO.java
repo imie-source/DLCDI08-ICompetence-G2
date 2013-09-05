@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DTO.CompetenceDTO;
+import org.imie.DTO.NiveauDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.transactionalFramework.ATransactional;
@@ -59,7 +60,15 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				// valeurs du
 				// resultset sur l'enregistrement courant
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
-				competenceDTO.setNiveau(resultSet.getInt("niveau"));
+				
+				NiveauDTO niveauDTO = new NiveauDTO();
+				
+				niveauDTO.setLibelle(resultSet.getString("libelle"));				
+				niveauDTO.setId(resultSet.getInt("id_niveau_comp"));				
+				
+				competenceDTO.setNiveau(niveauDTO);
+				
+				
 				competenceDTOs.add(competenceDTO);
 			}
 

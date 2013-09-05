@@ -45,7 +45,7 @@ public class AdresseDTO {
 	public Integer getId_adresse() {
 		return id_adresse;
 	}
-	public void setId_adresse(Integer id_adresse) {
+	public void setId_adresse(int id_adresse) {
 		this.id_adresse = id_adresse;
 	}
 
