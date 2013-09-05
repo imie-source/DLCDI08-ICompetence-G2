@@ -13,7 +13,7 @@
     <description></description>
     <display-name>UpdateServletClass</display-name>
     <servlet-name>UpdateServletClass</servlet-name>
-    <servlet-class>org.imie.Servlet.FirstServletClass</servlet-class>
+    <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
  </servlet>
  <servlet-mapping>
   <servlet-name>UpdateServletClass</servlet-name>

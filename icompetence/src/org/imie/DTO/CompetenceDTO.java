@@ -1,7 +1,7 @@
 package org.imie.DTO;
 
 /**
- * DTO représentant une copétence. Ce DTO est concu en fonction des besoins de
+ * Le DTO représente une compétence. Ce DTO est concu en fonction des besoins de
  * l'interface Il ne peut pas être utilisé pour afficher les niveaux des Users
  * à partir d'une compétence par ex.
  * 
@@ -12,10 +12,13 @@ public class CompetenceDTO {
 	
 	//attributs de classe
 	private String libelle;
-	private Integer niveau;
-
+	private NiveauDTO niveau;
+	private int id;
 	
-	//accesseurs
+	public int getId() {
+		return id;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
@@ -24,12 +27,13 @@ public class CompetenceDTO {
 		this.libelle = libelle;
 	}
 
-	public Integer getNiveau() {
+	public NiveauDTO getNiveau() {
 		return niveau;
 	}
 
-	public void setNiveau(Integer niveau) {
+	public void setNiveau(NiveauDTO niveau) {
 		this.niveau = niveau;
 	}
-
+	
 }
+
