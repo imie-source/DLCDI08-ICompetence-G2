@@ -3,7 +3,7 @@ package org.imie.service;
 import java.util.List;
 
 
-import org.imie.DAO.interfaces.IGroupWorkDAO;
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.DTO.UserDTO;
 import org.imie.factory.BaseConcreteFactory;
@@ -54,8 +54,8 @@ public class UserService extends ATransactional implements IUserService {
 	@Override
 	public void deleteUser(UserDTO userToDelete) throws TransactionalConnectionException {
 		IUserDAO userDAO = BaseConcreteFactory.getInstance().createUserDAO(this);
-		IGroupWorkDAO groupWorkDAO = BaseConcreteFactory.getInstance().createGroupWorkDAO(this);
-		groupWorkDAO.updateUserGroupWork(userToDelete);
+		IGroupeDeTravailDAO groupeDeTravailDAO = BaseConcreteFactory.getInstance().createGroupWorkDAO(this);
+		groupeDeTravailDAO.supprimerUserGroupeDeTravail(userToDelete);
 		userDAO.deleteUser(userToDelete);
 		
 	}
