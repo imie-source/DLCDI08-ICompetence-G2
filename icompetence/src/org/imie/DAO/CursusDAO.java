@@ -1,6 +1,5 @@
 package org.imie.DAO;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,13 +22,14 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
  * 
  */
 public class CursusDAO extends ATransactional implements ICursusDAO {
-	
+
 	/**
 	 * 
 	 * renvoie un dto le cursus (la formation) d'un utilisateur
-	 *
+	 * 
 	 */
-	public CursusDTO findByUser(UserDTO userDTO) throws TransactionalConnectionException {
+	public CursusDTO findByUser(UserDTO userDTO)
+			throws TransactionalConnectionException {
 
 		// initialisation de la liste qui servira au retour
 		CursusDTO cursusDTO = null;
@@ -41,7 +41,8 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 			// création du statement à partir de la connection
 			String selectInstruction = "select f.id_formation, libelle from formation as f  join utilisateur as u on f.id_formation = u.id_formation "
 					+ "where id_utilisateur=?";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(selectInstruction);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
 			preparedStatement.setInt(1, userDTO.getId());
 			resultSet = preparedStatement.executeQuery();
 			// parcours du resultset
@@ -77,10 +78,10 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 	}
 
 	/**
-	 * renvoie la liste des formations (liste de DTO)	 
+	 * renvoie la liste des formations (liste de DTO)
 	 * 
 	 */
-	
+
 	public List<CursusDTO> findAll() throws TransactionalConnectionException {
 
 		// initialisation de la liste qui servira au retour
@@ -92,7 +93,8 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		try {
 			// création du statement à partir de la connection
 			String selectInstruction = "select id_formation,libelle from formation";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(selectInstruction);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
 			resultSet = preparedStatement.executeQuery();
 			// parcours du resultset
 			while (resultSet.next()) {
@@ -124,12 +126,13 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		}
 		return cursusDTOs;
 	}
-	
 
 	/**
-	 * renvoie un cursusDTO quand on envoie un id (de formation/cursus), libelle et id
+	 * renvoie un cursusDTO quand on envoie un id (de formation/cursus), libelle
+	 * et id
 	 */
-	public CursusDTO findById(Integer cursusid) throws TransactionalConnectionException {
+	public CursusDTO findById(Integer cursusid)
+			throws TransactionalConnectionException {
 		// initialisation du dto qui servira au retour
 		CursusDTO cursusDTO = new CursusDTO();
 
@@ -142,7 +145,8 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 			if (cursusDTO != null) {
 				// création du statement à partir de la connection
 				String selectInstruction = "select id_formation,libelle from formation Where id_formation=? ";
-				PreparedStatement preparedStatement = getConnection().prepareStatement(selectInstruction);
+				PreparedStatement preparedStatement = getConnection()
+						.prepareStatement(selectInstruction);
 				preparedStatement.setInt(1, cursusid);
 				resultSet = preparedStatement.executeQuery();
 				// parcours du resultset
@@ -176,24 +180,121 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		return cursusDTO;
 	}
 
-	@Override
+	/**
+	 * crée un nouveau cursus (formation)
+	 */
 	public CursusDTO insertCursus(CursusDTO cursusToInsert)
 			throws TransactionalConnectionException {
-		// TODO Auto-generated method stub
-		return null;
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+		CursusDTO cursusDTOinserted = null;
+
+		try {
+
+			String insertInstruction = "insert into formation (libelle) "
+					+ "values (?) returning libelle ";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
+			preparedStatement.setString(1, cursusToInsert.getLibelle());
+
+			preparedStatement.executeQuery();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return cursusDTOinserted;
 	}
 
-	@Override
+	/**
+	 * modifie un cursus (formation) 
+	 */
 	public CursusDTO updateCursus(CursusDTO cursusToUpdate)
 			throws TransactionalConnectionException {
-		// TODO Auto-generated method stub
-		return null;
+		CursusDTO cursusDTORetour = null;
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			String insertInstruction = "update formation set libelle =? "
+					+ "where id_formation=? ";
+
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);			
+			preparedStatement.setString(1, cursusToUpdate.getLibelle());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			// libération des ressources
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return cursusDTORetour;
 	}
 
-	@Override
+	/**
+	 * supprime un cursus (formation)
+	 */
 	public void deleteCursus(CursusDTO cursusToDelete)
 			throws TransactionalConnectionException {
-		// TODO Auto-generated method stub
-		
+	
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			String insertInstruction1 = "DELETE FROM utilisateur WHERE id_formation =? ";
+			PreparedStatement preparedStatement1 = getConnection().prepareStatement(insertInstruction1);
+			preparedStatement1.setInt(1, cursusToDelete.getId());
+			preparedStatement1.executeUpdate();
+			
+			String insertInstruction2 = "DELETE FROM formation WHERE id_formation =? ";
+			PreparedStatement preparedStatement2 = getConnection().prepareStatement(insertInstruction2);
+			preparedStatement2.setInt(1, cursusToDelete.getId());
+			preparedStatement2.executeUpdate();
+			
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
 	}
 }

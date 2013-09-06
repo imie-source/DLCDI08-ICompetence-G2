@@ -120,9 +120,7 @@ public class ConsoleIHM {
 			case formulaire_user_update:
 				afficherFormulaireUserUpdate();
 				break;
-			case liste_groupe_de_travail:
-				afficherGroupeDeTravail();
-				break;
+<<<<<<< HEAD
 //			case liste_competence:
 //				afficherListeCompetences();				
 //				break;
@@ -138,46 +136,50 @@ public class ConsoleIHM {
 //			case formulaire_competence_delete:
 //				afficheFormulaireCompetenceDelete();
 //				break;			
+=======
+			case liste_groupe_de_travail:
+				afficherGroupeDeTravail();
+>>>>>>> 23460ec83c64677a3760623769b5a41c40a2bd1b
 			default:
 				break;
 			}
 		}
 	}
 
-//	private void afficheFormulaireCompetenceDelete() {
-//		
-//		
-//		// TODO Auto-generated method stub
-//		currentEcran = Ecran.formulaire_competence_delete;
-//	}
-//
-//	private void afficheFormulaireCompetenceUpdate() {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		currentEcran = Ecran.formulaire_competence_delete;
-//	}
-//
-//	private void afficherFormulaireCompetenceCreate() {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		currentEcran = Ecran.formulaire_competence_delete;
-//	}
-//
-//	private void afficherFormulaireCompetence() {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		currentEcran = Ecran.formulaire_competence_delete;
-//	}
-//
-//	private void afficherListeCompetences() {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		currentEcran = Ecran.formulaire_competence_delete;
-//	}
+	private void afficheFormulaireCompetenceDelete() {
+		
+		
+		// TODO Auto-generated method stub
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficheFormulaireCompetenceUpdate() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherFormulaireCompetenceCreate() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherFormulaireCompetence() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherListeCompetences() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
 
 	private void afficherFormulaireUserUpdate() {
 		IUserService userService = BaseConcreteFactory.getInstance()

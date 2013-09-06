@@ -88,11 +88,12 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		return competenceDTOs;
 	}
 
-	@Override
-	public List<CompetenceDTO> findAll()
-			throws TransactionalConnectionException {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public List<CompetenceDTO> findAll() {
+	
+	
+	
+	return null;
 	}
 
 	@Override
