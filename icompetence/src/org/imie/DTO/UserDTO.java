@@ -29,6 +29,22 @@ public class UserDTO {
 	private CursusDTO cursus;
 	private List<AdresseDTO> adresses;
 	private AdresseDTO adresse;
+	private  List<GroupeDeTravailDTO> groupes_de_travail;
+
+	
+	
+	
+	public List<GroupeDeTravailDTO> getGroupes_de_travail() {
+		return groupes_de_travail;
+	}
+
+	public void setGroupes_de_travail(List<GroupeDeTravailDTO> groupes_de_travail) {
+		this.groupes_de_travail = groupes_de_travail;
+	}
+
+	public void setCompetences(List<CompetenceDTO> competences) {
+		this.competences = competences;
+	}
 
 	public void setAdresse(AdresseDTO adresse) {
 		this.adresse = adresse;
@@ -45,6 +61,9 @@ public class UserDTO {
 
 		// initialisation de la liste des adresses
 		adresses = new ArrayList<AdresseDTO>();
+		
+		groupes_de_travail = new ArrayList<GroupeDeTravailDTO>();
+		
 	}
 
 	// accesseurs
