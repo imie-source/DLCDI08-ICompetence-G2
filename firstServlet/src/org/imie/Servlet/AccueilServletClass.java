@@ -40,51 +40,12 @@ public class AccueilServletClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		IUserService userService = BaseConcreteFactory.getInstance()
-				.createUserService(null);
+		
 		response.setContentType("text/html");
+		
+		request.getRequestDispatcher("./Accueil.jsp").forward(request,
+				response);
+		
 
-		// creation de la session
-
-		HttpSession session = request.getSession();
-		List<UserDTO> userDTOs = null;
-		try {
-			userDTOs = userService.getUsers();
-		} catch (TransactionalConnectionException e) {
-			ExceptionManager.getInstance().manageException(e);
-		}
-		System.out.println("hello world");
-
-		// recupération du paramétre de l'url
-		String ligne = request.getParameter("ligne");
-		if (ligne != null) {
-
-			// envoie de la liste en session
-
-			session.setAttribute("listuser", userDTOs);
-			Integer userRead = Integer.valueOf(ligne);
-
-			// recuperation de la liste
-			List<UserDTO> listuser = (List<UserDTO>) session
-					.getAttribute("listuser");
-
-			UserDTO userChoose = listuser.get(userRead - 1);
-			session.setAttribute("userChoose", userChoose);
-			session.removeAttribute("listuser");
-
-			// forward
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./user.jsp");
-			dispatcher.forward(request, response);
-		} else {
-
-			// sinon envoie de la liste en session
-			session.setAttribute("listuser", userDTOs);
-			// et affichage de la liste
-
-			request.getRequestDispatcher("./liste.jsp").forward(request,
-					response);
-		}
 	}
-
 }
