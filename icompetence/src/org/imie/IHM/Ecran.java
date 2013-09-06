@@ -7,5 +7,5 @@ package org.imie.IHM;
  * 
  */
 public enum Ecran {
-	menu_principale, liste_user, formulaire_user, formulaire_user_create, formulaire_user_update;
+	menu_principale, liste_user, formulaire_user,liste_groupe_de_travail, formulaire_user_create, formulaire_user_update;
 }

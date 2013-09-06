@@ -15,10 +15,12 @@ import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.CompetenceService;
 import org.imie.service.CursusService;
 import org.imie.service.NiveauService;
+import org.imie.service.GroupeDeTravailService;
 import org.imie.service.UserService;
 import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.ICursusService;
 import org.imie.service.interfaces.INiveauService;
+import org.imie.service.interfaces.IGroupeDeTravailService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalFactory;
@@ -56,6 +58,12 @@ public class BaseConcreteFactory implements IFactory {
 	}
 
 	
+	public IGroupeDeTravailService creerGroupeDeTravailService (ITransactional caller) {
+		TransactionalFactory<GroupeDeTravailService> fact = (TransactionalFactory<GroupeDeTravailService>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new GroupeDeTravailService(), caller);
+		
+	}
+	
 	public IUserService createUserService(ITransactional caller) {
 		TransactionalFactory<UserService> fact = (TransactionalFactory<UserService>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new UserService(), caller);
@@ -88,7 +96,7 @@ public class BaseConcreteFactory implements IFactory {
 	}
 		
 		
-	public IGroupeDeTravailDAO createGroupWorkDAO(ITransactional caller){
+	public IGroupeDeTravailDAO creerGroupeDeTravailDAO(ITransactional caller){
 		TransactionalFactory<GroupeDeTravailDAO> fact = (TransactionalFactory<GroupeDeTravailDAO>) TransactionalFactory
 				.getInstance();
 		return fact.createTransactionalService(new GroupeDeTravailDAO(), caller);

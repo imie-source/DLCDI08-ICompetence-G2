@@ -20,8 +20,16 @@ public class GroupeDeTravailDTO {
 	private int id_etat;
 	private String libelleEtat;
 	private Integer id_gdt;
+	private String nomCP;
 
 	private List<UserDTO> utilisateurs;
+
+	public String getNomCP() {
+		return nomCP;
+	}
+	public void setNomCP(String nomCP) {
+		this.nomCP = nomCP;
+	}
 
 	public GroupeDeTravailDTO() {
 		utilisateurs = new ArrayList<UserDTO>();

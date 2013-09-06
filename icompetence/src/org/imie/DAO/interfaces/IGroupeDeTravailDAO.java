@@ -60,6 +60,8 @@ public interface IGroupeDeTravailDAO extends ITransactional {
 	
 	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO);
 	
+	public abstract Boolean modifCP(UserDTO userDTO);
+	
 	/**
 	 * afficher un groupe de travail
 	 * 

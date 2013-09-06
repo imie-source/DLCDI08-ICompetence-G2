@@ -8,13 +8,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DTO.AdresseDTO;
 import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.CursusDTO;
+import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
+import org.imie.service.GroupeDeTravailService;
 import org.imie.service.interfaces.ICursusService;
+import org.imie.service.interfaces.IGroupeDeTravailService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -41,6 +45,7 @@ public class ConsoleIHM {
 	private final String _2_UPDATE = "2 - Update";
 	private final String _1_RETOUR = "1 - Retour";
 	private final String QUEL_USER_LIRE = "quel user lire?";
+	private final String QUEL_GROUPE_DE_TRAVAIL_LIRE = "quel groupe de travail lire?";
 	private final String DATE_FORMAT = "dd/MM/yyyy";
 	private final String ENDING_PARENTESIS = ") ";
 	private final String STARTIN_PARENTESIS = " (";
@@ -55,6 +60,7 @@ public class ConsoleIHM {
 
 	// utilisateur courrant de travail de l'application
 	private UserDTO currentUserDTO = null;
+	private GroupeDeTravailDTO currentGdtDTO = null;
 	// erreur d'application courante de l'application
 	private String applicationError = null;
 	// ecran courant de l'application
@@ -114,6 +120,9 @@ public class ConsoleIHM {
 			case formulaire_user_update:
 				afficherFormulaireUserUpdate();
 				break;
+			case liste_groupe_de_travail:
+				afficherGroupeDeTravail();
+//				break;
 //			case liste_competence:
 //				afficherListeCompetences();				
 //				break;
@@ -487,7 +496,8 @@ public class ConsoleIHM {
 		// affichage du menu principale de l'application
 		System.out.println("1 - liste des users");
 		System.out.println("2 - créer un users");
-		System.out.println("3 - close");
+		System.out.println("3 - liste des Groupes de travail");
+		System.out.println("4 - close");
 		// récupération du menu à utiliser
 		try {
 			choix = getIntegerInput();
@@ -505,6 +515,11 @@ public class ConsoleIHM {
 
 					break;
 				case 3:
+					// changement d'écran
+					currentEcran = Ecran.liste_groupe_de_travail;
+
+					break;
+				case 4:
 					// déclaration de fin d'application
 					endApplication = true;
 					break;
@@ -599,4 +614,66 @@ public class ConsoleIHM {
 		return choix;
 	}
 
+	private void afficherGroupeDeTravail() {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(null);
+		Integer choix;
+		List<GroupeDeTravailDTO> gdtDTOs = null;
+		
+		IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance().creerGroupeDeTravailService(null);
+		
+		try {
+			gdtDTOs = gdtService.afficherGroupeDeTravail();
+		} catch (TransactionalConnectionException e) {
+			ExceptionManager.getInstance().manageException(e);
+		}
+		// initialisation du compteur de ligne
+		int i = 1;
+		// parcours de la liste des users à afficher
+		for (GroupeDeTravailDTO gdtDTO : gdtDTOs) {
+			// affichage de chaque user en exploitant les attributs
+			// des DTO
+			System.out.println(i + " Nom :" + gdtDTO.getNom() + "\n  Avancement : "
+					+ gdtDTO.getLibelleEtat() + "\n  Chef de Projet : " + gdtDTO.getNomCP() + "\n");
+			// incrémentation du compteur de ligne
+			i++;
+		}
+
+		// affichage du menu
+		System.out.println("1 - read");
+		System.out.println("2 - retour");
+		// récupération du menu à utiliser
+		try {
+			choix = getIntegerInput();
+
+			// execution du menu utilisé
+			if (choix != null) {
+				switch (choix) {
+				case 1:
+					// récupération de la ligne à afficher
+					System.out.println(QUEL_GROUPE_DE_TRAVAIL_LIRE);
+					Integer numLigneRead = getIntegerInput();
+					// récupération du UserDTO correspondant à la ligne
+					// demandée
+					// affectation de l'utilisateur courrant de travail
+					// de
+					// l'application
+					currentGdtDTO = gdtDTOs.get(numLigneRead - 1);
+					if (currentGdtDTO != null) {
+						// changement d'écran
+						currentEcran = Ecran.menu_principale;
+					}
+					break;
+				case 2:
+					// changement d'écran
+					currentEcran = Ecran.menu_principale;
+					break;
+				default:
+					break;
+				}
+			}
+		} catch (PassThroughInputException e2) {
+			ExceptionManager.getInstance().manageException(e2);
+		}
+	}
 }
