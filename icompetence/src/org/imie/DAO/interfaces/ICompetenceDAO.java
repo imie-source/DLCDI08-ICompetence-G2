@@ -23,4 +23,16 @@ public interface ICompetenceDAO extends ITransactional {
 	public abstract List<CompetenceDTO> getCompetenceByUser(UserDTO userDTO) throws
 			TransactionalConnectionException;
 
+	public abstract List<CompetenceDTO> findAll() throws TransactionalConnectionException;
+
+	public abstract CompetenceDTO findById(Integer competenceid) throws TransactionalConnectionException;
+	
+	public abstract CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert) throws TransactionalConnectionException;
+	
+	public abstract CompetenceDTO updateCompetence(CompetenceDTO competenceToUpdate) throws TransactionalConnectionException;
+	
+	public abstract void deleteCompetence(CompetenceDTO competenceToDelete) throws TransactionalConnectionException;
+	
+	
+	
 }

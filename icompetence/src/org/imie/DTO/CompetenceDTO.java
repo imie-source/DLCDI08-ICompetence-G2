@@ -1,7 +1,9 @@
 package org.imie.DTO;
 
+import java.util.List;
+
 /**
- * DTO représentant une copétence. Ce DTO est concu en fonction des besoins de
+ * Le DTO représente une compétence. Ce DTO est concu en fonction des besoins de
  * l'interface Il ne peut pas être utilisé pour afficher les niveaux des Users
  * à partir d'une compétence par ex.
  * 
@@ -12,10 +14,14 @@ public class CompetenceDTO {
 	
 	//attributs de classe
 	private String libelle;
-	private Integer niveau;
-
+	private NiveauDTO niveau;
+	private int id;
+	private List<MotClefDTO> motClef;
 	
-	//accesseurs
+	public int getId() {
+		return id;
+	}
+
 	public String getLibelle() {
 		return libelle;
 	}
@@ -24,12 +30,28 @@ public class CompetenceDTO {
 		this.libelle = libelle;
 	}
 
-	public Integer getNiveau() {
+	public NiveauDTO getNiveau() {
 		return niveau;
 	}
 
-	public void setNiveau(Integer niveau) {
+	public void setNiveau(NiveauDTO niveau) {
 		this.niveau = niveau;
 	}
+	
+	
+	// remplacement du setMotClef par les methodes de l'API List
+	public void addMotClef(MotClefDTO motClef) {
+		this.motClef.add(motClef);
+	}
 
+	public void removeMotClef(MotClefDTO motClef) {
+		this.motClef.remove(motClef);
+	}
+
+	public List<MotClefDTO> getMotClef() {
+		return motClef;
+	}
+	
+	
 }
+

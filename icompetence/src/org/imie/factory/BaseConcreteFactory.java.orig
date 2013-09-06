@@ -14,13 +14,19 @@ import org.imie.DAO.interfaces.INiveauDAO;
 import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.service.CompetenceService;
 import org.imie.service.CursusService;
+<<<<<<< HEAD
 import org.imie.service.NiveauService;
+=======
 import org.imie.service.GroupeDeTravailService;
+>>>>>>> 23460ec83c64677a3760623769b5a41c40a2bd1b
 import org.imie.service.UserService;
 import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.ICursusService;
+<<<<<<< HEAD
 import org.imie.service.interfaces.INiveauService;
+=======
 import org.imie.service.interfaces.IGroupeDeTravailService;
+>>>>>>> 23460ec83c64677a3760623769b5a41c40a2bd1b
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalFactory;

@@ -3,12 +3,14 @@ package org.imie.factory;
 import org.imie.DAO.interfaces.IAdresseDAO;
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.ICursusDAO;
-import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
+<<<<<<< HEAD
+import org.imie.DAO.interfaces.IGroupWorkDAO;
 import org.imie.DAO.interfaces.INiveauDAO;
+=======
+import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
+>>>>>>> 44c0036a1fd2d38dbc21901c95984dc5594729df
 import org.imie.DAO.interfaces.IUserDAO;
-import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.ICursusService;
-import org.imie.service.interfaces.INiveauService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.ITransactional;
 
@@ -46,11 +48,6 @@ public interface IFactory {
 	 *            transaction
 	 * @return
 	 */
-	
-	public abstract ICompetenceService createCompetenceService(ITransactional caller);
-	
-	public abstract INiveauService createNiveauService(ITransactional caller);	
-	
 	public abstract IUserDAO createUserDAO(ITransactional caller);
 
 	/**
@@ -73,17 +70,30 @@ public interface IFactory {
 	 */	
 	public abstract INiveauDAO createNiveauDAO(ITransactional caller);
 	
-	public abstract ICompetenceDAO createCompetenceDAO(ITransactional caller);
 	
-	public abstract IGroupeDeTravailDAO creerGroupeDeTravailDAO(ITransactional caller);
 	/**
-	  * créer un dao transactionel dédié à la table groupework (groupe de travail) (un proxy de dao)
+	 * créer un dao transactionel dédié à la table competence (un proxy de dao)
 	 * 
 	 * @param caller
 	 *            objet transactionel appelant ce service. null si début de
 	 *            transaction
 	 * @return
 	 */
+	public abstract ICompetenceDAO createCompetenceDAO(ITransactional caller);
+	
+<<<<<<< HEAD
+	/**
+	 * créer un dao transactionel dédié à la table groupework (groupe de travail) (un proxy de dao)
+	 * 
+	 * @param caller
+	 *            objet transactionel appelant ce service. null si début de
+	 *            transaction
+	 * @return
+	 */
+	public abstract IGroupWorkDAO createGroupWorkDAO(ITransactional caller);
+=======
+	public abstract IGroupeDeTravailDAO createGroupWorkDAO(ITransactional caller);
+>>>>>>> 44c0036a1fd2d38dbc21901c95984dc5594729df
 	
 	/**
 	 * créer un dao transactionel dédié à la table adresse (un proxy de dao)

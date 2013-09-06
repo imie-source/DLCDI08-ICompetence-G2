@@ -14,7 +14,7 @@ import java.util.List;
 public class UserDTO {
 
 	// attributs de classe
-	
+
 	private String nom;
 	private String prenom;
 	private String adresse_mail;
@@ -24,13 +24,15 @@ public class UserDTO {
 	private String pwd;
 	private Integer id;
 	private Integer age;
-	
+
 	private List<CompetenceDTO> competences;
 	private CursusDTO cursus;
 	private List<AdresseDTO> adresses;
 	private AdresseDTO adresse;
-	
 
+	public void setAdresse(AdresseDTO adresse) {
+		this.adresse = adresse;
+	}
 
 	// constructeur
 	// Ce constructeur par défaut est necessaire pour initialiser la liste des
@@ -40,7 +42,7 @@ public class UserDTO {
 		super();
 		// initialisation de la liste des compétences
 		competences = new ArrayList<CompetenceDTO>();
-		
+
 		// initialisation de la liste des adresses
 		adresses = new ArrayList<AdresseDTO>();
 	}
@@ -56,7 +58,8 @@ public class UserDTO {
 			if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
 				age--;
 			} else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
-					&& today.get(Calendar.DAY_OF_MONTH) < dob.get(Calendar.DAY_OF_MONTH)) {
+					&& today.get(Calendar.DAY_OF_MONTH) < dob
+							.get(Calendar.DAY_OF_MONTH)) {
 				age--;
 			}
 		}
@@ -158,26 +161,17 @@ public class UserDTO {
 	}
 
 	// remplacement du setAdresse par les methodes de l'API List
-		public void addAdresse(AdresseDTO adresseDTO) {
-			this.adresses.add(adresseDTO);
-		}
+	public void addAdresse(AdresseDTO adresseDTO) {
+		this.adresses.add(adresseDTO);
+	}
 
-		// remplacement du setAdresse par les methodes de l'API List
-		public void removeAdresses( AdresseDTO adresseDTO) {
-			this.adresses.remove(adresseDTO);
-		}
+	public void removeAdresses(AdresseDTO adresseDTO) {
+		this.adresses.remove(adresseDTO);
+	}
 
-		public AdresseDTO getAdresse() {
-			return adresse;
-		}
-
-		public void setAdresse(AdresseDTO adresse) {
-			this.adresse = adresse;
-		}
-
-		
-
-	
+	public AdresseDTO getAdresse() {
+		return adresse;
+	}
 	
 
 }

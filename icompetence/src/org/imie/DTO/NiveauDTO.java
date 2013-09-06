@@ -1,19 +1,19 @@
 package org.imie.DTO;
 
 /**
- * Le DTO représente un cursus. Un cursus est une formation de l'école.
- * @author imie
+ * Le DTO est un niveau de compétence 
+ *  @author imie
  *
  */
-public class CursusDTO {
-	private Integer id ;
+public class NiveauDTO {
+
+	private Integer id;
 	private String libelle;
 	
-	
-	public Integer getId() {
+	public int getId() {
 		return id;
-	}
-
+	}	
+	
 	public void setId(Integer id) {
 		this.id = id;
 	}
@@ -21,9 +21,11 @@ public class CursusDTO {
 	public String getLibelle() {
 		return libelle;
 	}
+	
 	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
+	
 	
 
 }

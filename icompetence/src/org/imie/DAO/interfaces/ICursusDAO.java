@@ -3,6 +3,7 @@ package org.imie.DAO.interfaces;
 import java.util.List;
 
 import org.imie.DTO.CursusDTO;
+import org.imie.DTO.NiveauDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalConnectionException;
@@ -32,5 +33,12 @@ public interface ICursusDAO extends ITransactional{
 	public abstract List<CursusDTO> findAll() throws TransactionalConnectionException;
 
 	public abstract CursusDTO findById(Integer cursusid) throws TransactionalConnectionException;
+	
+	public abstract CursusDTO insertCursus(CursusDTO cursusToInsert) throws TransactionalConnectionException;
+	
+	public abstract CursusDTO updateCursus(CursusDTO cursusToUpdate) throws TransactionalConnectionException;
+	
+	public abstract void deleteCursus(CursusDTO cursusToDelete) throws TransactionalConnectionException;
+	
 
 }

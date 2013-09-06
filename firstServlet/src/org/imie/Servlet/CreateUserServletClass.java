@@ -32,6 +32,7 @@ public class CreateUserServletClass extends HttpServlet {
 	private final String DATE_FORMAT = "dd/MM/yyyy";
 	private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 	private AdresseDTO adresseToCreate = new AdresseDTO();
+	AdresseDTO nouvelleAdresse = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -83,7 +84,7 @@ public class CreateUserServletClass extends HttpServlet {
 				.createCursusService(null);
 		IUserService userService = BaseConcreteFactory.getInstance()
 				.createUserService(null);
-
+		
 		// methode de création de l'adresse
 
 		String libelleParam = request.getParameter("libelle");
@@ -99,17 +100,24 @@ public class CreateUserServletClass extends HttpServlet {
 			adresseToCreate.setLibelle(libelleParam);
 			adresseToCreate.setVille(villeParam);
 			adresseToCreate.setCode_postal(codePostal);
+			
 
 			try {
-				adresseDAO.createAdresse(adresseToCreate);
+			nouvelleAdresse = adresseDAO.createAdresse(adresseToCreate);
 			} catch (TransactionalConnectionException e) {
-				
+
 				e.printStackTrace();
 			}
 		}
-
-			String userNomParam = request.getParameter("nom");
-			String userPrenomParam = request.getParameter("prenom");
+System.out.println(nouvelleAdresse.getId_adresse());
+		String userNomParam = request.getParameter("nom");
+		String userPrenomParam = request.getParameter("prenom");
+		String userDisponibleParam = request.getParameter("disponible");
+		
+		
+		if (userDisponibleParam != null) {
+			Boolean disponible = Boolean.valueOf(userDisponibleParam);
+			
 			Date userDateNaissParam = null;
 			try {
 				userDateNaissParam = getDateInput(request
@@ -146,7 +154,9 @@ public class CreateUserServletClass extends HttpServlet {
 				newUser.setIdentifiant(userIdentifiantParam);
 				newUser.setPwd(userPwdParam);
 				newUser.setCursus(cursusDTO);
-				//newUser.addAdresse(adresseToCreate);
+				newUser.setDisponible(disponible);
+				System.out.println( "\n je suis ici "+disponible);
+				newUser.setAdresse(nouvelleAdresse);
 				try {
 					userService.insertUser(newUser);
 				} catch (TransactionalConnectionException e) {
@@ -154,7 +164,7 @@ public class CreateUserServletClass extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-		
+		}
 		response.sendRedirect("./AccueilServletClass");
 	}
 }

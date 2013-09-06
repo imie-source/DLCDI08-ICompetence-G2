@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DTO.CompetenceDTO;
+import org.imie.DTO.NiveauDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.transactionalFramework.ATransactional;
@@ -24,11 +25,9 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 
-	/* (non-Javadoc)
-	 * @see org.imie.DAO.ICompetenceDAO#getCompetenceByUser(org.imie.DTO.UserDTO, java.sql.Connection)
-	 */
-	@Override
 	public List<CompetenceDTO> getCompetenceByUser(UserDTO userDTO) throws TransactionalConnectionException {
+		
+		
 		// initialisation de la liste qui servira au retour
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 		// déclaration de la variable de statement
@@ -59,7 +58,15 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				// valeurs du
 				// resultset sur l'enregistrement courant
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
-				competenceDTO.setNiveau(resultSet.getInt("niveau"));
+				
+				NiveauDTO niveauDTO = new NiveauDTO();
+				
+				niveauDTO.setLibelle(resultSet.getString("libelle"));				
+				niveauDTO.setId(resultSet.getInt("niveau"));				
+				
+				competenceDTO.setNiveau(niveauDTO);
+				
+				
 				competenceDTOs.add(competenceDTO);
 			}
 
@@ -79,5 +86,41 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			}
 		}
 		return competenceDTOs;
+	}
+
+	
+	public List<CompetenceDTO> findAll() {
+	
+	
+	
+	return null;
+	}
+
+	@Override
+	public CompetenceDTO findById(Integer competenceid)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompetenceDTO updateCompetence(CompetenceDTO competenceToUpdate)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCompetence(CompetenceDTO competenceToDelete)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		
 	}
 }
