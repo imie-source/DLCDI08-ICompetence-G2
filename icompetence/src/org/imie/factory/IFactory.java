@@ -6,7 +6,9 @@ import org.imie.DAO.interfaces.ICursusDAO;
 import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DAO.interfaces.INiveauDAO;
 import org.imie.DAO.interfaces.IUserDAO;
+import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.ICursusService;
+import org.imie.service.interfaces.INiveauService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.ITransactional;
 
@@ -44,6 +46,11 @@ public interface IFactory {
 	 *            transaction
 	 * @return
 	 */
+	
+	public abstract ICompetenceService createCompetenceService(ITransactional caller);
+	
+	public abstract INiveauService createNiveauService(ITransactional caller);	
+	
 	public abstract IUserDAO createUserDAO(ITransactional caller);
 
 	/**
@@ -66,15 +73,6 @@ public interface IFactory {
 	 */	
 	public abstract INiveauDAO createNiveauDAO(ITransactional caller);
 	
-	
-	/**
-	 * créer un dao transactionel dédié à la table competence (un proxy de dao)
-	 * 
-	 * @param caller
-	 *            objet transactionel appelant ce service. null si début de
-	 *            transaction
-	 * @return
-	 */
 	public abstract ICompetenceDAO createCompetenceDAO(ITransactional caller);
 	
 	public abstract IGroupeDeTravailDAO creerGroupeDeTravailDAO(ITransactional caller);

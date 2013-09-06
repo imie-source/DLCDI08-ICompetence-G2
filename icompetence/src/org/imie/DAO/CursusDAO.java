@@ -175,4 +175,25 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 		}
 		return cursusDTO;
 	}
+
+	@Override
+	public CursusDTO insertCursus(CursusDTO cursusToInsert)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CursusDTO updateCursus(CursusDTO cursusToUpdate)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCursus(CursusDTO cursusToDelete)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		
+	}
 }
