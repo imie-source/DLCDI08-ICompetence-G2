@@ -241,8 +241,8 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		System.out.println("entrée -> afficherGroupeDeTravail");
 		try {
 			statement = getConnection().createStatement();
-			resultSet = statement.executeQuery("select * "
-					+ "FROM groupe_de_travail");
+			resultSet = statement.executeQuery("select gdt.nom as gdtnom, id_gdt, bilan,type_projet,id_utilisateur,id_etat, util.nom as nomutil,util.prenom as prenomutil "
+					+ "FROM groupe_de_travail as gdt INNER JOIN utilisateur as util ON util.id_utilisateur=gdt.id_util_chef_de_groupe");
 
 			while (resultSet.next()) {
 				GroupeDeTravailDTO groupeDeTravail = buildDTO(resultSet);
@@ -267,7 +267,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			}
 		}
 
-		return null;
+		return groupeDeTravailDTO;
 		// TODO Auto-generated method stub
 
 	}
@@ -279,12 +279,13 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		// affectation des attribut du UserDTO à partir des valeurs du
 		// resultset sur l'enregistrement courant
 		System.out.println("entrée -> buildDTO");
-		groupeDeTravailDTO.setNom(resultSet.getString("nom"));
+		groupeDeTravailDTO.setNom(resultSet.getString("gdtnom"));
 		groupeDeTravailDTO.setId_gdt(resultSet.getInt("id_gdt"));
 		groupeDeTravailDTO.setBilan(resultSet.getString("bilan"));
 		groupeDeTravailDTO.setType_projet(resultSet.getString("type_projet"));
-		groupeDeTravailDTO.setId_util(resultSet.getInt("id_util"));
+		groupeDeTravailDTO.setId_util(resultSet.getInt("id_utilisateur"));
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
+		groupeDeTravailDTO.setNomCP(resultSet.getString("nomutil")+" "+resultSet.getString("prenomutil"));
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
 				.getId_etat()));
 		return groupeDeTravailDTO;
@@ -296,24 +297,90 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		Statement statement = null;
 		ResultSet resultSet = null;
 		System.out.println("entrée -> afficherLibelle");
-
+		String libelleEtat = null;
+		
 		try {
 			statement = getConnection().createStatement();
 			resultSet = statement.executeQuery("select libelle "
 					+ "FROM etat WHERE id_etat =" + id_etat);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String libelleEtat = null;
-		try {
+		
+			while (resultSet.next()) {
 			libelleEtat = resultSet.getString("libelle");
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
 		return libelleEtat;
 
+	}
+
+	@Override
+	public Boolean modifCP(UserDTO userDTO) {
+		Boolean creer = true;
+		try {
+
+			String creerUserGdt = " UPDATE groupe_de_travail SET id_utilisateur=? WHERE id_gdt=?";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(creerUserGdt);
+			preparedStatement.setString(1, null);
+			preparedStatement.setInt(2, userDTO.getId());
+			preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+			creer = false;
+
+		}
+
+		return creer;
+
+	}
+	public List<GroupeDeTravailDTO> getGroupeDeTravailParUtilisateur(UserDTO userDTO) throws TransactionalConnectionException {
+		
+		List<GroupeDeTravailDTO> groupeDeTravailDTOs = new ArrayList<GroupeDeTravailDTO>();
+		Statement statement = null;
+		ResultSet resultSet = null;
+		
+		try {
+			
+			String query = " SELECT nom, bilan, type_projet, id_gdt" +
+					"FROM groupe_de_travail" +
+					"INNER JOIN utilisateur_appartient_a_gdt as uaag" +
+					"WHERE id_utilisateur =?";
+			PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+			preparedStatement.setInt(1, userDTO.getId());
+			resultSet = preparedStatement.executeQuery();
+			
+			while (resultSet.next()) {
+				GroupeDeTravailDTO gdtDTO = new GroupeDeTravailDTO();
+				gdtDTO.setNom(resultSet.getString("nom"));
+				gdtDTO.setBilan(resultSet.getString("bilan"));
+				gdtDTO.setType_projet(resultSet.getString("type_projet"));
+				gdtDTO.setId_gdt(resultSet.getInt("id_gdt"));
+				groupeDeTravailDTOs.add(gdtDTO);
+				
+			}
+			
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+			// libération des ressources
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return groupeDeTravailDTOs;
+		
+		
 	}
 
 	// TODO méthode de recherche par user ou autre à implémenter (voir youyou)

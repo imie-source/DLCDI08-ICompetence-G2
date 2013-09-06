@@ -77,7 +77,7 @@ public interface IFactory {
 	 */
 	public abstract ICompetenceDAO createCompetenceDAO(ITransactional caller);
 	
-	public abstract IGroupeDeTravailDAO createGroupWorkDAO(ITransactional caller);
+	public abstract IGroupeDeTravailDAO creerGroupeDeTravailDAO(ITransactional caller);
 	/**
 	  * créer un dao transactionel dédié à la table groupework (groupe de travail) (un proxy de dao)
 	 * 

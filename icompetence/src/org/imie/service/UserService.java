@@ -54,7 +54,7 @@ public class UserService extends ATransactional implements IUserService {
 	@Override
 	public void deleteUser(UserDTO userToDelete) throws TransactionalConnectionException {
 		IUserDAO userDAO = BaseConcreteFactory.getInstance().createUserDAO(this);
-		IGroupeDeTravailDAO groupeDeTravailDAO = BaseConcreteFactory.getInstance().createGroupWorkDAO(this);
+		IGroupeDeTravailDAO groupeDeTravailDAO = BaseConcreteFactory.getInstance().creerGroupeDeTravailDAO(this);
 		groupeDeTravailDAO.modifCP(userToDelete);
 		
 		userDAO.deleteUser(userToDelete);
