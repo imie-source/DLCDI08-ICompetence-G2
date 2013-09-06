@@ -23,4 +23,26 @@ public class NiveauService extends ATransactional implements INiveauService{
 		return niveauDAO.findById(niveauid);
 	}
 
+	
+	public NiveauDTO insertNiveau(NiveauDTO niveauToInsert)
+			throws TransactionalConnectionException {
+		INiveauDAO niveauDAO = BaseConcreteFactory.getInstance().createNiveauDAO(this);
+		return niveauDAO.insertNiveau(niveauToInsert);
+	}
+
+	
+	public NiveauDTO updateNiveau(NiveauDTO niveauToUpdate)
+			throws TransactionalConnectionException {
+		INiveauDAO niveauDAO = BaseConcreteFactory.getInstance().createNiveauDAO(this);
+		return niveauDAO.updateNiveau(niveauToUpdate);
+	}
+
+
+	public void deleteNiveau(NiveauDTO niveauToDelete)
+			throws TransactionalConnectionException {
+		INiveauDAO niveauDAO = BaseConcreteFactory.getInstance().createNiveauDAO(this);		
+		
+		niveauDAO.deleteNiveau(niveauToDelete);
+	}
+
 }

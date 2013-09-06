@@ -25,10 +25,6 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 
-	/* (non-Javadoc)
-	 * @see org.imie.DAO.ICompetenceDAO#getCompetenceByUser(org.imie.DTO.UserDTO, java.sql.Connection)
-	 */
-	@Override
 	public List<CompetenceDTO> getCompetenceByUser(UserDTO userDTO) throws TransactionalConnectionException {
 		
 		
@@ -90,5 +86,40 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			}
 		}
 		return competenceDTOs;
+	}
+
+	@Override
+	public List<CompetenceDTO> findAll()
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompetenceDTO findById(Integer competenceid)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CompetenceDTO updateCompetence(CompetenceDTO competenceToUpdate)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCompetence(CompetenceDTO competenceToDelete)
+			throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		
 	}
 }

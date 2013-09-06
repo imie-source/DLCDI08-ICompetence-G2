@@ -114,10 +114,60 @@ public class ConsoleIHM {
 			case formulaire_user_update:
 				afficherFormulaireUserUpdate();
 				break;
+//			case liste_competence:
+//				afficherListeCompetences();				
+//				break;
+//			case formulaire_competence:
+//				afficherFormulaireCompetence();
+//				break;
+//			case formulaire_competence_create:
+//				afficherFormulaireCompetenceCreate();
+//				break;
+//			case formulaire_competence_Update:
+//				afficheFormulaireCompetenceUpdate();
+//				break;								
+//			case formulaire_competence_delete:
+//				afficheFormulaireCompetenceDelete();
+//				break;			
 			default:
 				break;
 			}
 		}
+	}
+
+	private void afficheFormulaireCompetenceDelete() {
+		
+		
+		// TODO Auto-generated method stub
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficheFormulaireCompetenceUpdate() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherFormulaireCompetenceCreate() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherFormulaireCompetence() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
+	}
+
+	private void afficherListeCompetences() {
+		// TODO Auto-generated method stub
+		
+		
+		currentEcran = Ecran.formulaire_competence_delete;
 	}
 
 	private void afficherFormulaireUserUpdate() {

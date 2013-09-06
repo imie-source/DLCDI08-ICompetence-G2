@@ -12,9 +12,13 @@ import org.imie.DAO.interfaces.ICursusDAO;
 import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 import org.imie.DAO.interfaces.INiveauDAO;
 import org.imie.DAO.interfaces.IUserDAO;
+import org.imie.service.CompetenceService;
 import org.imie.service.CursusService;
+import org.imie.service.NiveauService;
 import org.imie.service.UserService;
+import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.ICursusService;
+import org.imie.service.interfaces.INiveauService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalFactory;
@@ -102,6 +106,18 @@ public class BaseConcreteFactory implements IFactory {
 	public INiveauDAO createNiveauDAO(ITransactional caller) {
 		TransactionalFactory<NiveauDAO> fact = (TransactionalFactory<NiveauDAO>) TransactionalFactory.getInstance();
 		return fact.createTransactionalService(new NiveauDAO(), caller);
+	}
+
+	
+	public ICompetenceService createCompetenceService(ITransactional caller) {
+		TransactionalFactory<CompetenceService> fact = (TransactionalFactory<CompetenceService>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new CompetenceService(), caller);
+	}
+
+
+	public INiveauService createNiveauService(ITransactional caller) {		
+		TransactionalFactory<NiveauService> fact = (TransactionalFactory<NiveauService>) TransactionalFactory.getInstance();
+		return fact.createTransactionalService(new NiveauService(), caller);
 	}
 	
 }
