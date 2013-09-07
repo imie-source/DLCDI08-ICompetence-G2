@@ -27,14 +27,6 @@ public class AccueilServletClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AccueilServletClass() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
@@ -53,7 +45,7 @@ public class AccueilServletClass extends HttpServlet {
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
-		System.out.println("hello world");
+		System.out.println("AccueilServletClass");
 
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
