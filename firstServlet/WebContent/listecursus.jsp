@@ -55,8 +55,8 @@
 
 	<div id="ajouterdialog" title="ajouter">
 	<form id="formajoutcursus" method="post"
-			action="./CreateServletClass">
-				<!-- lien à modifier  -->
+			action="./CursusServletClass?UrlParam=creer">
+				
 		<fieldset>
 			<legend>Ajouter un cursus</legend>
 			Libellé*:<input type="text" name="libelle" maxlength="15"></input>

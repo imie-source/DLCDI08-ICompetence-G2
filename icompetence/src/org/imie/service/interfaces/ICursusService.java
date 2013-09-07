@@ -12,6 +12,9 @@ public interface ICursusService extends ITransactional {
 
 	CursusDTO findbyid(Integer cursusid) throws TransactionalConnectionException;
 
+	CursusDTO insertCursus(CursusDTO cursusToInsert)
+			throws TransactionalConnectionException;
+
 	
 
 }
