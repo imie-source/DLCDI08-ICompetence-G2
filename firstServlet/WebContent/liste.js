@@ -1,7 +1,7 @@
  $(document).ready(function() {
 
 
-	 $( "#tableau").accordion({heightStyle:"content"},{active: false},{collapsible: false}); 
+	 $( "#tableau").accordion({heightStyle:"content"},{active: false},{collapsible: true}); 
 
 	 $("a").mousedown(function(){
 			

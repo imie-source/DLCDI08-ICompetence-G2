@@ -27,4 +27,10 @@ public class CursusService extends ATransactional implements ICursusService {
 		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance().createCursusDAO(this);
 		return cursusDAO.insertCursus(cursusToInsert);
 	}
+	@Override
+	public CursusDTO updateCursus(CursusDTO cursusToUpdate) throws TransactionalConnectionException {
+		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance().createCursusDAO(this);
+		return cursusDAO.updateCursus(cursusToUpdate);
+	}
 }
+

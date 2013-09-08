@@ -1,13 +1,18 @@
 package org.imie.Servlet;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.imie.DTO.CursusDTO;
+import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
 import org.imie.service.interfaces.ICursusService;
 import org.imie.transactionalFramework.TransactionalConnectionException;
@@ -25,8 +30,24 @@ public class CursusServletClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		response.setContentType("text/html");
+		
+		String ligne = request.getParameter("ligne");
+		if (ligne != null) {
+			System.out.println(ligne);
+			request.getRequestDispatcher("./listecursus.jsp").forward(request,
+					response);
+		}
+		
+			// page html
+			request.getRequestDispatcher("./listecursus.jsp").forward(request,
+		response);
+
+		
 	}
+	
+		
+	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -60,13 +81,21 @@ public class CursusServletClass extends HttpServlet {
 			CursusDTO cursusDTOModif = new CursusDTO();
 
 			String libelleParam = request.getParameter("libelle");
-			String idCursusParam = request.getParameter("idCursus");
+			String idCursusParam = request.getParameter("cursusid");
 			if (idCursusParam != null) {
 				Integer idcursus = Integer.valueOf(idCursusParam);
 				cursusDTOModif.setId(idcursus);
 				cursusDTOModif.setLibelle(libelleParam);
+				try {
+					System.out.println("modification du cursus");
+					cursusService.updateCursus(cursusDTOModif);
+				} catch (TransactionalConnectionException e) {
+					System.out.println("echec de la modif du cursus");
+					e.printStackTrace();
+				}
 			}
-
+			response.sendRedirect("./listecursus.jsp");
 		}
+
 	}
 }

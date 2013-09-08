@@ -76,6 +76,8 @@ public class AccueilServletClass extends HttpServlet {
 
 			request.getRequestDispatcher("./liste.jsp").forward(request,
 					response);
+			
+			session.removeAttribute("listuser");
 		}
 	}
 

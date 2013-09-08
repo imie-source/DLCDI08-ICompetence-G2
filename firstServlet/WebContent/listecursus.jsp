@@ -23,61 +23,62 @@
 </head>
 <body>
 	<div class="conteneur">
-		
+
 		<button id="openerajout">ajouter un cursus</button>
 		<div id="tableaucursus" class=tableau>
 			<%
-				ICursusService cursusService = BaseConcreteFactory.getInstance()
-						.createCursusService(null);
-				List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
-				cursusDTOs = cursusService.findAll();
+			ICursusService cursusService = BaseConcreteFactory.getInstance()
+			.createCursusService(null);
+			List<CursusDTO> cursusDTOs = cursusService.findAll();
 				Integer i = 1;
+
 				for (CursusDTO cursusDTO : cursusDTOs) {
 			%>
-			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
-				<div class="celluleTableau largeur100 ">
-					<%=i%></div>
-				<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
 
+			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
+				<a href=./CursusServletClass?ligne=<%=i%>>
+					<div class="celluleTableau largeur100 ">
+						<%=i%></div>
+					<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+				</a>
 			</div>
 
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
-				<button id="openermodif<%=i%>">modifier</button> <a
-					href="./AccueilServletClass">supprimer</a>
+				<button id="openermodif<%=i%>">modifier</button>
+				<a href="./CursusServletClass?UrlParam=supr">supprimer</a>
 			</div>
 			<%
 				i++;
 				}
 			%>
 		</div>
-	</div>
 
-	<div id="ajouterdialog" title="ajouter">
-	<form id="formajoutcursus" method="post"
-			action="./CursusServletClass?UrlParam=creer">
-				
-		<fieldset>
-			<legend>Ajouter un cursus</legend>
-			Libellé*:<input type="text" name="libelle" maxlength="15"></input>
-		</fieldset>
-		<br />
-		 <input type="submit" value="ajouter" />
-		</form>
-	</div>
-	
-	
-	<div id="modifierdialog" title="modifier">
-	<form id="formmodifcursus" method="post"
-			action="./CreateServletClass">
-				<!-- lien à modifier  -->
-		<fieldset>
-			<legend>modifier un cursus</legend>
-			Libellé*:<input type="text" name="libelle" maxlength="15"></input>
-		</fieldset>
-		<br />
-		 <input type="submit" value="modifier" />
-		</form>
-	</div>
+
+		<div id="ajouterdialog" title="ajouter">
+			<form id="formajoutcursus" method="post"
+				action="./CursusServletClass?UrlParam=creer">
+				<fieldset>
+					<legend>Ajouter un cursus</legend>
+					Libellé*:<input type="text" name="libelle" maxlength="15"></input>
+				</fieldset>
+				<br /> <input type="submit" value="ajouter" />
+			</form>
+		</div>
+
+
+		<div id="modifierdialog" title="modifier">
+			<form id="formmodifcursus" method="post"
+				action="./CursusServletClass?UrlParam=modif">
+				<input type="hidden" value=""
+					name="cursusid" />
+				<fieldset>
+					<legend>modifier un cursus</legend>
+					Libellé*:<input type="text" name="libelle"
+						value="" width="15" maxlength="15"></input>
+				</fieldset>
+				<br /> <input type="submit" value="modifier" />
+			</form>
+		</div>
 </body>
 </html>

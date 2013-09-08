@@ -24,9 +24,7 @@ $(document).ready(function() {
 			$("#formajoutcursus").dialog("open");
 		});
 	});
-	
-	
-	
+
 	$(function() {
 		$("#formmodifcursus").dialog({
 			autoOpen : false,
@@ -39,13 +37,15 @@ $(document).ready(function() {
 				duration : 1000
 			}
 		});
-		
-		
-		
-		$("#openermodif4").click(function() {
-			$("#formmodifcursus").dialog("open");
+
+		$("button").mousedown(function() {
+			var button = $(this).attr("id");
+			var param = button.split("f");
+			var indice = param[1];
+			$("#openermodif"+indice).click(function() {
+				$("#formmodifcursus").dialog("open");
+			});
 		});
 	});
-
 
 });

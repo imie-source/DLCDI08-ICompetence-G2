@@ -15,6 +15,9 @@ public interface ICursusService extends ITransactional {
 	CursusDTO insertCursus(CursusDTO cursusToInsert)
 			throws TransactionalConnectionException;
 
+	CursusDTO updateCursus(CursusDTO cursusToUpdate)
+			throws TransactionalConnectionException;
+
 	
 
 }
