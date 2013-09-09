@@ -18,30 +18,29 @@ import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.TransactionalConnectionException;
 
 /**
- * Servlet implementation class ListeUserServlet
+ * Servlet implementation class AccueilServletClass
  */
-@WebServlet("/ListeUserServlet")
-public class ListeUserServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ListeUserServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+// en 3.0 on utilise les annotations pour le mapping
 
-    /**
+@WebServlet(description = "la premiere servlet", urlPatterns = { "/AccueilServletClass" })
+public class AccueilServletClass extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		IUserService userService = BaseConcreteFactory.getInstance()
-				.createUserService(null);
+		
 		response.setContentType("text/html");
+		
+		request.getRequestDispatcher("./Accueil.jsp").forward(request,
+				response);
+		
 
+<<<<<<< HEAD
+=======
 		// creation de la session
 
 		HttpSession session = request.getSession();
@@ -51,7 +50,7 @@ public class ListeUserServlet extends HttpServlet {
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
-		System.out.println("liste user");
+		System.out.println("AccueilServletClass");
 
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
@@ -82,7 +81,9 @@ public class ListeUserServlet extends HttpServlet {
 
 			request.getRequestDispatcher("./liste.jsp").forward(request,
 					response);
+			
+			session.removeAttribute("listuser");
 		}
+>>>>>>> c3730ad24dc7b40986db7c479be3d2e9881c92a6
 	}
-
 }

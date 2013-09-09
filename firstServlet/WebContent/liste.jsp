@@ -33,7 +33,7 @@
 		
 		<div id="lignetableau<%=i%>" class="ligneTableau">
 		
-			<a href=./AccueilServletClass?ligne=<%=i%> title="plus d'info">
+			<a href=./ListeUserServlet?ligne=<%=i%> title="plus d'info">
 				<div class="celluleTableau largeur100">
 					<%=i%></div>
 				<div class="celluleTableau largeur350"><%=userDTO.getNom()%></div>
