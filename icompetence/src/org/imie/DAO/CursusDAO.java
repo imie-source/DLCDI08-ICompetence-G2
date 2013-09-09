@@ -238,6 +238,7 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);			
 			preparedStatement.setString(1, cursusToUpdate.getLibelle());
+			preparedStatement.setInt(2, cursusToUpdate.getId());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {

@@ -49,3 +49,18 @@ public class AccueilServletClass extends HttpServlet {
 
 	}
 }
+
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public AccueilServletClass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+		
+		response.setContentType("text/html");
+		
+		request.getRequestDispatcher("./Accueil.jsp").forward(request,
+				response);
+		
