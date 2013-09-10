@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="com.sun.mail.imap.protocol.Item"%>
+
 <%@page import="org.imie.factory.BaseConcreteFactory"%>
 <%@page import="org.imie.service.interfaces.ICursusService"%>
 <%@page import="org.imie.service.CursusService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="org.imie.DTO.CursusDTO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -31,10 +34,8 @@
 			.createCursusService(null);
 			List<CursusDTO> cursusDTOs = cursusService.findAll();
 				Integer i = 1;
-
 				for (CursusDTO cursusDTO : cursusDTOs) {
 			%>
-
 			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
 				<a href=./CursusServletClass?ligne=<%=i%>>
 					<div class="celluleTableau largeur100 ">
@@ -42,7 +43,6 @@
 					<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
 				</a>
 			</div>
-
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
