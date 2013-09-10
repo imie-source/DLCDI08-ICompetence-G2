@@ -28,25 +28,27 @@
 	<div class="conteneur">
 
 		<button id="openerajout">ajouter un cursus</button>
-		<div id="tableaucursus" class=tableau>
+		<div id="tableau" class=tableau>
 			<%
-			ICursusService cursusService = BaseConcreteFactory.getInstance()
-			.createCursusService(null);
-			List<CursusDTO> cursusDTOs = cursusService.findAll();
+				List<CursusDTO> listeCursus = (List<CursusDTO>) session
+						.getAttribute("listeCursus");
 				Integer i = 1;
-				for (CursusDTO cursusDTO : cursusDTOs) {
+				for (CursusDTO cursusDTO : listeCursus) {
 			%>
 			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
-				<a href=./CursusServletClass?ligne=<%=i%>>
-					<div class="celluleTableau largeur100 ">
-						<%=i%></div>
-					<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
-				</a>
+				<div class="celluleTableau largeur100 ">
+					<%=i%></div>
+				<div id="libellecursuschoisie<%=i%>"
+					class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+				<input id="idcursuschoisie<%=i%>" type="hidden"
+					value="<%=cursusDTO.getId()%>" name="cursusid" />
+
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				<a href="./CursusServletClass?UrlParam=supr">supprimer</a>
+				<button id="openersupr<%=i%>">supprimer</button>
+
 			</div>
 			<%
 				i++;
@@ -56,7 +58,7 @@
 
 
 		<div id="ajouterdialog" title="ajouter">
-			<form id="formajoutcursus" method="post"
+			<form id="formajout" method="post"
 				action="./CursusServletClass?UrlParam=creer">
 				<fieldset>
 					<legend>Ajouter un cursus</legend>
@@ -68,17 +70,17 @@
 
 
 		<div id="modifierdialog" title="modifier">
-			<form id="formmodifcursus" method="post"
+			<form id="formmodif" method="post"
 				action="./CursusServletClass?UrlParam=modif">
-				<input type="hidden" value=""
-					name="cursusid" />
+				<input id="idcursusmodif" type="hidden" value="" name="cursusid" />
 				<fieldset>
 					<legend>modifier un cursus</legend>
-					Libellé*:<input type="text" name="libelle"
+					Libellé*:<input id="libellecursusmodif" type="text" name="libelle"
 						value="" width="15" maxlength="15"></input>
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
 			</form>
 		</div>
+	</div>
 </body>
 </html>

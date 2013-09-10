@@ -38,7 +38,7 @@ public interface ICursusDAO extends ITransactional{
 	
 	public abstract CursusDTO updateCursus(CursusDTO cursusToUpdate) throws TransactionalConnectionException;
 	
-	public abstract void deleteCursus(CursusDTO cursusToDelete) throws TransactionalConnectionException;
+	public abstract CursusDTO deleteCursus(CursusDTO cursusToDelete) throws TransactionalConnectionException;
 	
 
 }

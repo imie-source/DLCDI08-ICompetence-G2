@@ -263,8 +263,9 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 
 	/**
 	 * supprime un cursus (formation)
+	 * @return 
 	 */
-	public void deleteCursus(CursusDTO cursusToDelete)
+	public CursusDTO deleteCursus(CursusDTO cursusToDelete)
 			throws TransactionalConnectionException {
 	
 		Statement statement = null;
@@ -296,6 +297,7 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
+		return cursusToDelete;
 
 	}
 }
