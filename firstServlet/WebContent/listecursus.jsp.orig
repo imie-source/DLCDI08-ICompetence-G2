@@ -35,7 +35,15 @@
 				Integer i = 1;
 				for (CursusDTO cursusDTO : listeCursus) {
 			%>
+<<<<<<< HEAD
 			<div id="lignetableau<%=i%>" class="tableau">
+				<a href=./CursusServletClass?ligne=<%=i%>>
+					<div class="celluleTableau largeur100 ">
+						<%=i%></div>
+					<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+				</a>
+=======
+			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
 				<div class="celluleTableau largeur100 ">
 					<%=i%></div>
 				<div id="libellecursuschoisie<%=i%>"
@@ -43,6 +51,7 @@
 				<input id="idcursuschoisie<%=i%>" type="hidden"
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
 
+>>>>>>> 36cf1edabd4b3c001ce8213e3fc8639ad13cc4da
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->

@@ -1,12 +1,15 @@
 package org.imie.Servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.imie.DTO.CursusDTO;
 import org.imie.factory.BaseConcreteFactory;
@@ -26,24 +29,26 @@ public class CursusServletClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		ICursusService cursusService = BaseConcreteFactory.getInstance()
+				.createCursusService(null);
 		response.setContentType("text/html");
-		
-		String ligne = request.getParameter("ligne");
-		if (ligne != null) {
-			System.out.println(ligne);
-			request.getRequestDispatcher("./listecursus.jsp").forward(request,
-					response);
-		}
-		
-			// page html
-			request.getRequestDispatcher("./listecursus.jsp").forward(request,
-		response);
 
-		
+		List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
+		try {
+			session.setAttribute("listeCursus",
+					cursusDTOs = cursusService.findAll());
+		} catch (TransactionalConnectionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		request.setAttribute("listeCursus", cursusDTOs);
+		request.getRequestDispatcher("./listecursus.jsp").forward(request,
+				response);
+		System.out.println("liste cursus");
+
 	}
-	
-		
-	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
@@ -53,11 +58,13 @@ public class CursusServletClass extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		ICursusService cursusService = BaseConcreteFactory.getInstance()
 				.createCursusService(null);
+		HttpSession session = request.getSession();
 
 		System.out.println("CursusServletClass");
 		// recupération du paramétre de l'url
 		String urlParamCreer = request.getParameter("UrlParam");
 		String urlParamModif = request.getParameter("UrlParam");
+		String urlParamSupr = request.getParameter("UrlParam");
 
 		if (urlParamCreer.equals("creer")) {
 			CursusDTO cursusDTOcreer = new CursusDTO();
@@ -70,7 +77,8 @@ public class CursusServletClass extends HttpServlet {
 				System.out.println("echec de la creation du cursus");
 				e.printStackTrace();
 			}
-			response.sendRedirect("./listecursus.jsp");
+			session.removeAttribute("listeCursus");
+			response.sendRedirect("./CursusServletClass");
 		}
 
 		if (urlParamModif.equals("modif")) {
@@ -90,7 +98,26 @@ public class CursusServletClass extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			response.sendRedirect("./listecursus.jsp");
+			session.removeAttribute("listeCursus");
+			response.sendRedirect("./CursusServletClass");
+		}
+
+		if (urlParamSupr.equals("supr")) {
+			String idCursusParam = request.getParameter("cursusid");
+			if (idCursusParam != null) {
+				Integer idcursus = Integer.valueOf(idCursusParam);
+				CursusDTO cursusDTOSupr = new CursusDTO();
+				cursusDTOSupr.setId(idcursus);
+				try {
+					System.out.println("supression du cursus");
+					cursusService.deleteCursus(cursusDTOSupr);
+				} catch (TransactionalConnectionException e) {
+					System.out.println("echec de la supression du cursus");
+					e.printStackTrace();
+				}
+			}
+			session.removeAttribute("listeCursus");
+			response.sendRedirect("./CursusServletClass");
 		}
 
 	}

@@ -1,7 +1,53 @@
 $(document).ready(
 		function() {
 
+<<<<<<< HEAD:firstServlet/WebContent/js.js
 	$("#tableau").accordion({
+		heightStyle : "content"
+	}, {
+		active : false
+	}, {
+		collapsible : true
+	});
+
+	$(function() {
+		$("#formajout").dialog({
+			autoOpen : false,
+			show : {
+				effect : "blind",
+				duration : 1000
+			},
+			hide : {
+				effect : "fade",
+				duration : 1000
+			}
+		});
+		$("#openerajout").click(function() {
+			$("#formajout").dialog("open");
+		});
+	});
+
+	$(function() {
+		$("#formmodif").dialog({
+			autoOpen : false,
+			show : {
+				effect : "blind",
+				duration : 1000
+			},
+			hide : {
+				effect : "fade",
+				duration : 1000
+			}
+		});
+
+		$("button").mousedown(function() {
+			var button = $(this).attr("id");
+			var param = button.split("f");
+			var indice = param[1];
+			$("#openermodif"+indice).click(function() {
+				$("#formmodif").dialog("open");
+=======
+			$("#tableau").accordion({
 				heightStyle : "content"
 			}, {
 				active : false
@@ -10,7 +56,7 @@ $(document).ready(
 			});
 
 			$(function() {
-		$("#formajout").dialog({
+				$("#formajout").dialog({
 					autoOpen : false,
 					show : {
 						effect : "blind",
@@ -22,12 +68,12 @@ $(document).ready(
 					}
 				});
 				$("#openerajout").click(function() {
-			$("#formajout").dialog("open");
+					$("#formajout").dialog("open");
 				});
 			});
 
 			$(function() {
-		$("#formmodif").dialog({
+				$("#formmodif").dialog({
 					autoOpen : false,
 					show : {
 						effect : "blind",
@@ -44,7 +90,7 @@ $(document).ready(
 							var param = button.split("f");
 							var indice = param[1];
 							$("#openermodif" + indice).click(
-				$("#formmodif").dialog("open");
+									function() {
 										$("#formmodif").dialog("open");
 										var idcursuschoisie = $(
 												"#idcursuschoisie" + indice)
@@ -59,6 +105,7 @@ $(document).ready(
 												libellecursuschoisie);
 									});
 						});
+>>>>>>> 36cf1edabd4b3c001ce8213e3fc8639ad13cc4da:firstServlet/WebContent/listecursus.js
 			});
 
 			
