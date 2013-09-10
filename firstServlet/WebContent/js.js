@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	$("#tableaucursus").accordion({
+	$("#tableau").accordion({
 		heightStyle : "content"
 	}, {
 		active : false
@@ -9,7 +9,7 @@ $(document).ready(function() {
 	});
 
 	$(function() {
-		$("#formajoutcursus").dialog({
+		$("#formajout").dialog({
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -21,12 +21,12 @@ $(document).ready(function() {
 			}
 		});
 		$("#openerajout").click(function() {
-			$("#formajoutcursus").dialog("open");
+			$("#formajout").dialog("open");
 		});
 	});
 
 	$(function() {
-		$("#formmodifcursus").dialog({
+		$("#formmodif").dialog({
 			autoOpen : false,
 			show : {
 				effect : "blind",
@@ -43,7 +43,7 @@ $(document).ready(function() {
 			var param = button.split("f");
 			var indice = param[1];
 			$("#openermodif"+indice).click(function() {
-				$("#formmodifcursus").dialog("open");
+				$("#formmodif").dialog("open");
 			});
 		});
 	});

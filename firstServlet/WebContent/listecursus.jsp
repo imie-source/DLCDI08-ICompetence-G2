@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./listecursus.js"></script>
+<script src="./js.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 <title>Liste de cursus</title>
 </head>
@@ -28,7 +28,7 @@
 	<div class="conteneur">
 
 		<button id="openerajout">ajouter un cursus</button>
-		<div id="tableaucursus" class=tableau>
+		<div id="tableau" class=tableau>
 			<%
 			ICursusService cursusService = BaseConcreteFactory.getInstance()
 			.createCursusService(null);
@@ -36,7 +36,7 @@
 				Integer i = 1;
 				for (CursusDTO cursusDTO : cursusDTOs) {
 			%>
-			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
+			<div id="lignetableau<%=i%>" class="tableau">
 				<a href=./CursusServletClass?ligne=<%=i%>>
 					<div class="celluleTableau largeur100 ">
 						<%=i%></div>
@@ -56,7 +56,7 @@
 
 
 		<div id="ajouterdialog" title="ajouter">
-			<form id="formajoutcursus" method="post"
+			<form id="formajout" method="post"
 				action="./CursusServletClass?UrlParam=creer">
 				<fieldset>
 					<legend>Ajouter un cursus</legend>
@@ -68,7 +68,7 @@
 
 
 		<div id="modifierdialog" title="modifier">
-			<form id="formmodifcursus" method="post"
+			<form id="formmodif" method="post"
 				action="./CursusServletClass?UrlParam=modif">
 				<input type="hidden" value=""
 					name="cursusid" />
