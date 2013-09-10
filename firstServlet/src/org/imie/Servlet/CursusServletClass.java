@@ -102,7 +102,7 @@ public class CursusServletClass extends HttpServlet {
 			response.sendRedirect("./CursusServletClass");
 		}
 
-		if (urlParamSupr.equals("supr")) {
+		if (urlParamSupr.equals("suppr")) {
 			String idCursusParam = request.getParameter("cursusid");
 			if (idCursusParam != null) {
 				Integer idcursus = Integer.valueOf(idCursusParam);

@@ -47,7 +47,7 @@
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				<button id="openersupr<%=i%>">supprimer</button>
+				<button id="openersuppr<%=i%>">supprimer</button>
 
 			</div>
 			<%
@@ -77,6 +77,18 @@
 					<legend>modifier un cursus</legend>
 					Libellé*:<input id="libellecursusmodif" type="text" name="libelle"
 						value="" width="15" maxlength="15"></input>
+				</fieldset>
+				<br /> <input type="submit" value="modifier" />
+			</form>
+		</div>
+		
+		<div id="supprdialog" title="modifier">
+			<form id="formsuppr" method="post"
+				action="./CursusServletClass?UrlParam=suppr">
+				<input id="idcursussuppr" type="text" value="" name="cursusid" />
+				<fieldset>
+					<legend>supprimer un cursus</legend>
+					vous allez supprimer un cursus
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
 			</form>
