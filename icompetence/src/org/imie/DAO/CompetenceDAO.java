@@ -470,10 +470,11 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 	}
 	
+		
 	/**
 	 * supprimer niveau de comp d'un utilisateur
 	 */
-	public void supprimerCompMotClef( CompetenceDTO competenceDTO, MotClefDTO mot_clefDTO)
+	public void supprimerCompMotClef (CompetenceDTO competenceDTO, MotClefDTO mot_clefDTO)
 			throws TransactionalConnectionException {
 	
 		Statement statement = null;
@@ -504,5 +505,49 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 	}
 
+	public List<CompetenceDTO> findAllArbo() throws TransactionalConnectionException {
+		
+		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+
+			String selectInstruction = "select * from parcourt_arbo";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				CompetenceDTO competenceDTO = new CompetenceDTO();
+				competenceDTO.setLibelle(resultSet.getString("libelle"));
+				competenceDTO.setId(resultSet.getInt("id_competence"));
+				competenceDTO.setIdParent(resultSet.getInt("niveau"));				
+				competenceDTO.setChemin((List<Integer>) resultSet.getArray("chemin"));
+				competenceDTOs.add(competenceDTO);
+			}
+			
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return competenceDTOs;
+	}
+	
 	
 }
