@@ -36,20 +36,17 @@
 				for (CursusDTO cursusDTO : listeCursus) {
 			%>
 			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
-				<a href="./CursusServletClass?ligne=<%=i%>">lecture</a>
 					<div class="celluleTableau largeur100 ">
 						<%=i%></div>
 					<div id="libellecursuschoisie<%=i%>"
 						class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
 					<input id="idcursuschoisie<%=i%>" type="hidden"
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
-				
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
 				<button id="openersuppr<%=i%>">supprimer</button>
-
 			</div>
 			<%
 				i++;
@@ -83,15 +80,16 @@
 			</form>
 		</div>
 
+		
 		<div id="supprdialog" title="modifier">
 			<form id="formsuppr" method="post"
 				action="./CursusServletClass?UrlParam=suppr">
-				<input id="idcursussuppr" type="text" value="" name="cursusid" />
+				<input id="idcursussuppr" type="hidden" value="" name="cursusid" />
 				<fieldset>
-					<legend>supprimer un cursus</legend>
+					<!-- <legend>supprimer un cursus</legend> -->
 					vous allez supprimer un cursus
 				</fieldset>
-				<br /> <input type="submit" value="modifier" />
+				<br /> <input type="submit" value="suprimer" />
 			</form>
 		</div>
 	</div>

@@ -9,7 +9,7 @@ $(document).ready(
 				collapsible : true
 			});
 
-			/*	Modale ajout */
+			/* Modale ajout */
 			$(function() {
 				$("#formajout").dialog({
 					autoOpen : false,
@@ -26,7 +26,7 @@ $(document).ready(
 					$("#formajout").dialog("open");
 				});
 			});
-			/*	Modale modif */
+			/* Modale modif */
 			$(function() {
 				$("#formmodif").dialog({
 					autoOpen : false,
@@ -61,8 +61,8 @@ $(document).ready(
 									});
 						});
 			});
-			
-			/*	Modale supprimer */
+
+			/* Modale supprimer */
 			$(function() {
 				$("#formsuppr").dialog({
 					autoOpen : false,
@@ -79,7 +79,8 @@ $(document).ready(
 						function() {
 							var button = $(this).attr("id");
 							var param = button.split("r");
-							var indice = param[1];
+							var indice = param[2];
+
 							$("#openersuppr" + indice).click(
 									function() {
 										$("#formsuppr").dialog("open");
@@ -91,7 +92,5 @@ $(document).ready(
 									});
 						});
 			});
-			
-			
 
 		});

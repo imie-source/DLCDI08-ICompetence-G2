@@ -16,7 +16,7 @@ $(document).ready(
 						yearRange : "c-60:c"
 					});
 
-			jQuery("#formulairecreate").validate({
+			jQuery("#formajout").validate({
 				rules : {
 					nom : {
 						required : true

@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.imie.factory.BaseConcreteFactory"%>
+<%@page import="org.imie.service.interfaces.ICursusService"%>
+<%@page import="org.imie.DTO.CursusDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.imie.DTO.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -15,13 +19,15 @@
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="./liste.js"></script>
 
+
+
 <link rel=stylesheet type=text/css href=./css/Style.css>
  
 	<title>liste utilisateur</title>
 </head>
 <body>
 <div class="conteneur">
-<a href=./CreateServletClass>ajouter un utilisateur</a><br />
+<button id="openerajout">ajouter un cursus</button><br />
 
 	<div id="tableau" class=tableau>
 		<%
@@ -49,6 +55,74 @@
 			}
 		%>
 	</div>
+	
+	<div  id ="ajouterdialog"class="formulaire">
+		<form id="formajout" method="post"
+			action="./ListeUserServlet?UrlParam=creer">
+			<fieldset>
+				<legend>Coordonnées</legend>
+				Nom*:<input id="nom" type="text" name="nom" maxlength="25" /> <br />
+				Prénom*:<input id="prenom" type="text" name="prenom" maxlength="20" />
+				<br /> date de naissance* jj/mm/yyyy:<input id="date_naissance"
+					type="text" name="date_naissance" /> <br /> mail:<input id="mail"
+					type="text" name="adresse_mail" maxlength="40" /> <br />
+				Identifiant*:<input id="identifiant" type="text" name="identifiant"
+					maxlength="20" /> <br /> Mot de passe*:<input id="mot_de_passe"
+					type="text" name="pwd" maxlength="8" /> <br />
+			</fieldset>
+			<fieldset>
+				<legend>Adresse</legend>
+
+				Libellé*:<input type="text" name="libelle" maxlength="20"></input><br />
+				Ville*:<input type="text" name="ville" maxlength="20"></input><br />
+				Code postal*:<input type="text" name="code_postal" maxlength="5"></input><br />
+
+
+				<!--<fieldset> 	
+			<legend>Competence</legend>
+			Libellé : <input type="text" name="libellé"/><br /> Niveau :
+			<input type="text" name="niveau"/><br /> 
+			</fieldset>-->
+			</fieldset>
+			<fieldset>
+				<legend>Cursus*</legend>
+
+				<%
+					ICursusService cursusService = BaseConcreteFactory.getInstance()
+							.createCursusService(null);
+					List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
+					cursusDTOs = cursusService.findAll();
+				%>
+
+				<select name="cursusid">
+					<%
+						for (CursusDTO cursusDTO : cursusDTOs) {
+					%>
+					<option value="<%=cursusDTO.getId()%>">
+						<%=cursusDTO.getLibelle()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+			</fieldset>
+			<fieldset>
+				<legend>Etes vous disponible?</legend>
+				<br /> <input type="radio" checked="checked" name="disponible"
+					value="true" /> oui <input type="radio"  name="disponible"
+					value="false" />non<br />
+			</fieldset>
+			<br /> <input type="submit" value="ajouter" />
+		</form>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
 	</div>
 </body>
 </html>
