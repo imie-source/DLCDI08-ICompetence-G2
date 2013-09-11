@@ -27,7 +27,8 @@
 <body>
 	<div class="conteneur">
 
-		<button id="openerajout">ajouter un cursus</button>
+		<button id="openerajout">ajouter un cursus</button><br />
+		<br /> <a href="./AccueilServletClass">Accueil </a>
 		<div id="tableau" class=tableau>
 			<%
 				List<CursusDTO> listeCursus = (List<CursusDTO>) session
@@ -89,7 +90,7 @@
 					<!-- <legend>supprimer un cursus</legend> -->
 					vous allez supprimer un cursus
 				</fieldset>
-				<br /> <input type="submit" value="suprimer" />
+				<br /> <input type="submit" value="supprimer" />
 			</form>
 		</div>
 	</div>

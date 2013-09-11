@@ -3,6 +3,7 @@ package org.imie.Servlet;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -71,43 +72,34 @@ public class ListeUserServlet extends HttpServlet {
 		response.setContentType("text/html");
 		// creation de la session
 		HttpSession session = request.getSession();
-		List<UserDTO> userDTOs = null;
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 		try {
-			userDTOs = userService.getUsers();
+			session.setAttribute("listUser",
+					userDTOs = userService.getUsers());
 		} catch (TransactionalConnectionException e) {
-			ExceptionManager.getInstance().manageException(e);
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println("liste user");
-
+		System.out.println("listeuser");
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
 		if (ligne != null) {
-
 			// envoie de la liste en session
-
-			session.setAttribute("listuser", userDTOs);
 			Integer userRead = Integer.valueOf(ligne);
-
 			// recuperation de la liste
-			List<UserDTO> listuser = (List<UserDTO>) session
-					.getAttribute("listuser");
-
-			UserDTO userChoose = listuser.get(userRead - 1);
+			List<UserDTO> listUser = (List<UserDTO>) session
+					.getAttribute("listUser");
+			UserDTO userChoose = listUser.get(userRead - 1);
 			session.setAttribute("userChoose", userChoose);
-			session.removeAttribute("listuser");
-
+			session.removeAttribute("listUser");
 			// forward
 			RequestDispatcher dispatcher = request
 					.getRequestDispatcher("./user.jsp");
 			dispatcher.forward(request, response);
 		} else {
-
-			// sinon envoie de la liste en session
-			session.setAttribute("listuser", userDTOs);
-			// et affichage de la liste
-
 			request.getRequestDispatcher("./liste.jsp").forward(request,
 					response);
+		
 		}
 	}
 
