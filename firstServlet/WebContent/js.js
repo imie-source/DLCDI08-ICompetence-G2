@@ -1,6 +1,9 @@
 $(document).ready(
 		function() {
 
+			
+	
+			
 	$("#tableau").accordion({
 				heightStyle : "content"
 			}, {
@@ -44,7 +47,7 @@ $(document).ready(
 							var param = button.split("f");
 							var indice = param[1];
 							$("#openermodif" + indice).click(
-				$("#formmodif").dialog("open");
+				$("#formmodif").dialog("open"));
 										$("#formmodif").dialog("open");
 										var idcursuschoisie = $(
 												"#idcursuschoisie" + indice)
@@ -62,4 +65,4 @@ $(document).ready(
 			});
 
 			
-		});
+		;

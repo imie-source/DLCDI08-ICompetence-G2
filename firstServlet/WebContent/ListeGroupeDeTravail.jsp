@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel=stylesheet type=text/css href=./css/cssReset.css>
-
+<link rel=stylesheet type=text/css href=./css/Style.css>
 <!-- lien vers la biblio jquery  -->
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
@@ -21,7 +21,7 @@
 <body>
 	<div class="conteneur">
 	
-		<input type="button" value="Ajouter un groupe de travail" class="creerGdt" />
+		<input type="button" value="Ajouter un groupe de travail" id="openerajout" />
 		
 		<div id="tableau" class=tableau>
 			<%
@@ -34,8 +34,9 @@
 			<div id="lignetableau<%=i%>" class="ligneTableau">
 
 
-				<div class="celluleTableau largeur100">
-					<%=i%></div>
+				<div class="celluleTableau largeur100"><%=i%></div>
+				<%gdtDTO.setNumLigne(0);
+				gdtDTO.setNumLigne(i);%>
 				<div class="celluleTableau largeur350"><%=gdtDTO.getNom()%></div>
 				<div class="celluleTableau largeur350"><%=gdtDTO.getType_projet()%></div>
 				<div class="celluleTableau largeur100"><%=gdtDTO.getNomCP()%></div>
@@ -46,7 +47,8 @@
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				<a href="./CursusServletClass?UrlParam=supr">supprimer</a>
+				
+				<span id="suppr"><a href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img src="http://www.coeur.net/images_communes/croix_rouge3D.png" align="right"></a></span>
 			</div>
 			<%
 				i++;
@@ -55,11 +57,11 @@
 		</div>
 
 		<div id="ajouterdialog" title="ajouter">
-			<form id="formajout" method="post"
+			<form id="formajout" method="post" title="Ajouter un groupe de travail"
 				action="./GroupServletClass?UrlParam=creer">
 				<fieldset>
-					<legend>Ajouter un groupe de travail</legend>
-					Libellé*:<input type="text" name="libelle" maxlength="15"></input>
+					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
+					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
 				</fieldset>
 				<br /> <input type="submit" value="ajouter" />
 			</form>
@@ -67,13 +69,15 @@
 
 
 		<div id="modifierdialog" title="modifier">
-			<form id="formmodifgdt" method="post"
-				action="./GroupServletClass?UrlParam=modif">
+			<form id="formmodif" method="post"
+				action="./GroupServletClass?UrlParam=modif" title="modifier un groupe de travail">
 				<input type="hidden" value="" name="gdtid" />
 				<fieldset>
-					<legend>modifier un groupe de travail</legend>
-					Libellé*:<input type="text" name="libelle" value="" width="15"
-						maxlength="15"></input>
+					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
+					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
+					Etat <input type="select">
+					<option>Manque de volontaire</option>>
+					<option>Démarrage</option>>
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
 			</form>
