@@ -10,45 +10,40 @@
 <link rel=stylesheet type=text/css href=./css/cssReset.css>
 
 <!-- lien vers la biblio jquery  -->
- <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
+<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="./liste.js"></script>
 
 <link rel=stylesheet type=text/css href=./css/Style.css>
- 
-	<title>liste utilisateur</title>
+
+<title>Liste des compétences</title>
 </head>
 <body>
-<div class="conteneur">
-<a href=./CreateServletClass>ajouter un utilisateur</a><br />
 
-	<div id="tableau" class=tableau>
-		<%
-			List<UserDTO> listuser = (List<UserDTO>) session
-					.getAttribute("listuser");
-			Integer i = 1;
-			for (UserDTO userDTO : listuser) {
-		%>
-		
-		<div id="lignetableau<%=i%>" class="ligneTableau">
-		
-			<a href=./ListeUserServlet?ligne=<%=i%> title="plus d'info">
+	<div class="conteneur">
+		<div id="tableaucompetence" class=tableau>
+			<%
+				List<UserDTO> listuser = (List<UserDTO>) session
+						.getAttribute("listuser");
+				Integer i = 1;
+				for (UserDTO userDTO : listuser) {
+			%>
+
+			<div id="lignetableaucompetence<%=i%>" class="ligneTableau">
 				<div class="celluleTableau largeur100">
 					<%=i%></div>
-				<div class="celluleTableau largeur350"><%=userDTO.getNom()%></div>
-				<div class="celluleTableau largeur350"><%=userDTO.getPrenom()%></div>
-				<div class="celluleTableau largeur100"><%=userDTO.getAge()%>ans</div>
-			</a>
+				<div><%=userDTO.getNom()%></div>
+				<div><%=userDTO.getPrenom()%></div>
+				<div><%=userDTO.getAge()%>ans</div>
+				<div><%=userDTO.getCompetences()%></div>
+			</div>
+			<div></div>
+			<%
+				i++;
+				}
+			%>
 		</div>
-		<div id="contenu<%=i%>"class="contenu">
-		
-		</div>
-		<%
-			i++;
-			}
-		%>
-	</div>
 	</div>
 </body>
 </html>

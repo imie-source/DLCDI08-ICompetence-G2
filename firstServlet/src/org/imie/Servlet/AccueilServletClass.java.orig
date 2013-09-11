@@ -1,0 +1,89 @@
+package org.imie.Servlet;
+
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.imie.DTO.UserDTO;
+import org.imie.exeptionManager.ExceptionManager;
+import org.imie.factory.BaseConcreteFactory;
+import org.imie.service.interfaces.IUserService;
+import org.imie.transactionalFramework.TransactionalConnectionException;
+
+/**
+ * Servlet implementation class AccueilServletClass
+ */
+// en 3.0 on utilise les annotations pour le mapping
+
+@WebServlet(description = "la premiere servlet", urlPatterns = { "/AccueilServletClass" })
+public class AccueilServletClass extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+		
+		response.setContentType("text/html");
+		
+		request.getRequestDispatcher("./Accueil.jsp").forward(request,
+				response);
+		
+
+<<<<<<< HEAD
+=======
+		// creation de la session
+
+		HttpSession session = request.getSession();
+		List<UserDTO> userDTOs = null;
+		try {
+			userDTOs = userService.getUsers();
+		} catch (TransactionalConnectionException e) {
+			ExceptionManager.getInstance().manageException(e);
+		}
+		System.out.println("AccueilServletClass");
+
+		// recupération du paramétre de l'url
+		String ligne = request.getParameter("ligne");
+		if (ligne != null) {
+
+			// envoie de la liste en session
+
+			session.setAttribute("listuser", userDTOs);
+			Integer userRead = Integer.valueOf(ligne);
+
+			// recuperation de la liste
+			List<UserDTO> listuser = (List<UserDTO>) session
+					.getAttribute("listuser");
+
+			UserDTO userChoose = listuser.get(userRead - 1);
+			session.setAttribute("userChoose", userChoose);
+			session.removeAttribute("listuser");
+
+			// forward
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("./user.jsp");
+			dispatcher.forward(request, response);
+		} else {
+
+			// sinon envoie de la liste en session
+			session.setAttribute("listuser", userDTOs);
+			// et affichage de la liste
+
+			request.getRequestDispatcher("./liste.jsp").forward(request,
+					response);
+			
+			session.removeAttribute("listuser");
+		}
+>>>>>>> c3730ad24dc7b40986db7c479be3d2e9881c92a6
+	}
+}

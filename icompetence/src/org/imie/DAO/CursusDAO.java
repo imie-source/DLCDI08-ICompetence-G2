@@ -238,6 +238,7 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);			
 			preparedStatement.setString(1, cursusToUpdate.getLibelle());
+			preparedStatement.setInt(2, cursusToUpdate.getId());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -262,8 +263,9 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 
 	/**
 	 * supprime un cursus (formation)
+	 * @return 
 	 */
-	public void deleteCursus(CursusDTO cursusToDelete)
+	public CursusDTO deleteCursus(CursusDTO cursusToDelete)
 			throws TransactionalConnectionException {
 	
 		Statement statement = null;
@@ -295,6 +297,7 @@ public class CursusDAO extends ATransactional implements ICursusDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
+		return cursusToDelete;
 
 	}
 }

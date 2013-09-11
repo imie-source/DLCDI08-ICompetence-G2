@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
 
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
@@ -18,7 +19,7 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 
 public class GroupeDeTravailDAO extends ATransactional implements
 		IGroupeDeTravailDAO {
-
+	
 	public Boolean creerGroupeDeTravail(
 			GroupeDeTravailDTO groupeDeTravailAInserer)
 			throws TransactionalConnectionException {
