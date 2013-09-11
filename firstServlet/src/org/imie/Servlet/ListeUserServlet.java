@@ -56,6 +56,7 @@ public class ListeUserServlet extends HttpServlet {
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
 		if (ligne != null) {
+			
 
 			// envoie de la liste en session
 

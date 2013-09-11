@@ -36,13 +36,14 @@
 				for (CursusDTO cursusDTO : listeCursus) {
 			%>
 			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
-				<div class="celluleTableau largeur100 ">
-					<%=i%></div>
-				<div id="libellecursuschoisie<%=i%>"
-					class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
-				<input id="idcursuschoisie<%=i%>" type="hidden"
+				<a href="./CursusServletClass?ligne=<%=i%>">lecture</a>
+					<div class="celluleTableau largeur100 ">
+						<%=i%></div>
+					<div id="libellecursuschoisie<%=i%>"
+						class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+					<input id="idcursuschoisie<%=i%>" type="hidden"
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
-
+				
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
@@ -81,7 +82,7 @@
 				<br /> <input type="submit" value="modifier" />
 			</form>
 		</div>
-		
+
 		<div id="supprdialog" title="modifier">
 			<form id="formsuppr" method="post"
 				action="./CursusServletClass?UrlParam=suppr">

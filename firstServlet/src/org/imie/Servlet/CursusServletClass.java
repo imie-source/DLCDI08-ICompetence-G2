@@ -35,6 +35,7 @@ public class CursusServletClass extends HttpServlet {
 		response.setContentType("text/html");
 
 		List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
+		
 		try {
 			session.setAttribute("listeCursus",
 					cursusDTOs = cursusService.findAll());
@@ -42,11 +43,18 @@ public class CursusServletClass extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		request.setAttribute("listeCursus", cursusDTOs);
-		request.getRequestDispatcher("./listecursus.jsp").forward(request,
-				response);
-		System.out.println("liste cursus");
+		String ligne = request.getParameter("ligne");
+		
+		if (ligne != null) {
+			Integer cursusRead = Integer.valueOf(ligne);
+			System.out.println(ligne);
+		}else{
+			System.out.println(ligne);
+			request.getRequestDispatcher("./listecursus.jsp").forward(request,
+					response);
+			System.out.println("liste cursus");
+			
+		}
 
 	}
 
