@@ -3,7 +3,6 @@ package org.imie.DAO.interfaces;
 import java.util.List;
 
 import org.imie.DTO.CursusDTO;
-import org.imie.DTO.NiveauDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalConnectionException;

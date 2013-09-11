@@ -9,10 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.imie.DAO.interfaces.INiveauDAO;
-import org.imie.DTO.CompetenceDTO;
-import org.imie.DTO.CursusDTO;
 import org.imie.DTO.NiveauDTO;
-import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.transactionalFramework.ATransactional;
 import org.imie.transactionalFramework.TransactionalConnectionException;

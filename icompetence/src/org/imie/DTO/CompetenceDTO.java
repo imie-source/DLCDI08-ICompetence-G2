@@ -17,7 +17,8 @@ public class CompetenceDTO {
 	private String libelle;
 	private List<NiveauDTO> niveauxDTOs;
 	private int id;
-	private int idParent;
+	private Integer idParent;
+	private List<Integer> chemin;
 	private List<MotClefDTO> motClefs;
 	
 	
@@ -69,13 +70,22 @@ public class CompetenceDTO {
 	}
 
 	//installation de l'arbre de competences
-	public int getIdParent() {
+	public Integer getIdParent() {
 		return idParent;
 	}
 
-	public void setIdParent(int idParent) {
+	public void setIdParent(Integer idParent) {
 		this.idParent = idParent;
 	}
+	
+	public List<Integer> getChemin() {
+		return chemin;
+	}
+
+	public void setChemin(List<Integer> chemin) {
+		this.chemin = chemin;
+	}
+	
 	
 	//liste de niveaux de competences
 	public void addNiveau(NiveauDTO niveauDTO) {
@@ -89,6 +99,11 @@ public class CompetenceDTO {
 	public List<NiveauDTO> getNiveau() {
 		return niveauxDTOs;
 	}
+
+
+
+
+	
 	
 	
 }

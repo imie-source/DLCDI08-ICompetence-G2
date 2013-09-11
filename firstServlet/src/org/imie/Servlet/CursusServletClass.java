@@ -35,7 +35,7 @@ public class CursusServletClass extends HttpServlet {
 		response.setContentType("text/html");
 
 		List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
-		
+
 		try {
 			session.setAttribute("listeCursus",
 					cursusDTOs = cursusService.findAll());
@@ -43,18 +43,10 @@ public class CursusServletClass extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String ligne = request.getParameter("ligne");
-		
-		if (ligne != null) {
-			Integer cursusRead = Integer.valueOf(ligne);
-			System.out.println(ligne);
-		}else{
-			System.out.println(ligne);
-			request.getRequestDispatcher("./listecursus.jsp").forward(request,
-					response);
-			System.out.println("liste cursus");
-			
-		}
+
+		request.getRequestDispatcher("./listecursus.jsp").forward(request,
+				response);
+		System.out.println("liste cursus");
 
 	}
 
@@ -70,11 +62,10 @@ public class CursusServletClass extends HttpServlet {
 
 		System.out.println("CursusServletClass");
 		// recupération du paramétre de l'url
-		String urlParamCreer = request.getParameter("UrlParam");
-		String urlParamModif = request.getParameter("UrlParam");
-		String urlParamSupr = request.getParameter("UrlParam");
+		String urlParam = request.getParameter("UrlParam");
+		
 
-		if (urlParamCreer.equals("creer")) {
+		if (urlParam.equals("creer")) {
 			CursusDTO cursusDTOcreer = new CursusDTO();
 			String libelleParam = request.getParameter("libelle");
 			cursusDTOcreer.setLibelle(libelleParam);
@@ -89,7 +80,7 @@ public class CursusServletClass extends HttpServlet {
 			response.sendRedirect("./CursusServletClass");
 		}
 
-		if (urlParamModif.equals("modif")) {
+		if (urlParam.equals("modif")) {
 			CursusDTO cursusDTOModif = new CursusDTO();
 
 			String libelleParam = request.getParameter("libelle");
@@ -110,7 +101,7 @@ public class CursusServletClass extends HttpServlet {
 			response.sendRedirect("./CursusServletClass");
 		}
 
-		if (urlParamSupr.equals("suppr")) {
+		if (urlParam.equals("suppr")) {
 			String idCursusParam = request.getParameter("cursusid");
 			if (idCursusParam != null) {
 				Integer idcursus = Integer.valueOf(idCursusParam);

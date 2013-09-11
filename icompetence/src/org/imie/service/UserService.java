@@ -61,7 +61,19 @@ public class UserService extends ATransactional implements IUserService {
 		
 	}
 
-	
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.imie.service.IUserService#getUser(org.imie.DTO.UserDTO)
+	 */
+	@Override
+	public UserDTO getUser(UserDTO userToFind)	throws TransactionalConnectionException {
+		IUserDAO userDAO = BaseConcreteFactory.getInstance().createUserDAO(this);	
+		
+		return userDAO.getUser(userToFind);
+		
+	}
+
 
 
 
