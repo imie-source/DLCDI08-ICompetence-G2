@@ -26,6 +26,8 @@ public class FiltreSecurite implements Filter {
 	private String authentification = null;
 	private FilterConfig filterConfig = null;
 	private String extensionNonFiltre = ".*(css|jpg|png|gif|js)";
+	private Boolean premiereConnexion = true;
+	private HttpSession session = null;
 
 	/**
 	 * Default constructor.
@@ -47,11 +49,10 @@ public class FiltreSecurite implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 
-		// authentification = "non";
 		System.out.println("mode :" + authentification);
 		System.out
 				.println("Passage dans le filtre >>>>>>------------------<<<<");
-		HttpSession session = ((HttpServletRequest) request).getSession(true);
+		session = ((HttpServletRequest) request).getSession(true);
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
@@ -62,20 +63,11 @@ public class FiltreSecurite implements Filter {
 
 		if (authentification.equalsIgnoreCase("oui")) {
 
-			if (path.endsWith("Connexion") || path.endsWith("Authentification")
-					|| path.matches(extensionNonFiltre)) {
-				System.out.println(path);
-				System.out.println("On demande la page connexion");
-
-				chain.doFilter(request, response); // Just continue chain.
-				//sreturn;
-
-			}
-
 			try {
 				System.out.println("try");
-				userConnecte = (UserDTO) session.getAttribute("user");
-				if (userConnecte == null) {
+				// userConnecte = (UserDTO) session.getAttribute("user");
+				// if (userConnecte == null)
+				if (!utilisateurAuthentifie()) {
 
 					// l'utilisateur n'est pas authentifié correctement on le
 					// redirige vers une page de login
@@ -86,13 +78,26 @@ public class FiltreSecurite implements Filter {
 
 				} else {
 					System.out.println(" Authentifié dans Filtre ");
-
+					System.out.println(userConnecte.getNom());
 					// l'utilisateur a été identifié il est autorisé à accéder à
 					// la
 					// servlet filtrée// chain.doFilter(request, response);
+					if (premiereConnexion == true) {
+						System.out
+								.println(">>>>>>>>>>>>>>>>>>Authentifié / premeconnexion : "
+										+ premiereConnexion);
 
-					chain.doFilter(req, res);
-					return;
+						RequestDispatcher requestDispatcher = request
+								.getRequestDispatcher("./Accueil.jsp");
+						requestDispatcher.forward(request, response);
+						premiereConnexion = false;
+					} else {
+						System.out
+								.println(">>>>>>>>>>>>>>>>>>Authentifié / premeconnexion : "
+										+ premiereConnexion);
+						chain.doFilter(request, response);
+						return;
+					}
 
 				}
 
@@ -104,7 +109,16 @@ public class FiltreSecurite implements Filter {
 			}
 
 		}
+		// On laisse toujours passer connexion, authentification, et css
+		if (path.endsWith("Connexion") || path.endsWith("Authentification")
+				|| path.matches(extensionNonFiltre)) {
+			System.out.println(path);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
 
+			chain.doFilter(request, response); // Just continue chain.
+			return;
+
+		}
 	}
 
 	/**
@@ -118,4 +132,20 @@ public class FiltreSecurite implements Filter {
 		// TODO test sur la valeur
 	}
 
+	public boolean utilisateurAuthentifie() {
+		boolean connecte = false;
+		System.out.println("try");
+
+		this.userConnecte = (UserDTO) session.getAttribute("user");
+		if (userConnecte == null) {
+			connecte = false;
+		} else {
+			connecte = true;
+		}
+		return connecte;
+	}
+
+	public String profilAuthentifie(UserDTO utilisateurAuthentifie) {
+		return null;
+	}
 }

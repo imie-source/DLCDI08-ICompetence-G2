@@ -340,6 +340,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 
 		/**
 		 * TODO add date to userDTO and query
+		 * TODO ajouter la gestion des erreurs pour le cas ou il n'y pas d'utilisateur
 		 */
 
 		String nom 		= userDTO.getNom();
