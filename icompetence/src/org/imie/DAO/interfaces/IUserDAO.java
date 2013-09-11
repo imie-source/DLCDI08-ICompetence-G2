@@ -52,4 +52,11 @@ public interface IUserDAO extends ITransactional {
 	 */
 	public abstract void deleteUser(UserDTO userToDelete) throws TransactionalConnectionException;
 
+	/**
+	 * @param UserDTO (un volontaire à partir i.e : le login, le nom. Utilise une requête dynamique )
+	 * @return UserDTO 
+	 * @throws ClassNotFoundException
+	 * @throws TransactionalConnectionException 
+	 */	
+	public abstract UserDTO getUser(UserDTO userToFind) throws TransactionalConnectionException;
 }

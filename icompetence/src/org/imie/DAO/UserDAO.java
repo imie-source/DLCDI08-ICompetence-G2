@@ -321,5 +321,152 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
+		
+		
+		
+		
 	}
+	/**
+	 * @param userDTO
+	 * @return UserDTO
+	 * @throws ClassNotFoundException
+	 *             IMPORTANT classe de test pour les filtres et le formulaire de
+	 *             login
+	 * 
+	 */
+	@Override
+	public UserDTO getUser(UserDTO userDTO) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+
+		/**
+		 * TODO add date to userDTO and query
+		 */
+
+		String nom 		= userDTO.getNom();
+		String prenom 	= userDTO.getPrenom();
+		String login 	= userDTO.getIdentifiant();
+		String password = userDTO.getMotDePasse();
+		Integer id 		= userDTO.getId();
+
+		// Requête dynamique
+		String criteriaSQL = "";
+		Boolean isFirstCriteria = true;
+		if (id != null) {
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ")
+					+ " id_utilisateur=" + id;
+			isFirstCriteria = false;
+		}
+		if (nom != null) {
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ") + " nom='"
+					+ nom + "'";
+			isFirstCriteria = false;
+		}
+		if (prenom != null) {
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ") + " prenom='"
+					+ prenom + "'";
+			isFirstCriteria = false;
+		}
+		if (login != null) {
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ") + " identifiant='"
+					+ login + "'";
+			isFirstCriteria = false;
+		}
+		if (password != null) {
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ") + " pwd='"
+					+ password + "'";
+			isFirstCriteria = false;
+		}
+		// if (date!=null) {
+		// criteriaSQL += (isFirstCriteria?
+		// "WHERE ":" AND ")+" date_naissance="+date_naissance;
+		// isFirstCriteria = false;
+		// }
+
+		// initialisation du DAO de gestion des compétences
+		// CompetenceDAO competenceDAO = new CompetenceDAO();
+		// initialisation de la liste qui servira au retour
+		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+
+		// déclaration de la variable de statement
+		Statement statement = null;
+		// déclaration de la variable de resultset
+		ResultSet resultSet = null;
+		String userQuery = 	"";
+		userQuery = "SELECT  nom, prenom, date_naissance, id_utilisateur, pwd FROM utilisateur " + criteriaSQL;
+		try {
+
+			// création du statement à partir de la connection
+
+			statement = getConnection().createStatement();
+			// execution d'une requête SQL et récupération du result dans le
+			// resultset
+			
+			System.out.println(userQuery);
+			resultSet = statement.executeQuery(userQuery);
+
+			// parcours du resultset
+
+			while (resultSet.next()) {
+				// création d'un nouveau UserDTO
+				UserDTO currenDTO = new UserDTO();
+				// affectation des attribut du UserDTO à partir des valeurs du
+				// resultset sur l'enregistrement courant
+				currenDTO.setNom(resultSet.getString("nom"));
+				currenDTO.setPrenom(resultSet.getString("prenom"));
+				currenDTO.setId(resultSet.getInt("id_utilisateur"));
+				currenDTO.setMotDePasse(resultSet.getString("pwd"));
+				// calcul de l'age
+				/*Calendar dob = Calendar.getInstance();
+				dob.setTime(resultSet.getDate("date_naissance"));
+				Calendar today = Calendar.getInstance();
+				int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
+				if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
+					age--;
+				} else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
+						&& today.get(Calendar.DAY_OF_MONTH) < dob
+								.get(Calendar.DAY_OF_MONTH)) {
+					age--;
+				}
+
+				currenDTO.setAge(age);*/
+
+				// récupération des compétences du user grâce au competenceDAO
+				// la connection passée en paramètre permet de partager la
+				// connection entre cette methode et celle appelée
+				/**
+				 * @author YM TODO ajouter les competences
+				 */
+				/*
+				 * List<CompetenceDTO> competenceDTOs =
+				 * competenceDAO.getCompetenceByUser(currenDTO,
+				 * getConnection()); // parcours des compétences du user for
+				 * (CompetenceDTO competenceDTO : competenceDTOs) { // ajout des
+				 * compétences sur le UserDTO à partir de celles // fournies par
+				 * le CompetenceDAO currenDTO.addCompetence(competenceDTO); }
+				 */
+				// ajout du DTO dans la liste de retour
+				userDTOs.add(currenDTO);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			// libération des ressources
+			try {
+
+				if (statement != null) {
+					statement.close();
+				}
+				if (resultSet != null) {
+					resultSet.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return userDTOs.get(0);
+	}
+	
 }

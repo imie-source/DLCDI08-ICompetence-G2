@@ -232,4 +232,6 @@ public class NiveauDAO extends ATransactional implements INiveauDAO {
 		}
 		
 	}
+	
+	
 }

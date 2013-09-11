@@ -12,6 +12,7 @@ $(document).ready(
 				collapsible : true
 			});
 
+			/* Modale ajout */
 			$(function() {
 		$("#formajout").dialog({
 					autoOpen : false,
@@ -28,7 +29,7 @@ $(document).ready(
 			$("#formajout").dialog("open");
 				});
 			});
-
+			/* Modale modif */
 			$(function() {
 		$("#formmodif").dialog({
 					autoOpen : false,
@@ -64,5 +65,35 @@ $(document).ready(
 						});
 			});
 
-			
+			/* Modale supprimer */
+			$(function() {
+				$("#formsuppr").dialog({
+					autoOpen : false,
+					show : {
+						effect : "blind",
+						duration : 1000
+					},
+					hide : {
+						effect : "fade",
+						duration : 1000
+					}
+				});
+				$("button").mousedown(
+						function() {
+							var button = $(this).attr("id");
+							var param = button.split("r");
+							var indice = param[2];
+
+							$("#openersuppr" + indice).click(
+									function() {
+										$("#formsuppr").dialog("open");
+										var idcursuschoisie = $(
+												"#idcursuschoisie" + indice)
+												.attr("value");
+										$("#idcursussuppr").attr("value",
+												idcursuschoisie);
+									});
+						});
+			});
+
 		;
