@@ -240,7 +240,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		Boolean creer = true;
 		try {
 
-			String creerUserGdt = " UPDATE groupe_de_travail SET id_utilisateur=? WHERE id_gdt=?";
+			String creerUserGdt = " UPDATE groupe_de_travail SET id_util_chef_de_groupe=? WHERE id_gdt=?";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(creerUserGdt);
 			preparedStatement.setInt(1, userDTO.getId());

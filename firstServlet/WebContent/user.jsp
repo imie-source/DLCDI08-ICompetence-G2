@@ -20,6 +20,7 @@
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="./user.js"></script>
+<script src="./jquery/input_constraint.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 	<title>Détails utilisateur</title>
 </head>
@@ -101,20 +102,10 @@
 		</div>
 		<div class=bottommenu>
 			<button id="openermodif">modifier</button>
-			<a href=./DeleteServletClass>supprimer</a>
+		<button id=openersuppr>supprimer</button>
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
 
 	<div id="modifdialog" title="modifier">
 		<form id="formmodif" method="post" action="./ListeUserServlet?UrlParam=modif">
@@ -123,14 +114,14 @@
 			<fieldset>
 				<legend>Coordonnées</legend>
 
-				<br /> Nom*:<input type="text" value="<%=currentUserDTO.getNom()%>"
-					name="nom" /> <br /> Prénom*:<input type="text"
+				<br /> Nom*:<input class="only_alpha" type="text" value="<%=currentUserDTO.getNom()%>"
+					name="nom" /> <br /> Prénom*:<input class="only_alpha" type="text"
 					value="<%=currentUserDTO.getPrenom()%>" name="prenom" /> <br />
 				Age:<%=currentUserDTO.getAge()%>
 				ans <br /> Identifiant*:<input type="text"
 					value="<%=currentUserDTO.getIdentifiant()%>" name="identifiant" />
 				<br /> date de naissance*: jj/mm/yyyy:<input id="datenaissancemodif" type="text"
-					value="<%=dateUser%>" name="datenaissance" /> mail:<input
+					value="<%=dateUser%>" name="datenaissance" /> mail:<input class="only_email"
 					type="text" value="<%=currentUserDTO.getAdresse_mail()%>" name=mail />
 			</fieldset>
 
@@ -199,10 +190,10 @@
 				%>
 				<legend>Adresse</legend>
 				<input type="hidden" value="<%=adresseDTO.getId_adresse()%>"
-					name="id_adresse" /> Libellé*:<input type="text"
+					name="id_adresse" /> Libellé*:<input class="only_alpha" type="text"
 					value="<%=adresseDTO.getLibelle()%>" name="libelle" /><br />
-				Ville*:<input type="text" value="<%=adresseDTO.getVille()%>"
-					name="ville" /><br /> Code postal*:<input type="text"
+				Ville*:<input class="only_alpha" type="text" value="<%=adresseDTO.getVille()%>"
+					name="ville" /><br /> Code postal*:<input class="only_integer"type="text"
 					value="<%=adresseDTO.getCode_postal()%>" name="code_postal" /><br />
 				<%
 					}
@@ -212,7 +203,17 @@
 		</form>
 	</div>
 
-
+<div id="supprdialog" title="modifier">
+			<form id="formsuppr" method="post"
+				action="./ListeUserServlet?UrlParam=suppr">
+				<input class="only_integer" id="idusersuppr" type="hidden" value="<%=currentUserDTO.getId()%>" name="idusersuppr" />
+				<fieldset>
+					<!-- <legend>supprimer un cursus</legend> -->
+					vous allez supprimer un cursus
+				</fieldset>
+				<br /> <input type="submit" value="supprimer" />
+			</form>
+		</div>
 
 </body>
 </html>

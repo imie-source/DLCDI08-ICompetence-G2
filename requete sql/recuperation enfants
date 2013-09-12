@@ -1,0 +1,1 @@
+﻿SELECT * FROM vue_arbo WHERE  7= ANY (chemin);

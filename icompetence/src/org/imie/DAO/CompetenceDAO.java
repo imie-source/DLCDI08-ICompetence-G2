@@ -1,10 +1,13 @@
 package org.imie.DAO;
 
+
+import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.imie.DAO.interfaces.ICompetenceDAO;
@@ -547,5 +550,79 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		return competenceDTOs;
 	}
 	
+	
+	public List<CompetenceDTO> findArboFilsPere(Integer id) throws TransactionalConnectionException {
+		
+		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+		ResultSet resultSetParent = null;
+
+		try {
+				//recherche des fils
+			String selectInstruction = "SELECT * FROM vue_arbo WHERE " + id  + "= ANY (chemin);";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				CompetenceDTO competenceDTO = new CompetenceDTO();
+				competenceDTO.setLibelle(resultSet.getString("libelle"));
+				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
+				competenceDTO.setChemin( resultSet.getArray("chemin"));
+				competenceDTOs.add(competenceDTO);
+			}
+			
+			CompetenceDTO compDTO = competenceDTOs.get(competenceDTOs.size()-1) ;
+			Array tabChemin =  compDTO.getChemin();
+			String chemin = "[";
+			tabChemin.getArray();
+			for (int i=0; i <= size; i++) {
+				
+				if (i == size) {
+					chemin = chemin + tabChemin.get(i);
+				} else {
+					chemin = chemin + tabChemin.get(i)+",";
+				}
+				
+			}
+			chemin += "]";
+			System.out.println(chemin);
+			
+			String selectInstructionParent = "SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY" + chemin +");;";
+			PreparedStatement preparedStatementParent = getConnection()
+					.prepareStatement(selectInstructionParent);
+			resultSetParent = preparedStatementParent.executeQuery();
+
+			while (resultSetParent.next()) {
+				CompetenceDTO competenceDTO = new CompetenceDTO();
+				competenceDTO.setLibelle(resultSet.getString("libelle"));
+				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
+				competenceDTO.setChemin( resultSet.getArray("chemin"));
+				competenceDTOs.add(competenceDTO);
+			}
+			
+			
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+
+		return competenceDTOs;
+	}
 	
 }
