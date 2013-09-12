@@ -29,6 +29,17 @@ public interface IGroupeDeTravailDAO extends ITransactional {
 
 	
 	/**
+	 * afficher les utilisateurs par groupe de travail
+	 * 
+	 * 
+	 * @param gdtDTO 
+	 * @return liste d'utilisateur
+	 */
+	
+	
+	public abstract List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO);
+	
+	/**
 	 * modifier groupe de travail
 	 * @param groupeDeTravailAModifier
 	 * @return

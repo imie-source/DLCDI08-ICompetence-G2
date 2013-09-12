@@ -24,6 +24,12 @@ public class GroupeDeTravailService extends ATransactional implements
 		return gdtDAO.creerGroupeDeTravail(groupeDeTravailAInserer);
 	}
 
+	public List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(this);
+		return gdtDAO.utilisateurParGroupeDeTravail(gdtDTO);
+	}
+	
 	@Override
 	public Boolean modifierGroupeDeTravail(
 			GroupeDeTravailDTO groupeDeTravailAModifier)

@@ -22,6 +22,16 @@ public interface IGroupeDeTravailService extends ITransactional {
 			throws TransactionalConnectionException;
 
 	/**
+	 * retourne une list d'utilisateur par groupe de travail
+	 * 
+	 * @param gdtDTO
+	 * @return liste d'utilisateur par groupe de travail
+	 * @throws TransactionalConnectionException
+	 */
+	
+	public List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
+	
+	/**
 	 * modifier groupe de travail
 	 * 
 	 * @param groupeDeTravailAModifier

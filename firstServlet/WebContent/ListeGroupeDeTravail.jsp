@@ -1,3 +1,4 @@
+<%@page import="org.imie.DTO.UserDTO"%>
 <%@page import="org.imie.DTO.GroupeDeTravailDTO"%>
 <%@page import="java.util.List"%>
 <%@page language="java" contentType="text/html; charset=UTF-8"
@@ -20,9 +21,10 @@
 </head>
 <body>
 	<div class="conteneur">
-	
-		<input type="button" value="Ajouter un groupe de travail" id="openerajout" />
-		
+
+		<input type="button" value="Ajouter un groupe de travail"
+			id="openerajout" />
+
 		<div id="tableau" class=tableau>
 			<%
 				List<GroupeDeTravailDTO> listgdt = (List<GroupeDeTravailDTO>) request
@@ -35,21 +37,32 @@
 
 
 				<div class="celluleTableau largeur100"><%=i%></div>
-				<%gdtDTO.setNumLigne(0);
-				gdtDTO.setNumLigne(i);%>
+				<%
+					gdtDTO.setNumLigne(0);
+						gdtDTO.setNumLigne(i);
+				%>
 				<div class="celluleTableau largeur350"><%=gdtDTO.getNom()%></div>
 				<div class="celluleTableau largeur350"><%=gdtDTO.getType_projet()%></div>
 				<div class="celluleTableau largeur100"><%=gdtDTO.getNomCP()%></div>
 
 
 			</div>
-			
+
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				
-				<span id="suppr"><a href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img src="http://www.coeur.net/images_communes/croix_rouge3D.png" align="right"></a></span>
+
+				<span id="suppr"> <a
+					href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img
+						src="http://www.coeur.net/images_communes/croix_rouge3D.png"
+						align="right"></a></span> <span id="userGdt"
+					titre="Volontaire du groupe">
+					<form id="listUserGdt" method="post" title="Volontaire du groupe"
+						action="./GroupServletClass?UrlParam=listUser&gdt=<%=i%>">
+						
+				</span>
 			</div>
+
 			<%
 				i++;
 				}
@@ -57,30 +70,48 @@
 		</div>
 
 		<div id="ajouterdialog" title="ajouter">
-			<form id="formajout" method="post" title="Ajouter un groupe de travail"
+			<form id="formajout" method="post"
+				title="Ajouter un groupe de travail"
 				action="./GroupServletClass?UrlParam=creer">
-				
+
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
-					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
+					Type (langage, web, client lourd...):<input type="text" name="type"
+						maxlength="40"></input>
 				</fieldset>
-				<br /> <input type="submit" value="ajouter" />
+				
+				<br /><input type="submit" value="ajouter"></input>
+			</form>
+		</div>
+
+		<div id="userGdt" titre="Volontaire du groupe">
+			<form id="listUserGdt" method="post" title="Volontaire du groupe"
+				action="./GroupServletClass?UrlParam=listUser">
+				<fieldset></fieldset>
 			</form>
 		</div>
 
 
 		<div id="modifierdialog" title="modifier">
 			<form id="formmodif" method="post"
-				action="./GroupServletClass?UrlParam=modif" title="modifier un groupe de travail">
+				action="./GroupServletClass?UrlParam=modif"
+				title="modifier un groupe de travail">
 				<input type="hidden" value="" name="gdtid" />
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
-					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
-					Etat <input type="select">
-					<option>Manque de volontaire</option>>
-					<option>Démarrage</option>>
+					Type (langage, web, client lourd...):<input type="text" name="type"
+						maxlength="40"></input> Etat <input type="select"> Chef de
+					Projet
+					<%
+					
+				    %>
+					<select>
+
+						<option>Manque de volontaire</option>
+						<option>Démarrage</option>
 				</fieldset>
-				<br /> <input type="submit" value="modifier" />
+				<br /> <input type="submit" value="modifier" /><input
+					type="submit" value="liste des utilisateurs" />
 			</form>
 		</div>
 	</div>

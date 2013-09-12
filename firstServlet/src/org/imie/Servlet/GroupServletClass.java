@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.imie.DTO.GroupeDeTravailDTO;
+import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
 import org.imie.service.interfaces.IGroupeDeTravailService;
@@ -51,18 +52,19 @@ public class GroupServletClass extends HttpServlet {
 		}
 
 		String urlParam = request.getParameter("UrlParam");
+		
 		System.out.println(urlParam);
 		if (urlParam != null) {
-			System.out.println("entré dans le if urlpara != null");
+			
+			
 			if (urlParam.equals("supr")) {
-				System.out.println("entré dans le if de suppression");
 				GroupeDeTravailDTO currentgdt = null;
 				currentgdt = gdtlist.get(Integer.valueOf(request
-						.getParameter("chosengdt")) -1);
+						.getParameter("chosengdt")) - 1);
 				System.out.println(Integer.valueOf(request
-						.getParameter("chosengdt")) -1);
+						.getParameter("chosengdt")) - 1);
 				System.out.println(currentgdt.getNom());
-				
+
 				try {
 
 					gdtService.supprimerGroupeDeTravail(currentgdt);
@@ -74,6 +76,7 @@ public class GroupServletClass extends HttpServlet {
 
 			}
 		} else {
+
 			request.setAttribute("UrlParam", null);
 			request.setAttribute("listgdt", gdtlist);
 
@@ -91,7 +94,9 @@ public class GroupServletClass extends HttpServlet {
 
 		IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailService(null);
-
+		
+		List<GroupeDeTravailDTO> gdtlist = null;
+		
 		String urlParam = null;
 		urlParam = request.getParameter("UrlParam");
 
@@ -111,6 +116,24 @@ public class GroupServletClass extends HttpServlet {
 			response.sendRedirect("./GroupServletClass");
 		}
 
+		if (urlParam.equals("listUser")) {
+			try {
+				gdtlist = gdtService.afficherGroupeDeTravail();
+				GroupeDeTravailDTO currentgdt = null;
+				currentgdt = gdtlist.get(Integer.valueOf(request
+						.getParameter("chosengdt")) - 1);
+				List<UserDTO> listUserDTO = gdtService.utilisateurParGroupeDeTravail(currentgdt);
+			} catch (TransactionalConnectionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			response.sendRedirect("./groupServletClass");
+			
+		}
+		
+		
+		
 		if (urlParam.equals("modif")) {
 			GroupeDeTravailDTO gdtDTOmodif = new GroupeDeTravailDTO();
 

@@ -356,6 +356,39 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		
 		
 	}
+	
+	public List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) {
+		
+		Statement statement = null;
+		ResultSet resultSet = null;
+		System.out.println("entrée -> utilisateurParGroupeDeTravail");
+		String libelleEtat = null;
+		List<UserDTO> listUtilDTO = null;
+		UserDTO utilDTO = null;
+		
+
+		try {
+			statement = getConnection().createStatement();
+			resultSet = statement.executeQuery("select nom, prenom, identifiant FROM utilisateur "
+					+ "INNER JOIN utilisateur_appartient_a_gdt as ugdt ON ugdt.id_utilisateur = utilisateur.id_utilisateur" +
+					"WHERE ugdt.id_gdt="+gdtDTO.getId_gdt());
+
+			while (resultSet.next()) {
+				utilDTO.setNom(resultSet.getString("nom"));
+				utilDTO.setPrenom(resultSet.getString("prenom"));
+				utilDTO.setIdentifiant(resultSet.getString("identifiant"));
+				listUtilDTO.add(utilDTO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return listUtilDTO;
+
+		
+		
+	}
 
 	private String afficherLibelle(Integer id_etat) {
 
