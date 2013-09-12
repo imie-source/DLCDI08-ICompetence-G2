@@ -265,7 +265,12 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		try {
 			statement = getConnection().createStatement();
 			resultSet = statement
+<<<<<<< HEAD
+					.executeQuery("select gdt.nom as gdtnom, id_gdt, bilan,type_projet,id_utilisateur,id_etat, util.nom as nomutil,util.prenom as prenomutil "
+							+ "FROM groupe_de_travail as gdt INNER JOIN utilisateur as util ON util.id_utilisateur=gdt.id_util_chef_de_groupe");
+=======
 					.executeQuery("select  id_gdt,nom, bilan,type_projet,id_util_chef_de_groupe,id_etat FROM groupe_de_travail");
+>>>>>>> 3c181a901a0b56ecc91fa6cd13fa659197750592
 
 			while (resultSet.next()) {
 				
@@ -313,8 +318,12 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		groupeDeTravailDTO.setId_util(resultSet.getInt("id_util_chef_de_groupe"));
 		System.out.println(groupeDeTravailDTO.getId_util());
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
-		
+<<<<<<< HEAD
+		groupeDeTravailDTO.setNomCP(resultSet.getString("nomutil") + " "
 				+ resultSet.getString("prenomutil"));
+=======
+		
+>>>>>>> 3c181a901a0b56ecc91fa6cd13fa659197750592
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
 				.getId_etat()));
 		return groupeDeTravailDTO;
@@ -448,6 +457,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		}
 		return groupeDeTravailDTOs;
 
+<<<<<<< HEAD
 	}
 	
 	/**
@@ -494,6 +504,8 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			suppGUC = false;
 		}
 		return suppGUC;
+=======
+>>>>>>> 3c181a901a0b56ecc91fa6cd13fa659197750592
 	}
 
 	// TODO méthode de recherche par user ou autre à implémenter (voir youyou)

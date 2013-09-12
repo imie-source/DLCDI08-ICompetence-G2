@@ -46,4 +46,6 @@ public interface ICompetenceService extends ITransactional {
 	void supprimerCompMotClef(CompetenceDTO competenceDTO,
 			MotClefDTO mot_clefDTO) throws TransactionalConnectionException;
 
+	List<CompetenceDTO> findAllArbo() throws TransactionalConnectionException;
+
 }

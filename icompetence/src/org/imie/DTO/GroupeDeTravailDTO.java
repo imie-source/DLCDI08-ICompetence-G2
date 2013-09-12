@@ -21,6 +21,14 @@ public class GroupeDeTravailDTO {
 	private String libelleEtat;
 	private Integer id_gdt;
 	private String nomCP;
+	private int numLigne;
+
+	public int getNumLigne() {
+		return numLigne;
+	}
+	public void setNumLigne(int numLigne) {
+		this.numLigne = numLigne;
+	}
 
 	private List<UserDTO> utilisateurs;
 

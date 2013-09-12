@@ -20,6 +20,7 @@ public class GroupeDeTravailService extends ATransactional implements
 	public Boolean creerGroupeDeTravail(
 			GroupeDeTravailDTO groupeDeTravailAInserer)
 			throws TransactionalConnectionException {
+		
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 		return gdtDAO.creerGroupeDeTravail(groupeDeTravailAInserer);
@@ -40,6 +41,7 @@ public class GroupeDeTravailService extends ATransactional implements
 			throws TransactionalConnectionException {
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
+		gdtDAO.supprimerGroupeDeTravail(groupeDeTravailASupprimer);
 	}
 
 	@Override
