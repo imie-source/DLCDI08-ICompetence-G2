@@ -1,5 +1,6 @@
 package org.imie.DTO;
 
+import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,12 @@ public class CompetenceDTO {
 	private String libelle;
 	private List<NiveauDTO> niveauxDTOs;
 	private int id;
-	private Integer idParent;
-	private List<Integer> chemin;
+	private Array chemin;
+	private int niveauParent;
 	private List<MotClefDTO> motClefs;
 	
+	
+
 	
 	// constructeur
 		// Ce constructeur par défaut est necessaire pour initialiser la liste des
@@ -70,20 +73,16 @@ public class CompetenceDTO {
 	}
 
 	//installation de l'arbre de competences
-	public Integer getIdParent() {
-		return idParent;
-	}
-
-	public void setIdParent(Integer idParent) {
-		this.idParent = idParent;
-	}
 	
-	public List<Integer> getChemin() {
-		return chemin;
+
+	
+	
+	public int getNiveauParent() {
+		return niveauParent;
 	}
 
-	public void setChemin(List<Integer> chemin) {
-		this.chemin = chemin;
+	public void setNiveauParent(int niveauParent) {
+		this.niveauParent = niveauParent;
 	}
 	
 	
@@ -100,6 +99,36 @@ public class CompetenceDTO {
 		return niveauxDTOs;
 	}
 
+
+
+
+	public Array getChemin() {
+		return chemin;
+	}
+
+
+
+
+	public void setChemin(Array array) {
+		this.chemin = array;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 
 
 
