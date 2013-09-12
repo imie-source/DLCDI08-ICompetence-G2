@@ -104,6 +104,12 @@ public class CompetenceService extends ATransactional implements ICompetenceServ
 	}
 
 
+	public List<CompetenceDTO> findAllArbo() throws TransactionalConnectionException {
+		ICompetenceDAO competenceDAO = BaseConcreteFactory.getInstance().createCompetenceDAO(this);
+		return competenceDAO.findAllArbo();
+	}
+
+
 	
 	
 

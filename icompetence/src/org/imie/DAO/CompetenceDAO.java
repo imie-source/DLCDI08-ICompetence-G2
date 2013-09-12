@@ -105,7 +105,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		try {
 
-			String selectInstruction = "select id_comp, libelle_comp, id_comp_fait_partie from competence order by id_comp";
+			String selectInstruction = "select id_comp, libelle_comp from competence order by id_comp";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(selectInstruction);
 			resultSet = preparedStatement.executeQuery();
@@ -114,7 +114,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle_comp"));
 				competenceDTO.setId(resultSet.getInt("id_comp"));
-				competenceDTO.setIdParent(resultSet.getInt("id_comp_fait_partie"));
 				competenceDTOs.add(competenceDTO);
 			}
 
@@ -154,7 +153,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		try {
 			if (competenceDTO != null) {
-				String selectInstruction = "select id_comp, libelle_comp, id_comp_fait_partie from competence Where id_comp=? ";
+				String selectInstruction = "select id_comp, libelle_comp from competence Where id_comp=? ";
 				PreparedStatement preparedStatement = getConnection().prepareStatement(selectInstruction);
 				preparedStatement.setInt(1,competenceid);
 				resultSet = preparedStatement.executeQuery();
@@ -163,7 +162,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			while (resultSet.next()) {
 				competenceDTO.setLibelle(resultSet.getString("libelle_comp"));
 				competenceDTO.setId(resultSet.getInt("id_comp"));
-				competenceDTO.setIdParent(resultSet.getInt("id_comp_fait_partie"));
 			}
 
 		} catch (SQLException e) {
@@ -239,11 +237,10 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		ResultSet resultSet = null;
 		try {
 			
-		String insertInstruction = "update competence set libelle_comp =?, id_comp_fait_partie=? "  + "where id_comp=?";			
+		String insertInstruction = "update competence set libelle_comp =? "  + "where id_comp=?";			
 			
 			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
 			preparedStatement.setString(1, competenceToUpdate.getLibelle());
-			preparedStatement.setInt(2, competenceToUpdate.getIdParent());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -514,7 +511,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		try {
 
-			String selectInstruction = "select * from parcourt_arbo";
+			String selectInstruction = "select id_competence, libelle, chemin, niveau FROM vue_arbo";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(selectInstruction);
 			resultSet = preparedStatement.executeQuery();
@@ -522,9 +519,10 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			while (resultSet.next()) {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
-				competenceDTO.setId(resultSet.getInt("id_competence"));
-				competenceDTO.setIdParent(resultSet.getInt("niveau"));				
-				competenceDTO.setChemin((List<Integer>) resultSet.getArray("chemin"));
+				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
+				
+				
+				competenceDTO.setChemin( resultSet.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
 			

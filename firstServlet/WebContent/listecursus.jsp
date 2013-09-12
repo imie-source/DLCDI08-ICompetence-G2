@@ -20,14 +20,15 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./listecursus.js"></script>
+<script src="./listeCursus.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 <title>Liste de cursus</title>
 </head>
 <body>
 	<div class="conteneur">
 
-		<button id="openerajout">ajouter un cursus</button>
+		<button id="openerajout">ajouter un cursus</button><br />
+		<br /> <a href="./AccueilServletClass">Accueil </a>
 		<div id="tableau" class=tableau>
 			<%
 				List<CursusDTO> listeCursus = (List<CursusDTO>) session
@@ -35,7 +36,7 @@
 				Integer i = 1;
 				for (CursusDTO cursusDTO : listeCursus) {
 			%>
-			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
+			<div id="lignetableau<%=i%>" class="tableau">
 					<div class="celluleTableau largeur100 ">
 						<%=i%></div>
 					<div id="libellecursuschoisie<%=i%>"
@@ -44,7 +45,6 @@
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
-				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
 				<button id="openersuppr<%=i%>">supprimer</button>
 			</div>
@@ -89,7 +89,7 @@
 					<!-- <legend>supprimer un cursus</legend> -->
 					vous allez supprimer un cursus
 				</fieldset>
-				<br /> <input type="submit" value="suprimer" />
+				<br /> <input type="submit" value="supprimer" />
 			</form>
 		</div>
 	</div>

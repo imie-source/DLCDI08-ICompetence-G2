@@ -1,7 +1,10 @@
 $(document).ready(
 		function() {
 
-			$("#tableau").accordion({
+			
+	
+			
+	$("#tableau").accordion({
 				heightStyle : "content"
 			}, {
 				active : false
@@ -11,7 +14,7 @@ $(document).ready(
 
 			/* Modale ajout */
 			$(function() {
-				$("#formajout").dialog({
+		$("#formajout").dialog({
 					autoOpen : false,
 					show : {
 						effect : "blind",
@@ -23,12 +26,12 @@ $(document).ready(
 					}
 				});
 				$("#openerajout").click(function() {
-					$("#formajout").dialog("open");
+			$("#formajout").dialog("open");
 				});
 			});
 			/* Modale modif */
 			$(function() {
-				$("#formmodif").dialog({
+		$("#formmodif").dialog({
 					autoOpen : false,
 					show : {
 						effect : "blind",
@@ -45,7 +48,7 @@ $(document).ready(
 							var param = button.split("f");
 							var indice = param[1];
 							$("#openermodif" + indice).click(
-									function() {
+				$("#formmodif").dialog("open"));
 										$("#formmodif").dialog("open");
 										var idcursuschoisie = $(
 												"#idcursuschoisie" + indice)
@@ -62,6 +65,10 @@ $(document).ready(
 						});
 			});
 
+<<<<<<< HEAD:firstServlet/WebContent/js.js
+			
+		;
+=======
 			/* Modale supprimer */
 			$(function() {
 				$("#formsuppr").dialog({
@@ -94,3 +101,4 @@ $(document).ready(
 			});
 
 		});
+>>>>>>> b237e82b0c0bbe17fa869d72431900eb7f764942:firstServlet/WebContent/listecursus.js
