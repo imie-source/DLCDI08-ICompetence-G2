@@ -48,7 +48,7 @@ public class AdminCompetenceServletClass extends HttpServlet {
 
 		List<CompetenceDTO> competenceDTOs = null;
 		
-		int idrech = 11;
+		int idrech = 7;
 		try {
 
 			competenceDTOs = competenceService.findArboFilsPere(idrech);

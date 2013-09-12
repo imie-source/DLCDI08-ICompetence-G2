@@ -1,6 +1,5 @@
 package org.imie.DAO;
 
-
 import java.sql.Array;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -29,8 +28,10 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 	/**
 	 * renvoie la liste des competences d'un utilisateur
+	 * 
 	 * @return liste de competences DTO
-	 * @param un utilisateur DTO
+	 * @param un
+	 *            utilisateur DTO
 	 */
 	public List<CompetenceDTO> getCompetenceByUser(UserDTO userDTO)
 			throws TransactionalConnectionException {
@@ -97,10 +98,11 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 	/**
 	 * renvoie la liste de toutes les compétences
+	 * 
 	 * @return la liste des competences DTO
 	 */
 	public List<CompetenceDTO> findAll() {
-		
+
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 
 		Statement statement = null;
@@ -142,23 +144,26 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 	}
 
 	/**
-	 * renvoie une competence 
-	 * @param un id de competence
+	 * renvoie une competence
+	 * 
+	 * @param un
+	 *            id de competence
 	 * @return un DTO competence
 	 */
 	public CompetenceDTO findById(Integer competenceid)
 			throws TransactionalConnectionException {
-		
+
 		CompetenceDTO competenceDTO = new CompetenceDTO();
-		
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 
 		try {
 			if (competenceDTO != null) {
 				String selectInstruction = "select id_comp, libelle_comp from competence Where id_comp=? ";
-				PreparedStatement preparedStatement = getConnection().prepareStatement(selectInstruction);
-				preparedStatement.setInt(1,competenceid);
+				PreparedStatement preparedStatement = getConnection()
+						.prepareStatement(selectInstruction);
+				preparedStatement.setInt(1, competenceid);
 				resultSet = preparedStatement.executeQuery();
 			}
 
@@ -171,7 +176,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
 
-			
 			try {
 				if (resultSet != null) {
 					resultSet.close();
@@ -187,21 +191,21 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		return competenceDTO;
 	}
 
-	
 	public CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert)
 			throws TransactionalConnectionException {
 
-		Statement statement = null;		
+		Statement statement = null;
 		ResultSet resultSet = null;
 		CompetenceDTO competenceDTOinserted = null;
-		
+
 		try {
 
 			String insertInstruction = "insert into competence (libelle_comp, id_comp_fait_partie) "
 					+ "values (?,?) returning libelle_comp, id_comp_fait_partie ";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, competenceToInsert.getLibelle());
-			preparedStatement.executeQuery();		
+			preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -220,29 +224,27 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		
-		
+
 		return competenceDTOinserted;
 	}
-	
-	
-	
-/**
- * modifie une competence
- */
+
+	/**
+	 * modifie une competence
+	 */
 	public CompetenceDTO updateCompetence(CompetenceDTO competenceToUpdate)
 			throws TransactionalConnectionException {
-		
+
 		CompetenceDTO competenceDTORetour = null;
-		
 
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
-			
-		String insertInstruction = "update competence set libelle_comp =? "  + "where id_comp=?";			
-			
-			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
+
+			String insertInstruction = "update competence set libelle_comp =? "
+					+ "where id_comp=?";
+
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, competenceToUpdate.getLibelle());
 			preparedStatement.executeUpdate();
 
@@ -264,40 +266,42 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			}
 		}
 		return competenceDTORetour;
-	
+
 	}
 
 	/**
-	 * supprimer une competence 
+	 * supprimer une competence
 	 */
 	public void deleteCompetence(CompetenceDTO competenceToDelete)
 			throws TransactionalConnectionException {
-	
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 
-
 			String insertInstruction1 = "DELETE FROM utilisateur_dispose_comp WHERE id_comp = ? ";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(insertInstruction1);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(insertInstruction1);
 			preparedStatement1.setInt(1, competenceToDelete.getId());
 			preparedStatement1.executeUpdate();
-			
+
 			String insertInstruction2 = "DELETE FROM gdt_utilise_comp WHERE id_comp = ? ";
-			PreparedStatement preparedStatement2 = getConnection().prepareStatement(insertInstruction2);
+			PreparedStatement preparedStatement2 = getConnection()
+					.prepareStatement(insertInstruction2);
 			preparedStatement2.setInt(2, competenceToDelete.getId());
 			preparedStatement2.executeUpdate();
-			
+
 			String insertInstruction3 = "DELETE FROM comp_correspond_mot_clef WHERE id_comp = ? ";
-			PreparedStatement preparedStatement3 = getConnection().prepareStatement(insertInstruction3);
+			PreparedStatement preparedStatement3 = getConnection()
+					.prepareStatement(insertInstruction3);
 			preparedStatement3.setInt(3, competenceToDelete.getId());
-			preparedStatement3.executeUpdate();	
-			
+			preparedStatement3.executeUpdate();
+
 			String insertInstruction4 = "DELETE FROM competence WHERE id_comp =? ";
-			PreparedStatement preparedStatement4 = getConnection().prepareStatement(insertInstruction4);
+			PreparedStatement preparedStatement4 = getConnection()
+					.prepareStatement(insertInstruction4);
 			preparedStatement4.setInt(4, competenceToDelete.getId());
 			preparedStatement4.executeUpdate();
-			
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -316,18 +320,20 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 
 	}
-	
+
 	/**
 	 * creer niveau d'une competence d'un utilisateur
 	 */
-	public Boolean creerCompUserNiveau(UserDTO userDTO, CompetenceDTO competenceDTO, NiveauDTO niveauDTO) {
+	public Boolean creerCompUserNiveau(UserDTO userDTO,
+			CompetenceDTO competenceDTO, NiveauDTO niveauDTO) {
 
 		Boolean creerCUN = true;
 
 		try {
 
 			String creerCompUserNiveau = " INSERT INTO utilisateur_dispose_comp ( id_utilisateur, id_comp, id_niveau_comp ) VALUES (?,?,?)";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(creerCompUserNiveau);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(creerCompUserNiveau);
 			preparedStatement.setInt(1, userDTO.getId());
 			preparedStatement.setInt(2, competenceDTO.getId());
 			preparedStatement.setInt(3, niveauDTO.getId());
@@ -340,20 +346,21 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		return creerCUN;
 	}
-	
 
 	/**
 	 * modifier niveau de comp de l'utilisateur
 	 */
-	public void modifierCompUserNiveau(UserDTO userDTO,CompetenceDTO competenceDTO, NiveauDTO niveauDTO)
+	public void modifierCompUserNiveau(UserDTO userDTO,
+			CompetenceDTO competenceDTO, NiveauDTO niveauDTO)
 			throws TransactionalConnectionException {
-	
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 
 			String modifCompUserNiveau = " UPDATE utilisateur_dispose_comp SET id_utilisateur=? , id_comp = ?, id_niveau_comp = ?";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(modifCompUserNiveau);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(modifCompUserNiveau);
 			preparedStatement1.setInt(1, userDTO.getId());
 			preparedStatement1.setInt(2, competenceDTO.getId());
 			preparedStatement1.setInt(3, niveauDTO.getId());
@@ -376,20 +383,21 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 
 	}
-	
+
 	/**
 	 * supprimer niveau de comp d'un utilisateur
 	 */
-	public void supprimerCompUserNiveau(UserDTO userDTO,CompetenceDTO competenceDTO, NiveauDTO niveauDTO)
+	public void supprimerCompUserNiveau(UserDTO userDTO,
+			CompetenceDTO competenceDTO, NiveauDTO niveauDTO)
 			throws TransactionalConnectionException {
-	
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 
-
 			String suppCompUserNiveau = "DELETE FROM utilisateur_dispose_comp WHERE id_utilisateur = ? AND id_comp = ? AND id_niveau_comp = ? ";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(suppCompUserNiveau);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(suppCompUserNiveau);
 			preparedStatement1.setInt(1, userDTO.getId());
 			preparedStatement1.setInt(2, competenceDTO.getId());
 			preparedStatement1.setInt(3, niveauDTO.getId());
@@ -412,17 +420,20 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 
 	}
+
 	/**
 	 * creer niveau d'une competence d'un utilisateur
 	 */
-	public Boolean creerCompMotClef( CompetenceDTO competenceDTO, MotClefDTO mot_clefDTO) throws TransactionalConnectionException{
+	public Boolean creerCompMotClef(CompetenceDTO competenceDTO,
+			MotClefDTO mot_clefDTO) throws TransactionalConnectionException {
 
-		Boolean creerCMC= true;
+		Boolean creerCMC = true;
 
 		try {
 
 			String creerCompMotClef = " INSERT INTO comp_correspond_mot_clef ( id_comp, id_mot_clef ) VALUES (?,?,?)";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(creerCompMotClef);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(creerCompMotClef);
 			preparedStatement.setInt(1, competenceDTO.getId());
 			preparedStatement.setInt(2, mot_clefDTO.getId());
 			preparedStatement.executeQuery();
@@ -434,20 +445,20 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		return creerCMC;
 	}
-	
 
 	/**
 	 * modifier niveau de comp de l'utilisateur
 	 */
-	public void modifierCompMotClef( CompetenceDTO competenceDTO, MotClefDTO mot_clefDTO)
-			throws TransactionalConnectionException {
-	
+	public void modifierCompMotClef(CompetenceDTO competenceDTO,
+			MotClefDTO mot_clefDTO) throws TransactionalConnectionException {
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 
 			String modifierCompMotClef = " UPDATE comp_correspond_mot_clef SET id_comp = ?, id_mot_clef = ?";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(modifierCompMotClef);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(modifierCompMotClef);
 			preparedStatement1.setInt(1, competenceDTO.getId());
 			preparedStatement1.setInt(2, mot_clefDTO.getId());
 			preparedStatement1.executeUpdate();
@@ -469,21 +480,20 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 
 	}
-	
-		
+
 	/**
 	 * supprimer niveau de comp d'un utilisateur
 	 */
-	public void supprimerCompMotClef (CompetenceDTO competenceDTO, MotClefDTO mot_clefDTO)
-			throws TransactionalConnectionException {
-	
+	public void supprimerCompMotClef(CompetenceDTO competenceDTO,
+			MotClefDTO mot_clefDTO) throws TransactionalConnectionException {
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		try {
 
-
 			String supprimerCompMotClef = "DELETE FROM comp_correspond_mot_clef WHERE  id_comp = ? AND id_mot_clef = ? ";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(supprimerCompMotClef);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(supprimerCompMotClef);
 			preparedStatement1.setInt(1, competenceDTO.getId());
 			preparedStatement1.setInt(2, mot_clefDTO.getId());
 			preparedStatement1.executeUpdate();
@@ -505,8 +515,9 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 	}
 
-	public List<CompetenceDTO> findAllArbo() throws TransactionalConnectionException {
-		
+	public List<CompetenceDTO> findAllArbo()
+			throws TransactionalConnectionException {
+
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 
 		Statement statement = null;
@@ -523,12 +534,10 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
-				
-				
-				competenceDTO.setChemin( resultSet.getArray("chemin"));
+
+				competenceDTO.setChemin(resultSet.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
-			
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -549,10 +558,10 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		return competenceDTOs;
 	}
-	
-	
-	public List<CompetenceDTO> findArboFilsPere(Integer id) throws TransactionalConnectionException {
-		
+
+	public List<CompetenceDTO> findArboFilsPere(Integer id)
+			throws TransactionalConnectionException {
+
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 
 		Statement statement = null;
@@ -560,8 +569,9 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		ResultSet resultSetParent = null;
 
 		try {
-				//recherche des fils
-			String selectInstruction = "SELECT * FROM vue_arbo WHERE " + id  + "= ANY (chemin);";
+			// recherche des fils
+			String selectInstruction = "SELECT * FROM vue_arbo WHERE " + id
+					+ "= ANY (chemin);";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(selectInstruction);
 			resultSet = preparedStatement.executeQuery();
@@ -570,40 +580,44 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
-				competenceDTO.setChemin( resultSet.getArray("chemin"));
+				competenceDTO.setChemin(resultSet.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
-			
-			CompetenceDTO compDTO = competenceDTOs.get(competenceDTOs.size()-1) ;
-			Array tabChemin =  compDTO.getChemin();
+
+			CompetenceDTO compDTO = competenceDTOs
+					.get(competenceDTOs.size() - 1);
+			Array tabChemin = compDTO.getChemin();
+			Object tableau = tabChemin.getArray();
+			System.out.println(tableau);
+			// tableau est tableau Java
+			Integer[] donneesTableau = (Integer[]) tableau;
+			// vous devez le caster dans le type de données contenues
 			String chemin = "[";
-			tabChemin.getArray();
-			for (int i=0; i <= size; i++) {
-				
-				if (i == size) {
-					chemin = chemin + tabChemin.get(i);
+			int size = donneesTableau.length;
+			for (int i = 0; i < size; i++) {
+				if (i == size-1) {
+					chemin = chemin + donneesTableau[i];
 				} else {
-					chemin = chemin + tabChemin.get(i)+",";
+					chemin = chemin + donneesTableau[i] + ",";
 				}
-				
 			}
+
 			chemin += "]";
 			System.out.println(chemin);
-			
-			String selectInstructionParent = "SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY" + chemin +");;";
+
+			String selectInstructionParent = "SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY"
+					+ chemin + ");";
 			PreparedStatement preparedStatementParent = getConnection()
 					.prepareStatement(selectInstructionParent);
 			resultSetParent = preparedStatementParent.executeQuery();
 
 			while (resultSetParent.next()) {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
-				competenceDTO.setLibelle(resultSet.getString("libelle"));
-				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
-				competenceDTO.setChemin( resultSet.getArray("chemin"));
+				competenceDTO.setLibelle(resultSetParent.getString("libelle"));
+				competenceDTO.setNiveauParent(resultSetParent.getInt("niveau"));
+				competenceDTO.setChemin(resultSetParent.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
-			
-			
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -624,5 +638,5 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		return competenceDTOs;
 	}
-	
+
 }
