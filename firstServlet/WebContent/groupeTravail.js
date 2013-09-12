@@ -65,10 +65,6 @@ $(document).ready(
 						});
 			});
 
-<<<<<<< HEAD:firstServlet/WebContent/js.js
-			
-		;
-=======
 			/* Modale supprimer */
 			$(function() {
 				$("#formsuppr").dialog({
@@ -100,5 +96,4 @@ $(document).ready(
 						});
 			});
 
-		});
->>>>>>> b237e82b0c0bbe17fa869d72431900eb7f764942:firstServlet/WebContent/listecursus.js
+		;

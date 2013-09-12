@@ -27,7 +27,8 @@
 <body>
 	<div class="conteneur">
 
-		<button id="openerajout">ajouter un cursus</button>
+		<button id="openerajout">ajouter un cursus</button><br />
+		<br /> <a href="./AccueilServletClass">Accueil </a>
 		<div id="tableau" class=tableau>
 			<%
 				List<CursusDTO> listeCursus = (List<CursusDTO>) session
@@ -37,27 +38,25 @@
 			%>
 <<<<<<< HEAD
 			<div id="lignetableau<%=i%>" class="tableau">
-				<a href=./CursusServletClass?ligne=<%=i%>>
-					<div class="celluleTableau largeur100 ">
-						<%=i%></div>
-					<div class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
-				</a>
-=======
-			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
 				<div class="celluleTableau largeur100 ">
 					<%=i%></div>
 				<div id="libellecursuschoisie<%=i%>"
 					class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
 				<input id="idcursuschoisie<%=i%>" type="hidden"
+=======
+			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
+					<div class="celluleTableau largeur100 ">
+						<%=i%></div>
+					<div id="libellecursuschoisie<%=i%>"
+						class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+					<input id="idcursuschoisie<%=i%>" type="hidden"
+>>>>>>> b237e82b0c0bbe17fa869d72431900eb7f764942
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
-
->>>>>>> 36cf1edabd4b3c001ce8213e3fc8639ad13cc4da
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				<button id="openersupr<%=i%>">supprimer</button>
-
+				<button id="openersuppr<%=i%>">supprimer</button>
 			</div>
 			<%
 				i++;
@@ -88,6 +87,19 @@
 						value="" width="15" maxlength="15"></input>
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
+			</form>
+		</div>
+
+		
+		<div id="supprdialog" title="modifier">
+			<form id="formsuppr" method="post"
+				action="./CursusServletClass?UrlParam=suppr">
+				<input id="idcursussuppr" type="hidden" value="" name="cursusid" />
+				<fieldset>
+					<!-- <legend>supprimer un cursus</legend> -->
+					vous allez supprimer un cursus
+				</fieldset>
+				<br /> <input type="submit" value="supprimer" />
 			</form>
 		</div>
 	</div>

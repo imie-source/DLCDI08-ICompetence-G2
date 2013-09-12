@@ -40,13 +40,13 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			System.out.println(groupeDeTravailAInserer.getType_projet());
 			
 			String insertInstruction = "insert into groupe_de_travail (nom, type_projet, id_etat) "
-					+ "values (?,?,1) ";
+					+ "values (?,?,?) ";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, groupeDeTravailAInserer.getNom());
 			preparedStatement.setString(2,
 					groupeDeTravailAInserer.getType_projet());
-			
+			preparedStatement.setInt(3, 1);
 
 			preparedStatement.executeQuery();
 			
@@ -311,7 +311,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		groupeDeTravailDTO.setBilan(resultSet.getString("bilan"));
 		groupeDeTravailDTO.setType_projet(resultSet.getString("type_projet"));
 		groupeDeTravailDTO.setId_util(resultSet.getInt("id_util_chef_de_groupe"));
-		System.out.println(groupeDeTravailDTO.getId_util());
+		
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
 		
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
