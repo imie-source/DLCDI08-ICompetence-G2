@@ -60,6 +60,17 @@ public class FiltreSecurite implements Filter {
 
 		String path = ((HttpServletRequest) request).getRequestURI();
 		System.out.println("le chemin " + path);
+		
+		// On laisse toujours passer connexion, authentification, et css
+				if (path.endsWith("Connexion") || path.endsWith("Authentification")
+						|| path.matches(extensionNonFiltre)) {
+					System.out.println(path);
+					System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
+
+					chain.doFilter(request, response); // Just continue chain.
+					return;
+
+				}
 
 		if (authentification.equalsIgnoreCase("oui")) {
 
@@ -75,6 +86,7 @@ public class FiltreSecurite implements Filter {
 					RequestDispatcher requestDispatcher = request
 							.getRequestDispatcher("./Connexion.jsp");
 					requestDispatcher.forward(request, response);
+					
 
 				} else {
 					System.out.println(" Authentifié dans Filtre ");
@@ -91,6 +103,7 @@ public class FiltreSecurite implements Filter {
 								.getRequestDispatcher("./Accueil.jsp");
 						requestDispatcher.forward(request, response);
 						premiereConnexion = false;
+						
 					} else {
 						System.out
 								.println(">>>>>>>>>>>>>>>>>>Authentifié / premeconnexion : "
@@ -109,16 +122,7 @@ public class FiltreSecurite implements Filter {
 			}
 
 		}
-		// On laisse toujours passer connexion, authentification, et css
-		if (path.endsWith("Connexion") || path.endsWith("Authentification")
-				|| path.matches(extensionNonFiltre)) {
-			System.out.println(path);
-			System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
-
-			chain.doFilter(request, response); // Just continue chain.
-			return;
-
-		}
+		
 	}
 
 	/**
@@ -128,7 +132,7 @@ public class FiltreSecurite implements Filter {
 
 		this.filterConfig = fConfig;
 		authentification = filterConfig.getInitParameter("authentification");
-		System.out.println(authentification);
+		System.out.println("valeur du parametre authentification : " +authentification);
 		// TODO test sur la valeur
 	}
 

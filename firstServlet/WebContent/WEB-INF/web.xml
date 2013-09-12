@@ -29,6 +29,6 @@
   </filter>
   <filter-mapping>
   	<filter-name>FiltreSecurite</filter-name>
-  	<url-pattern>/*</url-pattern>
+  	<url-pattern>/none</url-pattern>
   </filter-mapping>
 </web-app>
