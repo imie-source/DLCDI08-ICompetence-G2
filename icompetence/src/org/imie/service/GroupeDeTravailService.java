@@ -2,7 +2,9 @@ package org.imie.service;
 
 import java.util.List;
 
+import org.imie.DAO.interfaces.ICompetenceDAO;
 import org.imie.DAO.interfaces.IGroupeDeTravailDAO;
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.factory.BaseConcreteFactory;
@@ -69,6 +71,22 @@ public class GroupeDeTravailService extends ATransactional implements
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 		return gdtDAO.afficherGroupeDeTravail();
+	}
+
+	@Override
+	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(this); 
+		return gdtDAO.creerGdtUtiliseComp(compDTO, gdtDTO);
+	}
+
+	@Override
+	public Boolean supprimerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(this);
+		return gdtDAO.supprimerGdtUtiliseComp(compDTO, gdtDTO);
 	}
 
 }

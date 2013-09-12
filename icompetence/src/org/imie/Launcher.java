@@ -31,7 +31,7 @@ public class Launcher {
 		UserDTO userDTOToIdentify = new UserDTO();
 		UserDTO userDTOToFound = new UserDTO();
 		
-		userDTOToIdentify.setIdentifiant("youmet");	
+		userDTOToIdentify.setIdentifiant("fatmar");	
 		System.out.println(userDTOToIdentify.getIdentifiant());
 		try {
 			userDTOToFound =  userService.getUser(userDTOToIdentify);

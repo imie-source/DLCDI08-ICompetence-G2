@@ -19,7 +19,7 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 
 public class GroupeDeTravailDAO extends ATransactional implements
 		IGroupeDeTravailDAO {
-	
+
 	public Boolean creerGroupeDeTravail(
 			GroupeDeTravailDTO groupeDeTravailAInserer)
 			throws TransactionalConnectionException {
@@ -241,8 +241,9 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		System.out.println("entrée -> afficherGroupeDeTravail");
 		try {
 			statement = getConnection().createStatement();
-			resultSet = statement.executeQuery("select gdt.nom as gdtnom, id_gdt, bilan,type_projet,id_utilisateur,id_etat, util.nom as nomutil,util.prenom as prenomutil "
-					+ "FROM groupe_de_travail as gdt INNER JOIN utilisateur as util ON util.id_utilisateur=gdt.id_util_chef_de_groupe");
+			resultSet = statement
+					.executeQuery("select gdt.nom as gdtnom, id_gdt, bilan,type_projet,id_utilisateur,id_etat, util.nom as nomutil,util.prenom as prenomutil "
+							+ "FROM groupe_de_travail as gdt INNER JOIN utilisateur as util ON util.id_utilisateur=gdt.id_util_chef_de_groupe");
 
 			while (resultSet.next()) {
 				GroupeDeTravailDTO groupeDeTravail = buildDTO(resultSet);
@@ -285,7 +286,8 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		groupeDeTravailDTO.setType_projet(resultSet.getString("type_projet"));
 		groupeDeTravailDTO.setId_util(resultSet.getInt("id_utilisateur"));
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
-		groupeDeTravailDTO.setNomCP(resultSet.getString("nomutil")+" "+resultSet.getString("prenomutil"));
+		groupeDeTravailDTO.setNomCP(resultSet.getString("nomutil") + " "
+				+ resultSet.getString("prenomutil"));
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
 				.getId_etat()));
 		return groupeDeTravailDTO;
@@ -298,21 +300,20 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		ResultSet resultSet = null;
 		System.out.println("entrée -> afficherLibelle");
 		String libelleEtat = null;
-		
+
 		try {
 			statement = getConnection().createStatement();
 			resultSet = statement.executeQuery("select libelle "
 					+ "FROM etat WHERE id_etat =" + id_etat);
-		
+
 			while (resultSet.next()) {
-			libelleEtat = resultSet.getString("libelle");
+				libelleEtat = resultSet.getString("libelle");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 		return libelleEtat;
 
 	}
@@ -337,22 +338,25 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		return creer;
 
 	}
-	public List<GroupeDeTravailDTO> getGroupeDeTravailParUtilisateur(UserDTO userDTO) throws TransactionalConnectionException {
-		
+
+	public List<GroupeDeTravailDTO> getGroupeDeTravailParUtilisateur(
+			UserDTO userDTO) throws TransactionalConnectionException {
+
 		List<GroupeDeTravailDTO> groupeDeTravailDTOs = new ArrayList<GroupeDeTravailDTO>();
 		Statement statement = null;
 		ResultSet resultSet = null;
-		
+
 		try {
-			
-			String query = " SELECT nom, bilan, type_projet, id_gdt" +
-					"FROM groupe_de_travail" +
-					"INNER JOIN utilisateur_appartient_a_gdt as uaag" +
-					"WHERE id_utilisateur =?";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(query);
+
+			String query = " SELECT nom, bilan, type_projet, id_gdt"
+					+ "FROM groupe_de_travail"
+					+ "INNER JOIN utilisateur_appartient_a_gdt as uaag"
+					+ "WHERE id_utilisateur =?";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(query);
 			preparedStatement.setInt(1, userDTO.getId());
 			resultSet = preparedStatement.executeQuery();
-			
+
 			while (resultSet.next()) {
 				GroupeDeTravailDTO gdtDTO = new GroupeDeTravailDTO();
 				gdtDTO.setNom(resultSet.getString("nom"));
@@ -360,9 +364,9 @@ public class GroupeDeTravailDAO extends ATransactional implements
 				gdtDTO.setType_projet(resultSet.getString("type_projet"));
 				gdtDTO.setId_gdt(resultSet.getInt("id_gdt"));
 				groupeDeTravailDTOs.add(gdtDTO);
-				
+
 			}
-			
+
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
@@ -379,8 +383,53 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			}
 		}
 		return groupeDeTravailDTOs;
-		
-		
+
+	}
+	
+	/**
+	 * création de compétence dans un groupe
+	 */
+	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+
+		Boolean creerGUC = true;
+
+		try {
+
+			String creerGdtUtiliseComp = " INSERT INTO gdt_utilise_comp( id_comp, id_gdt) VALUES (?,?)";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(creerGdtUtiliseComp);
+			preparedStatement.setInt(1, compDTO.getId());
+			preparedStatement.setInt(2, gdtDTO.getId_gdt());
+			preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+			creerGUC = false;
+
+		}
+
+		return creerGUC;
+	}
+
+	public Boolean supprimerGdtUtiliseComp(CompetenceDTO compDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+
+		Statement statement = null;
+		ResultSet resulset = null;
+		Boolean suppGUC = true;
+
+		try {
+			String supprimerGdtUtiliseComp = "DELETE FROM gdt_utilise_comp WHERE id_comp = ? AND id_gdt = ?";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(supprimerGdtUtiliseComp);
+			preparedStatement.setInt(1, compDTO.getId());
+			preparedStatement.setInt(2, gdtDTO.getId_gdt());
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+			suppGUC = false;
+		}
+		return suppGUC;
 	}
 
 	// TODO méthode de recherche par user ou autre à implémenter (voir youyou)

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
+<<<<<<< HEAD
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+ <display-name>firstServlet</display-name>
+ <servlet>
+  <display-name>UpdateServletClass</display-name>
+  <servlet-name>UpdateServletClass</servlet-name>
+  <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>UpdateServletClass</servlet-name>
+  <url-pattern>/UpdateServletClass</url-pattern>
+ </servlet-mapping>
+ <welcome-file-list>
+  <welcome-file>index.html</welcome-file>
+  <welcome-file>index.htm</welcome-file>
+  <welcome-file>index.jsp</welcome-file>
+  <welcome-file>default.html</welcome-file>
+  <welcome-file>default.htm</welcome-file>
+  <welcome-file>default.jsp</welcome-file>
+ </welcome-file-list>
+</web-app>
+=======
+=======
+>>>>>>> bab978331f5ca7b5d92077114833fe2f8f3e2f36
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>firstServlet</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>UpdateServletClass</display-name>
+    <servlet-name>UpdateServletClass</servlet-name>
+<<<<<<< HEAD
+    <servlet-class>org.imie.Servlet.UpdateServletClass</servlet-class>
+=======
+<<<<<<< HEAD
+    <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
+>>>>>>> bab978331f5ca7b5d92077114833fe2f8f3e2f36
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateServletClass</servlet-name>
+    <url-pattern>/UpdateServletClass</url-pattern>
+  </servlet-mapping>
+</web-app>
+<<<<<<< HEAD
+>>>>>>> 173649946fb906be03db9d5daa842434c409db67
+=======
+=======
+    <servlet-class>org.imie.Servlet.FirstServletClass</servlet-class>
+ </servlet>
+ <servlet-mapping>
+  <servlet-name>UpdateServletClass</servlet-name>
+  <url-pattern>/UpdateServletClass</url-pattern>
+ </servlet-mapping>
+</web-app>
+>>>>>>> 6e43fc7c184c9bfa14b10e4771a370a59ab63e46
+>>>>>>> bab978331f5ca7b5d92077114833fe2f8f3e2f36

@@ -2,6 +2,7 @@ package org.imie.service.interfaces;
 
 import java.util.List;
 
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.transactionalFramework.ITransactional;
@@ -71,4 +72,9 @@ public interface IGroupeDeTravailService extends ITransactional {
 	public abstract List<GroupeDeTravailDTO> afficherGroupeDeTravail()
 			throws TransactionalConnectionException;
 
+	Boolean creerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
+
+	Boolean supprimerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 }
