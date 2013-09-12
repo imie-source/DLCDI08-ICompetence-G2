@@ -55,46 +55,4 @@ $(document).ready(
 									});
 						});
 			});
-			
-			
-			
-			
-				/*	$(function(){
-						jQuery("#formajout").validate({
-							rules : {
-								nom : {
-									required : true
-								},
-								prenom : {
-									required : true
-								},
-								date_naissance : {
-									required : true
-								},
-								adresse_mail : {
-									required : true,
-									email : true
-								},
-								identifiant : {
-									required : true
-								},
-								pwd : {
-									required : true
-								},
-								libelle : {
-									required : true
-								},
-								ville : {
-									required : true
-								},
-								code_postal : {
-									required : true
-									digits : true
-								},
-							}
-					 		});
-					});*/
-					
-		
-
 		});

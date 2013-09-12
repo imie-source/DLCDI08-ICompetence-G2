@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./js.js"></script>
+<script src="./listeCursus.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 <title>Liste de cursus</title>
 </head>
@@ -45,7 +45,6 @@
 					value="<%=cursusDTO.getId()%>" name="cursusid" />
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
-				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
 				<button id="openersuppr<%=i%>">supprimer</button>
 			</div>

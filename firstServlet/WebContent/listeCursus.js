@@ -1,10 +1,7 @@
 $(document).ready(
 		function() {
-
-			
 	
-			
-	$("#tableau").accordion({
+			$("#tableau").accordion({
 				heightStyle : "content"
 			}, {
 				active : false
@@ -29,6 +26,8 @@ $(document).ready(
 			$("#formajout").dialog("open");
 				});
 			});
+			
+			
 			/* Modale modif */
 			$(function() {
 		$("#formmodif").dialog({
@@ -42,13 +41,16 @@ $(document).ready(
 						duration : 1000
 					}
 				});
-				$("button").mousedown(
+				
+		$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
 							var param = button.split("f");
 							var indice = param[1];
+							
 							$("#openermodif" + indice).click(
-				$("#formmodif").dialog("open"));
+									function(){
+				$("#formmodif").dialog("open");
 										$("#formmodif").dialog("open");
 										var idcursuschoisie = $(
 												"#idcursuschoisie" + indice)
@@ -63,7 +65,8 @@ $(document).ready(
 												libellecursuschoisie);
 									});
 						});
-			});
+		});
+		
 
 			/* Modale supprimer */
 			$(function() {
@@ -78,6 +81,7 @@ $(document).ready(
 						duration : 1000
 					}
 				});
+				
 				$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
@@ -95,5 +99,8 @@ $(document).ready(
 									});
 						});
 			});
+			
+			
+		});
 
-		;
+		

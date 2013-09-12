@@ -30,7 +30,6 @@
 		<button id="openerajout">ajouter un utilisateur</button>
 		<br /> <a href="./AccueilServletClass">Accueil </a>
 
-
 		<div id="tableau" class=tableau>
 			<%
 				List<UserDTO> listUser = (List<UserDTO>) session
@@ -76,7 +75,7 @@
 
 					Libellé*:<input type="text" name="libelle" maxlength="20"></input><br />
 					Ville*:<input type="text" name="ville" maxlength="20"></input><br />
-					Code postal*:<input type="text" name="code_postal" maxlength="5"></input><br />
+					Code postal*:<input class="only_zip_code" type="text" name="code_postal" maxlength="5"></input><br />
 
 
 					<!--<fieldset> 	
@@ -116,6 +115,7 @@
 					value="ajouter" />
 			</form>
 		</div>
+		
 	</div>
 </body>
 </html>

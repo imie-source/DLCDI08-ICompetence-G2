@@ -74,8 +74,7 @@ public class ListeUserServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 		try {
-			session.setAttribute("listUser",
-					userDTOs = userService.getUsers());
+			session.setAttribute("listUser", userDTOs = userService.getUsers());
 		} catch (TransactionalConnectionException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -99,10 +98,8 @@ public class ListeUserServlet extends HttpServlet {
 		} else {
 			request.getRequestDispatcher("./liste.jsp").forward(request,
 					response);
-		
 		}
 	}
-
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ICursusService cursusService = BaseConcreteFactory.getInstance()
@@ -115,7 +112,7 @@ public class ListeUserServlet extends HttpServlet {
 		// recupération du paramétre de l'url
 		String urlParam = request.getParameter("UrlParam");
 		System.out.println("ListeUserClass");
-		
+
 		if (urlParam.equals("creer")) {
 			// methode de création de l'adresse
 			String libelleParam = request.getParameter("libelle");
@@ -183,5 +180,110 @@ public class ListeUserServlet extends HttpServlet {
 				}
 			}
 		}
+		if (urlParam.equals("modif")) {
+			System.out.println("modif utilisateur");
+			// update de l'adresse
+			IAdresseDAO adresseDaomodif = BaseConcreteFactory.getInstance()
+					.createAdresseDAO(null);
+			AdresseDTO adresseToUpdate = new AdresseDTO();
+			String libelleParam = request.getParameter("libelle");
+			String villeParam = request.getParameter("ville");
+			String codePostalParam = request.getParameter("code_postal");
+			String idAdresseParam = request.getParameter("id_adresse");
+			if (codePostalParam != null) {
+				Integer codePostal = Integer.valueOf(codePostalParam);
+				if (idAdresseParam != null) {
+					Integer idAdresse = Integer.valueOf(idAdresseParam);
+					adresseToUpdate.setLibelle(libelleParam);
+					adresseToUpdate.setVille(villeParam);
+					adresseToUpdate.setCode_postal(codePostal);
+					adresseToUpdate.setId_adresse(idAdresse);
+					try {
+						adresseDaomodif.UpdateAdresse(adresseToUpdate);
+					} catch (TransactionalConnectionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+			String userIdParam = request.getParameter("userid");
+			Integer userId = null;
+			if (userIdParam != null) {
+				userId = Integer.valueOf(userIdParam);
+			}
+			if (userId != null) {
+				IUserService userServicemodif = BaseConcreteFactory.getInstance()
+						.createUserService(null);
+				List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+				try {
+					userDTOs = userServicemodif.getUsers();
+				} catch (TransactionalConnectionException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				if (userDTOs.size() > 0) {
+					UserDTO userDTOToUpdate = userDTOs.get(0);
+					String userIdentifiantParam = request
+							.getParameter("identifiant");
+					String userNomParam = request.getParameter("nom");
+					String userPrenomParam = request.getParameter("prenom");
+					String userMailParam = request.getParameter("mail");
+					String userCursusParam = request.getParameter("cursusid");
+					Date userDateNaissParam = null;
+					String userDisponibleParam = request
+							.getParameter("disponible");
+					if (userDisponibleParam != null) {
+						Boolean disponible = Boolean
+								.valueOf(userDisponibleParam);
+						try {
+							userDateNaissParam = getDateInput(request
+									.getParameter("datenaissance"));
+						} catch (PassThroughInputException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						if (userCursusParam != null) {
+							Integer userCursus = Integer
+									.valueOf(userCursusParam);
+							ICursusService cursusServicemodif = BaseConcreteFactory
+									.getInstance().createCursusService(null);
+
+							CursusDTO cursusDTO = new CursusDTO();
+							try {
+								cursusDTO = cursusServicemodif.findbyid(userCursus);
+							} catch (TransactionalConnectionException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							userDTOToUpdate.setId(userId);
+							userDTOToUpdate.setNom(userNomParam);
+							userDTOToUpdate.setPrenom(userPrenomParam);
+							userDTOToUpdate.setDateNaiss(userDateNaissParam);
+							userDTOToUpdate.setCursus(cursusDTO);
+							userDTOToUpdate.setAdresse_mail(userMailParam);
+							userDTOToUpdate.setDisponible(disponible);
+							userDTOToUpdate
+									.setIdentifiant(userIdentifiantParam);
+							try {
+								userServicemodif.updateUser(userDTOToUpdate);
+							} catch (TransactionalConnectionException e) {
+								// TODO Gerer l'affichage en cas d'erreur.
+								e.printStackTrace();
+
+							}
+						}
+
+					}
+
+				}
+				session.removeAttribute("listuser");
+				response.sendRedirect("./ListeUserServlet");
+			}
+		}
+		
+		
+		
+
 	}
+
 }
