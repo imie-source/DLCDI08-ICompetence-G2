@@ -4,7 +4,8 @@
     // input only integers
     $('body').delegate('input.only_integer','keyup',function(){
     if(!$(this).val().match(/^\-?[0-9]*$/)) // numbers
-    remove_last_input(this);
+    	alert ("accepte des chiffres");
+//    remove_last_input(this);
     });
     // input only floats
     $('body').delegate('input.only_float','keyup',function(){
@@ -24,17 +25,20 @@
     // input email
     $('body').delegate('input.only_email','keyup',function(){
     if(!$(this).val().match(/^[a-z0-9\-\.\_]*@?[a-z0-9\-\.]*\.?[0-9a-z]*$/i)) // a-z and 0-9
-    remove_last_input(this);
+    	alert ("adresse mail non valide");
+//    remove_last_input(this);
     });
     // input alpha-num
     $('body').delegate('input.only_alpha_num','keyup',function(){
     if(!$(this).val().match(/^[0-9a-z]*$/i)) // a-z and 0-9
-    remove_last_input(this);
+    	alert ("accepte des lettres et chiffres");
+//    remove_last_input(this);
     });
     // input alpha
     $('body').delegate('input.only_alpha','keyup',function(){
     if(!$(this).val().match(/^[a-z]*$/i)) // a-z
-    remove_last_input(this);
+    	alert ("accepte des lettres");
+//    remove_last_input(this);
     });
     // input hex
     $('body').delegate('input.only_hex','keyup',function(){
