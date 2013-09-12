@@ -17,7 +17,7 @@ $(document).ready(
 				$("#openermodif").click(
 						function() {
 							$("#modifdialog").dialog("open");
-							
+
 							$.datepicker
 									.setDefaults($.datepicker.regional["fr"]);
 							$("#datenaissancemodif").datepicker(
@@ -36,6 +36,24 @@ $(document).ready(
 									});
 
 						});
+			});
+
+			/* Modale supprimer */
+			$(function() {
+				$("#supprdialog").dialog({
+					autoOpen : false,
+					show : {
+						effect : "blind",
+						duration : 1000
+					},
+					hide : {
+						effect : "fade",
+						duration : 1000
+					}
+				});
+				$("#openersuppr").click(function() {
+					$("#supprdialog").dialog("open");
+				});
 			});
 
 		});

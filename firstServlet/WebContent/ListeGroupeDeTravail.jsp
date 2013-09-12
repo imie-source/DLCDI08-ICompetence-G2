@@ -77,8 +77,8 @@
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
 					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
 					Etat <input type="select">
-					<option>Manque de volontaire</option>>
-					<option>Démarrage</option>>
+					<option>Manque de volontaire</option>
+					<option>Démarrage</option>
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
 			</form>

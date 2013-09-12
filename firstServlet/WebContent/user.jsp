@@ -101,20 +101,10 @@
 		</div>
 		<div class=bottommenu>
 			<button id="openermodif">modifier</button>
-			<a href=./DeleteServletClass>supprimer</a>
+		<button id=openersuppr>supprimer</button>
 		</div>
 
 	</div>
-
-
-
-
-
-
-
-
-
-
 
 	<div id="modifdialog" title="modifier">
 		<form id="formmodif" method="post" action="./ListeUserServlet?UrlParam=modif">
@@ -212,7 +202,17 @@
 		</form>
 	</div>
 
-
+<div id="supprdialog" title="modifier">
+			<form id="formsuppr" method="post"
+				action="./ListeUserServlet?UrlParam=suppr">
+				<input id="idusersuppr" type="hidden" value="<%=currentUserDTO.getId()%>" name="idusersuppr" />
+				<fieldset>
+					<!-- <legend>supprimer un cursus</legend> -->
+					vous allez supprimer un cursus
+				</fieldset>
+				<br /> <input type="submit" value="supprimer" />
+			</form>
+		</div>
 
 </body>
 </html>
