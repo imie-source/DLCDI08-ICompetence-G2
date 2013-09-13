@@ -3,6 +3,7 @@ package org.imie.service;
 import java.util.List;
 
 import org.imie.DAO.interfaces.IMotClefDAO;
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.MotClefDTO;
 import org.imie.factory.BaseConcreteFactory;
 import org.imie.service.interfaces.IMotClefService;
@@ -31,6 +32,7 @@ public class MotClefService extends ATransactional implements IMotClefService {
 		return motClefDAO.insertmotClef(motClefToInsert);
 	}
 
+	
 	public MotClefDTO updatemotClef(MotClefDTO motClefToUpdate)
 			throws TransactionalConnectionException {
 		IMotClefDAO motClefDAO = BaseConcreteFactory.getInstance()
@@ -43,6 +45,14 @@ public class MotClefService extends ATransactional implements IMotClefService {
 		IMotClefDAO motClefDAO = BaseConcreteFactory.getInstance()
 				.createMotClefDAO(this);
 		motClefDAO.deletemotClef(motClefToDelete);
+	}
+
+	@Override
+	public List<CompetenceDTO> compentenceParMotClef(String motClef)
+			throws TransactionalConnectionException {
+		IMotClefDAO motClefDAO = BaseConcreteFactory.getInstance()
+				.createMotClefDAO(this);
+		return motClefDAO.compentenceParMotClef(motClef);
 	}
 
 }

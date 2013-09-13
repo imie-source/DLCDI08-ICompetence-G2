@@ -1,4 +1,4 @@
-package org.imie.cherche_mot_clef;
+package org.imie.Servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,16 +38,11 @@ public class ListMotClefServletClass extends HttpServlet {
 
 		List<MotClefDTO> motClefDTOs = new ArrayList<MotClefDTO>();
 
-			System.out.println("liste mot");
-			try {
-				System.out.println("liste mot");
-				session.setAttribute("listeMotClef",
-						motClefDTOs = motClefService.findAll());
-			} catch (TransactionalConnectionException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
+		try {
+			session.setAttribute("listeMotClef",motClefDTOs = motClefService.findAll());
+		} catch (TransactionalConnectionException e) {
+			e.printStackTrace();
+		}
 
 		request.getRequestDispatcher("./listeMotClef.jsp").forward(request,
 				response);
@@ -88,6 +83,7 @@ public class ListMotClefServletClass extends HttpServlet {
 			MotClefDTO motClefDTOModif = new MotClefDTO();
 
 			String libelleParam = request.getParameter("libelle");
+			System.out.println("libelle param");
 			String idMotClefParam = request.getParameter("motClefid");
 			if (idMotClefParam != null) {
 				Integer idmotClef = Integer.valueOf(idMotClefParam);

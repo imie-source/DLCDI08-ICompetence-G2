@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.imie.DAO.interfaces.IMotClefDAO;
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.MotClefDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.transactionalFramework.ATransactional;
@@ -19,7 +20,7 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 	 * renvoie toute la liste des mots clef (liste de DTO)
 	 * 
 	 */
-	
+
 	public List<MotClefDTO> findAll() throws TransactionalConnectionException {
 		List<MotClefDTO> motClefDTOs = new ArrayList<MotClefDTO>();
 
@@ -27,9 +28,8 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 		ResultSet resultSet = null;
 		try {
 			String selectInstruction = "select id_mot_clef, libelle from mot_clef order by id_mot_clef";
-			PreparedStatement preparedStatement = getConnection()
-					.prepareStatement(selectInstruction);
-			resultSet = preparedStatement.executeQuery();
+			statement = getConnection().createStatement();
+			resultSet = statement.executeQuery(selectInstruction);
 
 			while (resultSet.next()) {
 				MotClefDTO motClefDTO = new MotClefDTO();
@@ -98,6 +98,31 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 			}
 		}
 		return motClefDTO;
+	}
+
+	public List<CompetenceDTO> compentenceParMotClef (String motClef) throws TransactionalConnectionException{
+		Statement statement = null;
+		ResultSet resultSet = null;
+		List<CompetenceDTO> listeCompetenceDTO = null;
+		
+		String insertInstruction = "SELECT mc.libelle, comp.libelle_comp FROM competence as comp " +
+				" INNER JOIN  comp_correspond_mot_clef as ccm ON ccm.id_comp = comp.id_comp " +
+				" INNER JOIN mot_clef as mc ON mc.id_mot_clef = ccm.id_mot_clef" +
+				"WHERE mc.libelle =" + motClef;
+		try {
+			getConnection().createStatement();
+			resultSet = statement.executeQuery(insertInstruction);
+			while (resultSet.next()){
+				CompetenceDTO compDTO = new CompetenceDTO();
+				compDTO.setLibelle(resultSet.getString("comp.libelle_comp"));
+				listeCompetenceDTO.add(compDTO);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return listeCompetenceDTO;
 	}
 
 	/**

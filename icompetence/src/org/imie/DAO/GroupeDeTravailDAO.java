@@ -311,10 +311,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		groupeDeTravailDTO.setBilan(resultSet.getString("bilan"));
 		groupeDeTravailDTO.setType_projet(resultSet.getString("type_projet"));
 		groupeDeTravailDTO.setId_util(resultSet.getInt("id_util_chef_de_groupe"));
-		
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
-		
-				+ resultSet.getString("prenomutil"));
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
 				.getId_etat()));
 		return groupeDeTravailDTO;
