@@ -24,10 +24,16 @@
     });
     // input email
     $('body').delegate('input.only_email','keyup',function(){
-    if(!$(this).val().match(/^[a-z0-9\-\.\_]*@?[a-z0-9\-\.]*\.?[0-9a-z]*$/i)) // a-z and 0-9
-    	alert ("adresse mail non valide");
-//    remove_last_input(this);
+    if(!$(this).val().match(/^[a-z][a-z0-9]*([_.-][a-z0-9]+)*@([a-z0-9]+([_.-][a-z0-9]+)*)+\.[a-z]{2,4}$/)) // a-z and 0-9
+    	$("input.only_email").append("<span>adresse mail non valide</span>");
+   remove_last_input(this);
     });
+    
+//    $valid = "^[a-z][a-z0-9]*([_.-][a-z0-9]+)*@([a-z0-9]+([_.-][a-z0-9]+)*)+\.[a-z]{2,4}$";
+//
+//    if (!ereg($valid, $email))
+
+    
     // input alpha-num
     $('body').delegate('input.only_alpha_num','keyup',function(){
     if(!$(this).val().match(/^[0-9a-z]*$/i)) // a-z and 0-9
