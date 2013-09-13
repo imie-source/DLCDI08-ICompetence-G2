@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.imie.DAO.interfaces.ICompetenceDAO;
@@ -191,6 +190,54 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		return competenceDTO;
 	}
 
+	public List<CompetenceDTO> findByNom(String competencenom) throws TransactionalConnectionException {
+
+		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+
+		Statement statement = null;
+		ResultSet resultSet = null;
+
+		try {
+			
+				
+				String enteredByUser = competencenom ;  
+				String forSql = "%" + enteredByUser + "%"; 
+				
+				String selectInstruction = "select * from competence Where upper(libelle_comp) like ?" ;
+				
+				
+				PreparedStatement preparedStatement = getConnection()
+						.prepareStatement(selectInstruction);
+				preparedStatement.setString(1, forSql);
+				resultSet = preparedStatement.executeQuery();
+			
+
+			while (resultSet.next()) {
+				CompetenceDTO competenceDTO = new CompetenceDTO();
+				competenceDTO.setLibelle(resultSet.getString("libelle_comp"));
+				competenceDTO.setId(resultSet.getInt("id_comp"));				
+				competenceDTOs.add(competenceDTO);
+			}
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+		return competenceDTOs;
+	}
+	
 	public CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert)
 			throws TransactionalConnectionException {
 
@@ -597,12 +644,16 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			// vous devez le caster dans le type de données contenues
 			String chemin = "[";
 			int size = donneesTableau.length-1;
+			
 			for (int i = 0; i < size; i++) {
 				if (i == size - 1) {
 					chemin = chemin + donneesTableau[i];
 				} else {
 					chemin = chemin + donneesTableau[i] + ",";
 				}
+			}
+			if (size == 0) {
+				chemin = chemin + donneesTableau[0];
 			}
 			chemin += "]";
 			
@@ -637,7 +688,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				if (statement != null) {
 					statement.close();
 				}
-
+                                                           
 			} catch (SQLException e) {
 				ExceptionManager.getInstance().manageException(e);
 			}

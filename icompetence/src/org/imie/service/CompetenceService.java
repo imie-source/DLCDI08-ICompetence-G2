@@ -118,6 +118,13 @@ public class CompetenceService extends ATransactional implements ICompetenceServ
 
 
 	
+	public List<CompetenceDTO> findByNom(String competencenom) throws TransactionalConnectionException {
+		ICompetenceDAO competenceDAO = BaseConcreteFactory.getInstance().createCompetenceDAO(this);
+		return competenceDAO.findByNom(competencenom);
+	}
+
+
+	
 	
 
 }
