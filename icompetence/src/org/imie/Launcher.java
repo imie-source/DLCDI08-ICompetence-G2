@@ -29,22 +29,23 @@ public class Launcher {
 	public static void main(String[] args) {
 		// ConsoleIHM.getInstance().start();
 
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
-
-		List<CompetenceDTO> competenceDTOs = null;
+		IUserService usrSvc = BaseConcreteFactory
+				.getInstance().createUserService(null);
 		
-		int idrech = 11;
+
+		UserDTO userToFind = new UserDTO();
+		userToFind.setIdentifiant("youmet");
+		
+		
 		try {
 
-			competenceDTOs = competenceService.findArboFilsPere(idrech);
-			for(CompetenceDTO current : competenceDTOs){
-				System.out.println(current.getLibelle());
-				System.out.println(current.getNiveauParent());
-			}
+			UserDTO userFound = usrSvc.getUser(userToFind);
+			userToFind.setProfil(userFound.getProfil());
 
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
+		System.out.println(userToFind.getProfil());
 	}
+	
 }
