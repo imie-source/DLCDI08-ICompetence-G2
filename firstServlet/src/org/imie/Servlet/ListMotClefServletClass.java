@@ -32,6 +32,7 @@ public class ListMotClefServletClass extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+
 		IMotClefService motClefService = BaseConcreteFactory.getInstance()
 				.createMotClefService(null);
 		response.setContentType("text/html");
@@ -83,8 +84,9 @@ public class ListMotClefServletClass extends HttpServlet {
 			MotClefDTO motClefDTOModif = new MotClefDTO();
 
 			String libelleParam = request.getParameter("libelle");
-			System.out.println("libelle param");
-			String idMotClefParam = request.getParameter("motClefid");
+			System.out.println(libelleParam);
+			String idMotClefParam = request.getParameter("motclefid");
+			System.out.println(idMotClefParam);
 			if (idMotClefParam != null) {
 				Integer idmotClef = Integer.valueOf(idMotClefParam);
 				motClefDTOModif.setId(idmotClef);
@@ -101,10 +103,12 @@ public class ListMotClefServletClass extends HttpServlet {
 			response.sendRedirect("./ListMotClefServletClass");
 		}
 
-		if (urlParam.equals("suppr")) {
-			String idMotClefParam = request.getParameter("motClefid");
+		if (urlParam.equals("supp")) {
+			String idMotClefParam = request.getParameter("idmotclefsuppr");
 			if (idMotClefParam != null) {
+				
 				Integer idmotClef = Integer.valueOf(idMotClefParam);
+				System.out.println(idmotClef);
 				MotClefDTO motClefDTOSupr = new MotClefDTO();
 				motClefDTOSupr.setId(idmotClef);
 				try {

@@ -172,9 +172,9 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 	/**
 	 * modifie le mot_clef en parametre un DTO
 	 */
-	public MotClefDTO updateMotClef(MotClefDTO motClefToUpdate)
+	public MotClefDTO updatemotClef(MotClefDTO motClefToUpdate)
 			throws TransactionalConnectionException {
-		MotClefDTO motClefDTORetour = null;
+		
 
 		Statement statement = null;
 		ResultSet resultSet = null;
@@ -186,6 +186,7 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, motClefToUpdate.getLibelle());
+			preparedStatement.setInt(2, motClefToUpdate.getId());
 
 			preparedStatement.executeUpdate();
 
@@ -206,7 +207,7 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		return motClefDTORetour;
+		return motClefToUpdate;
 
 	}
 
@@ -217,12 +218,13 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 			throws TransactionalConnectionException {
 		Statement statement = null;
 		ResultSet resultSet = null;
+		System.out.println(motClefToDelete.getId());
 		try {
 
 			String insertInstruction1 = "DELETE FROM comp_correspond_mot_clef WHERE id_mot_clef = ? ";
 			PreparedStatement preparedStatement1 = getConnection()
 					.prepareStatement(insertInstruction1);
-			preparedStatement1.setInt(1, motClefToDelete.getId());
+			preparedStatement1.setInt(1,motClefToDelete.getId());
 			preparedStatement1.executeUpdate();
 
 			String insertInstruction2 = "DELETE FROM mot_clef  WHERE id_mot_clef =? ";
@@ -249,11 +251,5 @@ public class MotClefDAO extends ATransactional implements IMotClefDAO {
 
 	}
 
-	@Override
-	public MotClefDTO updatemotClef(MotClefDTO motClefToUpdate)
-			throws TransactionalConnectionException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
 }
