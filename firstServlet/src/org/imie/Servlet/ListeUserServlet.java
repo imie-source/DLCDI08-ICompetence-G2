@@ -83,7 +83,7 @@ public class ListeUserServlet extends HttpServlet {
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
 		if (ligne != null) {
-			// envoie de la liste en session
+			
 			Integer userRead = Integer.valueOf(ligne);
 			// recuperation de la liste
 			List<UserDTO> listUser = (List<UserDTO>) session

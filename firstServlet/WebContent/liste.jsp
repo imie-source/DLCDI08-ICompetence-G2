@@ -20,8 +20,6 @@
 	<script src="./liste.js"></script>
 	<script src="./jquery/input_constraint.js"></script>
 
-
-
 	<link rel=stylesheet type=text/css href=./css/Style.css>
 
 		<title>liste utilisateur</title>

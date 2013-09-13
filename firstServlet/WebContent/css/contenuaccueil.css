@@ -1,0 +1,43 @@
+@CHARSET "UTF-8";
+
+#contenuaccueil {
+	position: relative;
+	height: 650px;
+	width: 1000px;
+	margin: auto;
+}
+
+#squaretopleft {
+	background-color: orange;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+}
+#squarebottomleft {
+	background-color: green;
+	position: absolute;
+	top: 320px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+}
+
+#squaretopright {
+	background-color: yellow;
+	position: absolute;
+	top: 10px;
+	left: 320px;
+	height: 300px;
+	width: 300px;
+}
+
+#squarebottomright{
+	position : absolute;
+	background-color: aqua;
+	height: 300px;
+	width: 300px;
+	 top: 320px; 
+	left: 320px;
+}
