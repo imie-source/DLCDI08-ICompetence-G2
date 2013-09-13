@@ -37,7 +37,7 @@ public interface IGroupeDeTravailDAO extends ITransactional {
 	 */
 	
 	
-	public abstract List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO);
+	public abstract List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;;
 	
 	/**
 	 * modifier groupe de travail
@@ -69,7 +69,7 @@ public interface IGroupeDeTravailDAO extends ITransactional {
 	
 	public abstract Boolean creerUserGdt(UserDTO userDTO, GroupeDeTravailDTO gdtDTO);
 	
-	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO);
+	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 	
 	public abstract Boolean modifCP(UserDTO userDTO);
 	

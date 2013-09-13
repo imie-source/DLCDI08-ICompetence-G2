@@ -68,7 +68,7 @@ public interface IGroupeDeTravailService extends ITransactional {
 	public abstract Boolean creerUserGdt(UserDTO userDTO,
 			GroupeDeTravailDTO gdtDTO);
 
-	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO);
+	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 
 	/**
 	 * afficher un groupe de travail

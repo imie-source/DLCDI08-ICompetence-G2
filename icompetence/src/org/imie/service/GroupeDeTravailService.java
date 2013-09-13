@@ -24,11 +24,7 @@ public class GroupeDeTravailService extends ATransactional implements
 		return gdtDAO.creerGroupeDeTravail(groupeDeTravailAInserer);
 	}
 
-	public List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) {
-		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
-				.creerGroupeDeTravailDAO(this);
-		return gdtDAO.utilisateurParGroupeDeTravail(gdtDTO);
-	}
+	
 	
 	@Override
 	public Boolean modifierGroupeDeTravail(
@@ -64,7 +60,7 @@ public class GroupeDeTravailService extends ATransactional implements
 	}
 
 	@Override
-	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) {
+	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 
@@ -77,6 +73,16 @@ public class GroupeDeTravailService extends ATransactional implements
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 		return gdtDAO.afficherGroupeDeTravail();
+	}
+
+
+
+	@Override
+	public List<UserDTO> utilisateurParGroupeDeTravail(GroupeDeTravailDTO gdtDTO)
+			throws TransactionalConnectionException {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(this);
+		return gdtDAO.utilisateurParGroupeDeTravail(gdtDTO);
 	}
 
 }

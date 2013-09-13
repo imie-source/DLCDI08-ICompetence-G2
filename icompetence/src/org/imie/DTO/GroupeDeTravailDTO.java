@@ -22,6 +22,7 @@ public class GroupeDeTravailDTO {
 	private Integer id_gdt;
 	private String nomCP;
 	private int numLigne;
+	private List<UserDTO> listUserDTO;
 
 	public int getNumLigne() {
 		return numLigne;
@@ -98,6 +99,12 @@ public class GroupeDeTravailDTO {
 
 	public void setLibelleEtat(String libelleEtat) {
 		this.libelleEtat = libelleEtat;
+	}
+	public List<UserDTO> getListUserDTO() {
+		return listUserDTO;
+	}
+	public void setListUserDTO(List<UserDTO> listUserDTO) {
+		this.listUserDTO = listUserDTO;
 	}
 
 }
