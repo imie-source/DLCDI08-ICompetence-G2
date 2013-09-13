@@ -83,7 +83,7 @@ public class ListeUserServlet extends HttpServlet {
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
 		if (ligne != null) {
-			// envoie de la liste en session
+			
 			Integer userRead = Integer.valueOf(ligne);
 			// recuperation de la liste
 			List<UserDTO> listUser = (List<UserDTO>) session
@@ -113,6 +113,7 @@ public class ListeUserServlet extends HttpServlet {
 		String urlParam = request.getParameter("UrlParam");
 		System.out.println("ListeUserClass");
 
+		
 		if (urlParam.equals("creer")) {
 			// methode de création de l'adresse
 			String libelleParam = request.getParameter("libelle");
@@ -180,6 +181,7 @@ public class ListeUserServlet extends HttpServlet {
 				}
 			}
 		}
+		
 		if (urlParam.equals("modif")) {
 			System.out.println("modif utilisateur");
 			// update de l'adresse
@@ -271,19 +273,36 @@ public class ListeUserServlet extends HttpServlet {
 								e.printStackTrace();
 
 							}
+							session.removeAttribute("listuser");
+							response.sendRedirect("./ListeUserServlet");
 						}
 
 					}
 
 				}
-				session.removeAttribute("listuser");
-				response.sendRedirect("./ListeUserServlet");
+				
 			}
 		}
 		
+		if (urlParam.equals("suppr")) {
+			String idUserParam = request.getParameter("idusersuppr");
+			if (idUserParam != null) {
+				Integer iduser = Integer.valueOf(idUserParam);
+				UserDTO userDtosupr = new UserDTO();
+				userDtosupr.setId(iduser);
+				try {
+					System.out.println("supression du user");
+					userService.deleteUser(userDtosupr);
+				} catch (TransactionalConnectionException e) {
+					System.out.println("echec de la supression du user");
+					e.printStackTrace();
+				}
+				session.removeAttribute("listuser");
+				response.sendRedirect("./ListeUserServlet");
+			}
+				
+			}
 		
-		
-
 	}
 
 }

@@ -1,10 +1,7 @@
 $(document).ready(
 		function() {
-
-			
 	
-			
-	$("#tableau").accordion({
+			$("#tableau").accordion({
 				heightStyle : "content"
 			}, {
 				active : false
@@ -29,6 +26,8 @@ $(document).ready(
 			$("#formajout").dialog("open");
 				});
 			});
+			
+			
 			/* Modale modif */
 			$(function() {
 		$("#formmodif").dialog({
@@ -42,33 +41,35 @@ $(document).ready(
 						duration : 1000
 					}
 				});
-				$("button").mousedown(
+				
+		$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
 							var param = button.split("f");
 							var indice = param[1];
+							
+							
 							$("#openermodif" + indice).click(
-				$("#formmodif").dialog("open"));
+									function(){
+				$("#formmodif").dialog("open");
 										$("#formmodif").dialog("open");
-										var idcursuschoisie = $(
-												"#idcursuschoisie" + indice)
+										var idmotclefchoice = $(
+												"#idmotclefchoice" + indice)
 												.attr("value");
-										var libellecursuschoisie = $(
-												"#libellecursuschoisie"
+																				var libellemotclefchoice = $(
+												"#libellemotclefchoice"
 														+ indice).html();
-
-										$("#idcursusmodif").attr("value",
-												idcursuschoisie);
-										$("#libellecursusmodif").attr("value",
-												libellecursuschoisie);
+										
+										
+										$("#idmotclefmodif").attr("value",
+												idmotclefchoice);
+										$("#libellemotclefmodif").attr("value",
+												libellemotclefchoice);
 									});
 						});
-			});
+		});
+		
 
-<<<<<<< HEAD:firstServlet/WebContent/js.js
-			
-		;
-=======
 			/* Modale supprimer */
 			$(function() {
 				$("#formsuppr").dialog({
@@ -82,6 +83,7 @@ $(document).ready(
 						duration : 1000
 					}
 				});
+				
 				$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
@@ -91,14 +93,16 @@ $(document).ready(
 							$("#openersuppr" + indice).click(
 									function() {
 										$("#formsuppr").dialog("open");
-										var idcursuschoisie = $(
-												"#idcursuschoisie" + indice)
+										var idmotclefsuppr = $(
+												"#idmotclefchoice" + indice)
 												.attr("value");
-										$("#idcursussuppr").attr("value",
-												idcursuschoisie);
+										$("#idmotclefsuppr").attr("value",
+												idmotclefsuppr);
 									});
 						});
 			});
-
+			
+			
 		});
->>>>>>> b237e82b0c0bbe17fa869d72431900eb7f764942:firstServlet/WebContent/listecursus.js
+
+		

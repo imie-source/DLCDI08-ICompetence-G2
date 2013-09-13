@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel=stylesheet type=text/css href=./css/Style.css>
 <title>Insert title here</title>
 </head>
 <body>
-
 <ul>
 <li><a href="./ListeUserServlet">Liste user </a></li>
-<li><a href="./CompetenceServletClass">Competence</a></li>
+<li><a href="./AfficherArborescence">Competence</a></li>
 <li><a href="./GroupServletClass">groupe de travail</a></li>
 <li><a href="./CursusServletClass">cursus </a></li>
 <li><a href="./NiveauServletClass">niveau </a></li>

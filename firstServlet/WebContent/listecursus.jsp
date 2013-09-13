@@ -21,6 +21,7 @@
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="./listeCursus.js"></script>
+<script src="./jquery/input_constraint.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 <title>Liste de cursus</title>
 </head>
@@ -60,7 +61,7 @@
 				action="./CursusServletClass?UrlParam=creer">
 				<fieldset>
 					<legend>Ajouter un cursus</legend>
-					Libellé*:<input type="text" name="libelle" maxlength="15"></input>
+					Libellé*:<input class="only_alpha_num" type="text" name="libelle" maxlength="15" required="required"></input>
 				</fieldset>
 				<br /> <input type="submit" value="ajouter" />
 			</form>
@@ -70,10 +71,10 @@
 		<div id="modifierdialog" title="modifier">
 			<form id="formmodif" method="post"
 				action="./CursusServletClass?UrlParam=modif">
-				<input id="idcursusmodif" type="hidden" value="" name="cursusid" />
+				<input  id="idcursusmodif" type="hidden" value="" name="cursusid" />
 				<fieldset>
 					<legend>modifier un cursus</legend>
-					Libellé*:<input id="libellecursusmodif" type="text" name="libelle"
+					Libellé*:<input class="only_alpha_num"  id="libellecursusmodif" type="text" name="libelle"
 						value="" width="15" maxlength="15"></input>
 				</fieldset>
 				<br /> <input type="submit" value="modifier" />
@@ -81,7 +82,7 @@
 		</div>
 
 		
-		<div id="supprdialog" title="modifier">
+		<div id="supprdialog" title="supprimer">
 			<form id="formsuppr" method="post"
 				action="./CursusServletClass?UrlParam=suppr">
 				<input id="idcursussuppr" type="hidden" value="" name="cursusid" />

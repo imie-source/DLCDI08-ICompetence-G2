@@ -240,7 +240,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		Boolean creer = true;
 		try {
 
-			String creerUserGdt = " UPDATE groupe_de_travail SET id_utilisateur=? WHERE id_gdt=?";
+			String creerUserGdt = " UPDATE groupe_de_travail SET id_util_chef_de_groupe=? WHERE id_gdt=?";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(creerUserGdt);
 			preparedStatement.setInt(1, userDTO.getId());
@@ -313,9 +313,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		groupeDeTravailDTO.setBilan(resultSet.getString("bilan"));
 		groupeDeTravailDTO.setType_projet(resultSet.getString("type_projet"));
 		groupeDeTravailDTO.setId_util(resultSet.getInt("id_util_chef_de_groupe"));
-		
 		groupeDeTravailDTO.setId_etat(resultSet.getInt("id_etat"));
-		
 		groupeDeTravailDTO.setLibelleEtat(afficherLibelle(groupeDeTravailDTO
 				.getId_etat()));
 		return groupeDeTravailDTO;
@@ -484,6 +482,52 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		}
 		return groupeDeTravailDTOs;
 
+	}
+	
+	/**
+	 * création de compétence dans un groupe
+	 */
+	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+
+		Boolean creerGUC = true;
+
+		try {
+
+			String creerGdtUtiliseComp = " INSERT INTO gdt_utilise_comp( id_comp, id_gdt) VALUES (?,?)";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(creerGdtUtiliseComp);
+			preparedStatement.setInt(1, compDTO.getId());
+			preparedStatement.setInt(2, gdtDTO.getId_gdt());
+			preparedStatement.executeQuery();
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+			creerGUC = false;
+
+		}
+
+		return creerGUC;
+	}
+
+	public Boolean supprimerGdtUtiliseComp(CompetenceDTO compDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+
+		Statement statement = null;
+		ResultSet resulset = null;
+		Boolean suppGUC = true;
+
+		try {
+			String supprimerGdtUtiliseComp = "DELETE FROM gdt_utilise_comp WHERE id_comp = ? AND id_gdt = ?";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(supprimerGdtUtiliseComp);
+			preparedStatement.setInt(1, compDTO.getId());
+			preparedStatement.setInt(2, gdtDTO.getId_gdt());
+
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+			suppGUC = false;
+		}
+		return suppGUC;
 	}
 
 	// TODO méthode de recherche par user ou autre à implémenter (voir youyou)

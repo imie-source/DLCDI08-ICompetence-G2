@@ -2,11 +2,16 @@ package org.imie;
 
 import java.util.List;
 
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.GroupeDeTravailDTO;
+import org.imie.DTO.MotClefDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.IHM.ConsoleIHM;
+import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
+import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.IGroupeDeTravailService;
+import org.imie.service.interfaces.IMotClefService;
 import org.imie.service.interfaces.IUserService;
 import org.imie.transactionalFramework.TransactionalConnectionException;
 
@@ -25,11 +30,12 @@ public class Launcher {
 	 * @throws TransactionalConnectionException 
 	 */
 	public static void main(String[] args) throws TransactionalConnectionException {
-		// ConsoleIHM.getInstance().start();
+		//ConsoleIHM.getInstance().start();
+		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
 
-		IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance()
-				.creerGroupeDeTravailService(null);
-
+		ICompetenceService competenceService = BaseConcreteFactory
+				.getInstance().createCompetenceService(null);
+		
 		List<GroupeDeTravailDTO> gdtDTO = gdtService.afficherGroupeDeTravail();
 		GroupeDeTravailDTO cgdtDTO = gdtDTO.get(1);
 		
@@ -38,8 +44,10 @@ public class Launcher {
 		for (UserDTO userDTO : listDTO) {
 			System.out.println(userDTO.getNom());
 			
+			}
+		
+		
+			ExceptionManager.getInstance().manageException(e);
 		}
-		
-		
 	}
 }

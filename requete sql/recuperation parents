@@ -1,0 +1,1 @@
+﻿SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY[2,7]);

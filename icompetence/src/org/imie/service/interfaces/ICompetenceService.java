@@ -47,5 +47,9 @@ public interface ICompetenceService extends ITransactional {
 			MotClefDTO mot_clefDTO) throws TransactionalConnectionException;
 
 	List<CompetenceDTO> findAllArbo() throws TransactionalConnectionException;
+	
+	List<CompetenceDTO> findArboFilsPere(Integer id) throws TransactionalConnectionException;
+	
+	List<CompetenceDTO> findByNom(String competencenom) throws TransactionalConnectionException;
 
 }

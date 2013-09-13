@@ -18,8 +18,7 @@
 	<script src="./jquery/jquery-1.9.1.js"></script>
 	<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 	<script src="./liste.js"></script>
-
-
+	<script src="./jquery/input_constraint.js"></script>
 
 	<link rel=stylesheet type=text/css href=./css/Style.css>
 
@@ -61,21 +60,21 @@
 				action="./ListeUserServlet?UrlParam=creer">
 				<fieldset>
 					<legend>Coordonnées</legend>
-					Nom*:<input id="nom" type="text" name="nom" maxlength="25" /> <br />
-					Prénom*:<input id="prenom" type="text" name="prenom" maxlength="20" />
+					Nom*:<input class="only_alpha" id="nom" type="text" name="nom" maxlength="25" /> <br />
+					Prénom*:<input class="only_alpha" id="prenom" type="text" name="prenom" maxlength="20" />
 					<br /> date de naissance* jj/mm/yyyy:<input id="date_naissance"
-						type="text" name="date_naissance" /> <br /> mail:<input
+						type="text" name="date_naissance" /> <br /> mail:<input class="only_email"
 						id="mail" type="text" name="adresse_mail" maxlength="40" /> <br />
-					Identifiant*:<input id="identifiant" type="text" name="identifiant"
-						maxlength="20" /> <br /> Mot de passe*:<input id="mot_de_passe"
+					Identifiant*:<input class="only_alpha_num"  id="identifiant" type="text" name="identifiant"
+						maxlength="20" /> <br /> Mot de passe*:<input class="only_alpha_num" id="mot_de_passe"
 						type="text" name="pwd" maxlength="8" /> <br />
 				</fieldset>
 				<fieldset>
 					<legend>Adresse</legend>
 
-					Libellé*:<input type="text" name="libelle" maxlength="20"></input><br />
-					Ville*:<input type="text" name="ville" maxlength="20"></input><br />
-					Code postal*:<input class="only_zip_code" type="text" name="code_postal" maxlength="5"></input><br />
+					Libellé*:<input class="only_alpha_num" type="text" name="libelle" maxlength="20"></input><br />
+					Ville*:<input class="only_alpha" type="text" name="ville" maxlength="20"></input><br />
+					Code postal*:<input class="only_integer" class="only_zip_code" type="text" name="code_postal" maxlength="5"></input><br />
 
 
 					<!--<fieldset> 	

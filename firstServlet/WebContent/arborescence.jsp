@@ -16,54 +16,28 @@
 </head>
 <body>
 
-	<div class="conteneur">
-		<div>
-			<table>
-				<c:forEach var="competence" items="${listecompetence}">
+	<div class="conteneurcomp">
+	
+		<div class="titre1">Liste des competences</div>
+		<br />
+		<br />
 
-					<c:if test="${competence.niveauParent == 0}">
-						<tr>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 1}">
-						<tr>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 2}">
-						<tr>
-							<td></td>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 3}">
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
-					</c:if>
-
+		<div class="tableaucentre">
+			Chercher une compétence :
+			<form method="post" action="./AdminCompetenceServletClass">
+				<input type="text" name="competencerecherchee" /> <input
+					type="submit" value="Chercher" />
+			</form>
+			<br /> <br />
+			<div>
+				<c:forEach var="competence" items="${listecompetence}">							
+							<div class="ligneTableau" style="padding-left:<c:out value="${competence.niveauParent * 100}"></c:out>px">
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>	
 					<br />
 				</c:forEach>
-			</table>
-
-
+			</div>
 		</div>
 	</div>
 </body>
