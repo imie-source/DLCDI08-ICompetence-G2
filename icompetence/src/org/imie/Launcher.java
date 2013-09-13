@@ -2,11 +2,14 @@ package org.imie;
 
 import java.util.List;
 
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.MotClefDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.IHM.ConsoleIHM;
+import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
+import org.imie.service.interfaces.ICompetenceService;
 import org.imie.service.interfaces.IGroupeDeTravailService;
 import org.imie.service.interfaces.IMotClefService;
 import org.imie.service.interfaces.IUserService;
@@ -30,12 +33,22 @@ public class Launcher {
 		//ConsoleIHM.getInstance().start();
 		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
 
-		MotClefDTO motClefDTO = new MotClefDTO();
+		ICompetenceService competenceService = BaseConcreteFactory
+				.getInstance().createCompetenceService(null);
 		
-		motClefDTO.setLibelle("g");
+		List<CompetenceDTO> competenceDTOs = null;
 		
-		mcService.insertmotClef(motClefDTO);
-		//mcService.findAll();
+		int idrech = 11;
+		try {
+
+			competenceDTOs = competenceService.findArboFilsPere(idrech);
+			for(CompetenceDTO current : competenceDTOs){
+				System.out.println(current.getLibelle());
+				System.out.println(current.getNiveauParent());
+			}
 		
+		} catch (TransactionalConnectionException e) {
+			ExceptionManager.getInstance().manageException(e);
+		}
 	}
 }

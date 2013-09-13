@@ -16,55 +16,51 @@
 </head>
 <body>
 
-	<div class="conteneur">
-		<div>
-			<table>
+	<div class="conteneurcomp">
+	
+		<div class="titre1">Liste des competences</div>
+		<br />
+		<br />
+
+		<div class="tableaucentre">
+			Chercher une compétence :
+			<form method="post" action="./AdminCompetenceServletClass">
+				<input type="text" name="competencerecherchee" /> <input
+					type="submit" value="Chercher" />
+			</form>
+			<br /> <br />
+			<div>
 				<c:forEach var="competence" items="${listecompetence}">
 
 					<c:if test="${competence.niveauParent == 0}">
-						<tr>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
+						<div class="ligneTableau">
+							<c:out value="${competence.libelle}"></c:out>
+						</div>
 					</c:if>
 
 					<c:if test="${competence.niveauParent == 1}">
-						<tr>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
+						<div class=" sousligne1Tableau">
+							<c:out value="${competence.libelle}"></c:out>
+						</div>
 					</c:if>
 
 					<c:if test="${competence.niveauParent == 2}">
-						<tr>
-							<td></td>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
+						<div class=" sousligne2Tableau">
+							<c:out value="${competence.libelle}"></c:out>
+						</div>
 					</c:if>
 
 					<c:if test="${competence.niveauParent == 3}">
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td><c:out value="${competence.libelle}"></c:out> <c:out
-									value="${competence.chemin}"></c:out> <c:out
-									value="${competence.niveauParent}"></c:out></td>
-						</tr>
+						<div class=" sousligne3Tableau">
+							<c:out value="${competence.libelle}"></c:out>
+						</div>
 					</c:if>
-
 					<br />
 				</c:forEach>
-			</table>
-
-
+			</div>
 		</div>
+
+
 	</div>
 </body>
 </html>

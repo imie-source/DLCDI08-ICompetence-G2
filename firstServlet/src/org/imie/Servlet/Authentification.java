@@ -102,17 +102,26 @@ public class Authentification extends HttpServlet {
 				session.setAttribute("user", userDTOToFound);
 				
 				
-				System.out.println("Authentification connected");
+				//System.out.println("Authentification connected");
+				
+				RequestDispatcher requestDispatcher = request
+						.getRequestDispatcher("./Accueil.jsp");
+				requestDispatcher.forward(request, response);
 				
 			} else {
 				// TODO redirect vers la page de login avec message d'erreur
-				System.out.println("erreur password");
+				//System.out.println("erreur password");
+				RequestDispatcher requestDispatcher = request
+						.getRequestDispatcher("./Connexion.jsp");
+				requestDispatcher.forward(request, response);
 			}
 
 		} else {
 			session.setAttribute("connected", 0);
-			System.out.println(" dans authentification not connected");
-
+			//System.out.println(" dans authentification not connected");
+			RequestDispatcher requestDispatcher = request
+					.getRequestDispatcher("./Connexion.jsp");
+			requestDispatcher.forward(request, response);
 		}
 		
 	}
