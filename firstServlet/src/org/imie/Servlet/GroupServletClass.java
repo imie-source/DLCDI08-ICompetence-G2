@@ -108,7 +108,7 @@ public class GroupServletClass extends HttpServlet {
 				System.out.println("echec de la creation du groupe de travail");
 				e.printStackTrace();
 			}
-			response.sendRedirect("./listeGroupeDeTravail.jsp");
+			response.sendRedirect("./GroupServletClass");
 		}
 
 		if (urlParam.equals("modif")) {

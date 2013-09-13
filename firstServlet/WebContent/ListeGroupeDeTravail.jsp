@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./js.js"></script>
+<script src="./groupeTravail.js"></script>
 
 <link rel=stylesheet type=text/css href=./css/Style.css>
 
@@ -59,6 +59,7 @@
 		<div id="ajouterdialog" title="ajouter">
 			<form id="formajout" method="post" title="Ajouter un groupe de travail"
 				action="./GroupServletClass?UrlParam=creer">
+				
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
 					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>

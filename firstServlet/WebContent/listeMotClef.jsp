@@ -27,7 +27,8 @@
 <body>
 	<div class="conteneur">
 
-		<button id="openerajout">ajouter un cursus</button>
+		<button id="openerajout">ajouter un cursus</button><br />
+		<br /> <a href="./AccueilServletClass">Accueil </a>
 		<div id="tableau" class=tableau>
 			<%
 				List<MotClefDTO> listeMotClef = (List<MotClefDTO>) session
@@ -36,16 +37,29 @@
 				for (MotClefDTO motClefDTO : listeMotClef) {
 			%>
 			<div id="lignetableau<%=i%>" class="ligneTableau">
-				<div class="celluleTableau largeur100">
+				<div class="celluleTableau largeur100 ">
 					<%=i%></div>
-				<div class="celluleTableau largeur350"><%=motClefDTO.getLibelle()%></div>
-				<input id="idmotclefchoisie<%=i%>" type="hidden"
-					value="<%=motClefDTO.getId()%>" name="motclefid" />
+				<div id="libellecursuschoisie<%=i%>"
+					class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+				<input id="idcursuschoisie<%=i%>" type="hidden"
+=======
+			<div id="lignetableaucursus<%=i%>" class="ligneTableauCursus">
+					<div class="celluleTableau largeur100 ">
+						<%=i%></div>
+					<div id="libellecursuschoisie<%=i%>"
+						class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
+					<input id="idcursuschoisie<%=i%>" type="hidden"
+
+										value="<%=cursusDTO.getId()%>" name="cursusid" />
+					value="<%=cursusDTO.getId()%>" name="cursusid" />
+
+>>>>>>> 36cf1edabd4b3c001ce8213e3fc8639ad13cc4da
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
 				<button id="openermodif<%=i%>">modifier</button>
-				<button id="openersuppr<%=i%>">supprimer</button>
+				<button id="openersupr<%=i%>">supprimer</button>
+
 			</div>
 			<%
 				i++;
@@ -79,16 +93,16 @@
 			</form>
 		</div>
 
-
+		
 		<div id="supprdialog" title="modifier">
 			<form id="formsuppr" method="post"
-				action="./ListMotClefServletClass?UrlParam=suppr">
-				<input type="hidden" value="" name="motclefid" />
+				action="./CursusServletClass?UrlParam=suppr">
+				<input id="idcursussuppr" type="hidden" value="" name="cursusid" />
 				<fieldset>
-					<!-- <legend>supprimer un mot clef</legend> -->
-					vous allez supprimer un mot clef
+					<!-- <legend>supprimer un cursus</legend> -->
+					vous allez supprimer un cursus
 				</fieldset>
-				<br /> <input type="submit" value="suprimer" />
+				<br /> <input type="submit" value="supprimer" />
 			</form>
 		</div>
 	</div>
