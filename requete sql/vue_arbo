@@ -1,0 +1,14 @@
+ 
+CREATE OR REPLACE VIEW vue_arbo AS 
+ WITH RECURSIVE parcourt_arbo(id_competence, libelle, niveau, chemin) AS (
+                 SELECT competence.id_comp, competence.libelle_comp, 0, ARRAY[competence.id_comp] AS "array"
+                   FROM competence
+                  WHERE competence.id_comp_fait_partie IS NULL
+        UNION ALL 
+                 SELECT precedent.id_comp, precedent.libelle_comp, debut.niveau + 1, debut.chemin || precedent.id_comp
+                   FROM competence precedent
+              JOIN parcourt_arbo debut ON debut.id_competence = precedent.id_comp_fait_partie
+        )
+ SELECT parcourt_arbo.id_competence, parcourt_arbo.libelle, parcourt_arbo.niveau, parcourt_arbo.chemin
+   FROM parcourt_arbo
+  ORDER BY parcourt_arbo.chemin, array_dims(parcourt_arbo.chemin), parcourt_arbo.niveau;

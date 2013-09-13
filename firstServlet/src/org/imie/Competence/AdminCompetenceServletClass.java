@@ -48,7 +48,8 @@ public class AdminCompetenceServletClass extends HttpServlet {
 
 		List<CompetenceDTO> competenceDTOs = null;
 		
-		int idrech = 7;
+		Integer idrech = 1;
+		idrech =  idrech.valueOf(request.getParameter("competencerecherchee"));
 		try {
 
 			competenceDTOs = competenceService.findArboFilsPere(idrech);
