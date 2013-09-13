@@ -30,37 +30,15 @@
 			</form>
 			<br /> <br />
 			<div>
-				<c:forEach var="competence" items="${listecompetence}">
-
-					<c:if test="${competence.niveauParent == 0}">
-						<div class="ligneTableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 1}">
-						<div class=" sousligne1Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 2}">
-						<div class=" sousligne2Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 3}">
-						<div class=" sousligne3Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
+				<c:forEach var="competence" items="${listecompetence}">							
+							<div class="ligneTableau" style="padding-left:<c:out value="${competence.niveauParent * 100}"></c:out>px">
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>	
 					<br />
 				</c:forEach>
 			</div>
 		</div>
-
-
 	</div>
 </body>
 </html>

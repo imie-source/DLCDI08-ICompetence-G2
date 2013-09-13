@@ -33,8 +33,12 @@ public class AccueilServletClass extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		
 		response.setContentType("text/html");
+
 		System.out.println("Accueil");
 		System.out.println(">>>>>>>Servlet name "+this.getServletContext().getServletContextName());
+
+		
+
 		request.getRequestDispatcher("./Accueil.jsp").forward(request,
 				response);
 	}

@@ -110,6 +110,7 @@
 				%>
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
+<<<<<<< HEAD
 					Type (langage, web, client lourd...):<input type="text" name="type"
 						maxlength="40"></input>
 					<%
@@ -127,6 +128,12 @@
 						}
 					%>
 
+=======
+					Type (langage, web, client lourd...):<input type="text" name="type" maxlength="40"></input>
+					Etat <input type="select">
+					<option>Manque de volontaire</option>
+					<option>Démarrage</option>
+>>>>>>> e054579ff5a48c7a0f128ca238a107f2fc4c9a00
 				</fieldset>
 				<%
 					} catch (NullPointerException e) {

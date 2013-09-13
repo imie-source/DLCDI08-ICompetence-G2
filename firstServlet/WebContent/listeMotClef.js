@@ -1,22 +1,14 @@
 $(document).ready(
-			function() {
-				$("#tableau").accordion({
-					heightStyle : "content"
-				}, {
-					active : false
-				}, {
-					collapsible : true
-				});
-				
-				$("a").mousedown(function() {
+		function() {
+	
+			$("#tableau").accordion({
+				heightStyle : "content"
+			}, {
+				active : false
+			}, {
+				collapsible : true
+			});
 
-					var page = $(this).attr("href");
-					var param = page.split("=");
-					var indice = param[1];
-					$("#contenu" + indice).load(page);
-					
-				});
-				
 			/* Modale ajout */
 			$(function() {
 		$("#formajout").dialog({
@@ -34,6 +26,8 @@ $(document).ready(
 			$("#formajout").dialog("open");
 				});
 			});
+			
+			
 			/* Modale modif */
 			$(function() {
 		$("#formmodif").dialog({
@@ -47,23 +41,34 @@ $(document).ready(
 						duration : 1000
 					}
 				});
-				$("button").mousedown(
+				
+		$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
 							var param = button.split("f");
 							var indice = param[1];
 							
+							
 							$("#openermodif" + indice).click(
-				$("#formmodif").dialog("open"));
+									function(){
+				$("#formmodif").dialog("open");
 										$("#formmodif").dialog("open");
-//										
-
-										$("#idgdtmodif").attr("value",
-												indice);
-//										
+										var idmotclefchoice = $(
+												"#idmotclefchoice" + indice)
+												.attr("value");
+																				var libellemotclefchoice = $(
+												"#libellemotclefchoice"
+														+ indice).html();
+										
+										
+										$("#idmotclefmodif").attr("value",
+												idmotclefchoice);
+										$("#libellemotclefmodif").attr("value",
+												libellemotclefchoice);
 									});
 						});
-			});
+		});
+		
 
 			/* Modale supprimer */
 			$(function() {
@@ -78,6 +83,7 @@ $(document).ready(
 						duration : 1000
 					}
 				});
+				
 				$("button").mousedown(
 						function() {
 							var button = $(this).attr("id");
@@ -87,13 +93,16 @@ $(document).ready(
 							$("#openersuppr" + indice).click(
 									function() {
 										$("#formsuppr").dialog("open");
-										var idcursuschoisie = $(
-												"#idcursuschoisie" + indice)
+										var idmotclefsuppr = $(
+												"#idmotclefchoice" + indice)
 												.attr("value");
-										$("#idcursussuppr").attr("value",
-												idcursuschoisie);
+										$("#idmotclefsuppr").attr("value",
+												idmotclefsuppr);
 									});
 						});
 			});
+			
+			
+		});
 
-		;
+		

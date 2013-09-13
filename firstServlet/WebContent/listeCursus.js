@@ -52,6 +52,7 @@ $(document).ready(
 									function(){
 				$("#formmodif").dialog("open");
 										$("#formmodif").dialog("open");
+										
 										var idcursuschoisie = $(
 												"#idcursuschoisie" + indice)
 												.attr("value");

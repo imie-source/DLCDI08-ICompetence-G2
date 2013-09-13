@@ -1,11 +1,14 @@
 package org.imie.DAO.interfaces;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.MotClefDTO;
+import org.imie.transactionalFramework.ITransactional;
 import org.imie.transactionalFramework.TransactionalConnectionException;
 
-public interface IMotClefDAO {
+public interface IMotClefDAO extends ITransactional{
 
 	public abstract List<MotClefDTO> findAll() throws TransactionalConnectionException;
 
@@ -17,5 +20,7 @@ public interface IMotClefDAO {
 	
 	public abstract void deletemotClef(MotClefDTO motClefToDelete) throws TransactionalConnectionException;
 	
+	public abstract List<CompetenceDTO> compentenceParMotClef (String motClef) throws TransactionalConnectionException;
+
 	
 }

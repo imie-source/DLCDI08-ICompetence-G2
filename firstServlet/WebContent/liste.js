@@ -14,8 +14,6 @@ $(document).ready(
 				var param = page.split("=");
 				var indice = param[1];
 				$("#contenu" + indice).load(page);
-				/*$("#tableau").accordion("refresh");
-				return false;*/
 			});
 
 			

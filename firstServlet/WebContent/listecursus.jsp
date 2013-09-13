@@ -82,7 +82,7 @@
 		</div>
 
 		
-		<div id="supprdialog" title="modifier">
+		<div id="supprdialog" title="supprimer">
 			<form id="formsuppr" method="post"
 				action="./CursusServletClass?UrlParam=suppr">
 				<input id="idcursussuppr" type="hidden" value="" name="cursusid" />

@@ -123,6 +123,7 @@
 				<br /> date de naissance*: jj/mm/yyyy:<input id="datenaissancemodif" type="text"
 					value="<%=dateUser%>" name="datenaissance" /> mail:<input class="only_email"
 					type="text" value="<%=currentUserDTO.getAdresse_mail()%>" name=mail />
+					<div id="email"> non valide</div>
 			</fieldset>
 
 			<%-- 	<%
