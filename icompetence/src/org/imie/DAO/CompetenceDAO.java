@@ -534,7 +534,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
-
+				competenceDTO.setId(resultSet.getInt("id_competence"));
 				competenceDTO.setChemin(resultSet.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
@@ -561,9 +561,12 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 	public List<CompetenceDTO> findArboFilsPere(Integer id)
 			throws TransactionalConnectionException {
-
+	
+		
+		List<CompetenceDTO> competenceDTOPeres = new ArrayList<CompetenceDTO>();
+		List<CompetenceDTO> competenceDTOEnfants = new ArrayList<CompetenceDTO>();
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
-
+		
 		Statement statement = null;
 		ResultSet resultSet = null;
 		ResultSet resultSetParent = null;
@@ -581,29 +584,28 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
 				competenceDTO.setChemin(resultSet.getArray("chemin"));
-				competenceDTOs.add(competenceDTO);
+				competenceDTO.setId(resultSet.getInt("id_competence"));	
+				competenceDTOEnfants.add(competenceDTO);		
+				
 			}
 
-			CompetenceDTO compDTO = competenceDTOs
-					.get(competenceDTOs.size() - 1);
+			CompetenceDTO compDTO = competenceDTOEnfants.get(0);
 			Array tabChemin = compDTO.getChemin();
 			Object tableau = tabChemin.getArray();
-			System.out.println(tableau);
 			// tableau est tableau Java
 			Integer[] donneesTableau = (Integer[]) tableau;
 			// vous devez le caster dans le type de données contenues
 			String chemin = "[";
-			int size = donneesTableau.length;
+			int size = donneesTableau.length-1;
 			for (int i = 0; i < size; i++) {
-				if (i == size-1) {
+				if (i == size - 1) {
 					chemin = chemin + donneesTableau[i];
 				} else {
 					chemin = chemin + donneesTableau[i] + ",";
 				}
 			}
-
 			chemin += "]";
-			System.out.println(chemin);
+			
 
 			String selectInstructionParent = "SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY"
 					+ chemin + ");";
@@ -616,9 +618,14 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				competenceDTO.setLibelle(resultSetParent.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSetParent.getInt("niveau"));
 				competenceDTO.setChemin(resultSetParent.getArray("chemin"));
-				competenceDTOs.add(competenceDTO);
+				competenceDTO.setId(resultSetParent.getInt("id_competence"));
+				competenceDTOPeres.add(competenceDTO);
 			}
 
+			competenceDTOs.addAll(competenceDTOPeres);
+			competenceDTOs.addAll(competenceDTOEnfants);
+			
+			
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {

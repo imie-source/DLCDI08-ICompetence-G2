@@ -32,29 +32,51 @@
 			<div>
 				<c:forEach var="competence" items="${listecompetence}">
 
-					<c:if test="${competence.niveauParent == 0}">
-						<div class="ligneTableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 1}">
-						<div class=" sousligne1Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 2}">
-						<div class=" sousligne2Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
-
-					<c:if test="${competence.niveauParent == 3}">
-						<div class=" sousligne3Tableau">
-							<c:out value="${competence.libelle}"></c:out>
-						</div>
-					</c:if>
+					<c:choose>
+						<c:when test="${competence.niveauParent == 0}">
+							<div class="ligneTableau">
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>							
+						</c:when>
+						
+						<c:when test="${competence.niveauParent == 1}">
+							<div class="ligneTableau" style="padding-left: 120px">	
+								<c:out value="${competence.id}"></c:out>						
+								<c:out value="${competence.libelle}"></c:out>
+							</div>
+						</c:when>
+						
+						<c:when test="${competence.niveauParent == 2}">
+							<div class="ligneTableau" style="padding-left: 220px">	
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>
+						</c:when>
+						
+						<c:when test="${competence.niveauParent == 3}">
+							<div class="ligneTableau" style="padding-left: 320px">	
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>
+						</c:when>
+						
+						<c:when test="${competence.niveauParent == 4}">
+							<div class="ligneTableau" style="padding-left: 420px">
+								<c:out value="${competence.id}"></c:out>	
+								<c:out value="${competence.libelle}"></c:out>
+							</div>
+						</c:when>
+						
+						<c:when test="${competence.niveauParent == 5}">
+							<div class="ligneTableau" style="padding-left: 520px">	
+								<c:out value="${competence.id}"></c:out>
+								<c:out value="${competence.libelle}"></c:out>
+							</div>
+						</c:when>
+						
+					</c:choose>				
+					
 					<br />
 				</c:forEach>
 			</div>
