@@ -49,21 +49,9 @@ public class Launcher {
 
 		} catch (TransactionalConnectionException e) {
 
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
-		
-		List<GroupeDeTravailDTO> gdtDTO = gdtService.afficherGroupeDeTravail();
-		GroupeDeTravailDTO cgdtDTO = gdtDTO.get(1);
-		
-		List<UserDTO> listDTO = gdtService.utilisateurParGroupeDeTravail(cgdtDTO);
-		
-		for (UserDTO userDTO : listDTO) {
-			System.out.println(userDTO.getNom());
-			
-			}
 		
 		
->>>>>>> f84ac5a0d7b4021964d34a7873daa596ab4212e9
+
 			ExceptionManager.getInstance().manageException(e);
 		}
 		System.out.println(userToFind.getProfil());
