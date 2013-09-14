@@ -46,11 +46,8 @@ public class AdminCompetenceServletClass extends HttpServlet {
 	 *      response)
 	 */
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(">>>>>>>Servlet AdminCompetence : "+this.getServletContext().getServletContextName());
-
-
-
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		ICompetenceService competenceService = BaseConcreteFactory
 				.getInstance().createCompetenceService(null);
@@ -59,31 +56,32 @@ public class AdminCompetenceServletClass extends HttpServlet {
 		List<CompetenceDTO> competenceDTOrechs = new ArrayList<CompetenceDTO>();
 		List<CompetenceDTO> competenceDTOtrouves = null;
 
-		String compRecher;
+		String compRecher = null;
 		int idrech;
-		compRecher = request.getParameter("competencerecherchee").toUpperCase();
+		compRecher = request.getParameter("competencerecherchee").toLowerCase();
 
 		try {
 			if (compRecher != null) {
 				competenceDTOs = competenceService.findByNom(compRecher);
 				for (CompetenceDTO comp : competenceDTOs) {
 					idrech = comp.getId();
-					competenceDTOtrouves = competenceService.findArboFilsPere(idrech);
+					competenceDTOtrouves = competenceService
+							.findArboFilsPere(idrech);
 					competenceDTOrechs.addAll(competenceDTOtrouves);
 				}
 				request.setAttribute("listecompetence", competenceDTOrechs);
 				// forward
-				RequestDispatcher dispatcher = request
-						.getRequestDispatcher("./arborescence.jsp");
-				dispatcher.forward(request, response);
+				request.getRequestDispatcher("./arborescence.jsp").forward(
+						request, response);
 			} else {
 				request.getRequestDispatcher("./Accueil.jsp").forward(request,
 						response);
-			}			
+			}
+			compRecher = null;
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
-		}	
-		
+		}
+
 	}
 
 }
