@@ -45,8 +45,8 @@ for (UserDTO userDTO : listUserDTO) {
 					Type (langage, web, client lourd...):<input type="text" name="type"
 						maxlength="40"></input>
 					<%
-						GroupeDeTravailDTO chosengdt = listgdt.get(indice);
-								System.out.println(chosengdt.getNom());
+					//	GroupeDeTravailDTO chosengdt = listgdt.get(indice);
+					//			System.out.println(chosengdt.getNom());
 					%>
 					<select title="Etat d'avancement">
 						<option>Manque de volontaire</option>
