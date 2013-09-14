@@ -17,7 +17,7 @@
 <body>
 
 	<div class="conteneurcomp">
-	
+	<br /> <br /> <a href="./AccueilServletClass">Accueil </a>
 		<div class="titre1">Liste des competences</div>
 		<br />
 		<br />

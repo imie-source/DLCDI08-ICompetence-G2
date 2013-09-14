@@ -6,6 +6,14 @@
 	width: 1000px;
 	margin: auto;
 }
+#menuright {
+	background-color: gray;
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
 
 #squaretopleft {
 	background-color: orange;

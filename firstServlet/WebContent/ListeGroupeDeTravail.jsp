@@ -21,6 +21,7 @@
 </head>
 <body>
 	<div class="conteneur">
+	<br /> <a href="./AccueilServletClass">Accueil </a>
 
 		<input type="button" value="Ajouter un groupe de travail"
 			id="openerajout" />

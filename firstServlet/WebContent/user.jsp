@@ -20,7 +20,8 @@
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="./user.js"></script>
-<script src="./jquery/input_constraint.js"></script>
+<script src="./jquery/jquery.validate.js"></script>
+<script src="./validationuser.js"></script>
 <link rel=stylesheet type=text/css href=./css/Style.css>
 	<title>Détails utilisateur</title>
 </head>
@@ -114,16 +115,16 @@
 			<fieldset>
 				<legend>Coordonnées</legend>
 
-				<br /> Nom*:<input class="only_alpha" type="text" value="<%=currentUserDTO.getNom()%>"
-					name="nom" /> <br /> Prénom*:<input class="only_alpha" type="text"
+				<br /> Nom*:<input  type="text" value="<%=currentUserDTO.getNom()%>"
+					name="nom" /> <br /> Prénom*:<input  type="text"
 					value="<%=currentUserDTO.getPrenom()%>" name="prenom" /> <br />
 				Age:<%=currentUserDTO.getAge()%>
 				ans <br /> Identifiant*:<input type="text"
 					value="<%=currentUserDTO.getIdentifiant()%>" name="identifiant" />
 				<br /> date de naissance*: jj/mm/yyyy:<input id="datenaissancemodif" type="text"
-					value="<%=dateUser%>" name="datenaissance" /> mail:<input class="only_email"
+					value="<%=dateUser%>" name="datenaissance" /> mail:<input 
 					type="text" value="<%=currentUserDTO.getAdresse_mail()%>" name=mail />
-					<div id="email"> non valide</div>
+					<div id="email"> </div>
 			</fieldset>
 
 			<%-- 	<%
@@ -191,10 +192,10 @@
 				%>
 				<legend>Adresse</legend>
 				<input type="hidden" value="<%=adresseDTO.getId_adresse()%>"
-					name="id_adresse" /> Libellé*:<input class="only_alpha" type="text"
+					name="id_adresse" /> Libellé*:<input  type="text"
 					value="<%=adresseDTO.getLibelle()%>" name="libelle" /><br />
-				Ville*:<input class="only_alpha" type="text" value="<%=adresseDTO.getVille()%>"
-					name="ville" /><br /> Code postal*:<input class="only_integer"type="text"
+				Ville*:<input  type="text" value="<%=adresseDTO.getVille()%>"
+					name="ville" /><br /> Code postal*:<input type="text"
 					value="<%=adresseDTO.getCode_postal()%>" name="code_postal" /><br />
 				<%
 					}
