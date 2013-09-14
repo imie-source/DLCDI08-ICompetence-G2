@@ -27,46 +27,12 @@ public class Launcher {
 	 * point d'entrée de l'application
 	 * 
 	 * @param args
-	 * @throws TransactionalConnectionException 
+	 * @throws TransactionalConnectionException
 	 */
-	public static void main(String[] args) throws TransactionalConnectionException {
-		//ConsoleIHM.getInstance().start();
-		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
+	public static void main(String[] args)
+			throws TransactionalConnectionException {
 
-
-		IUserService usrSvc = BaseConcreteFactory
-				.getInstance().createUserService(null);
 		
-
-		UserDTO userToFind = new UserDTO();
-		userToFind.setIdentifiant("youmet");
-		
-		
-		try {
-
-			UserDTO userFound = usrSvc.getUser(userToFind);
-			userToFind.setProfil(userFound.getProfil());
-
-		} catch (TransactionalConnectionException e) {
-
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
-		
-		List<GroupeDeTravailDTO> gdtDTO = gdtService.afficherGroupeDeTravail();
-		GroupeDeTravailDTO cgdtDTO = gdtDTO.get(1);
-		
-		List<UserDTO> listDTO = gdtService.utilisateurParGroupeDeTravail(cgdtDTO);
-		
-		for (UserDTO userDTO : listDTO) {
-			System.out.println(userDTO.getNom());
-			
-			}
-		
-		
->>>>>>> f84ac5a0d7b4021964d34a7873daa596ab4212e9
-			ExceptionManager.getInstance().manageException(e);
-		}
-		System.out.println(userToFind.getProfil());
+		System.out.println("Yo Super Youssef");
 	}
-	
 }

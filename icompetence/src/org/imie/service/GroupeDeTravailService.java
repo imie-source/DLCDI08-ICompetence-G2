@@ -94,4 +94,13 @@ public class GroupeDeTravailService extends ATransactional implements
 		return gdtDAO.supprimerGdtUtiliseComp(compDTO, gdtDTO);
 	}
 
+
+
+	@Override
+	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
