@@ -63,7 +63,7 @@ public class Launcher {
 			}
 		
 		
->>>>>>> f84ac5a0d7b4021964d34a7873daa596ab4212e9
+
 			ExceptionManager.getInstance().manageException(e);
 		}
 		System.out.println(userToFind.getProfil());
