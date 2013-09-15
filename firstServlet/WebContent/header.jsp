@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./liste.js"></script>
+<script src="./js/liste.js"></script>
 
 </head>
 	<body>

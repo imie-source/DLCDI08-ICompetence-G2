@@ -1,6 +1,8 @@
 package org.imie.Securite;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,8 +30,7 @@ public class FiltreSecurite implements Filter {
 	private String extensionNonFiltre = ".*(css|jpg|png|gif|js)";
 	private Boolean premiereConnexion = true;
 	private HttpSession session = null;
-	private HttpServlet destination;
-
+	private List<UserDTO> utilisateursAutorises = new ArrayList<UserDTO>();
 	/**
 	 * Default constructor.
 	 */
@@ -58,24 +58,23 @@ public class FiltreSecurite implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		System.out.println(">>>>>>>Servlet profil "+req.getParameter("profil"));
 		System.out.println(">>>>>>>Servlet name "+req.getServletContext().getServletContextName());
-		HttpServletResponse res = (HttpServletResponse) response;
-
-		String warning = "";
-
 		String path = ((HttpServletRequest) request).getRequestURI();
 		System.out.println("le chemin " + path);
 		
 		// On laisse toujours passer connexion, authentification, et css
-				if (path.endsWith("Connexion") || path.endsWith("Authentification")
-						|| path.matches(extensionNonFiltre)) {
-					System.out.println(path);
-					System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
+		if (path.endsWith("Connexion") ||
+			path.endsWith("Authentification") ||
+			path.matches(extensionNonFiltre) ||
+			!authentification.equalsIgnoreCase("oui") )
+		{
+			System.out.println(path);
+			System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
 
-					chain.doFilter(request, response); // Just continue chain.
-					
-					return;
+			chain.doFilter(request, response); // Just continue chain.
+			
+			return;
 
-				}
+		}
 
 		if (authentification.equalsIgnoreCase("oui")) {
 
@@ -117,6 +116,7 @@ public class FiltreSecurite implements Filter {
 						
 					} else {
 						
+						
 						System.out
 								.println(">>>>>>>>>>>>>>>>>>  Authentifié / pas de premeconnexion : "
 										+ premiereConnexion);
@@ -129,8 +129,6 @@ public class FiltreSecurite implements Filter {
 
 			} catch (NullPointerException e) {
 				System.out.println("catch");
-
-				warning = "Premiere requete sur une page : pas de session ouverte avant";
 
 			}
 
@@ -162,18 +160,40 @@ public class FiltreSecurite implements Filter {
 		return connecte;
 	}
 
-	public String profilAuthentifie(UserDTO utilisateurAuthentifie) {
-		return null;
-	}
-	
-	public boolean estAutorise (UserDTO utilisateurAuthentifie ) {
-		//getServletContext().getInitParameter("MON_PARAM");
+	public boolean estAutorise(int niveauDeProfil, List<UserDTO> users) {
 
-	
-	
-		return false;
+		boolean validation;
+		validation = false;
+		// admin tous les droits
+		if (userConnecte.getProfil() == 3) {
+			validation = true;
+		}
+		// sinon niveau de profil = celui requis
+		else if (userConnecte.getProfil() == niveauDeProfil) {
+			validation = true;
+
+		}
+
+		else if (userConnecte.getProfil() != niveauDeProfil) {
+			for (UserDTO current : users) {
+				if (estProprietaire(current)) {
+					validation = true;
+				} else {
+					validation = false;
+				}
+
+			}
+
+		}
+		return validation;
 	}
-	
+
+	public boolean estProprietaire(UserDTO u) {
+
+		return userConnecte.getIdentifiant().replaceAll("\\s", "")
+				.equalsIgnoreCase(u.getIdentifiant());
+	}
+
 	
 	
 	

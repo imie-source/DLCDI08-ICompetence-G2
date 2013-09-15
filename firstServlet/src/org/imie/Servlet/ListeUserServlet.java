@@ -36,6 +36,7 @@ public class ListeUserServlet extends HttpServlet {
 	private SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
 	private AdresseDTO adresseToCreate = new AdresseDTO();
 	AdresseDTO nouvelleAdresse = null;
+	private UserDTO userConnecte = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -73,6 +74,8 @@ public class ListeUserServlet extends HttpServlet {
 		// creation de la session
 		HttpSession session = request.getSession();
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
+		userConnecte = (UserDTO) request.getSession().getAttribute("user");
+		int profil = userConnecte.getProfil();
 		try {
 			session.setAttribute("listUser", userDTOs = userService.getUsers());
 		} catch (TransactionalConnectionException e) {
@@ -82,24 +85,37 @@ public class ListeUserServlet extends HttpServlet {
 		System.out.println("listeuser");
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
+		
 		if (ligne != null) {
-			
+
+			System.out.println("profil dans la servlet :" + profil);
+
 			Integer userRead = Integer.valueOf(ligne);
 			// recuperation de la liste
-			List<UserDTO> listUser = (List<UserDTO>) session
-					.getAttribute("listUser");
+			List<UserDTO> listUser = (List<UserDTO>) session.getAttribute("listUser");
 			UserDTO userChoose = listUser.get(userRead - 1);
 			session.setAttribute("userChoose", userChoose);
-			session.removeAttribute("listUser");
+
 			// forward
-			RequestDispatcher dispatcher = request
-					.getRequestDispatcher("./user.jsp");
-			dispatcher.forward(request, response);
+			System.out.println("le login du useChoose :"
+					+ userChoose.getIdentifiant());
+			System.out.println("le login du userConnecte :"
+					+ userConnecte.getIdentifiant());
+			System.out.println(profil == 3 || userConnecte.getIdentifiant().replaceAll("\\s", "").equalsIgnoreCase(userChoose.getIdentifiant()));
+			//on n'affiche pas le détail si le user n'a pas le profil admin sauf pour sa fiche
+			if (profil == 3 || userConnecte.getIdentifiant().replaceAll("\\s", "").equalsIgnoreCase(userChoose.getIdentifiant())) {
+				System.out.println("dans le test");
+				session.removeAttribute("listUser");
+				RequestDispatcher dispatcher = request
+						.getRequestDispatcher("./user.jsp");
+				dispatcher.forward(request, response);
+			}
 		} else {
 			request.getRequestDispatcher("./liste.jsp").forward(request,
 					response);
 		}
 	}
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		ICursusService cursusService = BaseConcreteFactory.getInstance()
@@ -113,7 +129,6 @@ public class ListeUserServlet extends HttpServlet {
 		String urlParam = request.getParameter("UrlParam");
 		System.out.println("ListeUserClass");
 
-		
 		if (urlParam.equals("creer")) {
 			// methode de création de l'adresse
 			String libelleParam = request.getParameter("libelle");
@@ -181,7 +196,7 @@ public class ListeUserServlet extends HttpServlet {
 				}
 			}
 		}
-		
+
 		if (urlParam.equals("modif")) {
 			System.out.println("modif utilisateur");
 			// update de l'adresse
@@ -214,8 +229,8 @@ public class ListeUserServlet extends HttpServlet {
 				userId = Integer.valueOf(userIdParam);
 			}
 			if (userId != null) {
-				IUserService userServicemodif = BaseConcreteFactory.getInstance()
-						.createUserService(null);
+				IUserService userServicemodif = BaseConcreteFactory
+						.getInstance().createUserService(null);
 				List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 				try {
 					userDTOs = userServicemodif.getUsers();
@@ -252,7 +267,8 @@ public class ListeUserServlet extends HttpServlet {
 
 							CursusDTO cursusDTO = new CursusDTO();
 							try {
-								cursusDTO = cursusServicemodif.findbyid(userCursus);
+								cursusDTO = cursusServicemodif
+										.findbyid(userCursus);
 							} catch (TransactionalConnectionException e1) {
 								// TODO Auto-generated catch block
 								e1.printStackTrace();
@@ -280,10 +296,10 @@ public class ListeUserServlet extends HttpServlet {
 					}
 
 				}
-				
+
 			}
 		}
-		
+
 		if (urlParam.equals("suppr")) {
 			String idUserParam = request.getParameter("idusersuppr");
 			if (idUserParam != null) {
@@ -300,9 +316,9 @@ public class ListeUserServlet extends HttpServlet {
 				session.removeAttribute("listuser");
 				response.sendRedirect("./ListeUserServlet");
 			}
-				
-			}
-		
+
+		}
+
 	}
 
 }
