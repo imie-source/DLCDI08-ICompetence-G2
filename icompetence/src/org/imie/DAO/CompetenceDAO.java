@@ -72,7 +72,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				niveauDTO.setLibelle(resultSet.getString("libelle"));
 				niveauDTO.setId(resultSet.getInt("niveau"));
 
-				competenceDTO.addNiveau(niveauDTO);
+				competenceDTO.addNiveau(niveauDTO);				
 
 				competenceDTOs.add(competenceDTO);
 			}
@@ -203,7 +203,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				String enteredByUser = competencenom ;  
 				String forSql = "%" + enteredByUser + "%"; 
 				
-				String selectInstruction = "select * from competence Where upper(libelle_comp) like ?" ;
+				String selectInstruction = "select * from competence Where lower(libelle_comp) like ?" ;
 				
 				
 				PreparedStatement preparedStatement = getConnection()
@@ -585,7 +585,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				competenceDTO.setChemin(resultSet.getArray("chemin"));
 				competenceDTOs.add(competenceDTO);
 			}
-
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
@@ -602,7 +601,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-
 		return competenceDTOs;
 	}
 

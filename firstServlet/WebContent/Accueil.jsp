@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,33 +18,62 @@
 	<c:out value="${user.getNom()}"></c:out>
 	<p>Vous êtes connecté avec le profil de niveau : <c:out value="${user.getProfil()}"></c:out></p>
 	<div id=contenuaccueil>
-	<c:if test="${user.getProfil()=='3'}">
-	<div id=menuright>
-		<ul>
-			<li><a href="./NiveauServletClass">niveau </a></li>
-			<li><a href="./ListMotClefServletClass">liste de mot clef </a></li>
-		</ul>
-	</div>
-</c:if>
-		<a href="./ListeUserServlet">
-			<div id=squaretopleft>
-				<div>Liste volontaire</div>
+		<aside id=menurighttop2> </aside>
+		
+		
+		<div id=menurighttop class="effet1">
+			 <a class="texte" href="./NiveauServletClass"><span
+				class="stylewhite">NIVEAU</span><br> </a> <span><br>
+			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
+					CLEF</span><br> </a>
+		</div>
+
+
+
+
+
+		<aside class="effet1" id=menurightbottom>
+		<div class="effet1">
+			<span class="stylewhite">INFO</span><br> <span
+				class="stylewhite"> ET</span><br> <span class="styleblack">
+				NEWS</span>
+		</div>
+		</aside>
+
+		<a  href="./ListeUserServlet">
+			<div class="effet1" id=squaretopleft>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						VOLONTAIRES</span>
+				</div>
 			</div>
-		</a> <a href="./CursusServletClass">
+		</a> <a  href="./CursusServletClass">
 			<div id=squarebottomleft>
-				<div>cursus</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						CURSUS</span>
+				</div>
 			</div>
-		</a> <a href="./GroupServletClass">
+		</a> <a class=effet1 href="./GroupServletClass">
 			<div id=squaretopright>
-				<div>groupe de travail</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR LES</span><br> <span
+						class="styleblack"> GROUPE DE </span><br> <span
+						class="stylewhite"> TRAVAIL</span>
+				</div>
 			</div>
-		</a> <a href="./AfficherArborescence">
+		</a> <a  href="./AfficherArborescence">
 			<div id=squarebottomright>
-				<div>Competence</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						COMPETENCES</span>
+				</div>
 			</div>
 		</a>
 	</div>
-
-	
 </body>
 </html>
