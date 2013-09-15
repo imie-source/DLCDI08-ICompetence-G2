@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data-set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<record>
+		<nom>nom</nom>
+		<prenom>prenom</prenom>
+		<adresse_mail>adresse_mail</adresse_mail>
+		<date_naissance>date_naissance</date_naissance>
+		<rue>rue</rue>
+		<code_postal>code_postal</code_postal>
+		<ville>ville</ville>
+		<disponible>disponible</disponible>
+		<identifiant>identifiant</identifiant>
+		<pwd>mot de passe</pwd>
+	</record>
+</data-set>
