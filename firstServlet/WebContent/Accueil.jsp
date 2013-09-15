@@ -5,34 +5,71 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel=stylesheet type=text/css href=./css/cssReset.css>
+<!-- lien vers la biblio jquery  -->
+<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
+<script src="./jquery/jquery-1.9.1.js"></script>
+<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
+<script src="./contenuaccueil.js"></script>
 <link rel=stylesheet type=text/css href=./css/contenuaccueil.css>
 <title>Accueil</title>
 </head>
 <body>
-	
-	<div id=contenuaccueil>
-	<div id=menuright>
-		<ul>
-			<li><a href="./NiveauServletClass">niveau </a></li>
-			<li><a href="./ListMotClefServletClass">liste de mot clef </a></li>
-		</ul>
-	</div>
 
-		<a href="./ListeUserServlet">
-			<div id=squaretopleft>
-				<div>Liste volontaire</div>
+	<div id=contenuaccueil>
+		<aside id=menurighttop2> </aside>
+		
+		
+		<div id=menurighttop class="effet1">
+			 <a class="texte" href="./NiveauServletClass"><span
+				class="stylewhite">NIVEAU</span><br> </a> <span><br>
+			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
+					CLEF</span><br> </a>
+		</div>
+
+
+
+
+
+		<aside class="effet1" id=menurightbottom>
+		<div class="effet1">
+			<span class="stylewhite">INFO</span><br> <span
+				class="stylewhite"> ET</span><br> <span class="styleblack">
+				NEWS</span>
+		</div>
+		</aside>
+
+		<a  href="./ListeUserServlet">
+			<div class="effet1" id=squaretopleft>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						VOLONTAIRES</span>
+				</div>
 			</div>
-		</a> <a href="./CursusServletClass">
+		</a> <a  href="./CursusServletClass">
 			<div id=squarebottomleft>
-				<div>cursus</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						CURSUS</span>
+				</div>
 			</div>
-		</a> <a href="./GroupServletClass">
+		</a> <a class=effet1 href="./GroupServletClass">
 			<div id=squaretopright>
-				<div>groupe de travail</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR LES</span><br> <span
+						class="styleblack"> GROUPE DE </span><br> <span
+						class="stylewhite"> TRAVAIL</span>
+				</div>
 			</div>
-		</a> <a href="./AfficherArborescence">
+		</a> <a  href="./AfficherArborescence">
 			<div id=squarebottomright>
-				<div>Competence</div>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						COMPETENCES</span>
+				</div>
 			</div>
 		</a>
 	</div>
