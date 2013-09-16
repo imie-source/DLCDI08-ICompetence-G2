@@ -26,6 +26,8 @@ public class GroupeDeTravailService extends ATransactional implements
 		return gdtDAO.creerGroupeDeTravail(groupeDeTravailAInserer);
 	}
 
+	
+	
 	@Override
 	public Boolean modifierGroupeDeTravail(
 			GroupeDeTravailDTO groupeDeTravailAModifier)
@@ -60,7 +62,7 @@ public class GroupeDeTravailService extends ATransactional implements
 	}
 
 	@Override
-	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) {
+	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 
@@ -75,20 +77,30 @@ public class GroupeDeTravailService extends ATransactional implements
 		return gdtDAO.afficherGroupeDeTravail();
 	}
 
-	@Override
-	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO,
-			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
-		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
-				.creerGroupeDeTravailDAO(this); 
-		return gdtDAO.creerGdtUtiliseComp(compDTO, gdtDTO);
-	}
 
+
+	@Override
+	public List<UserDTO> utilisateurParGroupeDeTravail(GroupeDeTravailDTO gdtDTO)
+			throws TransactionalConnectionException {
+		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
+				.creerGroupeDeTravailDAO(this);
+		return gdtDAO.utilisateurParGroupeDeTravail(gdtDTO);
+	}
 	@Override
 	public Boolean supprimerGdtUtiliseComp(CompetenceDTO compDTO,
 			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 		return gdtDAO.supprimerGdtUtiliseComp(compDTO, gdtDTO);
+	}
+
+
+
+	@Override
+	public Boolean creerGdtUtiliseComp(CompetenceDTO compDTO,
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

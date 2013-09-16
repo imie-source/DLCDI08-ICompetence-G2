@@ -34,6 +34,7 @@ public class UserDTO {
 	private List<AdresseDTO> adresses;
 	private AdresseDTO adresse;
 	private String motDePasse;
+	private Integer profil;
 	public void setAdresse(AdresseDTO adresse) {
 		this.adresse = adresse;
 	}
@@ -184,5 +185,13 @@ public class UserDTO {
 	
 	public void setMotDePasse(String mdp) {
 		motDePasse = mdp;
+	}
+
+	public Integer getProfil() {
+		return profil;
+	}
+
+	public void setProfil(Integer profil) {
+		this.profil = profil;
 	}
 }

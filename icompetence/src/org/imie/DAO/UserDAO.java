@@ -52,7 +52,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			statement = getConnection().createStatement();
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
-			resultSet = statement.executeQuery("select * " + "FROM utilisateur ");
+			resultSet = statement.executeQuery("select * "
+					+ "FROM utilisateur ");
 			// parcours du resultset
 			while (resultSet.next()) {
 				UserDTO userDTO = buildDTO(resultSet);
@@ -93,11 +94,15 @@ public class UserDAO extends ATransactional implements IUserDAO {
 	 * @throws TransactionalConnectionException
 	 * @throws TransactionRequiredException
 	 */
-	private UserDTO buildDTO(ResultSet resultSet) throws SQLException, TransactionalConnectionException {
+	private UserDTO buildDTO(ResultSet resultSet) throws SQLException,
+			TransactionalConnectionException {
 		// initialisation du DAO de gestion des compétences
-		ICompetenceDAO competenceDAO = BaseConcreteFactory.getInstance().createCompetenceDAO(this);
-		IAdresseDAO adresseDAO = BaseConcreteFactory.getInstance().createAdresseDAO(this);
-		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance().createCursusDAO(this);
+		ICompetenceDAO competenceDAO = BaseConcreteFactory.getInstance()
+				.createCompetenceDAO(this);
+		IAdresseDAO adresseDAO = BaseConcreteFactory.getInstance()
+				.createAdresseDAO(this);
+		ICursusDAO cursusDAO = BaseConcreteFactory.getInstance()
+				.createCursusDAO(this);
 		// création d'un nouveau UserDTO
 		UserDTO userDTO = new UserDTO();
 		// affectation des attribut du UserDTO à partir des valeurs du
@@ -110,15 +115,13 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		userDTO.setIdentifiant(resultSet.getString("identifiant"));
 		userDTO.setPwd(resultSet.getString("pwd"));
 		userDTO.setDisponible(resultSet.getBoolean("disponible"));
-	
-		
-		
 
 		// récupération des compétences du user grâce au competenceDAO
 		// la connection passée en paramètre permet de partager la
 		// connection entre cette methode et celle appelée
 
-		List<CompetenceDTO> competenceDTOs = competenceDAO.getCompetenceByUser(userDTO);
+		List<CompetenceDTO> competenceDTOs = competenceDAO
+				.getCompetenceByUser(userDTO);
 		// parcours des compétences du user
 		for (CompetenceDTO competenceDTO : competenceDTOs) {
 			// ajout des compétences sur le UserDTO à partir de celles
@@ -143,30 +146,34 @@ public class UserDAO extends ATransactional implements IUserDAO {
 	 * @see org.imie.DAO.IuserDAO#insertUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
-	public UserDTO insertUser(UserDTO userToInsert) throws TransactionalConnectionException {
+	public UserDTO insertUser(UserDTO userToInsert)
+			throws TransactionalConnectionException {
 
 		// déclaration de la variable de statement
 		Statement statement = null;
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
 		UserDTO userDTOinserted = null;
-		
+
 		try {
 
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
 			String insertInstruction = "insert into utilisateur (nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse) "
 					+ "values (?,?,?,?,?,?,?,?,?) returning nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse ";
-			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, userToInsert.getNom());
 			preparedStatement.setString(2, userToInsert.getPrenom());
 			preparedStatement.setString(3, userToInsert.getAdresse_mail());
-			preparedStatement.setDate(4, new java.sql.Date(userToInsert.getDateNaiss().getTime()));
+			preparedStatement.setDate(4, new java.sql.Date(userToInsert
+					.getDateNaiss().getTime()));
 			preparedStatement.setBoolean(5, userToInsert.isDisponible());
 			preparedStatement.setString(6, userToInsert.getIdentifiant());
 			preparedStatement.setString(7, userToInsert.getPwd());
 			preparedStatement.setInt(8, userToInsert.getCursus().getId());
-			preparedStatement.setInt(9, userToInsert.getAdresse().getId_adresse());
+			preparedStatement.setInt(9, userToInsert.getAdresse()
+					.getId_adresse());
 			preparedStatement.executeQuery();
 			/*
 			 * if (resultSet.next()) { userDTOinserted = buildDTO(resultSet); }
@@ -198,13 +205,11 @@ public class UserDAO extends ATransactional implements IUserDAO {
 	 * 
 	 * @see org.imie.DAO.IuserDAO#updateUser(org.imie.DTO.UserDTO)
 	 */
-	
-	
-	
+
 	@Override
-	public UserDTO updateUser(UserDTO userToUpdate) throws TransactionalConnectionException {
+	public UserDTO updateUser(UserDTO userToUpdate)
+			throws TransactionalConnectionException {
 		UserDTO userDTORetour = null;
-		
 
 		// déclaration de la variable de statement
 		Statement statement = null;
@@ -213,17 +218,19 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		try {
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
-		String insertInstruction = "update utilisateur set nom =?, prenom =?, date_naissance=?, id_formation =?, adresse_mail =?, "
-				+ "disponible=?,  pwd=?, identifiant=? " + "where id_utilisateur=?";
-			
-			
+			String insertInstruction = "update utilisateur set nom =?, prenom =?, date_naissance=?, id_formation =?, adresse_mail =?, "
+					+ "disponible=?,  pwd=?, identifiant=? "
+					+ "where id_utilisateur=?";
+
 			System.out.println(insertInstruction);
-			PreparedStatement preparedStatement = getConnection().prepareStatement(insertInstruction);
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, userToUpdate.getNom());
 			preparedStatement.setString(2, userToUpdate.getPrenom());
-			
+
 			if (userToUpdate.getDateNaiss() != null) {
-				preparedStatement.setDate(3, new java.sql.Date(userToUpdate.getDateNaiss().getTime()));
+				preparedStatement.setDate(3, new java.sql.Date(userToUpdate
+						.getDateNaiss().getTime()));
 			} else {
 				preparedStatement.setNull(3, Types.DATE);
 			}
@@ -238,8 +245,6 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			preparedStatement.setString(7, userToUpdate.getPwd());
 			preparedStatement.setString(8, userToUpdate.getIdentifiant());
 			preparedStatement.setInt(9, userToUpdate.getId());
-			
-			
 
 			preparedStatement.executeUpdate();
 
@@ -269,7 +274,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 	 * @see org.imie.DAO.IuserDAO#deleteUser(org.imie.DTO.UserDTO)
 	 */
 	@Override
-	public void deleteUser(UserDTO userToDelete) throws TransactionalConnectionException {
+	public void deleteUser(UserDTO userToDelete)
+			throws TransactionalConnectionException {
 
 		// déclaration de la variable de statement
 		Statement statement = null;
@@ -281,27 +287,32 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			// resultset
 
 			String insertInstruction1 = "DELETE FROM utilisateur_fait_partie_profil WHERE id_utilisateur =? ";
-			PreparedStatement preparedStatement1 = getConnection().prepareStatement(insertInstruction1);
+			PreparedStatement preparedStatement1 = getConnection()
+					.prepareStatement(insertInstruction1);
 			preparedStatement1.setInt(1, userToDelete.getId());
 			preparedStatement1.executeUpdate();
 
 			String insertInstruction2 = "DELETE FROM utilisateur_appartient_a_gdt WHERE id_utilisateur =? ";
-			PreparedStatement preparedStatement2 = getConnection().prepareStatement(insertInstruction2);
+			PreparedStatement preparedStatement2 = getConnection()
+					.prepareStatement(insertInstruction2);
 			preparedStatement2.setInt(1, userToDelete.getId());
 			preparedStatement2.executeUpdate();
 
 			String insertInstruction3 = "DELETE FROM invitation WHERE id_utilisateur =? ";
-			PreparedStatement preparedStatement3 = getConnection().prepareStatement(insertInstruction3);
+			PreparedStatement preparedStatement3 = getConnection()
+					.prepareStatement(insertInstruction3);
 			preparedStatement3.setInt(1, userToDelete.getId());
 			preparedStatement3.executeUpdate();
 
 			String insertInstruction4 = "DELETE FROM utilisateur_dispose_comp WHERE id_utilisateur = ? ";
-			PreparedStatement preparedStatement4 = getConnection().prepareStatement(insertInstruction4);
+			PreparedStatement preparedStatement4 = getConnection()
+					.prepareStatement(insertInstruction4);
 			preparedStatement4.setInt(1, userToDelete.getId());
 			preparedStatement4.executeUpdate();
 
 			String insertInstruction5 = "DELETE FROM utilisateur WHERE id_utilisateur=? ";
-			PreparedStatement preparedStatement5 = getConnection().prepareStatement(insertInstruction5);
+			PreparedStatement preparedStatement5 = getConnection()
+					.prepareStatement(insertInstruction5);
 			preparedStatement5.setInt(1, userToDelete.getId());
 			preparedStatement5.executeUpdate();
 
@@ -321,11 +332,9 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				ExceptionManager.getInstance().manageException(e);
 			}
 		}
-		
-		
-		
-		
+
 	}
+
 	/**
 	 * @param userDTO
 	 * @return UserDTO
@@ -335,19 +344,21 @@ public class UserDAO extends ATransactional implements IUserDAO {
 	 * 
 	 */
 	@Override
-	public UserDTO getUser(UserDTO userDTO) throws TransactionalConnectionException {
+	public UserDTO getUser(UserDTO userDTO)
+			throws TransactionalConnectionException {
 		// TODO Auto-generated method stub
 
 		/**
-		 * TODO add date to userDTO and query
-		 * TODO ajouter la gestion des erreurs pour le cas ou il n'y pas d'utilisateur
+		 * TODO add date to userDTO and query TODO ajouter la gestion des
+		 * erreurs pour le cas ou il n'y pas d'utilisateur
 		 */
-
-		String nom 		= userDTO.getNom();
-		String prenom 	= userDTO.getPrenom();
-		String login 	= userDTO.getIdentifiant();
+		UserDTO useToReturn =new UserDTO();
+		String nom = userDTO.getNom();
+		String prenom = userDTO.getPrenom();
+		String login = userDTO.getIdentifiant();
 		String password = userDTO.getMotDePasse();
-		Integer id 		= userDTO.getId();
+		Integer id = userDTO.getId();
+		Integer profil = userDTO.getProfil();
 
 		// Requête dynamique
 		String criteriaSQL = "";
@@ -368,8 +379,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			isFirstCriteria = false;
 		}
 		if (login != null) {
-			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ") + " identifiant='"
-					+ login + "'";
+			criteriaSQL += (isFirstCriteria ? "WHERE " : " AND ")
+					+ " identifiant='" + login + "'";
 			isFirstCriteria = false;
 		}
 		if (password != null) {
@@ -377,6 +388,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 					+ password + "'";
 			isFirstCriteria = false;
 		}
+
 		// if (date!=null) {
 		// criteriaSQL += (isFirstCriteria?
 		// "WHERE ":" AND ")+" date_naissance="+date_naissance;
@@ -392,8 +404,9 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		Statement statement = null;
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
-		String userQuery = 	"";
-		userQuery = "SELECT  nom, prenom, date_naissance, id_utilisateur, pwd FROM utilisateur " + criteriaSQL;
+		String userQuery = "";
+		userQuery = "SELECT  nom, prenom, identifiant, date_naissance, id_utilisateur, pwd FROM utilisateur "
+				+ criteriaSQL;
 		try {
 
 			// création du statement à partir de la connection
@@ -401,7 +414,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			statement = getConnection().createStatement();
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
-			
+
 			System.out.println(userQuery);
 			resultSet = statement.executeQuery(userQuery);
 
@@ -415,22 +428,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				currenDTO.setNom(resultSet.getString("nom"));
 				currenDTO.setPrenom(resultSet.getString("prenom"));
 				currenDTO.setId(resultSet.getInt("id_utilisateur"));
-				currenDTO.setMotDePasse(resultSet.getString("pwd"));
-				// calcul de l'age
-				/*Calendar dob = Calendar.getInstance();
-				dob.setTime(resultSet.getDate("date_naissance"));
-				Calendar today = Calendar.getInstance();
-				int age = today.get(Calendar.YEAR) - dob.get(Calendar.YEAR);
-				if (today.get(Calendar.MONTH) < dob.get(Calendar.MONTH)) {
-					age--;
-				} else if (today.get(Calendar.MONTH) == dob.get(Calendar.MONTH)
-						&& today.get(Calendar.DAY_OF_MONTH) < dob
-								.get(Calendar.DAY_OF_MONTH)) {
-					age--;
-				}
-
-				currenDTO.setAge(age);*/
-
+				currenDTO.setMotDePasse(resultSet.getString("identifiant"));
+				currenDTO.setIdentifiant(resultSet.getString("pwd"));
 				// récupération des compétences du user grâce au competenceDAO
 				// la connection passée en paramètre permet de partager la
 				// connection entre cette methode et celle appelée
@@ -445,6 +444,26 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				 * compétences sur le UserDTO à partir de celles // fournies par
 				 * le CompetenceDAO currenDTO.addCompetence(competenceDTO); }
 				 */
+				if (profil == null) {
+
+					String queryProfil = "SELECT  pr.id_profil, pr.libelle, ut.id_utilisateur "
+							+ "FROM profil pr "
+							+ "INNER JOIN utilisateur_fait_partie_profil ut_pr ON ut_pr.id_profil = pr.id_profil "
+							+ "INNER JOIN utilisateur ut ON ut.id_utilisateur = ut_pr.id_utilisateur "
+							+ "WHERE ut.id_utilisateur = "
+							+ resultSet.getInt("id_utilisateur");
+					Statement statement2 = getConnection().createStatement();
+					// execution d'une requête SQL et récupération du result
+					// dans le
+					// resultset
+
+					System.out.println(userQuery);
+					ResultSet resultSet2 = statement2.executeQuery(queryProfil);
+					while (resultSet2.next()) {
+						currenDTO.setProfil(resultSet2.getInt("id_profil"));	
+					}
+				}
+
 				// ajout du DTO dans la liste de retour
 				userDTOs.add(currenDTO);
 			}
@@ -467,7 +486,17 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				e.printStackTrace();
 			}
 		}
-		return userDTOs.get(0);
-	}
+		try {	 useToReturn = userDTOs.get(0);}
+		
+		catch(IndexOutOfBoundsException e) {
+			useToReturn = null;
+			e.printStackTrace();
+			
+			
+		}
 	
+		
+		return useToReturn;
+	}
+
 }

@@ -13,9 +13,9 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./liste.js"></script>
+<script src="./js/liste.js"></script>
 
-<link rel=stylesheet type=text/css href=./css/Style.css />
+<link rel="stylesheet" type="text/css" href="./css/Style.css" />
 
 <title>Liste des compétences</title>
 </head>
@@ -23,19 +23,13 @@
 
 	<h1>Liste des compétences</h1>
 	<div class="conteneur">
-
+<br /> <br /> <a href="./AccueilServletClass">Accueil </a>
 
 		<c:forEach var="competence" items="${listecompetence}">
-			
 				<c:out value="${competence.id}"></c:out>
 				<c:out value="${competence.libelle}"></c:out>
-
 				<br />
-			
 		</c:forEach>
-
 	</div>
-
-
 </body>
 </html>

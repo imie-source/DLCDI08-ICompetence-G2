@@ -1,9 +1,9 @@
 package org.imie.Competence;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,47 +22,65 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 @WebServlet("/AdminCompetenceServletClass")
 public class AdminCompetenceServletClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AdminCompetenceServletClass() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AdminCompetenceServletClass() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
 		ICompetenceService competenceService = BaseConcreteFactory
 				.getInstance().createCompetenceService(null);
 
 		List<CompetenceDTO> competenceDTOs = null;
-		
-		Integer idrech = 1;
-		idrech =  idrech.valueOf(request.getParameter("competencerecherchee"));
+		List<CompetenceDTO> competenceDTOrechs = new ArrayList<CompetenceDTO>();
+		List<CompetenceDTO> competenceDTOtrouves = null;
+
+		String compRecher = null;
+		int idrech;
+		compRecher = request.getParameter("competencerecherchee").toLowerCase();
+
 		try {
-
-			competenceDTOs = competenceService.findArboFilsPere(idrech);
-			request.setAttribute("listecompetence", competenceDTOs);
-
+			if (compRecher != null) {
+				competenceDTOs = competenceService.findByNom(compRecher);
+				for (CompetenceDTO comp : competenceDTOs) {
+					idrech = comp.getId();
+					competenceDTOtrouves = competenceService
+							.findArboFilsPere(idrech);
+					competenceDTOrechs.addAll(competenceDTOtrouves);
+				}
+				request.setAttribute("listecompetence", competenceDTOrechs);
+				// forward
+				request.getRequestDispatcher("./arborescence.jsp").forward(
+						request, response);
+			} else {
+				request.getRequestDispatcher("./Accueil.jsp").forward(request,
+						response);
+			}
+			compRecher = null;
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
 
-		// forward
-		RequestDispatcher dispatcher = request
-				.getRequestDispatcher("./arborescence.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }
