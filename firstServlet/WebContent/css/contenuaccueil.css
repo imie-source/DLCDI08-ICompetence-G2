@@ -1,7 +1,11 @@
 @CHARSET "UTF-8";
+body{
+background: url(../css/sources/fondcontenu.jpg);	
+}
 
 #contenuaccueil {
-	background-image: url("./css/sources/fondcontenu.jpg");
+	background-color: white;
+		
 	position: relative;
 	height: 650px;
 	width: 1000px;
@@ -9,6 +13,31 @@
 }
 a {
 	text-decoration: none;
+}
+#menurighttop2 {
+	background-color: #9A8EFE;
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+#menurighttop {
+	background-color: #9A2EFE;
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+
+#menurightbottom{
+	background-color: gray;
+	position: absolute;
+	top: 320px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
 }
 
 #menurighttop {

@@ -21,10 +21,8 @@
 </head>
 <body>
 	<div class="conteneur">
-	<br /> <a href="./AccueilServletClass">Accueil </a>
-
-		<input type="button" value="Ajouter un groupe de travail"
-			id="openerajout" />
+		<br /> <a href="./AccueilServletClass"><button>Accueil</button> </a> <input
+			type="button" value="Ajouter un groupe de travail" id="openermodif" />
 
 		<div id="tableau" class="tableau">
 			<%
@@ -36,7 +34,7 @@
 
 			<div id="lignetableau<%=i%>" class="ligneTableau">
 				<a href="GroupServletClass?numLigne=<%=i%>">
-				
+
 
 					<div class="celluleTableau largeur100"><%=i%></div> <%
  	gdtDTO.setNumLigne(0);
@@ -52,9 +50,9 @@
 
 			<div id="contenu<%=i%>" class="contenu">
 				<!-- lien à modifier  -->
-<%-- 				<button id="openermodif<%=i%>">modifier</button> --%>
-<!-- 				<button type="submit" value="liste des utilisateurs">volontaires -->
-<!-- 					du groupe</button> -->
+								<button id="openermodif<%=i%>">modifier</button>
+								<button type="submit" value="liste des utilisateurs">volontaires
+									du groupe</button>
 				<span id="suppr"> <a
 					href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img
 						src="http://www.coeur.net/images_communes/croix_rouge3D.png"

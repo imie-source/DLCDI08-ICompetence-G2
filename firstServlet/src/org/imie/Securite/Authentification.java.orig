@@ -50,17 +50,30 @@ public class Authentification extends HttpServlet {
 		// une servlet qui la gère?
 		// récupération et parsing de la requete
 		String path = ((HttpServletRequest) request).getRequestURI();
+<<<<<<< HEAD:firstServlet/src/org/imie/Servlet/Authentification.java
+		System.out.println("url demandée dans Authentification" +path);
+		
+=======
 		System.out.println("url demandée dans Authentification" + path);
-		String contextPath = request.getContextPath();
+
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476:firstServlet/src/org/imie/Securite/Authentification.java
 		// la page demandée
 
 		String resource = request.getRequestURI();
 		System.out.println(resource);
+<<<<<<< HEAD:firstServlet/src/org/imie/Servlet/Authentification.java
+		
+		
 
-		Boolean connected = false;
 		// récupération de la valeur du parametre de session du loginButton qui
 		// est fixé sur la page du formulaire
-		String formSubmitName = request.getParameter("valider");
+	
+=======
+
+		// récupération de la valeur du parametre de session du loginButton qui
+		// est fixé sur la page du formulaire
+
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476:firstServlet/src/org/imie/Securite/Authentification.java
 		IUserService userService = BaseConcreteFactory.getInstance()
 				.createUserService(null);
 

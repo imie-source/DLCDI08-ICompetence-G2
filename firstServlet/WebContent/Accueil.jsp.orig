@@ -4,6 +4,27 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
+<link rel=stylesheet type=text/css href=./css/cssReset.css>
+<!-- lien vers la biblio jquery  -->
+<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
+<script src="./jquery/jquery-1.9.1.js"></script>
+<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
+<script src="./contenuaccueil.js"></script>
+<link rel=stylesheet type=text/css href=./css/contenuaccueil.css>
+<title>Accueil</title>
+</head>
+<body>
+
+	<div id=contenuaccueil>
+		<aside id=menurighttop2> </aside>
+		
+		
+		<div id=menurighttop class="effet1">
+			 <a class="texte" href="./NiveauServletClass"><span
+				class="stylewhite">NIVEAU</span><br> </a> <span><br>
+			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+=======
 <link rel="stylesheet" type="text/css" href="./css/cssReset.css"/>
 <!-- lien vers la biblio jquery  -->
 	<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
@@ -17,16 +38,6 @@
 <title>Accueil</title>
 </head>
 <body>
-<<<<<<< HEAD
-
-<ul>
-<li><a href="./ListeUserServlet">Liste user </a></li>
-<li><a href="./AfficherArborescence">Competence</a></li>
-<li><a href="./GroupServletClass">groupe de travail</a></li>
-<li><a href="./CursusServletClass">cursus </a></li>
-<li><a href="./NiveauServletClass">niveau </a></li>
-</ul>
-=======
 	
 
 <p>Bonjour </p>

@@ -15,6 +15,7 @@
     <servlet-name>UpdateServletClass</servlet-name>
     <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>UpdateServletClass</servlet-name>
     <url-pattern>/UpdateServletClass</url-pattern>
@@ -24,11 +25,11 @@
     <filter-class>org.imie.Securite.FiltreSecurite</filter-class>
     <init-param>
       <param-name>authentification</param-name>
-      <param-value>oui</param-value>
+      <param-value>non</param-value>
     </init-param>
   </filter>
   <filter-mapping>
     <filter-name>FiltreSecurite</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/none</url-pattern>
   </filter-mapping>
 </web-app>
