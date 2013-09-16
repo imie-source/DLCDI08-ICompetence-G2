@@ -24,7 +24,7 @@
     <filter-class>org.imie.Securite.FiltreSecurite</filter-class>
     <init-param>
       <param-name>authentification</param-name>
-      <param-value>non</param-value>
+      <param-value>oui</param-value>
     </init-param>
   </filter>
   <filter-mapping>
