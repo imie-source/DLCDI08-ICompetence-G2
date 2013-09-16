@@ -12,7 +12,7 @@
 <link rel=stylesheet type=text/css href=./css/sources/Style.css>
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./groupeTravail.js"></script>
+<script src="./js/groupeTravail.js"></script>
 <title></title>
 </head>
 <body>
@@ -33,11 +33,13 @@ for (UserDTO userDTO : listUserDTO) {%>
 					href="./GroupServletClass?UrlParam=suprUser&chosenUser=<%=i%>"><img
 						src="http://www.coeur.net/images_communes/croix_rouge3D.png"
 						align="right"></a></span>
- 	<%i++;
+ 	
+ 	<% 
+ 	i++;
  	}%>
  		<br />
  		<input
-			type="button" value="modifier groupe de travail" id="openerajout" />
+			type="button" value="modifier groupe de travail" id="openermodif" />
 				
 
 	

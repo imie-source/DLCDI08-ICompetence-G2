@@ -1,0 +1,158 @@
+@CHARSET "UTF-8";
+
+#contenuaccueil {
+	background-image: url("./css/sources/fondcontenu.jpg");
+	position: relative;
+	height: 650px;
+	width: 1000px;
+	margin: auto;
+}
+a {
+	text-decoration: none;
+}
+<<<<<<< HEAD
+#menurighttop2 {
+	background-color: #9A8EFE;
+=======
+
+#menurighttop {
+	background-color: #9A2EFE;
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+<<<<<<< HEAD
+#menurighttop {
+	background-color: #9A2EFE;
+	position: absolute;
+	top: 10px;
+=======
+
+#menurightbottom2{
+	background-color: gray;
+	position: absolute;
+	top: 320px;
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+<<<<<<< HEAD
+
+#menurightbottom{
+	background-color: gray;
+=======
+#menurightbottom1{
+	background-color:fuchsia;
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	position: absolute;
+	top: 320px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+
+<<<<<<< HEAD
+#squaretopleft {
+	background-color: #FACC2E;
+=======
+#squaretopleft2 {
+	background-color: #FACC2E;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+	font-family: 
+}
+#squaretopleft1 /* caché */ {
+	background-color:#A9BCF5;
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+	font-family: 
+}
+<<<<<<< HEAD
+#squarebottomleft {
+=======
+#squarebottomleft2 {
+	background-color: #2EFE2E;
+	position: absolute;
+	top: 320px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+}
+#squarebottomleft1 /* caché */ {
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	background-color: #2EFE2E;
+	position: absolute;
+	top: 320px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+}
+
+<<<<<<< HEAD
+#squaretopright {
+=======
+#squaretopright2 {
+	background-color: #FF0000;
+	position: absolute;
+	top: 10px;
+	left: 320px;
+	height: 300px;
+	width: 300px;
+}
+#squaretopright1 /* caché */ {
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+	background-color: #FF0000;
+	position: absolute;
+	top: 10px;
+	left: 320px;
+	height: 300px;
+	width: 300px;
+}
+
+#squarebottomright2{
+	position : absolute;
+	background-color: #2ECCFA;
+	height: 300px;
+	width: 300px;
+	 top: 320px; 
+	left: 320px;
+}
+<<<<<<< HEAD
+=======
+#squarebottomright1 /* caché */{
+	position : absolute;
+	background-color: #2ECCFA;
+	height: 300px;
+	width: 300px;
+	 top: 320px; 
+	left: 320px;
+}
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
+.texte{
+	position:relative;
+	top: 70px;
+	left:30px;
+	font-family: fantasy;
+	font-size:xx-large;
+}
+.stylewhite{
+	color: white;
+}
+
+.styleblack{
+	color: black;
+}
+
+
+
