@@ -74,7 +74,7 @@ public interface IGroupeDeTravailDAO extends ITransactional {
 			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 
 	public abstract Boolean creerUserGdt(UserDTO userDTO,
-			GroupeDeTravailDTO gdtDTO);
+			GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 
 	public abstract Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException;
 

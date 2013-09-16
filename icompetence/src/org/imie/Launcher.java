@@ -36,7 +36,6 @@ public class Launcher {
 
 		IUserService usrSvc = BaseConcreteFactory
 				.getInstance().createUserService(null);
-		
 
 		UserDTO userToFind = new UserDTO();
 		userToFind.setIdentifiant("youmet");
@@ -50,11 +49,9 @@ public class Launcher {
 		} catch (TransactionalConnectionException e) {
 
 		
-		
 
-			ExceptionManager.getInstance().manageException(e);
-		}
 		System.out.println(userToFind.getProfil());
 	}
 	
+}
 }

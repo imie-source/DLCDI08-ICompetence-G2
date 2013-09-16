@@ -18,7 +18,7 @@
 <title>Accueil</title>
 </head>
 <body>
-
+	<jsp:include page="./header.jsp"></jsp:include>
 
 	<p>Bonjour
 	<c:out value="${user.getPrenom()}"></c:out>
@@ -31,7 +31,7 @@
 	<c:set var="niveau" scope="page" value="${user.getProfil()}" />
 	<div id=contenuaccueil>
 
-		<c:if test="${niveau == 3}">
+<%-- 		<c:if test="${niveau == 3}"> --%>
 
 
 
@@ -60,7 +60,7 @@
 
 
 			</div>
-		</c:if>
+<%-- 		</c:if> --%>
 
 
 

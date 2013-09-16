@@ -55,7 +55,7 @@ public class GroupeDeTravailService extends ATransactional implements
 	}
 
 	@Override
-	public Boolean creerUserGdt(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) {
+	public Boolean creerUserGdt(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
 		IGroupeDeTravailDAO gdtDAO = BaseConcreteFactory.getInstance()
 				.creerGroupeDeTravailDAO(this);
 		return gdtDAO.creerUserGdt(userDTO, gdtDTO);
