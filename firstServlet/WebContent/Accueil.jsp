@@ -30,11 +30,11 @@
 	</p>
 	<c:set var="niveau" scope="page" value="${user.getProfil()}" />
 	<div id=contenuaccueil>
-<<<<<<< HEAD
+
 		<c:if test="${niveau == 3}">
 
 
-=======
+
 		
 		
 		<div id=menurighttop>
@@ -47,7 +47,6 @@
 					 <a id="zone3" class="texte" href="./FileUpLoad"><span
 				class="stylewhite">IMPORT</span><br> </a> 
 		</div>
->>>>>>> 329e257d412087ea59561ba6249c9ff683d5be99
 
 			<div id="menurighttop">
 
