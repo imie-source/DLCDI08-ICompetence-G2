@@ -235,7 +235,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		return creer;
 	}
 
-	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) {
+	public Boolean modifCP(UserDTO userDTO, GroupeDeTravailDTO gdtDTO)  {
 
 		Boolean creer = true;
 		try {
@@ -272,6 +272,8 @@ public class GroupeDeTravailDAO extends ATransactional implements
 				GroupeDeTravailDTO groupeDeTravail = buildDTO(resultSet);
 				groupeDeTravailDTO.add(groupeDeTravail);
 				CPparGdt(groupeDeTravail);
+			List<UserDTO> listUserDTO = utilisateurParGroupeDeTravail(groupeDeTravail);
+			groupeDeTravail.setListUserDTO(listUserDTO);
 			}
 			
 			
@@ -334,7 +336,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			String query = "select utilisateur.nom, prenom "
 					+ "FROM utilisateur LEFT JOIN groupe_de_travail as gdt ON gdt.id_util_chef_de_groupe = utilisateur.id_utilisateur" +
 					" WHERE utilisateur.id_utilisateur="+id_util;
-			System.out.println(query);
 			resultSet = statement.executeQuery(query);
 
 			 while(resultSet.next()) {
@@ -350,6 +351,42 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			gdtDTO.setNomCP("non défini");
 			
 		}
+
+		
+		
+	}
+	
+	public List<UserDTO> utilisateurParGroupeDeTravail (GroupeDeTravailDTO gdtDTO) {
+		
+		Statement statement = null;
+		ResultSet resultSet = null;
+		System.out.println("entrée -> utilisateurParGroupeDeTravail");
+		List<UserDTO> listUtilDTO = new ArrayList<UserDTO>();
+		
+
+		try {
+			
+			
+			statement = getConnection().createStatement();
+			resultSet = statement.executeQuery("select nom, prenom, identifiant FROM utilisateur "
+					+ "INNER JOIN utilisateur_appartient_a_gdt as ugdt ON ugdt.id_utilisateur = utilisateur.id_utilisateur" +
+					" WHERE id_gdt="+gdtDTO.getId_gdt());
+
+			while (resultSet.next()) {
+				UserDTO utilDTO = new UserDTO();
+				System.out.println(resultSet.getString("nom"));
+				utilDTO.setNom(resultSet.getString("nom"));
+				utilDTO.setPrenom(resultSet.getString("prenom"));
+				utilDTO.setIdentifiant(resultSet.getString("identifiant"));
+				
+				listUtilDTO.add(utilDTO);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return listUtilDTO;
 
 		
 		

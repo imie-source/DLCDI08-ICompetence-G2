@@ -27,28 +27,34 @@ public class Launcher {
 	 * point d'entrée de l'application
 	 * 
 	 * @param args
-	 * @throws TransactionalConnectionException 
+	 * @throws TransactionalConnectionException
 	 */
 	public static void main(String[] args) throws TransactionalConnectionException {
 		//ConsoleIHM.getInstance().start();
 		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
 
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
+
+		IUserService usrSvc = BaseConcreteFactory
+				.getInstance().createUserService(null);
 		
-		List<CompetenceDTO> competenceDTOs = null;
+
+		UserDTO userToFind = new UserDTO();
+		userToFind.setIdentifiant("youmet");
 		
-		int idrech = 11;
+		
 		try {
 
-			competenceDTOs = competenceService.findArboFilsPere(idrech);
-			for(CompetenceDTO current : competenceDTOs){
-				System.out.println(current.getLibelle());
-				System.out.println(current.getNiveauParent());
-			}
-		
+			UserDTO userFound = usrSvc.getUser(userToFind);
+			userToFind.setProfil(userFound.getProfil());
+
 		} catch (TransactionalConnectionException e) {
+
+		
+		
+
 			ExceptionManager.getInstance().manageException(e);
 		}
+		System.out.println(userToFind.getProfil());
 	}
+	
 }

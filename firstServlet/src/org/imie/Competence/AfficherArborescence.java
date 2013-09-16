@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +21,8 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 /**
  * Servlet implementation class AfficherArborescence
  */
-@WebServlet("/AfficherArborescence")
+@WebServlet(urlPatterns = "/AfficherArborescence",
+		initParams ={@WebInitParam(name="profil",value="1")})
 public class AfficherArborescence extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,9 +39,22 @@ public class AfficherArborescence extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		/***
+		 * @author ym
+		 * charger les parametres
+		 * 
+		 */
+		
+		ServletConfig sc = getServletConfig();
+		String leProfil = sc.getInitParameter("profil");
+		
+		
+		
 		ICompetenceService competenceService = BaseConcreteFactory.getInstance().createCompetenceService(null);
 		
 		
+		
+	//ss	System.out.println(">>>>>>>Servlet profil AfficherArborescence : "+leProfil);
 		List<CompetenceDTO> competenceDTOs = null;
 		try {			
 				
@@ -50,6 +66,7 @@ public class AfficherArborescence extends HttpServlet {
 		}
 		
 			// forward
+			
 			RequestDispatcher dispatcher = request.getRequestDispatcher("./arborescence.jsp");
 			dispatcher.forward(request, response);	
 		
