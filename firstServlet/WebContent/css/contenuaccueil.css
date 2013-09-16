@@ -36,8 +36,17 @@ a {
 	width: 200px;
 }
 
-#squaretopleft {
+#squaretopleft2 {
 	background-color: #FACC2E;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+	font-family: 
+}
+#squaretopleft1 {
+	background-color:#A9BCF5;
 	position: absolute;
 	top: 10px;
 	left: 10px;

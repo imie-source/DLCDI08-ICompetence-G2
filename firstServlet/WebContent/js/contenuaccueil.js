@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
-	$(".effet1").hover(
+	$("#zonesquaretopleft").hover(
 	        function () {
-	          $(this).hide();
+	          $("#squaretopleft1").hide();
 	        }, 
 	        function () {
-	          $(this).show();
+	          $("#squaretopleft1").show();
 	        }
 	    );
 	
