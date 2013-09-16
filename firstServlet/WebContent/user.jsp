@@ -127,7 +127,7 @@
 					<div id="email"> </div>
 			</fieldset>
 
-			<%-- 	<%
+		 	<%
 				for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
 			%>
 
@@ -136,7 +136,7 @@
 			<%
 				}
 			%>
-			 --%>
+			
 			<fieldset>
 				<legend>Cursus</legend>
 				<%
