@@ -9,13 +9,15 @@ $(document).ready(function() {
 	        }
 	    );
 	
+	
 	$("#zone1").hover(
 	        function () {
-	          $("#zone2").hide();
+	          $("#zone3").hide();
 	        }, 
 	        function () {
-	          $("#zone2").show();
+	          $("#zone3").show();
 	        }
+	       
 	    );
 	$("#zone2").hover(
 	        function () {
@@ -25,6 +27,24 @@ $(document).ready(function() {
 	          $("#zone1").show();
 	        }
 	    );
+	$("#zone2").hover(
+	        function () {
+	          $("#zone3").hide();
+	        }, 
+	        function () {
+	          $("#zone3").show();
+	        }
+	    );
+	
+	$("#zone3").hover(
+	        function () {
+	          $("#zone1").hide();
+	        }, 
+	        function () {
+	          $("#zone1").show();
+	        }
+	    );
+	
 	$("#zonesquarebottomleft").hover(
 	        function () {
 	          $("#squarebottomleft2").hide();

@@ -30,9 +30,24 @@
 	</p>
 	<c:set var="niveau" scope="page" value="${user.getProfil()}" />
 	<div id=contenuaccueil>
+<<<<<<< HEAD
 		<c:if test="${niveau == 3}">
 
 
+=======
+		
+		
+		<div id=menurighttop>
+			 <a id="zone1" class="texte" href="./NiveauServletClass"><span
+				class="stylewhite">NIVEAU</span></a><br>  <span><br>
+			<br></span> <a id="zone2" class="texte" href="./ListMotClefServletClass"><span
+				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
+					CLEF</span></a><br> <span><br>
+			<br></span>
+					 <a id="zone3" class="texte" href="./FileUpLoad"><span
+				class="stylewhite">IMPORT</span><br> </a> 
+		</div>
+>>>>>>> 329e257d412087ea59561ba6249c9ff683d5be99
 
 			<div id="menurighttop">
 
