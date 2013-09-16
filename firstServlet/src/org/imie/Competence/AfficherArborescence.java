@@ -54,7 +54,7 @@ public class AfficherArborescence extends HttpServlet {
 		
 		
 		
-	//ss	System.out.println(">>>>>>>Servlet profil AfficherArborescence : "+leProfil);
+		System.out.println(">>>>>>>Servlet profil AfficherArborescence : "+leProfil);
 		List<CompetenceDTO> competenceDTOs = null;
 		try {			
 				
