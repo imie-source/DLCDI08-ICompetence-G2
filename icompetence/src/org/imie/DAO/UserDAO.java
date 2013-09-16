@@ -153,16 +153,18 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		Statement statement = null;
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
-		UserDTO userDTOinserted = null;
+		UserDTO userDTOinserted = new UserDTO();
 
 		try {
 
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
+		
 			String insertInstruction = "insert into utilisateur (nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse) "
-					+ "values (?,?,?,?,?,?,?,?,?) returning nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse ";
+					+ "values (?,?,?,?,?,?,?,?,?) ";
 			PreparedStatement preparedStatement = getConnection()
-					.prepareStatement(insertInstruction);
+					.prepareStatement(insertInstruction,Statement.RETURN_GENERATED_KEYS);
+			
 			preparedStatement.setString(1, userToInsert.getNom());
 			preparedStatement.setString(2, userToInsert.getPrenom());
 			preparedStatement.setString(3, userToInsert.getAdresse_mail());
@@ -174,10 +176,19 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			preparedStatement.setInt(8, userToInsert.getCursus().getId());
 			preparedStatement.setInt(9, userToInsert.getAdresse()
 					.getId_adresse());
-			preparedStatement.executeQuery();
-			/*
-			 * if (resultSet.next()) { userDTOinserted = buildDTO(resultSet); }
-			 */
+			
+			preparedStatement.executeUpdate();
+			resultSet = preparedStatement.getGeneratedKeys();
+			int i = 1;
+            if(resultSet.next())
+            {
+            	
+            	int last_inserted_id = resultSet.getInt(i);
+                i++;
+                userDTOinserted.setId(last_inserted_id);
+                System.out.println(userDTOinserted.getId());
+            }
+			
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
