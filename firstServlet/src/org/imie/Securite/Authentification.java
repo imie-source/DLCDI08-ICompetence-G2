@@ -1,4 +1,4 @@
-package org.imie.Servlet;
+package org.imie.Securite;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class Authentification extends HttpServlet {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -50,23 +50,19 @@ public class Authentification extends HttpServlet {
 		// une servlet qui la gère?
 		// récupération et parsing de la requete
 		String path = ((HttpServletRequest) request).getRequestURI();
-		System.out.println("url demandée dans Authentification" +path);
-		
+		System.out.println("url demandée dans Authentification" + path);
+		String contextPath = request.getContextPath();
 		// la page demandée
-		
+
 		String resource = request.getRequestURI();
 		System.out.println(resource);
-		
-		
 
+		Boolean connected = false;
 		// récupération de la valeur du parametre de session du loginButton qui
 		// est fixé sur la page du formulaire
-	
+		String formSubmitName = request.getParameter("valider");
 		IUserService userService = BaseConcreteFactory.getInstance()
 				.createUserService(null);
-		
-		
-	
 
 		UserDTO userDTOToIdentify = new UserDTO();
 		UserDTO userDTOToFound = new UserDTO();
@@ -78,12 +74,18 @@ public class Authentification extends HttpServlet {
 				&& request.getParameter("password") != null) {
 			login = (String) request.getParameter("login");
 			password = (String) request.getParameter("password");
-			
+
 		}
-		userDTOToIdentify.setIdentifiant(login);	
+		userDTOToIdentify.setIdentifiant(login);
 		System.out.println(userDTOToIdentify.getIdentifiant());
 		try {
-			userDTOToFound =  userService.getUser(userDTOToIdentify);
+			userDTOToFound = userService.getUser(userDTOToIdentify);
+			if (userDTOToFound == null) {
+				request.setAttribute("erreurMessage", "Vérifiez votre login !");
+				RequestDispatcher requestDispatcher = request
+						.getRequestDispatcher("./Connexion.jsp");
+				requestDispatcher.forward(request, response);
+			}
 
 		} catch (TransactionalConnectionException e) {
 			// TODO Auto-generated catch block
@@ -93,37 +95,37 @@ public class Authentification extends HttpServlet {
 		if (userDTOToFound != null) {
 			// System.out.println("pwd base " +userDtoFound.getPassword()
 			// +" password session: "+ password);
-			String pwdBase = userDTOToFound.getMotDePasse().replaceAll("\\s", "");
+			String pwdBase = userDTOToFound.getMotDePasse().replaceAll("\\s",
+					"");
 			System.out.println("bdd :" + pwdBase);
 
 			System.out.println("pwd :" + password);
 			if (pwdBase.equalsIgnoreCase(password.replaceAll("\\s", ""))) {
-				session.setAttribute("connected", 1);
 				session.setAttribute("user", userDTOToFound);
-				
-				
-				//System.out.println("Authentification connected");
-				
+
 				RequestDispatcher requestDispatcher = request
 						.getRequestDispatcher("./Accueil.jsp");
 				requestDispatcher.forward(request, response);
-				
+
 			} else {
-				// TODO redirect vers la page de login avec message d'erreur
-				//System.out.println("erreur password");
+				/**
+				 * TODO redirect vers la page de login avec message d'erreur
+				 */
+				request.setAttribute("erreurMessage",
+						"Vérifiez le mot de passe !");
 				RequestDispatcher requestDispatcher = request
 						.getRequestDispatcher("./Connexion.jsp");
 				requestDispatcher.forward(request, response);
 			}
-
-		} else {
-			session.setAttribute("connected", 0);
-			//System.out.println(" dans authentification not connected");
-			RequestDispatcher requestDispatcher = request
-					.getRequestDispatcher("./Connexion.jsp");
-			requestDispatcher.forward(request, response);
 		}
-		
+//		} else {
+//			session.setAttribute("connected", 0);
+//
+//			RequestDispatcher requestDispatcher = request
+//					.getRequestDispatcher("./Connexion.jsp");
+//			requestDispatcher.forward(request, response);
+//		}
+
 	}
-	
+
 }

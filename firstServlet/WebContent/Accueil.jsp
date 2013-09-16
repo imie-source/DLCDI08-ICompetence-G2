@@ -4,25 +4,34 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet type=text/css href=./css/cssReset.css>
+<link rel="stylesheet" type="text/css" href="./css/cssReset.css"/>
 <!-- lien vers la biblio jquery  -->
-<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
-<script src="./jquery/jquery-1.9.1.js"></script>
-<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./contenuaccueil.js"></script>
-<link rel=stylesheet type=text/css href=./css/contenuaccueil.css>
+	<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
+	<script src="./jquery/jquery-1.9.1.js"></script>
+	<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
+	<script src="./js/contenuaccueil.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/contenuaccueil.css"/>
+
+
+
 <title>Accueil</title>
 </head>
 <body>
+	
 
+<p>Bonjour </p>
+	<c:out value="${user.getNom()}"></c:out>
+	<p>Vous êtes connecté avec le profil de niveau : <c:out value="${user.getProfil()}"></c:out></p>
+	
+	
+	
 	<div id=contenuaccueil>
-		<aside id=menurighttop2> </aside>
 		
 		
-		<div id=menurighttop class="effet1">
-			 <a class="texte" href="./NiveauServletClass"><span
+		<div id=menurighttop >
+			 <a id="zone1" class="texte" href="./NiveauServletClass"><span
 				class="stylewhite">NIVEAU</span><br> </a> <span><br>
-			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+			<br></span> <a id="zone2" class="texte" href="./ListMotClefServletClass"><span
 				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
 					CLEF</span><br> </a>
 		</div>
@@ -31,40 +40,87 @@
 
 
 
-		<aside class="effet1" id=menurightbottom>
-		<div class="effet1">
+		<a id="zonesmenurightbottom">
+		<div id=menurightbottom1>
+		<div class="texte" >
 			<span class="stylewhite">INFO</span><br> <span
 				class="stylewhite"> ET</span><br> <span class="styleblack">
 				NEWS</span>
 		</div>
-		</aside>
+		</div>
+		<div id=menurightbottom2>
+		<div class="texte" >
+			<span class="stylewhite">INFO</span><br> <span
+				class="stylewhite"> ET</span><br> <span class="styleblack">
+				NEWS</span>
+		</div>
+		</div>
+		</a>
+		
 
-		<a  href="./ListeUserServlet">
-			<div class="effet1" id=squaretopleft>
+		<a id="zonesquaretopleft" href="./ListeUserServlet">
+			<div id="squaretopleft1">
+				<div class="texte">
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
+				</div>
+			</div>
+			
+			<div id="squaretopleft2">
 				<div class="texte">
 					<span class="stylewhite">VOIR</span><br> <span
 						class="stylewhite"> LES</span><br> <span class="styleblack">
 						VOLONTAIRES</span>
 				</div>
 			</div>
-		</a> <a  href="./CursusServletClass">
-			<div id=squarebottomleft>
+		</a> 
+		
+		<a id="zonesquarebottomleft" href="./CursusServletClass">
+		
+			<div id="squarebottomleft1">
+				<div class="texte">
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
+				</div>
+			</div>
+			
+			<div id=squarebottomleft2>
 				<div class="texte">
 					<span class="stylewhite">VOIR</span><br> <span
 						class="stylewhite"> LES</span><br> <span class="styleblack">
 						CURSUS</span>
 				</div>
 			</div>
-		</a> <a class=effet1 href="./GroupServletClass">
-			<div id=squaretopright>
+		</a> 
+		
+		
+		
+		<a id="zonesquaretopright" href="./GroupServletClass">
+			<div id=squaretopright1>
+				<div class="texte">
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
+				</div>
+			</div>
+			
+			<div id=squaretopright2>
 				<div class="texte">
 					<span class="stylewhite">VOIR LES</span><br> <span
 						class="styleblack"> GROUPE DE </span><br> <span
 						class="stylewhite"> TRAVAIL</span>
 				</div>
 			</div>
-		</a> <a  href="./AfficherArborescence">
-			<div id=squarebottomright>
+		</a> 
+		
+		<a id="zonesquarebottomright"  href="./AfficherArborescence">
+			<div id=squarebottomright1>
+				<div class="texte">
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
+				</div>
+			</div>
+			
+			<div id=squarebottomright2>
 				<div class="texte">
 					<span class="stylewhite">VOIR</span><br> <span
 						class="stylewhite"> LES</span><br> <span class="styleblack">
@@ -72,6 +128,8 @@
 				</div>
 			</div>
 		</a>
+		
+		
 	</div>
 </body>
 </html>

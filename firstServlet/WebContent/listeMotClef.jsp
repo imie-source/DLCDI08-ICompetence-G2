@@ -18,10 +18,10 @@
 <link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
 <script src="./jquery/jquery-1.9.1.js"></script>
 <script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
-<script src="./listeMotClef.js"></script>
+<script src="./js/listeMotClef.js"></script>
 <script src="./jquery/jquery.validate.js"></script>
-<script src="./validationlistemotclef.js"></script>
-<link rel=stylesheet type=text/css href=./css/Style.css>
+<script src="./js/validationlistemotclef.js"></script>
+<link rel="stylesheet" type="text/css" href="./css/Style.css"/>
 <title>Liste mot clef</title>
 </head>
 <body>

@@ -352,7 +352,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		 * TODO add date to userDTO and query TODO ajouter la gestion des
 		 * erreurs pour le cas ou il n'y pas d'utilisateur
 		 */
-
+		UserDTO useToReturn =new UserDTO();
 		String nom = userDTO.getNom();
 		String prenom = userDTO.getPrenom();
 		String login = userDTO.getIdentifiant();
@@ -405,7 +405,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
 		String userQuery = "";
-		userQuery = "SELECT  nom, prenom, date_naissance, id_utilisateur, pwd FROM utilisateur "
+		userQuery = "SELECT  nom, prenom, identifiant, date_naissance, id_utilisateur, pwd FROM utilisateur "
 				+ criteriaSQL;
 		try {
 
@@ -428,8 +428,8 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				currenDTO.setNom(resultSet.getString("nom"));
 				currenDTO.setPrenom(resultSet.getString("prenom"));
 				currenDTO.setId(resultSet.getInt("id_utilisateur"));
-				currenDTO.setMotDePasse(resultSet.getString("pwd"));
-
+				currenDTO.setMotDePasse(resultSet.getString("identifiant"));
+				currenDTO.setIdentifiant(resultSet.getString("pwd"));
 				// récupération des compétences du user grâce au competenceDAO
 				// la connection passée en paramètre permet de partager la
 				// connection entre cette methode et celle appelée
@@ -486,7 +486,17 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				e.printStackTrace();
 			}
 		}
-		return userDTOs.get(0);
+		try {	 useToReturn = userDTOs.get(0);}
+		
+		catch(IndexOutOfBoundsException e) {
+			useToReturn = null;
+			e.printStackTrace();
+			
+			
+		}
+	
+		
+		return useToReturn;
 	}
 
 }
