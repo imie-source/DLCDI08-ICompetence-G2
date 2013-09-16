@@ -200,17 +200,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		try {
 <<<<<<< HEAD
-
-			String enteredByUser = competencenom;
-			String forSql = "%" + enteredByUser + "%";
-
-			String selectInstruction = "select * from competence Where upper(libelle_comp) like ?";
-
-			PreparedStatement preparedStatement = getConnection()
-					.prepareStatement(selectInstruction);
-			preparedStatement.setString(1, forSql);
-			resultSet = preparedStatement.executeQuery();
-=======
 			
 				
 				String enteredByUser = competencenom ;  
@@ -224,7 +213,18 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				preparedStatement.setString(1, forSql);
 				resultSet = preparedStatement.executeQuery();
 			
->>>>>>> 0a9e70a7f10d7724122baf5f13e78295822f11f4
+=======
+
+			String enteredByUser = competencenom;
+			String forSql = "%" + enteredByUser + "%";
+
+				String selectInstruction = "select * from competence Where lower(libelle_comp) like ?" ;
+
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
+			preparedStatement.setString(1, forSql);
+			resultSet = preparedStatement.executeQuery();
+>>>>>>> 0b15a1ea04a3a3c90f3c9587c21c04adb3ea6476
 
 			while (resultSet.next()) {
 				CompetenceDTO competenceDTO = new CompetenceDTO();

@@ -15,6 +15,7 @@
     <servlet-name>UpdateServletClass</servlet-name>
     <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>UpdateServletClass</servlet-name>
     <url-pattern>/UpdateServletClass</url-pattern>
@@ -29,6 +30,6 @@
   </filter>
   <filter-mapping>
     <filter-name>FiltreSecurite</filter-name>
-    <url-pattern>/*</url-pattern>
+    <url-pattern>/none</url-pattern>
   </filter-mapping>
 </web-app>
