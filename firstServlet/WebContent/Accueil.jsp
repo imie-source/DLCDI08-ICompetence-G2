@@ -18,7 +18,7 @@
 <title>Accueil</title>
 </head>
 <body>
-
+	<jsp:include page="./header.jsp"></jsp:include>
 
 	<p>Bonjour
 	<c:out value="${user.getPrenom()}"></c:out>
