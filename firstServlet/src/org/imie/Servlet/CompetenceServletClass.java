@@ -36,7 +36,7 @@ public class CompetenceServletClass extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-
+		System.out.println(">>>>>>>Servlet name Competence :"+this.getServletContext().getServletContextName());
 		ICompetenceService competenceService = BaseConcreteFactory
 				.getInstance().createCompetenceService(null);
 

@@ -15,6 +15,7 @@
     <servlet-name>UpdateServletClass</servlet-name>
     <servlet-class>org.imie.Servlet.AccueilServletClass</servlet-class>
   </servlet>
+
   <servlet-mapping>
     <servlet-name>UpdateServletClass</servlet-name>
     <url-pattern>/UpdateServletClass</url-pattern>

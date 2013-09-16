@@ -3,6 +3,7 @@ package org.imie.Servlet;
 import java.io.IOException;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.UserDTO;
@@ -25,6 +27,10 @@ import org.imie.transactionalFramework.TransactionalConnectionException;
 public class GroupServletClass extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance()
+			.creerGroupeDeTravailService(null);
+	
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -40,13 +46,15 @@ public class GroupServletClass extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+		
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("numLigne") != null) {
 			String ligne = request.getParameter("numLigne");
-			System.out.println("entré dans le if de load   "+ ligne );
+			System.out.println("entré dans le if de load   "+ ligne);
 			List<GroupeDeTravailDTO> listgdt = (List<GroupeDeTravailDTO>) session
 					.getAttribute("listgdt");
+			System.out.println("taille de la liste" + listgdt.size());
 			Integer numLigne = Integer.valueOf(ligne);
 			GroupeDeTravailDTO chosengdt = listgdt.get(numLigne - 1);
 			request.setAttribute("chosengdt", chosengdt);
@@ -61,6 +69,7 @@ public class GroupServletClass extends HttpServlet {
 			try {
 
 				gdtlist = gdtService.afficherGroupeDeTravail();
+				
 				session.setAttribute("listgdt", gdtlist);
 			} catch (TransactionalConnectionException e1) {
 				// TODO Auto-generated catch block
@@ -87,8 +96,29 @@ public class GroupServletClass extends HttpServlet {
 					}
 					response.sendRedirect("./AccueilServletClass");
 
+				} else if (urlParam.equals("suprUser")) {
+					
+					List<UserDTO> listUserDTO = (List<UserDTO>) session.getAttribute("listUserDTO");
+					Integer chosenUser = Integer.parseInt(request.getParameter("chosenUser"));
+					System.out.println("chosen User to delete from GDT " + 
+					chosenUser + 
+							" " + listUserDTO.size());
+					UserDTO deleteUser = listUserDTO.get(chosenUser);
+					try {
+						gdtService.supprimerUserGroupeDeTravail(deleteUser, (GroupeDeTravailDTO) request.getAttribute("currentgdt"));
+						//request.removeAttribute("listUserDTO");
+						//request.removeAttribute("currentgdt");
+						
+						response.sendRedirect("./GroupServletClass?UrlParam=listUser&gdt="+Integer.parseInt(request
+								.getParameter("gdt")));
+					} catch (TransactionalConnectionException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 				}
-			} else {
+			
+		} else {
 
 				request.setAttribute("UrlParam", null);
 				request.setAttribute("listgdt", gdtlist);
@@ -100,6 +130,7 @@ public class GroupServletClass extends HttpServlet {
 			}
 
 		}
+		
 
 	}
 
@@ -110,9 +141,8 @@ public class GroupServletClass extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
-		IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance()
-				.creerGroupeDeTravailService(null);
-
+		
+		HttpSession session = request.getSession();
 		List<GroupeDeTravailDTO> gdtlist = null;
 
 		String urlParam = null;
@@ -133,23 +163,29 @@ public class GroupServletClass extends HttpServlet {
 			}
 			response.sendRedirect("./GroupServletClass");
 		}
-
-		if (urlParam.equals("listUser")) {
-			try {
-				gdtlist = gdtService.afficherGroupeDeTravail();
-				GroupeDeTravailDTO currentgdt = null;
-				currentgdt = gdtlist.get(Integer.parseInt(request
-						.getParameter("gdt")));
-				List<UserDTO> listUserDTO = gdtService
-						.utilisateurParGroupeDeTravail(currentgdt);
-			} catch (TransactionalConnectionException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-
-			response.sendRedirect("./GroupServletClass");
-
-		}
+//
+//		if (urlParam.equals("listUser")) {
+//			try {
+//				gdtlist = gdtService.afficherGroupeDeTravail();
+//				GroupeDeTravailDTO currentgdt = null;
+//				currentgdt = gdtlist.get(Integer.parseInt(request
+//						.getParameter("gdt"))-1);
+//				List<UserDTO> listUserDTO = gdtService
+//						.utilisateurParGroupeDeTravail(currentgdt);
+//				System.out.println("mise en session de la liste user");
+//				session.setAttribute("listUserDTO", listUserDTO);
+//				
+//				request.setAttribute("currentgdt", currentgdt);
+//				
+//
+//			} catch (TransactionalConnectionException e1) {
+//				// TODO Auto-generated catch block
+//				e1.printStackTrace();
+//			}
+//
+//			response.sendRedirect("./GroupServletClass");
+//
+//		}
 
 		if (urlParam.equals("modif")) {
 			GroupeDeTravailDTO gdtDTOmodif = new GroupeDeTravailDTO();

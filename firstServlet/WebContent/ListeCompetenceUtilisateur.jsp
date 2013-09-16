@@ -23,19 +23,13 @@
 
 	<h1>Liste des compétences</h1>
 	<div class="conteneur">
-
+<br /> <br /> <a href="./AccueilServletClass">Accueil </a>
 
 		<c:forEach var="competence" items="${listecompetence}">
-			
 				<c:out value="${competence.id}"></c:out>
 				<c:out value="${competence.libelle}"></c:out>
-
 				<br />
-			
 		</c:forEach>
-
 	</div>
-
-
 </body>
 </html>

@@ -203,7 +203,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				String enteredByUser = competencenom ;  
 				String forSql = "%" + enteredByUser + "%"; 
 				
-				String selectInstruction = "select * from competence Where upper(libelle_comp) like ?" ;
+				String selectInstruction = "select * from competence Where lower(libelle_comp) like ?" ;
 				
 				
 				PreparedStatement preparedStatement = getConnection()

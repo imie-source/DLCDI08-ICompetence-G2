@@ -2,10 +2,7 @@ package org.imie;
 
 import java.util.List;
 
-<<<<<<< HEAD
-=======
 import org.imie.DTO.CompetenceDTO;
->>>>>>> e054579ff5a48c7a0f128ca238a107f2fc4c9a00
 import org.imie.DTO.GroupeDeTravailDTO;
 import org.imie.DTO.MotClefDTO;
 import org.imie.DTO.UserDTO;
@@ -30,47 +27,19 @@ public class Launcher {
 	 * point d'entrée de l'application
 	 * 
 	 * @param args
-	 * @throws TransactionalConnectionException 
+	 * @throws TransactionalConnectionException
 	 */
-	public static void main(String[] args) throws TransactionalConnectionException {
+	public static void main(String[] args)
+			throws TransactionalConnectionException {
+
+		
 <<<<<<< HEAD
-		// ConsoleIHM.getInstance().start();
 
-		IGroupeDeTravailService gdtService = BaseConcreteFactory.getInstance()
-				.creerGroupeDeTravailService(null);
-
-		List<GroupeDeTravailDTO> gdtDTO = gdtService.afficherGroupeDeTravail();
-		GroupeDeTravailDTO cgdtDTO = gdtDTO.get(1);
-		
-		List<UserDTO> listDTO = gdtService.utilisateurParGroupeDeTravail(cgdtDTO);
-		
-		for (UserDTO userDTO : listDTO) {
-			System.out.println(userDTO.getNom());
-			
-		}
-		
-		
-=======
-		//ConsoleIHM.getInstance().start();
-		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
-
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
-		
-		List<CompetenceDTO> competenceDTOs = null;
-		
-		int idrech = 11;
-		try {
-
-			competenceDTOs = competenceService.findArboFilsPere(idrech);
-			for(CompetenceDTO current : competenceDTOs){
-				System.out.println(current.getLibelle());
-				System.out.println(current.getNiveauParent());
-			}
-		
-		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
->>>>>>> e054579ff5a48c7a0f128ca238a107f2fc4c9a00
+		System.out.println(userToFind.getProfil());
+=======
+		System.out.println("Yo Super Youssef");
+>>>>>>> 48c312f869b182a46f1775d6f0df6f78e2afc202
 	}
 }

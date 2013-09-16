@@ -27,27 +27,11 @@ public class Launcher {
 	 * point d'entrée de l'application
 	 * 
 	 * @param args
-	 * @throws TransactionalConnectionException 
+	 * @throws TransactionalConnectionException
 	 */
 	public static void main(String[] args) throws TransactionalConnectionException {
 		//ConsoleIHM.getInstance().start();
 		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
 
-		ICompetenceService competenceService = BaseConcreteFactory
-				.getInstance().createCompetenceService(null);
-		
-		List<GroupeDeTravailDTO> gdtDTO = gdtService.afficherGroupeDeTravail();
-		GroupeDeTravailDTO cgdtDTO = gdtDTO.get(1);
-		
-		List<UserDTO> listDTO = gdtService.utilisateurParGroupeDeTravail(cgdtDTO);
-		
-		for (UserDTO userDTO : listDTO) {
-			System.out.println(userDTO.getNom());
-			
-			}
-		
-		
-			ExceptionManager.getInstance().manageException(e);
-		}
 	}
 }

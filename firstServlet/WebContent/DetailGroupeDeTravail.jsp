@@ -6,26 +6,41 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-
-
+<link rel=stylesheet type=text/css href=./css/cssReset.css>
+<link rel=stylesheet type=text/css href=./css/sources/Style.css>
+<script src="./jquery/jquery-1.9.1.js"></script>
+<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
+<script src="./groupeTravail.js"></script>
 <title></title>
 </head>
 <body>
-
+<div class="celluleTableau largeur350">Prenom :</div>
+ 	<div class="celluleTableau largeur350">Nom :</div>
+ 	<div class="celluleTableau largeur100">Identifiant :</div><br /><br />
 	<% GroupeDeTravailDTO gdtDTO = (GroupeDeTravailDTO) request.getAttribute("chosengdt");
 List<UserDTO> listUserDTO = gdtDTO.getListUserDTO();
- 
-for (UserDTO userDTO : listUserDTO) {
- 	%><div id="lignetableau" class="ligneTableau">
- 	<div class="celluleTableau largeur350"><%=userDTO.getPrenom()%></div>
+ Integer i = 0;
+ session.setAttribute("listUserDTO", listUserDTO);
+for (UserDTO userDTO : listUserDTO) {%>
+	
+	
+ 	<div class="celluleTableau largeur350"><%=i%>. <%= userDTO.getPrenom()%></div>
  	<div class="celluleTableau largeur350"><%=userDTO.getNom()%></div>
- 	<div class="celluleTableau largeur100"><%=userDTO.getIdentifiant()%></div><%}%>
- 		
- 		<button id="openermodif">modifier</button>
+ 	<div class="celluleTableau largeur100"><%=userDTO.getIdentifiant()%></div>
+ 	<span id="suppr"> <a
+					href="./GroupServletClass?UrlParam=suprUser&chosenUser=<%=i%>"><img
+						src="http://www.coeur.net/images_communes/croix_rouge3D.png"
+						align="right"></a></span>
+ 	<%i++;
+ 	}%>
+ 		<br />
+ 		<input
+			type="button" value="modifier groupe de travail" id="openerajout" />
 				
 
-	</div>
+	
  
 <div id="modifierdialog" title="modifier">
 			<form id="formmodif" method="post"
@@ -45,8 +60,8 @@ for (UserDTO userDTO : listUserDTO) {
 					Type (langage, web, client lourd...):<input type="text" name="type"
 						maxlength="40"></input>
 					<%
-						GroupeDeTravailDTO chosengdt = listgdt.get(indice);
-								System.out.println(chosengdt.getNom());
+					//	GroupeDeTravailDTO chosengdt = listgdt.get(indice);
+					//			System.out.println(chosengdt.getNom());
 					%>
 					<select title="Etat d'avancement">
 						<option>Manque de volontaire</option>

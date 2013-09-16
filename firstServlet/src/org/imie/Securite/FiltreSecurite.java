@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +29,7 @@ public class FiltreSecurite implements Filter {
 	private String extensionNonFiltre = ".*(css|jpg|png|gif|js)";
 	private Boolean premiereConnexion = true;
 	private HttpSession session = null;
+	private HttpServlet destination;
 
 	/**
 	 * Default constructor.
@@ -54,6 +56,8 @@ public class FiltreSecurite implements Filter {
 				.println("Passage dans le filtre >>>>>>------------------<<<<");
 		session = ((HttpServletRequest) request).getSession(true);
 		HttpServletRequest req = (HttpServletRequest) request;
+		System.out.println(">>>>>>>Servlet profil "+req.getParameter("profil"));
+		System.out.println(">>>>>>>Servlet name "+req.getServletContext().getServletContextName());
 		HttpServletResponse res = (HttpServletResponse) response;
 
 		String warning = "";
@@ -68,6 +72,7 @@ public class FiltreSecurite implements Filter {
 					System.out.println(">>>>>>>>>>>>>>>>>>>>Pages non filtrées");
 
 					chain.doFilter(request, response); // Just continue chain.
+					
 					return;
 
 				}
@@ -76,10 +81,9 @@ public class FiltreSecurite implements Filter {
 
 			try {
 				System.out.println("try");
-				// userConnecte = (UserDTO) session.getAttribute("user");
-				// if (userConnecte == null)
+				
 				if (!utilisateurAuthentifie()) {
-
+					System.out.println(">>>>>>>Servlet name "+req.getServletContext().getServletContextName());
 					// l'utilisateur n'est pas authentifié correctement on le
 					// redirige vers une page de login
 					System.out.println("pas de user");
@@ -89,14 +93,21 @@ public class FiltreSecurite implements Filter {
 					
 
 				} else {
+					/**
+					 * TODO ajouter ici l'autorisation en fonction du profil
+					 * 
+					 */
+					
 					System.out.println(" Authentifié dans Filtre ");
+					
 					System.out.println(userConnecte.getNom());
+					System.out.println("profil id : " + userConnecte.getProfil());
 					// l'utilisateur a été identifié il est autorisé à accéder à
 					// la
 					// servlet filtrée// chain.doFilter(request, response);
 					if (premiereConnexion == true) {
 						System.out
-								.println(">>>>>>>>>>>>>>>>>>Authentifié / premeconnexion : "
+								.println(">>>>>>>>>>>>>>>>>>   Authentifié / premeconnexion : "
 										+ premiereConnexion);
 
 						RequestDispatcher requestDispatcher = request
@@ -105,9 +116,11 @@ public class FiltreSecurite implements Filter {
 						premiereConnexion = false;
 						
 					} else {
+						
 						System.out
-								.println(">>>>>>>>>>>>>>>>>>Authentifié / premeconnexion : "
+								.println(">>>>>>>>>>>>>>>>>>  Authentifié / pas de premeconnexion : "
 										+ premiereConnexion);
+						System.out.println(" local name de la servlet    : "+request.getServletContext().getServletContextName());
 						chain.doFilter(request, response);
 						return;
 					}
@@ -152,4 +165,16 @@ public class FiltreSecurite implements Filter {
 	public String profilAuthentifie(UserDTO utilisateurAuthentifie) {
 		return null;
 	}
+	
+	public boolean estAutorise (UserDTO utilisateurAuthentifie ) {
+		//getServletContext().getInitParameter("MON_PARAM");
+
+	
+	
+		return false;
+	}
+	
+	
+	
+	
 }

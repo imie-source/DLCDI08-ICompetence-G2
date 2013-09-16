@@ -1,19 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel=stylesheet type=text/css href=./css/Style.css>
-<title>Insert title here</title>
+<link rel=stylesheet type=text/css href=./css/cssReset.css>
+<!-- lien vers la biblio jquery  -->
+<link rel="stylesheet" href="./jquery/jquery.ui.theme.css" />
+<script src="./jquery/jquery-1.9.1.js"></script>
+<script src="./jquery/jquery-ui-1.10.3.custom.js"></script>
+<script src="./contenuaccueil.js"></script>
+<link rel=stylesheet type=text/css href=./css/contenuaccueil.css>
+<title>Accueil</title>
 </head>
 <body>
-<ul>
-<li><a href="./ListeUserServlet">Liste user </a></li>
-<li><a href="./AfficherArborescence">Competence</a></li>
-<li><a href="./GroupServletClass">groupe de travail</a></li>
-<li><a href="./CursusServletClass">cursus </a></li>
-<li><a href="./NiveauServletClass">niveau </a></li>
-</ul>
+
+	<div id=contenuaccueil>
+		<aside id=menurighttop2> </aside>
+		
+		
+		<div id=menurighttop class="effet1">
+			 <a class="texte" href="./NiveauServletClass"><span
+				class="stylewhite">NIVEAU</span><br> </a> <span><br>
+			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
+					CLEF</span><br> </a>
+		</div>
+
+
+
+
+
+		<aside class="effet1" id=menurightbottom>
+		<div class="effet1">
+			<span class="stylewhite">INFO</span><br> <span
+				class="stylewhite"> ET</span><br> <span class="styleblack">
+				NEWS</span>
+		</div>
+		</aside>
+
+		<a  href="./ListeUserServlet">
+			<div class="effet1" id=squaretopleft>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						VOLONTAIRES</span>
+				</div>
+			</div>
+		</a> <a  href="./CursusServletClass">
+			<div id=squarebottomleft>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						CURSUS</span>
+				</div>
+			</div>
+		</a> <a class=effet1 href="./GroupServletClass">
+			<div id=squaretopright>
+				<div class="texte">
+					<span class="stylewhite">VOIR LES</span><br> <span
+						class="styleblack"> GROUPE DE </span><br> <span
+						class="stylewhite"> TRAVAIL</span>
+				</div>
+			</div>
+		</a> <a  href="./AfficherArborescence">
+			<div id=squarebottomright>
+				<div class="texte">
+					<span class="stylewhite">VOIR</span><br> <span
+						class="stylewhite"> LES</span><br> <span class="styleblack">
+						COMPETENCES</span>
+				</div>
+			</div>
+		</a>
+	</div>
 </body>
 </html>
