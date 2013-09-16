@@ -11,27 +11,27 @@
 </head>
 <body>
 	<%-- Récupération du document XML. --%>
-	<c:import url="fichiertest.xml" var="documentXML" />
+	<c:import url="./XML/fichiertest.xml" var="documentXML" />
 	<%-- Analyse du document XML récupéré. --%>
-	<x:parse var="doc" doc="${documentXML}" />
+	<x:parse xml="${documentXML}" var="listeuser" />
 
 
 
 	<form method="post" action="./ImportExcelClass">
 		<%-- Parcours du document parsé pour y récupérer chaque nœud "record". --%>
-		<x:forEach var="record" select="$doc/record">
-			<c:set target="${listeuser}" property="nom">
+		<x:forEach var="record" select="$listeuser/record">
+			<c:set var="nom">
 				<x:out select="$record/nom" />
 			</c:set>
-			<br />
-			<c:set target="${listeuser}" property="prenom">
+			<br />yugyuguguygygui
+			<c:set var="prenom">
 				<x:out select="$record/prenom" />
 			</c:set>
 			<br />
 		</x:forEach>
 
 
-		<input type="text" /> <input type="submit" value="Envoyer" />
+		<input type="submit" value="Envoyer" />
 	</form>
 
 </body>

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.imie.DTO.UserDTO;
 import org.imie.factory.BaseConcreteFactory;
@@ -38,8 +39,9 @@ public class ImportExcelClass extends HttpServlet {
 
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
 		
-		request.setAttribute("listeuser", userDTOs);
-		request.getRequestDispatcher("./importExcel.jsp").forward(
+		HttpSession session = request.getSession();
+		session.setAttribute("listeuser", userDTOs);
+		request.getRequestDispatcher("./importUser.jsp").forward(
 				request, response);
 	}
 	
@@ -54,10 +56,10 @@ public class ImportExcelClass extends HttpServlet {
 				.getInstance().createUserService(null);
 		
 		List<UserDTO> userDTOs = new ArrayList<UserDTO>();
-		
-		
-		//userService.insertUser(request.getAttribute("listeuser"));
-		
+		HttpSession session = request.getSession();
+		System.out.println("ok post");
+		userDTOs = (ArrayList<UserDTO>) session.getAttribute("listeuser");
+		System.out.println(userDTOs);
 		
 	}
 
