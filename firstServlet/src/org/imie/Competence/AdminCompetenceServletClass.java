@@ -80,6 +80,24 @@ public class AdminCompetenceServletClass extends HttpServlet {
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
+		
+//		if (isset($_POST['previsualiser'])) {
+//			 
+//		    // j'ai cliqué sur « Prévisualiser »
+//		 
+//		} elseif (isset($_POST['envoyer'])) {
+//		 
+//		    // j'ai cliqué sur « Prévisualiser »
+//		 
+//		} else {
+//		 
+//		    // comment t'es venu sur cette page ?
+//		 
+//		}
+		
+		
+		
+		
 
 	}
 
