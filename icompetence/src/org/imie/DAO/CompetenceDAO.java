@@ -190,7 +190,8 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		return competenceDTO;
 	}
 
-	public List<CompetenceDTO> findByNom(String competencenom) throws TransactionalConnectionException {
+	public List<CompetenceDTO> findByNom(String competencenom)
+			throws TransactionalConnectionException {
 
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
 
@@ -198,24 +199,21 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		ResultSet resultSet = null;
 
 		try {
-			
-				
-				String enteredByUser = competencenom ;  
-				String forSql = "%" + enteredByUser + "%"; 
-				
-				String selectInstruction = "select * from competence Where upper(libelle_comp) like ?" ;
-				
-				
-				PreparedStatement preparedStatement = getConnection()
-						.prepareStatement(selectInstruction);
-				preparedStatement.setString(1, forSql);
-				resultSet = preparedStatement.executeQuery();
-			
+
+			String enteredByUser = competencenom;
+			String forSql = "%" + enteredByUser + "%";
+
+			String selectInstruction = "select * from competence Where upper(libelle_comp) like ?";
+
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(selectInstruction);
+			preparedStatement.setString(1, forSql);
+			resultSet = preparedStatement.executeQuery();
 
 			while (resultSet.next()) {
 				CompetenceDTO competenceDTO = new CompetenceDTO();
 				competenceDTO.setLibelle(resultSet.getString("libelle_comp"));
-				competenceDTO.setId(resultSet.getInt("id_comp"));				
+				competenceDTO.setId(resultSet.getInt("id_comp"));
 				competenceDTOs.add(competenceDTO);
 			}
 
@@ -237,7 +235,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 		}
 		return competenceDTOs;
 	}
-	
+
 	public CompetenceDTO insertCompetence(CompetenceDTO competenceToInsert)
 			throws TransactionalConnectionException {
 
@@ -608,12 +606,11 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 	public List<CompetenceDTO> findArboFilsPere(Integer id)
 			throws TransactionalConnectionException {
-	
-		
+
 		List<CompetenceDTO> competenceDTOPeres = new ArrayList<CompetenceDTO>();
 		List<CompetenceDTO> competenceDTOEnfants = new ArrayList<CompetenceDTO>();
 		List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
-		
+
 		Statement statement = null;
 		ResultSet resultSet = null;
 		ResultSet resultSetParent = null;
@@ -631,9 +628,9 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
 				competenceDTO.setNiveauParent(resultSet.getInt("niveau"));
 				competenceDTO.setChemin(resultSet.getArray("chemin"));
-				competenceDTO.setId(resultSet.getInt("id_competence"));	
-				competenceDTOEnfants.add(competenceDTO);		
-				
+				competenceDTO.setId(resultSet.getInt("id_competence"));
+				competenceDTOEnfants.add(competenceDTO);
+
 			}
 
 			CompetenceDTO compDTO = competenceDTOEnfants.get(0);
@@ -643,8 +640,8 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			Integer[] donneesTableau = (Integer[]) tableau;
 			// vous devez le caster dans le type de données contenues
 			String chemin = "[";
-			int size = donneesTableau.length-1;
-			
+			int size = donneesTableau.length - 1;
+
 			for (int i = 0; i < size; i++) {
 				if (i == size - 1) {
 					chemin = chemin + donneesTableau[i];
@@ -656,7 +653,6 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				chemin = chemin + donneesTableau[0];
 			}
 			chemin += "]";
-			
 
 			String selectInstructionParent = "SELECT * FROM vue_arbo WHERE  id_competence= ANY (ARRAY"
 					+ chemin + ");";
@@ -675,8 +671,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 			competenceDTOs.addAll(competenceDTOPeres);
 			competenceDTOs.addAll(competenceDTOEnfants);
-			
-			
+
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 		} finally {
@@ -688,7 +683,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				if (statement != null) {
 					statement.close();
 				}
-                                                           
+
 			} catch (SQLException e) {
 				ExceptionManager.getInstance().manageException(e);
 			}
