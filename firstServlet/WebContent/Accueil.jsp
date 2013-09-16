@@ -26,13 +26,12 @@
 	
 	
 	<div id=contenuaccueil>
-		<aside id=menurighttop2> </aside>
 		
 		
-		<div id=menurighttop class="effet1">
-			 <a class="texte" href="./NiveauServletClass"><span
+		<div id=menurighttop >
+			 <a id="zone1" class="texte" href="./NiveauServletClass"><span
 				class="stylewhite">NIVEAU</span><br> </a> <span><br>
-			<br></span> <a class="texte" href="./ListMotClefServletClass"><span
+			<br></span> <a id="zone2" class="texte" href="./ListMotClefServletClass"><span
 				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
 					CLEF</span><br> </a>
 		</div>
@@ -41,23 +40,33 @@
 
 
 
-		<aside class="effet1" id=menurightbottom>
-		<div class="effet1">
+		<a id="zonesmenurightbottom">
+		<div id=menurightbottom1>
+		<div class="texte" >
 			<span class="stylewhite">INFO</span><br> <span
 				class="stylewhite"> ET</span><br> <span class="styleblack">
 				NEWS</span>
 		</div>
-		</aside>
+		</div>
+		<div id=menurightbottom2>
+		<div class="texte" >
+			<span class="stylewhite">INFO</span><br> <span
+				class="stylewhite"> ET</span><br> <span class="styleblack">
+				NEWS</span>
+		</div>
+		</div>
+		</a>
+		
 
 		<a id="zonesquaretopleft" href="./ListeUserServlet">
-			<div id=squaretopleft1>
-				<div>
+			<div id="squaretopleft1">
+				<div class="texte">
 					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
 						TEXTE</span>
 				</div>
 			</div>
 			
-			<div id=squaretopleft2>
+			<div id="squaretopleft2">
 				<div class="texte">
 					<span class="stylewhite">VOIR</span><br> <span
 						class="stylewhite"> LES</span><br> <span class="styleblack">
@@ -66,13 +75,12 @@
 			</div>
 		</a> 
 		
-		<a  href="./CursusServletClass">
+		<a id="zonesquarebottomleft" href="./CursusServletClass">
 		
-			<div id=squarebottomleft1>
+			<div id="squarebottomleft1">
 				<div class="texte">
-					<span class="stylewhite">VOIR</span><br> <span
-						class="stylewhite"> LES</span><br> <span class="styleblack">
-						CURSUS</span>
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
 				</div>
 			</div>
 			
@@ -87,16 +95,15 @@
 		
 		
 		
-		<a class=effet1 href="./GroupServletClass">
-			<div id=squaretopright>
+		<a id="zonesquaretopright" href="./GroupServletClass">
+			<div id=squaretopright1>
 				<div class="texte">
-					<span class="stylewhite">VOIR LES</span><br> <span
-						class="styleblack"> GROUPE DE </span><br> <span
-						class="stylewhite"> TRAVAIL</span>
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
 				</div>
 			</div>
 			
-			<div id=squaretopright>
+			<div id=squaretopright2>
 				<div class="texte">
 					<span class="stylewhite">VOIR LES</span><br> <span
 						class="styleblack"> GROUPE DE </span><br> <span
@@ -105,16 +112,15 @@
 			</div>
 		</a> 
 		
-		<a  href="./AfficherArborescence">
-			<div id=squarebottomright>
+		<a id="zonesquarebottomright"  href="./AfficherArborescence">
+			<div id=squarebottomright1>
 				<div class="texte">
-					<span class="stylewhite">VOIR</span><br> <span
-						class="stylewhite"> LES</span><br> <span class="styleblack">
-						COMPETENCES</span>
+					<span class="stylewhite">AUTRE</span><br>  <span class="styleblack">
+						TEXTE</span>
 				</div>
 			</div>
 			
-			<div id=squarebottomright>
+			<div id=squarebottomright2>
 				<div class="texte">
 					<span class="stylewhite">VOIR</span><br> <span
 						class="stylewhite"> LES</span><br> <span class="styleblack">
@@ -122,6 +128,8 @@
 				</div>
 			</div>
 		</a>
+		
+		
 	</div>
 </body>
 </html>

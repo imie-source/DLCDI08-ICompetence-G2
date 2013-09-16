@@ -2,12 +2,60 @@ $(document).ready(function() {
 
 	$("#zonesquaretopleft").hover(
 	        function () {
-	          $("#squaretopleft1").hide();
+	          $("#squaretopleft2").hide();
 	        }, 
 	        function () {
-	          $("#squaretopleft1").show();
+	          $("#squaretopleft2").show();
 	        }
 	    );
 	
+	$("#zone1").hover(
+	        function () {
+	          $("#zone2").hide();
+	        }, 
+	        function () {
+	          $("#zone2").show();
+	        }
+	    );
+	$("#zone2").hover(
+	        function () {
+	          $("#zone1").hide();
+	        }, 
+	        function () {
+	          $("#zone1").show();
+	        }
+	    );
+	$("#zonesquarebottomleft").hover(
+	        function () {
+	          $("#squarebottomleft2").hide();
+	        }, 
+	        function () {
+	          $("#squarebottomleft2").show();
+	        }
+	    );
+	$("#zonesquaretopright").hover(
+	        function () {
+	          $("#squaretopright2").hide();
+	        }, 
+	        function () {
+	          $("#squaretopright2").show();
+	        }
+	    );
+	$("#zonesquarebottomright").hover(
+	        function () {
+	          $("#squarebottomright2").hide();
+	        }, 
+	        function () {
+	          $("#squarebottomright2").show();
+	        }
+	    );
+	$("#zonesmenurightbottom").hover(
+	        function () {
+	          $("#menurightbottom2").hide();
+	        }, 
+	        function () {
+	          $("#menurightbottom2").show();
+	        }
+	    );
 
 });

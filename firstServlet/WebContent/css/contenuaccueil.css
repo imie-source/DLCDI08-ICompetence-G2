@@ -10,14 +10,7 @@
 a {
 	text-decoration: none;
 }
-#menurighttop2 {
-	background-color: #9A8EFE;
-	position: absolute;
-	top: 10px;
-	left: 700px;
-	height: 300px;
-	width: 200px;
-}
+
 #menurighttop {
 	background-color: #9A2EFE;
 	position: absolute;
@@ -27,8 +20,16 @@ a {
 	width: 200px;
 }
 
-#menurightbottom{
+#menurightbottom2{
 	background-color: gray;
+	position: absolute;
+	top: 320px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+#menurightbottom1{
+	background-color:fuchsia;
 	position: absolute;
 	top: 320px;
 	left: 700px;
@@ -45,7 +46,7 @@ a {
 	width: 300px;
 	font-family: 
 }
-#squaretopleft1 {
+#squaretopleft1 /* caché */ {
 	background-color:#A9BCF5;
 	position: absolute;
 	top: 10px;
@@ -54,7 +55,15 @@ a {
 	width: 300px;
 	font-family: 
 }
-#squarebottomleft {
+#squarebottomleft2 {
+	background-color: #2EFE2E;
+	position: absolute;
+	top: 320px;
+	left: 10px;
+	height: 300px;
+	width: 300px;
+}
+#squarebottomleft1 /* caché */ {
 	background-color: #2EFE2E;
 	position: absolute;
 	top: 320px;
@@ -63,7 +72,15 @@ a {
 	width: 300px;
 }
 
-#squaretopright {
+#squaretopright2 {
+	background-color: #FF0000;
+	position: absolute;
+	top: 10px;
+	left: 320px;
+	height: 300px;
+	width: 300px;
+}
+#squaretopright1 /* caché */ {
 	background-color: #FF0000;
 	position: absolute;
 	top: 10px;
@@ -72,7 +89,15 @@ a {
 	width: 300px;
 }
 
-#squarebottomright{
+#squarebottomright2{
+	position : absolute;
+	background-color: #2ECCFA;
+	height: 300px;
+	width: 300px;
+	 top: 320px; 
+	left: 320px;
+}
+#squarebottomright1 /* caché */{
 	position : absolute;
 	background-color: #2ECCFA;
 	height: 300px;
