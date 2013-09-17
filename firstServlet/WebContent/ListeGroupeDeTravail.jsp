@@ -22,8 +22,8 @@
 <body>
 <jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
-		<br /> <a href="./AccueilServletClass"><button>Accueil</button> </a> <input
-			type="button" value="Ajouter un groupe de travail" id="openermodif" />
+		<br /> <a href="./AccueilServletClass"><button>Accueil</button> </a> 
+		<input type="button" value="Ajouter un groupe de travail" id="openerajout" />
 
 		<div id="tableau" class="tableau">
 			<%
@@ -73,9 +73,8 @@
 
 		<div id="formajout" title="ajouter un groupe de travail"
 			class="formulaire">
-			<form id="ajouterdialog" method="post"
-				title="Ajouter un groupe de travail"
-				action="./GroupServletClass?UrlParam=creer">
+			
+			<form method="post" action="./GroupServletClass" title="Ajouter un groupe de travail" >
 
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
@@ -85,6 +84,7 @@
 
 				<br /> <input type="submit" value="ajouter" />
 			</form>
+			
 		</div>
 
 		<div id="userGdt" titre="Volontaire du groupe">

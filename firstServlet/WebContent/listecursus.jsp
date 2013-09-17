@@ -41,7 +41,7 @@
 					<div id="libellecursuschoisie<%=i%>"
 						class="celluleTableau largeur350 "><%=cursusDTO.getLibelle()%></div>
 					<input id="idcursuschoisie<%=i%>" type="hidden"
-					value="<%=cursusDTO.getId()%>" name="cursusid" />
+					value="<%=cursusDTO.getId()%>" name="cursusid"/>
 			</div>
 			<div id="contenu<%=i%>" class="contenu">
 				<button id="openermodif<%=i%>">modifier</button>

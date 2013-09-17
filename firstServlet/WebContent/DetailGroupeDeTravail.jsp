@@ -49,6 +49,7 @@ for (UserDTO userDTO : listUserDTO) {%>
 			<form id="formmodif" method="post"
 				action="./GroupServletClass?UrlParam=modif"
 				title="modifier un groupe de travail">
+				
 				<input id="idgdtmodif" type="hidden" value="" name="gdtid" />
 				<%
 					Integer indice = 0;
@@ -83,7 +84,6 @@ for (UserDTO userDTO : listUserDTO) {%>
 
 					}
 				%>
-				<br /> <input type="submit" value="modifier" />
 			</form>
 		</div>
 

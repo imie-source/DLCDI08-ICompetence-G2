@@ -17,7 +17,6 @@ $(document).ready(function() {
 	        function () {
 	          $("#zone3").show();
 	        }
-	       
 	    );
 	$("#zone2").hover(
 	        function () {
@@ -27,15 +26,6 @@ $(document).ready(function() {
 	          $("#zone1").show();
 	        }
 	    );
-	$("#zone2").hover(
-	        function () {
-	          $("#zone3").hide();
-	        }, 
-	        function () {
-	          $("#zone3").show();
-	        }
-	    );
-	
 	$("#zone3").hover(
 	        function () {
 	          $("#zone1").hide();
