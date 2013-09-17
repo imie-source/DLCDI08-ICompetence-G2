@@ -77,10 +77,9 @@ public class AfficherArborescence extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		String niveau = request.getParameter("niveauParentcomp");
+		Integer niveau = Integer.valueOf(request.getParameter("niveauParentcomp"));
 		String libelle = request.getParameter("libelle");
-		String chemin = request.getParameter("chemincomp");
-		String idcomp = request.getParameter("idcomp");
+		Integer idcomp = Integer.valueOf(request.getParameter("idcomp"));
 		
 		ICompetenceService competenceService = BaseConcreteFactory.getInstance().createCompetenceService(null);
 		CompetenceDTO competenceDTO = new CompetenceDTO();
@@ -88,26 +87,53 @@ public class AfficherArborescence extends HttpServlet {
 			
 		if (request.getParameter("modifier") != null  ) {
 			
-			
-			
-			competenceService.updateCompetence(competenceDTO);
+			try {	
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);
+				competenceDTO.setNiveauParent(niveau);					
+				
+				competenceService.updateCompetence(competenceDTO);
+				
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} else if (request.getParameter("supprimer") != null ) {
 			
-			
-			
-			
-			
-			competenceService.deleteCompetence(competenceDTO);
+			try {
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);					
+				
+				competenceService.deleteCompetence(competenceDTO);
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} else if (request.getParameter("ajouter") != null ) {
 			
-			
-			
-			
-			competenceService.insertCompetence(competenceDTO);
+			try {
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);
+				competenceDTO.setNiveauParent(niveau);	
+				
+				
+				competenceService.insertCompetence(competenceDTO);
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} 
+		
+		response.sendRedirect("./AfficherArborescence");
+		
+		
+		
 	}
 
 }

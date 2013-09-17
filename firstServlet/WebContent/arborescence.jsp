@@ -48,13 +48,14 @@
 								value="<c:out value="${competence.niveauParent}"></c:out>"
 								name="niveauParentcomp" /> 
 								
-								<input id="libelle" type="hidden"
-								value="<c:out value="${competence.libelle}"></c:out>"
-								name="libelle" /> 
+								
 								
 								<input type="submit" name= "supprimer" value="supprimer" /> 
 								<input type="submit" name= "ajouter" value="ajouter une compétence" /> 
 								<input type="submit" name= "modifier" value="modifier" />
+								<input id="libelle" type="text"
+								value="<c:out value="${competence.libelle}"></c:out>"
+								name="libelle" /> 
 
 						</form>
 					</div>
