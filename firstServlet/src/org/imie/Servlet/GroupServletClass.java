@@ -51,10 +51,8 @@ public class GroupServletClass extends HttpServlet {
 
 		if (request.getParameter("numLigne") != null) {
 			String ligne = request.getParameter("numLigne");
-			System.out.println("entré dans le if de load   "+ ligne);
 			List<GroupeDeTravailDTO> listgdt = (List<GroupeDeTravailDTO>) session
-					.getAttribute("listgdt");
-			System.out.println("taille de la liste" + listgdt.size());
+					.getAttribute("listgdt");			
 			Integer numLigne = Integer.valueOf(ligne);
 			GroupeDeTravailDTO chosengdt = listgdt.get(numLigne - 1);
 			request.setAttribute("chosengdt", chosengdt);
@@ -148,10 +146,8 @@ public class GroupServletClass extends HttpServlet {
 
 		String urlParam = null;
 		urlParam = request.getParameter("UrlParam");
-		System.out.println("creation du groupe de travail0");
 		
-		if (request.getParameter("ajouter") != null) {
-			System.out.println("creation du groupe de travail1");
+		if (urlParam.equals("creer")) {
 			GroupeDeTravailDTO gdtDTOcreer = new GroupeDeTravailDTO();
 			String nomParam = request.getParameter("nom");
 			String typeParam = request.getParameter("type");
@@ -166,29 +162,29 @@ public class GroupServletClass extends HttpServlet {
 			}
 			response.sendRedirect("./GroupServletClass");
 		}
-//
-//		if (urlParam.equals("listUser")) {
-//			try {
-//				gdtlist = gdtService.afficherGroupeDeTravail();
-//				GroupeDeTravailDTO currentgdt = null;
-//				currentgdt = gdtlist.get(Integer.parseInt(request
-//						.getParameter("gdt"))-1);
-//				List<UserDTO> listUserDTO = gdtService
-//						.utilisateurParGroupeDeTravail(currentgdt);
-//				System.out.println("mise en session de la liste user");
-//				session.setAttribute("listUserDTO", listUserDTO);
-//				
-//				request.setAttribute("currentgdt", currentgdt);
-//				
-//
-//			} catch (TransactionalConnectionException e1) {
-//				// TODO Auto-generated catch block
-//				e1.printStackTrace();
-//			}
-//
-//			response.sendRedirect("./GroupServletClass");
-//
-//		}
+
+		if (urlParam.equals("listUser")) {
+			try {
+				gdtlist = gdtService.afficherGroupeDeTravail();
+				GroupeDeTravailDTO currentgdt = null;
+				currentgdt = gdtlist.get(Integer.parseInt(request
+						.getParameter("gdt"))-1);
+				List<UserDTO> listUserDTO = gdtService
+						.utilisateurParGroupeDeTravail(currentgdt);
+				System.out.println("mise en session de la liste user");
+				session.setAttribute("listUserDTO", listUserDTO);
+				
+				request.setAttribute("currentgdt", currentgdt);
+				
+
+			} catch (TransactionalConnectionException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+			response.sendRedirect("./GroupServletClass");
+
+		}
 
 		if (urlParam.equals("modif")) {
 			GroupeDeTravailDTO gdtDTOmodif = new GroupeDeTravailDTO();

@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
-
+body{
+background: url(../css/sources/fondcontenu.jpg);	
+}
 /* 
 page liste  
 */

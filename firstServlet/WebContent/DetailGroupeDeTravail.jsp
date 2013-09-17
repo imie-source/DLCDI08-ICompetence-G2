@@ -16,28 +16,27 @@
 <title></title>
 </head>
 <body>
-<div class="celluleTableau largeur350">Prenom :</div>
- 	<div class="celluleTableau largeur350">Nom :</div>
- 	<div class="celluleTableau largeur100">Identifiant :</div><br /><br />
-	<% GroupeDeTravailDTO gdtDTO = (GroupeDeTravailDTO) request.getAttribute("chosengdt");
-	request.setAttribute("currentgdt", gdtDTO);
-List<UserDTO> listUserDTO = gdtDTO.getListUserDTO();
- Integer i = 0;
- session.setAttribute("listUserDTO", listUserDTO);
-for (UserDTO userDTO : listUserDTO) {%>
-	
-	
- 	<div class="celluleTableau largeur350"><%=i%>. <%= userDTO.getPrenom()%></div>
- 	<div class="celluleTableau largeur350"><%=userDTO.getNom()%></div>
- 	<div class="celluleTableau largeur100"><%=userDTO.getIdentifiant()%></div>
- 	<span id="suppr"> <a
-					href="./GroupServletClass?UrlParam=suprUser&chosenUser=<%=i%>"><img
-						src="./jquery/images/croix_rouge3D.png"
-						></a></span>
- 	
- 	<% 
- 	i++;
- 	}%>
+			<div class="celluleTableau largeur350">Prenom :</div>
+			 	<div class="celluleTableau largeur350">Nom :</div>
+			 	<div class="celluleTableau largeur100">Identifiant :</div><br /><br />
+				<% GroupeDeTravailDTO gdtDTO = (GroupeDeTravailDTO) request.getAttribute("chosengdt");
+				request.setAttribute("currentgdt", gdtDTO);
+			List<UserDTO> listUserDTO = gdtDTO.getListUserDTO();
+			 Integer i = 0;
+			 session.setAttribute("listUserDTO", listUserDTO);
+			for (UserDTO userDTO : listUserDTO) {%>
+				
+				
+			 	<div class="celluleTableau largeur350"><%=i%>. <%= userDTO.getPrenom()%></div>
+			 	<div class="celluleTableau largeur350"><%=userDTO.getNom()%></div>
+			 	<div class="celluleTableau largeur100"><%=userDTO.getIdentifiant()%></div>
+			 	<span id="suppr"> <a href="./GroupServletClass?UrlParam=suprUser&chosenUser=<%=i%>"><img
+									src="./jquery/images/croix_rouge3D.png"></a>
+				</span>
+			 	
+			 	<% 
+			 	i++;
+			 	}%>
  		<br />
  		<input
 			type="button" value="modifier groupe de travail" id="openermodif" />
@@ -64,8 +63,8 @@ for (UserDTO userDTO : listUserDTO) {%>
 					Type (langage, web, client lourd...):<input type="text" name="type"
 						maxlength="40"></input>
 					<%
-					//	GroupeDeTravailDTO chosengdt = listgdt.get(indice);
-					//			System.out.println(chosengdt.getNom());
+// 						GroupeDeTravailDTO chosengdt = listgdt.get(indice);
+// 								System.out.println(chosengdt.getNom());
 					%>
 					<select title="Etat d'avancement">
 						<option>Manque de volontaire</option>

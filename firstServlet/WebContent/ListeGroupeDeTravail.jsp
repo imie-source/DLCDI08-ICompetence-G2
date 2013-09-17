@@ -33,36 +33,38 @@
 				for (GroupeDeTravailDTO gdtDTO : listgdt) {
 			%>
 
-			<div id="lignetableau<%=i%>" class="ligneTableau">
-				<a href="GroupServletClass?numLigne=<%=i%>">
-
-
-					<div class="celluleTableau largeur100"><%=i%></div> <%
- 	gdtDTO.setNumLigne(0);
- 		gdtDTO.setNumLigne(i);
- %>
-					<div class="celluleTableau largeur350"><%=gdtDTO.getNom()%></div>
-					<div class="celluleTableau largeur350"><%=gdtDTO.getType_projet()%></div>
-					<div class="celluleTableau largeur100"><%=gdtDTO.getNomCP()%></div>
-				</a>
-			</div>
-
-
-
-			<div id="contenu<%=i%>" class="contenu">
-				<!-- lien à modifier  -->
-								<button id="openermodif<%=i%>">modifier</button>
-								<button type="submit" value="liste des utilisateurs">volontaires
-									du groupe</button>
-				<span id="suppr"> <a
-					href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img
-						src="http://www.coeur.net/images_communes/croix_rouge3D.png"
-						align="right"></a></span> <span id="userGdt"
-					titre="Volontaire du groupe">
-					<form id="listUserGdt" method="post" title="Volontaire du groupe"
-						action="./GroupServletClass?UrlParam=listUser&gdt=<%=i%>">
-				</span>
-			</div>
+								<div id="lignetableau<%=i%>" class="ligneTableau">
+									<a href="GroupServletClass?numLigne=<%=i%>">
+					
+					
+										<div class="celluleTableau largeur100"><%=i%></div> <%
+									 	gdtDTO.setNumLigne(0);
+									 		gdtDTO.setNumLigne(i);
+									 %>
+										<div class="celluleTableau largeur350"><%=gdtDTO.getNom()%></div>
+										<div class="celluleTableau largeur350"><%=gdtDTO.getType_projet()%></div>
+										<div class="celluleTableau largeur100"><%=gdtDTO.getNomCP()%></div>
+									</a>
+								</div>
+					
+					
+					
+								<div id="contenu<%=i%>" class="contenu">
+									<!-- lien à modifier  -->
+													<button id="openermodif<%=i%>">modifier</button>
+													<button type="submit" value="liste des utilisateurs">volontaires
+														du groupe</button>
+									<span id="suppr"> <a
+										href="./GroupServletClass?UrlParam=supr&chosengdt=<%=i%>"><img
+											src="http://www.coeur.net/images_communes/croix_rouge3D.png"
+											align="right" /></a>
+									</span> 
+									<span id="userGdt" titre="Volontaire du groupe">
+										<form id="listUserGdt" method="post" title="Volontaire du groupe"
+											action="./GroupServletClass?UrlParam=listUser&gdt=<%=i%>">								
+										</form>
+									</span>
+								</div>
 
 			<%
 				i++;
@@ -71,10 +73,18 @@
 		</div>
 
 
+
+
+
+
+
+
+
+
 		<div id="formajout" title="ajouter un groupe de travail"
 			class="formulaire">
 			
-			<form method="post" action="./GroupServletClass" title="Ajouter un groupe de travail" >
+			<form method="post" action="./GroupServletClass?UrlParam=creer" title="Ajouter un groupe de travail" >
 
 				<fieldset>
 					Nom (20 caract max):<input type="text" name="nom" maxlength="20"></input>
