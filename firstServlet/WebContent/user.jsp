@@ -33,7 +33,7 @@
 
 	<%
 		UserDTO currentUserDTO = (UserDTO) session
-				.getAttribute("userChoose");
+			.getAttribute("userChoose");
 	%>
 
 	<div class="infouser">
@@ -45,11 +45,11 @@
 			<br />
 			<%
 				String dateUser = "";
-				String DATE_FORMAT = "dd/MM/yyyy";
-				SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-				if (currentUserDTO.getDateNaiss() != null) {
-					dateUser = dateFormat.format(currentUserDTO.getDateNaiss());
-				}
+					String DATE_FORMAT = "dd/MM/yyyy";
+					SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+					if (currentUserDTO.getDateNaiss() != null) {
+						dateUser = dateFormat.format(currentUserDTO.getDateNaiss());
+					}
 			%>
 			date de naissance:<%=dateUser%>
 
@@ -59,24 +59,24 @@
 		<div id="Competences">
 			<%
 				Integer i = 1;
-				for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
-					
+					for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
 			%>
 
 			<%=competenceDTO.getLibelle()%>
 			<%=competenceDTO.getNiveau()%>
-			<input id="competenceid" type="text" name="competenceid" value="<%=competenceDTO.getId()%>"></input>
+			<input id="competenceid" type="hidden" name="competenceid"
+				value="<%=competenceDTO.getId()%>"></input>
 			<button id=openersupprcompetence>supprimer</button>
 			<br />
 			<%
 				i++;
-				}
+					}
 
-				CursusDTO cursusDTOModif = currentUserDTO.getCursus();
-				String cursusUser = null;
-				if (cursusDTOModif != null) {
-					cursusUser = cursusDTOModif.getLibelle();
-				}
+					CursusDTO cursusDTOModif = currentUserDTO.getCursus();
+					String cursusUser = null;
+					if (cursusDTOModif != null) {
+						cursusUser = cursusDTOModif.getLibelle();
+					}
 			%>
 		</div>
 		<div id="Cursus">
@@ -112,9 +112,9 @@
 				}
 			%>
 		</div>
-		
-		
-		
+
+
+
 		<div class=bottonmenu>
 			<button id="openermodif">modifier</button>
 			<button id=openersuppr>supprimer</button>
@@ -135,31 +135,29 @@
 				<legend>Competence</legend>
 				<%
 					ICompetenceService competenceService = BaseConcreteFactory
-							.getInstance().createCompetenceService(null);
-					List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
-					competenceDTOs = competenceService.findAll();
+									.getInstance().createCompetenceService(null);
+							List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+							competenceDTOs = competenceService.findAll();
 				%>
 
 				<select name="competenceid">
 					<%
 						for (CompetenceDTO competenceDTO : competenceDTOs) {
-							
 					%>
 					<option value="<%=competenceDTO.getId()%>">
 						<%=competenceDTO.getLibelle()%>
 					</option>
 					<%
 						}
-						
-						%> 
+					%>
 				</select>
 
 				<legend>Niveau</legend>
 				<%
 					INiveauService niveauService = BaseConcreteFactory.getInstance()
-							.createNiveauService(null);
-					List<NiveauDTO> niveauDTOs = new ArrayList<NiveauDTO>();
-					niveauDTOs = niveauService.findAll();
+									.createNiveauService(null);
+							List<NiveauDTO> niveauDTOs = new ArrayList<NiveauDTO>();
+							niveauDTOs = niveauService.findAll();
 				%>
 				<select name="niveauid">
 					<%
@@ -198,7 +196,7 @@
 				<div id="email"></div>
 			</fieldset>
 
-			<fieldset>
+		<%-- 	<fieldset>
 				<legend>Competence</legend>
 
 
@@ -211,38 +209,41 @@
 					</option>
 					<%
 						}
-					%>
-				</select>
+					%> 
+				</select> 
 
 				<legend>Niveau</legend>
-
-				<select name="niveauid">
+				 <select name="niveauid"> 
 					<%
-						for (NiveauDTO niveauDTO : niveauDTOs) {
-					%>
+						
+					%> for (NiveauDTO niveauDTO : niveauDTOs) { 
 					<option value="<%=niveauDTO.getId()%>">
+						
 						<%=niveauDTO.getLibelle()%>
+						
 					</option>
 					<%
-						}
-					%>
-				</select>
-			</fieldset>
+					}
+					%>  
+					
+				</select> 
+			</fieldset> --%>
+		
 
 			<fieldset>
 				<legend>Cursus</legend>
 				<%
 					ICursusService cursusService = BaseConcreteFactory.getInstance()
-							.createCursusService(null);
-					List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
-					cursusDTOs = cursusService.findAll();
+									.createCursusService(null);
+							List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
+							cursusDTOs = cursusService.findAll();
 				%>
 				<select name="cursusid">
 					<%
 						for (CursusDTO cursusDTO : cursusDTOs) {
-							Boolean isUserCursus = cursusDTO.getId().equals(
-									currentUserDTO.getCursus().getId());
-							if (isUserCursus) {
+										Boolean isUserCursus = cursusDTO.getId().equals(
+												currentUserDTO.getCursus().getId());
+										if (isUserCursus) {
 					%>
 					<option selected="selected" value="<%=cursusDTO.getId()%>">
 						<%=cursusDTO.getLibelle()%>
@@ -255,7 +256,7 @@
 					</option>
 					<%
 						}
-						}
+									}
 					%>
 
 				</select>
