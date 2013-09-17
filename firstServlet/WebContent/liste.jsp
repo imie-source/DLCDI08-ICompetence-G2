@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="org.imie.DTO.NiveauDTO"%>
+<%@page import="org.imie.service.interfaces.INiveauService"%>
+<%@page import="org.imie.DTO.CompetenceDTO"%>
+<%@page import="org.imie.service.interfaces.ICompetenceService"%>
+<%@page import="org.imie.DAO.interfaces.ICompetenceDAO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.imie.factory.BaseConcreteFactory"%>
 <%@page import="org.imie.service.interfaces.ICursusService"%>
@@ -75,14 +80,51 @@
 					Libellé*:<input  type="text" name="libelle" maxlength="20"></input><br />
 					Ville*:<input  type="text" name="ville" maxlength="20"></input><br />
 					Code postal*:<input type="text" name="code_postal" maxlength="5"></input><br />
+</fieldset>
 
-
-					<!--<fieldset> 	
+				<fieldset> 	
 			<legend>Competence</legend>
-			Libellé : <input type="text" name="libellé"/><br /> Niveau :
-			<input type="text" name="niveau"/><br /> 
-			</fieldset>-->
-				</fieldset>
+			<%
+						ICompetenceService competenceService = BaseConcreteFactory.getInstance()
+								.createCompetenceService(null);
+						List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+						competenceDTOs = competenceService.findAll();
+					%>
+			
+		<select name="competenceid">
+						<%
+							for (CompetenceDTO competenceDTO : competenceDTOs) {
+						%>
+						<option value="<%=competenceDTO.getId()%>">
+							<%=competenceDTO.getLibelle()%>
+						</option>
+						<%
+							}
+						%>
+					</select>
+					
+					<legend>Niveau</legend>
+					<%
+						INiveauService niveauService = BaseConcreteFactory.getInstance()
+								.createNiveauService(null);
+						List<NiveauDTO> niveauDTOs = new ArrayList<NiveauDTO>();
+						niveauDTOs = niveauService.findAll();
+					%>
+					<select name="niveauid">
+						<%
+							for (NiveauDTO niveauDTO : niveauDTOs) {
+						%>
+						<option value="<%=niveauDTO.getId()%>">
+							<%=niveauDTO.getLibelle()%>
+						</option>
+						<%
+							}
+						%>
+					</select>
+			</fieldset>
+				
+				
+				
 				<fieldset>
 					<legend>Cursus*</legend>
 					<%
@@ -91,7 +133,6 @@
 						List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
 						cursusDTOs = cursusService.findAll();
 					%>
-
 					<select name="cursusid">
 						<%
 							for (CursusDTO cursusDTO : cursusDTOs) {
@@ -104,6 +145,7 @@
 						%>
 					</select>
 				</fieldset>
+				
 				<fieldset>
 					<legend>Etes vous disponible?</legend>
 					<br /> <input type="radio" checked="checked" name="disponible"

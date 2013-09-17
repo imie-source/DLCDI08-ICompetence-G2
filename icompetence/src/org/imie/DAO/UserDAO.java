@@ -17,6 +17,7 @@ import org.imie.DAO.interfaces.IUserDAO;
 import org.imie.DTO.AdresseDTO;
 import org.imie.DTO.CompetenceDTO;
 import org.imie.DTO.CursusDTO;
+import org.imie.DTO.MotClefDTO;
 import org.imie.DTO.UserDTO;
 import org.imie.exeptionManager.ExceptionManager;
 import org.imie.factory.BaseConcreteFactory;
@@ -159,12 +160,13 @@ public class UserDAO extends ATransactional implements IUserDAO {
 
 			// execution d'une requête SQL et récupération du result dans le
 			// resultset
-		
+
 			String insertInstruction = "insert into utilisateur (nom, prenom, adresse_mail, date_naissance, disponible, identifiant, pwd, id_formation, id_adresse) "
 					+ "values (?,?,?,?,?,?,?,?,?) ";
 			PreparedStatement preparedStatement = getConnection()
-					.prepareStatement(insertInstruction,Statement.RETURN_GENERATED_KEYS);
-			
+					.prepareStatement(insertInstruction,
+							Statement.RETURN_GENERATED_KEYS);
+
 			preparedStatement.setString(1, userToInsert.getNom());
 			preparedStatement.setString(2, userToInsert.getPrenom());
 			preparedStatement.setString(3, userToInsert.getAdresse_mail());
@@ -176,19 +178,17 @@ public class UserDAO extends ATransactional implements IUserDAO {
 			preparedStatement.setInt(8, userToInsert.getCursus().getId());
 			preparedStatement.setInt(9, userToInsert.getAdresse()
 					.getId_adresse());
-			
+
 			preparedStatement.executeUpdate();
 			resultSet = preparedStatement.getGeneratedKeys();
 			int i = 1;
-            if(resultSet.next())
-            {
-            	
-            	int last_inserted_id = resultSet.getInt(i);
-                i++;
-                userDTOinserted.setId(last_inserted_id);
-                System.out.println(userDTOinserted.getId());
-            }
-			
+			if (resultSet.next()) {
+
+				int last_inserted_id = resultSet.getInt(i);
+				i++;
+				userDTOinserted.setId(last_inserted_id);
+				System.out.println(userDTOinserted.getId());
+			}
 
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -363,7 +363,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		 * TODO add date to userDTO and query TODO ajouter la gestion des
 		 * erreurs pour le cas ou il n'y pas d'utilisateur
 		 */
-		UserDTO useToReturn =new UserDTO();
+		UserDTO useToReturn = new UserDTO();
 		String nom = userDTO.getNom();
 		String prenom = userDTO.getPrenom();
 		String login = userDTO.getIdentifiant();
@@ -471,7 +471,7 @@ public class UserDAO extends ATransactional implements IUserDAO {
 					System.out.println(userQuery);
 					ResultSet resultSet2 = statement2.executeQuery(queryProfil);
 					while (resultSet2.next()) {
-						currenDTO.setProfil(resultSet2.getInt("id_profil"));	
+						currenDTO.setProfil(resultSet2.getInt("id_profil"));
 					}
 				}
 
@@ -497,17 +497,88 @@ public class UserDAO extends ATransactional implements IUserDAO {
 				e.printStackTrace();
 			}
 		}
-		try {	 useToReturn = userDTOs.get(0);}
-		
-		catch(IndexOutOfBoundsException e) {
+		try {
+			useToReturn = userDTOs.get(0);
+		}
+
+		catch (IndexOutOfBoundsException e) {
 			useToReturn = null;
 			e.printStackTrace();
-			
-			
+
 		}
-	
-		
+
 		return useToReturn;
 	}
 
+	@Override
+	public void attachementCompetence(int userid, int competenceid, int niveauid)
+			throws TransactionalConnectionException {
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			String insertInstruction = "insert into utilisateur_dispose_comp (id_utilisateur,id_comp,id_niveau) "
+					+ "values (?,?,?)";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
+			preparedStatement.setInt(1, userid);
+			preparedStatement.setInt(2, competenceid);
+			preparedStatement.setInt(3, niveauid);
+
+			preparedStatement.executeQuery();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+	}
+
+	@Override
+	public void modifattachementCompetence(int userid, int competenceid,
+			int niveauid) throws TransactionalConnectionException {
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+
+			String insertInstruction = "update utilisateur_dispose_comp  set id_comp =?, id_niveau =? "
+					+ "where id_utilisateur =?";
+			PreparedStatement preparedStatement = getConnection()
+					.prepareStatement(insertInstruction);
+			preparedStatement.setInt(1, competenceid);
+			preparedStatement.setInt(2, niveauid);
+			preparedStatement.setInt(3, userid);
+
+			preparedStatement.executeQuery();
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+
+		} finally {
+
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+	}
 }
