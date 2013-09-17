@@ -56,4 +56,28 @@ $(document).ready(
 				});
 			});
 
+			/* Modale ajoutcomp */
+			$(function() {
+				$("#ajoutcompdialog").dialog({
+					autoOpen : false,
+					show : {
+						effect : "blind",
+						duration : 1000
+					},
+					hide : {
+						effect : "fade",
+						duration : 1000
+					}
+				});
+
+//				$("button").mousedown(function() {
+//					var button = $(this).attr("id");
+//					var param = button.split("e");
+//					var indice = param[5];
+					
+					
+					$("#openercompetence").click(function() {
+						$("#ajoutcompdialog").dialog("open");
+					});
+				});
 		});

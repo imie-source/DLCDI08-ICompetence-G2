@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@page import="org.imie.DTO.NiveauDTO"%>
+<%@page import="org.imie.service.interfaces.INiveauService"%>
+<%@page import="org.imie.service.interfaces.ICompetenceService"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="org.imie.factory.BaseConcreteFactory"%>
@@ -22,16 +25,15 @@
 <script src="./js/user.js"></script>
 <script src="./jquery/jquery.validate.js"></script>
 <script src="./js/validationuser.js"></script>
-<link rel="stylesheet"  href="./css/Style.css" />
-	<title>Détails utilisateur</title>
+<link rel="stylesheet" href="./css/Style.css" />
+<title>Détails utilisateur</title>
 </head>
 <body>
-<jsp:include page="./header.jsp"></jsp:include>
 	<%-- recuperation du user par le context--%>
 
 	<%
 		UserDTO currentUserDTO = (UserDTO) session
-				.getAttribute("userChoose");
+			.getAttribute("userChoose");
 	%>
 
 	<div class="infouser">
@@ -43,11 +45,11 @@
 			<br />
 			<%
 				String dateUser = "";
-				String DATE_FORMAT = "dd/MM/yyyy";
-				SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
-				if (currentUserDTO.getDateNaiss() != null) {
-					dateUser = dateFormat.format(currentUserDTO.getDateNaiss());
-				}
+					String DATE_FORMAT = "dd/MM/yyyy";
+					SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+					if (currentUserDTO.getDateNaiss() != null) {
+						dateUser = dateFormat.format(currentUserDTO.getDateNaiss());
+					}
 			%>
 			date de naissance:<%=dateUser%>
 
@@ -56,17 +58,25 @@
 
 		<div id="Competences">
 			<%
-				for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
+				Integer i = 1;
+					for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
 			%>
+
 			<%=competenceDTO.getLibelle()%>
 			<%=competenceDTO.getNiveau()%>
+			<input id="competenceid" type="hidden" name="competenceid"
+				value="<%=competenceDTO.getId()%>"></input>
+			<button id=openersupprcompetence>supprimer</button>
+			<br />
 			<%
-				}
-				CursusDTO cursusDTOModif = currentUserDTO.getCursus();
-				String cursusUser = null;
-				if (cursusDTOModif != null) {
-					cursusUser = cursusDTOModif.getLibelle();
-				}
+				i++;
+					}
+
+					CursusDTO cursusDTOModif = currentUserDTO.getCursus();
+					String cursusUser = null;
+					if (cursusDTOModif != null) {
+						cursusUser = cursusDTOModif.getLibelle();
+					}
 			%>
 		</div>
 		<div id="Cursus">
@@ -102,56 +112,138 @@
 				}
 			%>
 		</div>
-		<div class=bottommenu>
+
+
+
+		<div class=bottonmenu>
 			<button id="openermodif">modifier</button>
-		<button id=openersuppr>supprimer</button>
+			<button id=openersuppr>supprimer</button>
+			<button id=openercompetence>ajouter competence</button>
+
+
 		</div>
 
 	</div>
 
+	<div id="ajoutcompdialog" title="ajoutcomp">
+		<form id="formajoutcomp" method="post"
+			action="./ListeUserServlet?UrlParam=ajoutcomp">
+			<input type="hidden" value="<%=currentUserDTO.getId()%>"
+				name="userid" />
+
+			<fieldset>
+				<legend>Competence</legend>
+				<%
+					ICompetenceService competenceService = BaseConcreteFactory
+									.getInstance().createCompetenceService(null);
+							List<CompetenceDTO> competenceDTOs = new ArrayList<CompetenceDTO>();
+							competenceDTOs = competenceService.findAll();
+				%>
+
+				<select name="competenceid">
+					<%
+						for (CompetenceDTO competenceDTO : competenceDTOs) {
+					%>
+					<option value="<%=competenceDTO.getId()%>">
+						<%=competenceDTO.getLibelle()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+
+				<legend>Niveau</legend>
+				<%
+					INiveauService niveauService = BaseConcreteFactory.getInstance()
+									.createNiveauService(null);
+							List<NiveauDTO> niveauDTOs = new ArrayList<NiveauDTO>();
+							niveauDTOs = niveauService.findAll();
+				%>
+				<select name="niveauid">
+					<%
+						for (NiveauDTO niveauDTO : niveauDTOs) {
+					%>
+					<option value="<%=niveauDTO.getId()%>">
+						<%=niveauDTO.getLibelle()%>
+					</option>
+					<%
+						}
+					%>
+				</select>
+			</fieldset>
+			<input type="submit" value="ajouter" /><br />
+		</form>
+	</div>
+
 	<div id="modifdialog" title="modifier">
-		<form id="formmodif" method="post" action="./ListeUserServlet?UrlParam=modif">
+		<form id="formmodif" method="post"
+			action="./ListeUserServlet?UrlParam=modif">
 			<input type="hidden" value="<%=currentUserDTO.getId()%>"
 				name="userid" />
 			<fieldset>
 				<legend>Coordonnées</legend>
 
-				<br /> Nom*:<input  type="text" value="<%=currentUserDTO.getNom()%>"
-					name="nom" /> <br /> Prénom*:<input  type="text"
+				<br /> Nom*:<input type="text" value="<%=currentUserDTO.getNom()%>"
+					name="nom" /> <br /> Prénom*:<input type="text"
 					value="<%=currentUserDTO.getPrenom()%>" name="prenom" /> <br />
 				Age:<%=currentUserDTO.getAge()%>
 				ans <br /> Identifiant*:<input type="text"
 					value="<%=currentUserDTO.getIdentifiant()%>" name="identifiant" />
-				<br /> date de naissance*: jj/mm/yyyy:<input id="datenaissancemodif" type="text"
-					value="<%=dateUser%>" name="datenaissance" /> mail:<input 
-					type="text" value="<%=currentUserDTO.getAdresse_mail()%>" name=mail />
-					<div id="email"> </div>
+				<br /> date de naissance*: jj/mm/yyyy:<input
+					id="datenaissancemodif" type="text" value="<%=dateUser%>"
+					name="datenaissance" /> mail:<input type="text"
+					value="<%=currentUserDTO.getAdresse_mail()%>" name=mail />
+				<div id="email"></div>
 			</fieldset>
 
-		 	<%
-				for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
-			%>
+		<%-- 	<fieldset>
+				<legend>Competence</legend>
 
-			<input type="text" value=<%=competenceDTO.getLibelle()%> name=libellé/>
-			<input type="text" value=<%=competenceDTO.getNiveau()%> name=niveau/>
-			<%
-				}
-			%>
-			
+
+				<select name="competenceid">
+					<%
+						for (CompetenceDTO competenceDTO : competenceDTOs) {
+					%>
+					<option value="<%=competenceDTO.getId()%>">
+						<%=competenceDTO.getLibelle()%>
+					</option>
+					<%
+						}
+					%> 
+				</select> 
+
+				<legend>Niveau</legend>
+				 <select name="niveauid"> 
+					<%
+						
+					%> for (NiveauDTO niveauDTO : niveauDTOs) { 
+					<option value="<%=niveauDTO.getId()%>">
+						
+						<%=niveauDTO.getLibelle()%>
+						
+					</option>
+					<%
+					}
+					%>  
+					
+				</select> 
+			</fieldset> --%>
+		
+
 			<fieldset>
 				<legend>Cursus</legend>
 				<%
 					ICursusService cursusService = BaseConcreteFactory.getInstance()
-							.createCursusService(null);
-					List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
-					cursusDTOs = cursusService.findAll();
+									.createCursusService(null);
+							List<CursusDTO> cursusDTOs = new ArrayList<CursusDTO>();
+							cursusDTOs = cursusService.findAll();
 				%>
 				<select name="cursusid">
 					<%
 						for (CursusDTO cursusDTO : cursusDTOs) {
-							Boolean isUserCursus = cursusDTO.getId().equals(
-									currentUserDTO.getCursus().getId());
-							if (isUserCursus) {
+										Boolean isUserCursus = cursusDTO.getId().equals(
+												currentUserDTO.getCursus().getId());
+										if (isUserCursus) {
 					%>
 					<option selected="selected" value="<%=cursusDTO.getId()%>">
 						<%=cursusDTO.getLibelle()%>
@@ -164,7 +256,7 @@
 					</option>
 					<%
 						}
-						}
+									}
 					%>
 
 				</select>
@@ -193,9 +285,9 @@
 				%>
 				<legend>Adresse</legend>
 				<input type="hidden" value="<%=adresseDTO.getId_adresse()%>"
-					name="id_adresse" /> Libellé*:<input  type="text"
+					name="id_adresse" /> Libellé*:<input type="text"
 					value="<%=adresseDTO.getLibelle()%>" name="libelle" /><br />
-				Ville*:<input  type="text" value="<%=adresseDTO.getVille()%>"
+				Ville*:<input type="text" value="<%=adresseDTO.getVille()%>"
 					name="ville" /><br /> Code postal*:<input type="text"
 					value="<%=adresseDTO.getCode_postal()%>" name="code_postal" /><br />
 				<%
@@ -206,17 +298,18 @@
 		</form>
 	</div>
 
-<div id="supprdialog" title="modifier">
-			<form id="formsuppr" method="post"
-				action="./ListeUserServlet?UrlParam=suppr">
-				<input class="only_integer" id="idusersuppr" type="hidden" value="<%=currentUserDTO.getId()%>" name="idusersuppr" />
-				<fieldset>
-					<!-- <legend>supprimer un utilisateur</legend> -->
-					vous allez supprimer un utilisateur
-				</fieldset>
-				<br /> <input type="submit" value="supprimer" />
-			</form>
-		</div>
+	<div id="supprdialog" title="suprimerutilisateur">
+		<form id="formsuppr" method="post"
+			action="./ListeUserServlet?UrlParam=suppr">
+			<input id="idusersuppr" type="hidden"
+				value="<%=currentUserDTO.getId()%>" name="idusersuppr" />
+			<fieldset>
+				<!-- <legend>supprimer un utilisateur</legend> -->
+				vous allez supprimer un utilisateur
+			</fieldset>
+			<br /> <input type="submit" value="supprimer" />
+		</form>
+	</div>
 
 </body>
 </html>

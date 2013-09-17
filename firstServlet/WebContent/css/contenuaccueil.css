@@ -1,26 +1,29 @@
 @CHARSET "UTF-8";
-body{
-background: url(../css/sources/fondcontenu.jpg);	
+
+#textconnect{
+	position: relative;
+	height: 30px;
+	width: 1000px;
+	font-family: sans-serif;
+	font-size: small;
+	font-weight: bold;
+	color:white;
+	margin: auto;
 }
 
 #contenuaccueil {
 	background-color: white;
-		
 	position: relative;
 	height: 650px;
 	width: 1000px;
 	margin: auto;
 }
+
 a {
 	text-decoration: none;
 }
 
-#textconnect{
-	font-family: sans-serif;
-	font-weigt:bold;
-	font-size: small;
-	color:white;
-}
+
 
 
 #menurighttop2 {
@@ -29,7 +32,7 @@ a {
 	top: 10px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 #menurighttop {
 	background-color: #9A2EFE;
@@ -37,7 +40,7 @@ a {
 	top: 10px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 
 #menurightbottom{
@@ -46,7 +49,7 @@ a {
 	top: 320px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 
 #menurighttop {
@@ -55,7 +58,7 @@ a {
 	top: 10px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 
 #menurightbottom2{
@@ -64,7 +67,7 @@ a {
 	top: 320px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 #menurightbottom1{
 	background-color:fuchsia;
@@ -72,7 +75,7 @@ a {
 	top: 320px;
 	left: 700px;
 	height: 300px;
-	width: 200px;
+	width: 250px;
 }
 
 #squaretopleft2 {
@@ -149,6 +152,23 @@ a {
 	font-size:xx-large;
 	font-weight: bold;
 }
+.texte1{
+	position:relative;
+	top: 70px;
+	left:30px;
+	font-family: sans-serif;
+	font-size:xx-large;
+	font-weight: bold;
+}
+.texte2{
+	position:relative;
+	top: 70px;
+	left:30px;
+	font-family: sans-serif;
+	font-size:xx-small;
+	font-weight: bold;
+}
+
 .stylewhite{
 	color: white;
 }

@@ -32,11 +32,15 @@
 		<c:set var="niveau" scope="page" value="${user.getProfil()}" />
 	</div>
 
+<<<<<<< HEAD
+		<c:if test="${niveau ==1 || niveau ==2 || niveau ==4 }"> 
+=======
+>>>>>>> bf30cd9df953c3f5abec6c36d7e38746f50ad339
 
 
 	<div id=contenuaccueil>
 
-		<c:if test="${niveau ==1 || niveau ==2 || niveau ==4 }"> 
+		<%-- 		<c:if test="${niveau == 3}"> --%>
 
 		
 			<div id=menurighttop>
@@ -57,7 +61,8 @@
 				<span class="styleblack">IMPORT</span>
 				</div></a>	
 			</div>
- 		</c:if> 
+		
+	<%-- 		</c:if> --%>
 
 
 
@@ -69,6 +74,10 @@
 					class="styleblack">DE L'ECOLE</span><br> <span
 					class="styleblack">IMIE</span>
 			</div>
+<<<<<<< HEAD
+ 		</c:if> 
+=======
+>>>>>>> bf30cd9df953c3f5abec6c36d7e38746f50ad339
 
 			<div class="texte2">
 

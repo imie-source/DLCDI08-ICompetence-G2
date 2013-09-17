@@ -1,0 +1,36 @@
+#conteneur{
+position:relative;
+width:1000px;
+height: 218px;
+margin: auto;
+}
+
+	/* BANDE DE TITRE */
+	
+	#pieddepage{
+	background-image: url(../css/sources/pieddepage.jpeg );
+	width: 1000px;
+	height: 100px;
+	}
+
+
+
+		#logo{
+		display:inline-block;
+		float:left;
+		top:10px;
+		margin-left:10px;
+		width: 82px;
+		height: 82px;
+		}
+	
+		
+		#bloc3{
+		display:inline-block;
+		float:right;
+		width: 100px;
+		height: 82px;
+		margin-top:10px;
+		margin-right: 10px;
+		}
+

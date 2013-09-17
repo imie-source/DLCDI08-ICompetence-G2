@@ -12,12 +12,11 @@ $(document).ready(function() {
 	
 	$("#zone1").hover(
 	        function () {
-	          $("#zone3").hide();
+	          $("#zone2").hide();
 	        }, 
 	        function () {
-	          $("#zone3").show();
+	          $("#zone2").show();
 	        }
-	       
 	    );
 	$("#zone2").hover(
 	        function () {
@@ -25,25 +24,9 @@ $(document).ready(function() {
 	        }, 
 	        function () {
 	          $("#zone1").show();
-	        }
-	    );
-	$("#zone2").hover(
-	        function () {
-	          $("#zone3").hide();
-	        }, 
-	        function () {
-	          $("#zone3").show();
 	        }
 	    );
 	
-	$("#zone3").hover(
-	        function () {
-	          $("#zone1").hide();
-	        }, 
-	        function () {
-	          $("#zone1").show();
-	        }
-	    );
 	
 	$("#zonesquarebottomleft").hover(
 	        function () {

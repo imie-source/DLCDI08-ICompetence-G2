@@ -517,16 +517,14 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		ResultSet resultSet = null;
 		try {
 
-			String insertInstruction = "insert into utilisateur_dispose_comp (id_utilisateur,id_comp,id_niveau) "
+			String insertInstruction = "insert into utilisateur_dispose_comp (id_utilisateur,id_comp,id_niveau_comp) "
 					+ "values (?,?,?)";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setInt(1, userid);
 			preparedStatement.setInt(2, competenceid);
 			preparedStatement.setInt(3, niveauid);
-
-			preparedStatement.executeQuery();
-
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 
@@ -568,6 +566,36 @@ public class UserDAO extends ATransactional implements IUserDAO {
 
 		} finally {
 
+			try {
+				if (resultSet != null) {
+					resultSet.close();
+				}
+				if (statement != null) {
+					statement.close();
+				}
+
+			} catch (SQLException e) {
+				ExceptionManager.getInstance().manageException(e);
+			}
+		}
+	}
+	public void deleteattachementCompetence(int Userid)
+			throws TransactionalConnectionException {
+	
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			String insertInstruction1 = "DELETE FROM utilisateur_dispose_comp  WHERE id_utilisateur =? ";
+			PreparedStatement preparedStatement1 = getConnection().prepareStatement(insertInstruction1);
+			preparedStatement1.setInt(1, Userid);
+			preparedStatement1.executeUpdate();
+			
+			
+			
+
+		} catch (SQLException e) {
+			ExceptionManager.getInstance().manageException(e);
+		} finally {
 			try {
 				if (resultSet != null) {
 					resultSet.close();

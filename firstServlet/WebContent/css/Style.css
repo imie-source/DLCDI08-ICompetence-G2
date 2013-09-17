@@ -1,5 +1,7 @@
 @CHARSET "UTF-8";
-
+body{
+background: url(../css/sources/fondcontenu.jpg);	
+}
 /* 
 page liste  
 */
@@ -10,6 +12,8 @@ page liste
 }
 
 .conteneurcomp {
+
+	color: white;
 	margin-left: 35%; 
 	width: auto;
 	position: relative;
@@ -73,7 +77,7 @@ a {
 page User 
 */
 
-.bottommenu  {
+.bottonmenu  {
 	display:inline-block;
 	margin: 10px;	
 } 
