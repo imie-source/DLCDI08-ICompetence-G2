@@ -19,6 +19,7 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
+	
 	<div id=textconnect>
 		<p>Bonjour
 			<c:out value="${user.getPrenom()}"></c:out>
@@ -37,11 +38,10 @@
 <%-- 		<c:if test="${niveau == 3}"> --%>
 
 
-
-		
+		<a id="zonemenurighttop" href="./ListeUserServlet">
 		
 		<div id=menurighttop>
-			 <a id="zone1" class="texte" href="./NiveauServletClass"><span
+			 <a id="zone1" class="texte"><span
 				class="stylewhite">NIVEAU</span></a><br>  <span><br>
 			<br></span> <a id="zone2" class="texte" href="./ListMotClefServletClass"><span
 				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
@@ -54,15 +54,14 @@
 			<div id="menurighttop">
 
 
-				<a id="zone1" class="texte" href="./NiveauServletClass"><span
+				<a id="zone1" class="texte"><span
 					class="stylewhite">NIVEAU</span><br> </a> <span><br> <br></span>
 				<a id="zone2" class="texte" href="./ListMotClefServletClass"><span
 					class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
 						CLEF</span><br> </a>
 
-
-
 			</div>
+		</a>
 <%-- 		</c:if> --%>
 
 
@@ -70,14 +69,23 @@
 
 		<a id="zonesmenurightbottom">
 			<div id="menurightbottom1">
-				<div class="texte">
+				<div class="texte1">
+					<span class="stylewhite">LE PROJET</span><br>
+					<span class="styleblack">DE L'ECOLE</span><br>
+					<span class="styleblack">IMIE</span>
+				</div>
+				
+				<div class="texte2">
 
-
-
-					<span class="stylewhite">INFO</span><br> <span
-						class="stylewhite"> ET</span><br> <span class="styleblack">
-						NEWS</span>
-
+					<span class="stylewhite">L'application de gestion</span><br> 
+					<span class="stylewhite"> des compétences</span><br> 
+					<span class="stylewhite"> permet à l'ensemble</span><br>
+					<span class="stylewhite"> des étudiants volontaires,</span><br>
+					<span class="styleblack"> dans le projet école en cours d'étude,</span><br>
+					<span class="stylewhite"> de se positionner sur les compétences</span><br>
+					<span class="stylewhite"> qu'ils possèdent et qui seront </span><br>
+					<span class="stylewhite"> nécessaire à la réalisation de</span><br>
+					<span class="stylewhite"> ce projet école.</span><br>
 
 				</div>
 			</div>
@@ -161,5 +169,6 @@
 
 
 	</div>
+	
 </body>
 </html>
