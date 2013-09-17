@@ -148,15 +148,17 @@ public class GroupServletClass extends HttpServlet {
 
 		String urlParam = null;
 		urlParam = request.getParameter("UrlParam");
-
-		if (urlParam.equals("creer")) {
+		System.out.println("creation du groupe de travail0");
+		
+		if (request.getParameter("ajouter") != null) {
+			System.out.println("creation du groupe de travail1");
 			GroupeDeTravailDTO gdtDTOcreer = new GroupeDeTravailDTO();
 			String nomParam = request.getParameter("nom");
 			String typeParam = request.getParameter("type");
 			gdtDTOcreer.setType_projet(typeParam);
 			gdtDTOcreer.setNom(nomParam);
 			try {
-				System.out.println("creation du groupe de travail");
+				System.out.println("creation du groupe de travail2");
 				gdtService.creerGroupeDeTravail(gdtDTOcreer);
 			} catch (TransactionalConnectionException e) {
 				System.out.println("echec de la creation du groupe de travail");

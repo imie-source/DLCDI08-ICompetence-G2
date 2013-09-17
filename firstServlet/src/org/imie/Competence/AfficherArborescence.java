@@ -77,9 +77,11 @@ public class AfficherArborescence extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
-		Integer niveau = Integer.valueOf(request.getParameter("niveauParentcomp"));
+		Integer parent;
 		String libelle = request.getParameter("libelle");
 		Integer idcomp = Integer.valueOf(request.getParameter("idcomp"));
+		String chemin = (request.getParameter("chemincomp"));
+		
 		
 		ICompetenceService competenceService = BaseConcreteFactory.getInstance().createCompetenceService(null);
 		CompetenceDTO competenceDTO = new CompetenceDTO();
@@ -91,7 +93,6 @@ public class AfficherArborescence extends HttpServlet {
 				
 				competenceDTO.setId(idcomp);
 				competenceDTO.setLibelle(libelle);
-				competenceDTO.setNiveauParent(niveau);					
 				
 				competenceService.updateCompetence(competenceDTO);
 				
@@ -118,8 +119,17 @@ public class AfficherArborescence extends HttpServlet {
 			try {
 				
 				competenceDTO.setId(idcomp);
-				competenceDTO.setLibelle(libelle);
-				competenceDTO.setNiveauParent(niveau);	
+				competenceDTO.setLibelle(libelle);	
+				
+				String[] parentch = chemin.split(",");
+				int nb = parentch.length-1;
+				
+				String parentstr = parentch[nb];
+				parent = Integer.valueOf(parentstr.replace("}",""));
+				
+				competenceDTO.setNiveauParent(parent);
+				System.out.println(parent);
+				
 				
 				
 				competenceService.insertCompetence(competenceDTO);
