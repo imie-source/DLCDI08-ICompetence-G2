@@ -19,9 +19,10 @@
 </head>
 <body>
 	<jsp:include page="./header.jsp"></jsp:include>
-	
+
 	<div id=textconnect>
-		<p>Bonjour
+		<p>
+			Bonjour
 			<c:out value="${user.getPrenom()}"></c:out>
 			<c:out value="${user.getNom()}"></c:out>
 		<p>
@@ -30,150 +31,133 @@
 		</p>
 		<c:set var="niveau" scope="page" value="${user.getProfil()}" />
 	</div>
-	
-	
-	
+
+
+
 	<div id=contenuaccueil>
 
-<%-- 		<c:if test="${niveau == 3}"> --%>
+		<%-- 		<c:if test="${niveau == 3}"> --%>
 
 
-		<a id="zonemenurighttop" href="./ListeUserServlet">
-		
-		<div id=menurighttop>
-			 <a id="zone1" class="texte"><span
-				class="stylewhite">NIVEAU</span></a><br>  <span><br>
-			<br></span> <a id="zone2" class="texte" href="./ListMotClefServletClass"><span
-				class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
-					CLEF</span></a><br> <span><br>
-			<br></span>
-					 <a id="zone3" class="texte" href="./FileUpLoad"><span
-				class="stylewhite">IMPORT</span><br> </a> 
-		</div>
-
-<!-- 			<div id="menurighttop"> -->
-
-
-				<a id="zone1" class="texte"><span
-<!-- 					class="stylewhite">NIVEAU</span><br> </a> <span><br> <br></span> -->
-<!-- 				<a id="zone2" class="texte" href="./ListMotClefServletClass"><span -->
-<!-- 					class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT -->
-<!-- 						CLEF</span><br> </a> -->
-<!-- 			</div> -->
-					class="stylewhite">NIVEAU</span><br> </a> <span><br> <br></span>
-				<a id="zone2" class="texte" href="./ListMotClefServletClass"><span
-					class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
-						CLEF</span><br> </a>
-
-			</div>
-		</a>
-<%-- 		</c:if> --%>
-
-
-
-
-		<a id="zonesmenurightbottom">
-			<div id="menurightbottom1">
-				<div class="texte1">
-					<span class="stylewhite">LE PROJET</span><br>
-					<span class="styleblack">DE L'ECOLE</span><br>
-					<span class="styleblack">IMIE</span>
+			<div id=menurighttop href="./ListMotClefServletClass">
+				<div id="zone1" class="texte">
+				</div>
+				<div id="zone2" class="texte">
+					<span class="styleblack">LISTE DE</span><br>
+					<span class="stylewhite">MOT CLEF</span><br>
 				</div>
 				
-				<div class="texte2">
-
-					<span class="stylewhite">L'application de gestion</span><br> 
-					<span class="stylewhite"> des compétences</span><br> 
-					<span class="stylewhite"> permet à l'ensemble</span><br>
-					<span class="stylewhite"> des étudiants volontaires,</span><br>
-					<span class="styleblack"> dans le projet école en cours d'étude,</span><br>
-					<span class="stylewhite"> de se positionner sur les compétences</span><br>
-					<span class="stylewhite"> qu'ils possèdent et qui seront </span><br>
-					<span class="stylewhite"> nécessaire à la réalisation de</span><br>
-					<span class="stylewhite"> ce projet école.</span><br>
-
-				</div>
-			</div>
-			<div id="menurightbottom2">
-				<div class="texte">
-
-
-					<span class="stylewhite">INFO</span><br> <span
-						class="stylewhite"> ET</span><br> <span class="styleblack">
-						NEWS</span>
-
-
-				</div>
-			</div>
-		</a> 
-		
-		<a id="zonesquaretopleft" href="./ListeUserServlet">
-			<div id="squaretopleft1">
-				<div class="texte">
-					<span class="stylewhite">AUTRE</span><br> <span
-						class="styleblack"> TEXTE</span>
-				</div>
 			</div>
 
-			<div id="squaretopleft2">
-				<div class="texte">
-					<span class="stylewhite">VOIR</span><br> <span
-						class="stylewhite"> LES</span><br> <span class="styleblack">
-						VOLONTAIRES</span>
-				</div>
-			</div>
-		</a> 
-		
-		<a id="zonesquarebottomleft" href="./CursusServletClass">
+	<%-- 		</c:if> --%>
 
-			<div id="squarebottomleft1">
-				<div class="texte">
-					<span class="stylewhite">AUTRE</span><br> <span
-						class="styleblack"> TEXTE</span>
-				</div>
+
+
+
+	<a id="zonesmenurightbottom">
+		<div id="menurightbottom1">
+			<div class="texte1">
+				<span class="stylewhite">LE PROJET</span><br> <span
+					class="styleblack">DE L'ECOLE</span><br> <span
+					class="styleblack">IMIE</span>
 			</div>
 
-			<div id="squarebottomleft2">
-				<div class="texte">
-					<span class="stylewhite">VOIR</span><br> <span
-						class="stylewhite"> LES</span><br> <span class="styleblack">
-						CURSUS</span>
-				</div>
-			</div>
-		</a> <a id="zonesquaretopright" href="./GroupServletClass">
-			<div id="squaretopright1">
-				<div class="texte">
-					<span class="stylewhite">AUTRE</span><br> <span
-						class="styleblack"> TEXTE</span>
-				</div>
-			</div>
+			<div class="texte2">
 
-			<div id="squaretopright2">
-				<div class="texte">
-					<span class="stylewhite">VOIR LES</span><br> <span
-						class="styleblack"> GROUPE DE </span><br> <span
-						class="stylewhite"> TRAVAIL</span>
-				</div>
-			</div>
-		</a> <a id="zonesquarebottomright" href="./AfficherArborescence">
-			<div id="squarebottomright1">
-				<div class="texte">
-					<span class="stylewhite">AUTRE</span><br> <span
-						class="styleblack"> TEXTE</span>
-				</div>
-			</div>
+				<span class="stylewhite">L'application de gestion</span><br> <span
+					class="stylewhite"> des compétences</span><br> <span
+					class="stylewhite"> permet à l'ensemble</span><br> <span
+					class="stylewhite"> des étudiants volontaires,</span><br> <span
+					class="styleblack"> dans le projet école en cours d'étude,</span><br>
+				<span class="stylewhite"> de se positionner sur les
+					compétences</span><br> <span class="stylewhite"> qu'ils
+					possèdent et qui seront </span><br> <span class="stylewhite">
+					nécessaire à la réalisation de</span><br> <span class="stylewhite">
+					ce projet école.</span><br>
 
-			<div id="squarebottomright2">
-				<div class="texte">
-					<span class="stylewhite">VOIR</span><br> <span
-						class="stylewhite"> LES</span><br> <span class="styleblack">
-						COMPETENCES</span>
-				</div>
 			</div>
-		</a>
+		</div>
+		<div id="menurightbottom2">
+			<div class="texte">
+
+				<span class="stylewhite">INFO</span><br> <span
+					class="stylewhite"> ET</span><br> <span class="styleblack">
+					NEWS</span>
+
+
+			</div>
+		</div>
+	</a>
+
+	<a id="zonesquaretopleft" href="./ListeUserServlet">
+		<div id="squaretopleft1">
+			<div class="texte">
+				<span class="stylewhite">AUTRE</span><br> <span
+					class="styleblack"> TEXTE</span>
+			</div>
+		</div>
+
+		<div id="squaretopleft2">
+			<div class="texte">
+				<span class="stylewhite">VOIR</span><br> <span
+					class="stylewhite"> LES</span><br> <span class="styleblack">
+					VOLONTAIRES</span>
+			</div>
+		</div>
+	</a>
+
+	<a id="zonesquarebottomleft" href="./CursusServletClass">
+
+		<div id="squarebottomleft1">
+			<div class="texte">
+				<span class="stylewhite">AUTRE</span><br> <span
+					class="styleblack"> TEXTE</span>
+			</div>
+		</div>
+
+		<div id="squarebottomleft2">
+			<div class="texte">
+				<span class="stylewhite">VOIR</span><br> <span
+					class="stylewhite"> LES</span><br> <span class="styleblack">
+					CURSUS</span>
+			</div>
+		</div>
+	</a>
+	<a id="zonesquaretopright" href="./GroupServletClass">
+		<div id="squaretopright1">
+			<div class="texte">
+				<span class="stylewhite">AUTRE</span><br> <span
+					class="styleblack"> TEXTE</span>
+			</div>
+		</div>
+
+		<div id="squaretopright2">
+			<div class="texte">
+				<span class="stylewhite">VOIR LES</span><br> <span
+					class="styleblack"> GROUPE DE </span><br> <span
+					class="stylewhite"> TRAVAIL</span>
+			</div>
+		</div>
+	</a>
+	<a id="zonesquarebottomright" href="./AfficherArborescence">
+		<div id="squarebottomright1">
+			<div class="texte">
+				<span class="stylewhite">AUTRE</span><br> <span
+					class="styleblack"> TEXTE</span>
+			</div>
+		</div>
+
+		<div id="squarebottomright2">
+			<div class="texte">
+				<span class="stylewhite">VOIR</span><br> <span
+					class="stylewhite"> LES</span><br> <span class="styleblack">
+					COMPETENCES</span>
+			</div>
+		</div>
+	</a>
 
 
 	</div>
-	
+
 </body>
 </html>
