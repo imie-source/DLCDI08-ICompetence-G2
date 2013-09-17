@@ -25,6 +25,7 @@
 <title>Liste mot clef</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 
 		<%-- recuperation du mot clef par le context--%>

@@ -105,7 +105,8 @@ public class GroupServletClass extends HttpServlet {
 							" " + listUserDTO.size());
 					UserDTO deleteUser = listUserDTO.get(chosenUser);
 					try {
-						gdtService.supprimerUserGroupeDeTravail(deleteUser, (GroupeDeTravailDTO) request.getAttribute("currentgdt"));
+						GroupeDeTravailDTO gdtDTO = (GroupeDeTravailDTO) request.getAttribute("currentgdt");
+						gdtService.supprimerUserGroupeDeTravail(deleteUser,gdtDTO );
 						//request.removeAttribute("listUserDTO");
 						//request.removeAttribute("currentgdt");
 						

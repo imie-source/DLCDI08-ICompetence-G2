@@ -20,6 +20,7 @@
  	<div class="celluleTableau largeur350">Nom :</div>
  	<div class="celluleTableau largeur100">Identifiant :</div><br /><br />
 	<% GroupeDeTravailDTO gdtDTO = (GroupeDeTravailDTO) request.getAttribute("chosengdt");
+	request.setAttribute("currentgdt", gdtDTO);
 List<UserDTO> listUserDTO = gdtDTO.getListUserDTO();
  Integer i = 0;
  session.setAttribute("listUserDTO", listUserDTO);
@@ -31,8 +32,8 @@ for (UserDTO userDTO : listUserDTO) {%>
  	<div class="celluleTableau largeur100"><%=userDTO.getIdentifiant()%></div>
  	<span id="suppr"> <a
 					href="./GroupServletClass?UrlParam=suprUser&chosenUser=<%=i%>"><img
-						src="http://www.coeur.net/images_communes/croix_rouge3D.png"
-						align="right"></a></span>
+						src="./jquery/images/croix_rouge3D.png"
+						></a></span>
  	
  	<% 
  	i++;

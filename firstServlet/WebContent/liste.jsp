@@ -30,6 +30,7 @@
 		<title>liste utilisateur</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 		<button id="openerajout">ajouter un utilisateur</button>
 		<br /> <a href="./AccueilServletClass">Accueil </a>

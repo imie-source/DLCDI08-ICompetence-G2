@@ -20,9 +20,10 @@
 <title>liste groupe de travail</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 		<br /> <a href="./AccueilServletClass"><button>Accueil</button> </a> <input
-			type="button" value="Ajouter un groupe de travail" id="openermodif" />
+			type="button" value="Ajouter un groupe de travail" id="openerajout" />
 
 		<div id="tableau" class="tableau">
 			<%

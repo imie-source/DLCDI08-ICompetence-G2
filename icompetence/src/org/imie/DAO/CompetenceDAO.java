@@ -250,6 +250,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, competenceToInsert.getLibelle());
+			preparedStatement.setInt(2, competenceToInsert.getNiveauParent());
 			preparedStatement.executeQuery();
 
 		} catch (SQLException e) {
@@ -291,6 +292,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setString(1, competenceToUpdate.getLibelle());
+			preparedStatement.setInt(2, competenceToUpdate.getId());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -333,19 +335,19 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 			String insertInstruction2 = "DELETE FROM gdt_utilise_comp WHERE id_comp = ? ";
 			PreparedStatement preparedStatement2 = getConnection()
 					.prepareStatement(insertInstruction2);
-			preparedStatement2.setInt(2, competenceToDelete.getId());
+			preparedStatement2.setInt(1, competenceToDelete.getId());
 			preparedStatement2.executeUpdate();
 
 			String insertInstruction3 = "DELETE FROM comp_correspond_mot_clef WHERE id_comp = ? ";
 			PreparedStatement preparedStatement3 = getConnection()
 					.prepareStatement(insertInstruction3);
-			preparedStatement3.setInt(3, competenceToDelete.getId());
+			preparedStatement3.setInt(1, competenceToDelete.getId());
 			preparedStatement3.executeUpdate();
 
 			String insertInstruction4 = "DELETE FROM competence WHERE id_comp =? ";
 			PreparedStatement preparedStatement4 = getConnection()
 					.prepareStatement(insertInstruction4);
-			preparedStatement4.setInt(4, competenceToDelete.getId());
+			preparedStatement4.setInt(1, competenceToDelete.getId());
 			preparedStatement4.executeUpdate();
 
 		} catch (SQLException e) {

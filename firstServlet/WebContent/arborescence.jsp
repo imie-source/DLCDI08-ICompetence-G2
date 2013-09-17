@@ -35,18 +35,27 @@
 						<c:out value="${competence.id}"></c:out>
 						<c:out value="${competence.libelle}"></c:out>
 
-						<form id="formscomp" method="post" action="./AdminCompetence">
+						<form id="formscomp" method="post" action="./AfficherArborescence">
 
 							<input id="idcomp" type="hidden"
 								value="<c:out value="${competence.id}"></c:out>" name="idcomp" />
+								
 							<input id="chemincomp" type="hidden"
 								value="<c:out value="${competence.chemin}"></c:out>"
-								name="chemincomp" /> <input id="niveauParentcomp" type="hidden"
+								name="chemincomp" /> 
+								
+								<input id="niveauParentcomp" type="hidden"
 								value="<c:out value="${competence.niveauParent}"></c:out>"
-								name="niveauParentcomp" /> <input type="submit"
-								value="supprimer" /> <input type="submit"
-								value="ajouter une compétence" /> <input type="submit"
-								value="modifier" /><input type="text" value="" name="libelle" />
+								name="niveauParentcomp" /> 
+								
+								
+								
+								<input type="submit" name= "supprimer" value="supprimer" /> 
+								<input type="submit" name= "ajouter" value="ajouter une compétence" /> 
+								<input type="submit" name= "modifier" value="modifier" />
+								<input id="libelle" type="text"
+								value="<c:out value="${competence.libelle}"></c:out>"
+								name="libelle" /> 
 
 						</form>
 					</div>

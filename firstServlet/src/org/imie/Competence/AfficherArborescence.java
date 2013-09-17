@@ -76,7 +76,64 @@ public class AfficherArborescence extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+		Integer niveau = Integer.valueOf(request.getParameter("niveauParentcomp"));
+		String libelle = request.getParameter("libelle");
+		Integer idcomp = Integer.valueOf(request.getParameter("idcomp"));
+		
+		ICompetenceService competenceService = BaseConcreteFactory.getInstance().createCompetenceService(null);
+		CompetenceDTO competenceDTO = new CompetenceDTO();
+		
+			
+		if (request.getParameter("modifier") != null  ) {
+			
+			try {	
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);
+				competenceDTO.setNiveauParent(niveau);					
+				
+				competenceService.updateCompetence(competenceDTO);
+				
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else if (request.getParameter("supprimer") != null ) {
+			
+			try {
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);					
+				
+				competenceService.deleteCompetence(competenceDTO);
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} else if (request.getParameter("ajouter") != null ) {
+			
+			try {
+				
+				competenceDTO.setId(idcomp);
+				competenceDTO.setLibelle(libelle);
+				competenceDTO.setNiveauParent(niveau);	
+				
+				
+				competenceService.insertCompetence(competenceDTO);
+			} catch (TransactionalConnectionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		} 
+		
+		response.sendRedirect("./AfficherArborescence");
+		
+		
+		
 	}
 
 }

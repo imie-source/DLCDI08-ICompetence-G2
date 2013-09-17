@@ -232,7 +232,7 @@ public class ListeUserServlet extends HttpServlet {
 				}
 			}
 		}
-
+ 
 		if (urlParam.equals("modif")) {
 			System.out.println("modif utilisateur");
 			// update de l'adresse

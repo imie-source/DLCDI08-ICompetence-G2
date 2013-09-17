@@ -34,24 +34,15 @@ public class Launcher {
 		IMotClefService mcService = BaseConcreteFactory.getInstance().createMotClefService(null);
 
 
-		IUserService usrSvc = BaseConcreteFactory
-				.getInstance().createUserService(null);
-
-		UserDTO userToFind = new UserDTO();
-		userToFind.setIdentifiant("youmet");
-		
-		
-		try {
-
-			UserDTO userFound = usrSvc.getUser(userToFind);
-			userToFind.setProfil(userFound.getProfil());
-
-		} catch (TransactionalConnectionException e) {
+		IGroupeDeTravailService gdtServ = BaseConcreteFactory
+				.getInstance().creerGroupeDeTravailService(null);
 
 		
-
-		System.out.println(userToFind.getProfil());
-	}
-	
+		GroupeDeTravailDTO gdtdto = new GroupeDeTravailDTO();
+		gdtdto.setId_gdt(1);
+		UserDTO userDTO = new UserDTO();
+		userDTO.setId(3);
+		gdtServ.supprimerUserGroupeDeTravail(userDTO, gdtdto);
+		
 }
 }

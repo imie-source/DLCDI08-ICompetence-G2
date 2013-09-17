@@ -195,7 +195,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		Boolean supp = true;
 
 		try {
-			String modifierUserGdT = "DELETE FROM util_appartient_a_gdt WHERE id_utilisateur = ? AND id_gdt = ?";
+			String modifierUserGdT = "DELETE FROM utilisateur_appartient_a_gdt WHERE id_utilisateur = ? AND id_gdt = ?";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(modifierUserGdT);
 			preparedStatement.setInt(1, userDTO.getId());
