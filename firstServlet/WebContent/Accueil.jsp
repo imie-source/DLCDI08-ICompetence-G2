@@ -32,11 +32,6 @@
 	<div id=contenuaccueil>
 
 <%-- 		<c:if test="${niveau == 3}"> --%>
-
-
-
-		
-		
 		<div id=menurighttop>
 			 <a id="zone1" class="texte" href="./NiveauServletClass"><span
 				class="stylewhite">NIVEAU</span></a><br>  <span><br>
@@ -48,18 +43,15 @@
 				class="stylewhite">IMPORT</span><br> </a> 
 		</div>
 
-			<div id="menurighttop">
+<!-- 			<div id="menurighttop"> -->
 
 
-				<a id="zone1" class="texte" href="./NiveauServletClass"><span
-					class="stylewhite">NIVEAU</span><br> </a> <span><br> <br></span>
-				<a id="zone2" class="texte" href="./ListMotClefServletClass"><span
-					class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT
-						CLEF</span><br> </a>
-
-
-
-			</div>
+<!-- 				<a id="zone1" class="texte" href="./NiveauServletClass"><span -->
+<!-- 					class="stylewhite">NIVEAU</span><br> </a> <span><br> <br></span> -->
+<!-- 				<a id="zone2" class="texte" href="./ListMotClefServletClass"><span -->
+<!-- 					class="styleblack"> LISTE DE</span> <span class="stylewhite">MOT -->
+<!-- 						CLEF</span><br> </a> -->
+<!-- 			</div> -->
 <%-- 		</c:if> --%>
 
 

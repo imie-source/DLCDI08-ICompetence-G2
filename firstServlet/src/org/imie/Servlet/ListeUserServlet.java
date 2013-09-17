@@ -39,6 +39,7 @@ public class ListeUserServlet extends HttpServlet {
 	private AdresseDTO adresseToCreate = new AdresseDTO();
 	AdresseDTO nouvelleAdresse = null;
 	private UserDTO userConnecte = null;
+	UserDTO nouveauUser = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -109,7 +110,7 @@ public class ListeUserServlet extends HttpServlet {
 							.equalsIgnoreCase(userChoose.getIdentifiant()));
 			// on n'affiche pas le détail si le user n'a pas le profil admin
 			// sauf pour sa fiche
-			if (profil == 3
+			if (profil != 1000
 					|| userConnecte.getIdentifiant().replaceAll("\\s", "")
 							.equalsIgnoreCase(userChoose.getIdentifiant())) {
 				System.out.println("dans le test");
@@ -198,7 +199,7 @@ public class ListeUserServlet extends HttpServlet {
 					newUser.setAdresse(nouvelleAdresse);
 					try {
 						System.out.println("CreationUser");
-						userService.insertUser(newUser);
+						nouveauUser = userService.insertUser(newUser);
 					} catch (TransactionalConnectionException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -207,6 +208,7 @@ public class ListeUserServlet extends HttpServlet {
 					String competenceParam = request
 							.getParameter("competenceid");
 					String niveauParam = request.getParameter("niveauid");
+					System.out.println(nouveauUser.getId());
 					System.out.println(competenceParam);
 					System.out.println(niveauParam);
 					if (competenceParam != null) {
@@ -217,17 +219,16 @@ public class ListeUserServlet extends HttpServlet {
 							try {
 								System.out.println("Attachementcompetence");
 								userService.attachementCompetence(
-										newUser.getId(), compentenceid,
+										nouveauUser.getId(), compentenceid,
 										niveauid);
 							} catch (TransactionalConnectionException e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
 							}
 						}
+						session.removeAttribute("listuser");
+						response.sendRedirect("./ListeUserServlet");
 					}
-					session.removeAttribute("listuser");
-					response.sendRedirect("./ListeUserServlet");
-
 				}
 			}
 		}
@@ -354,6 +355,33 @@ public class ListeUserServlet extends HttpServlet {
 
 		}
 
+		if (urlParam.equals("ajoutcomp")) {
+			String userIdParam = request.getParameter("userid");
+			String competenceParam = request.getParameter("competenceid");
+			String niveauParam = request.getParameter("niveauid");
+			if (userIdParam != null) {
+				Integer userid = Integer.valueOf(userIdParam);
+				if (competenceParam != null) {
+					Integer compentenceid = Integer.valueOf(competenceParam);
+					if (niveauParam != null) {
+						Integer niveauid = Integer.valueOf(niveauParam);
+						try {
+							System.out.println("Attachementcompetence");
+							userService.attachementCompetence(
+									userid, compentenceid,
+									niveauid);
+						} catch (TransactionalConnectionException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+					session.removeAttribute("listuser");
+					response.sendRedirect("./ListeUserServlet");
+
+				}
+			}
+
+		}
 	}
 
 }

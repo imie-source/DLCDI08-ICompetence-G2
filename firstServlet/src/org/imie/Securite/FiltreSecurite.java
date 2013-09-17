@@ -129,7 +129,8 @@ public class FiltreSecurite implements Filter {
 				}
 
 			} catch (NullPointerException e) {
-				System.out.println("catch");
+				System.out.println("catch dans le filtre");
+				e.printStackTrace();
 
 			}
 

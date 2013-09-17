@@ -517,16 +517,14 @@ public class UserDAO extends ATransactional implements IUserDAO {
 		ResultSet resultSet = null;
 		try {
 
-			String insertInstruction = "insert into utilisateur_dispose_comp (id_utilisateur,id_comp,id_niveau) "
+			String insertInstruction = "insert into utilisateur_dispose_comp (id_utilisateur,id_comp,id_niveau_comp) "
 					+ "values (?,?,?)";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(insertInstruction);
 			preparedStatement.setInt(1, userid);
 			preparedStatement.setInt(2, competenceid);
 			preparedStatement.setInt(3, niveauid);
-
-			preparedStatement.executeQuery();
-
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
 
