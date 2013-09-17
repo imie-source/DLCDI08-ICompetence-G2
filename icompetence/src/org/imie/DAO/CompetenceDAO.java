@@ -44,7 +44,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 
 		try {
 			// création de la variable contenant la query SQL
-			String query = "SELECT comp.libelle_comp as libelle, nc.id_niveau_comp as niveau "
+			String query = "SELECT comp.libelle_comp as libelle, nc.id_niveau_comp as niveau, comp.id_comp as idcomp "
 					+ "FROM competence as comp "
 					+ "INNER JOIN utilisateur_dispose_comp as udc on comp.id_comp= udc.id_comp "
 					+ "INNER JOIN utilisateur as util on udc.id_utilisateur = util.id_utilisateur "
@@ -66,7 +66,7 @@ public class CompetenceDAO extends ATransactional implements ICompetenceDAO {
 				// valeurs du
 				// resultset sur l'enregistrement courant
 				competenceDTO.setLibelle(resultSet.getString("libelle"));
-
+				competenceDTO.setId(resultSet.getInt("idcomp"));
 				NiveauDTO niveauDTO = new NiveauDTO();
 
 				niveauDTO.setLibelle(resultSet.getString("libelle"));

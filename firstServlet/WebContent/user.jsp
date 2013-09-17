@@ -61,11 +61,12 @@
 			<%
 				Integer i = 1;
 				for (CompetenceDTO competenceDTO : currentUserDTO.getCompetences()) {
-					// 				NiveauDTO niveau = new NiveauDTO();
+					
 			%>
 
 			<%=competenceDTO.getLibelle()%>
 			<%=competenceDTO.getNiveau()%>
+			<input id="competenceid" type="text" name="competenceid" value="<%=competenceDTO.getId()%>"></input>
 			<button id=openersupprcompetence>supprimer</button>
 			<br />
 			<%
@@ -112,6 +113,9 @@
 				}
 			%>
 		</div>
+		
+		
+		
 		<div class=bottonmenu>
 			<button id="openermodif">modifier</button>
 			<button id=openersuppr>supprimer</button>
@@ -122,7 +126,7 @@
 
 	</div>
 
-	<div id="ajoutcompdialog" title="modifier">
+	<div id="ajoutcompdialog" title="ajoutcomp">
 		<form id="formajoutcomp" method="post"
 			action="./ListeUserServlet?UrlParam=ajoutcomp">
 			<input type="hidden" value="<%=currentUserDTO.getId()%>"
@@ -140,13 +144,15 @@
 				<select name="competenceid">
 					<%
 						for (CompetenceDTO competenceDTO : competenceDTOs) {
+							
 					%>
 					<option value="<%=competenceDTO.getId()%>">
 						<%=competenceDTO.getLibelle()%>
 					</option>
 					<%
 						}
-					%>
+						
+						%> 
 				</select>
 
 				<legend>Niveau</legend>
