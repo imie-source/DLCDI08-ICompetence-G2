@@ -38,17 +38,16 @@
 
 		<%-- 		<c:if test="${niveau == 3}"> --%>
 
-
-			<div id=menurighttop href="./ListMotClefServletClass">
+		<a id=zonemenurighttop href="./ListMotClefServletClass">
+			<div id=menurighttop>
 				<div id="zone1" class="texte">
 				</div>
 				<div id="zone2" class="texte">
 					<span class="styleblack">LISTE DE</span><br>
 					<span class="stylewhite">MOT CLEF</span><br>
-				</div>
-				
+				</div>		
 			</div>
-
+		</a>
 	<%-- 		</c:if> --%>
 
 
