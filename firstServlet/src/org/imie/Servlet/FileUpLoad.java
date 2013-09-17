@@ -24,6 +24,7 @@ import javax.servlet.http.Part;
  * 
  * @author ym
  *<p> D'après http://docs.oracle.com/javaee/6/tutorial/doc/glraq.html</p>
+ *@todo  vérifiaction du type de fichier
  */
 public class FileUpLoad extends HttpServlet {
 
@@ -53,12 +54,11 @@ public class FileUpLoad extends HttpServlet {
 			while ((read = filecontent.read(bytes)) != -1) {
 				out.write(bytes, 0, read);
 			}
-			writer.println("New file " + fileName + " created at " + path);
-
+			writer.println("Le fichier  " + fileName + " a été importé dans le répertoire" + path);
+			writer.println("</BR><a href=\"./LectureExcel\">Lancer l\'import en base </a>"); 
+            writer.println("</BR></BR> ATTENTION L'OPERATION NE POURRA PAS ETRE ANNULEE !)");
 		} catch (FileNotFoundException fne) {
-			writer.println("You either did not specify a file to upload or are "
-					+ "trying to upload a file to a protected or nonexistent "
-					+ "location.");
+			writer.println("Vous n'avez pas spécifié de fichier à importer ");
 			writer.println("<br/> ERROR: " + fne.getMessage());
 
 		} finally {

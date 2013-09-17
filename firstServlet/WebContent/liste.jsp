@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="org.imie.DTO.NiveauDTO"%>
 <%@page import="org.imie.service.interfaces.INiveauService"%>
 <%@page import="org.imie.DTO.CompetenceDTO"%>
@@ -33,8 +34,9 @@
 <jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 		<button id="openerajout">ajouter un utilisateur</button>
-		<br /> <a href="./AccueilServletClass">Accueil </a>
-
+		
+		<c:set var="niveau" scope="page" value="${user.getProfil()}" />
+		<c:if test="${niveau == 1}"><br /> <a href="./upLoadExcel.jsp">Import utilisateurs </a> </BR></c:if>
 		<div id="tableau" class=tableau>
 			<%
 				List<UserDTO> listUser = (List<UserDTO>) session

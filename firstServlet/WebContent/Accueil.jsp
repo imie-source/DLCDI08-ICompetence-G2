@@ -34,7 +34,7 @@
 	
 	<div id=contenuaccueil>
 
-<%-- 		<c:if test="${niveau == 3}"> --%>
+		<c:if test="${niveau ==1 || niveau ==2 || niveau ==4 }"> 
 
 
 
@@ -63,7 +63,7 @@
 
 
 			</div>
-<%-- 		</c:if> --%>
+ 		</c:if> 
 
 
 
