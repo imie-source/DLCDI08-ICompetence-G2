@@ -120,7 +120,7 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
 		Statement statement = null;
 		// déclaration de la variable de resultset
 		ResultSet resultSet = null;
-		AdresseDTO adresseDTOCreated = new AdresseDTO();;
+		AdresseDTO adresseDTOCreated = new AdresseDTO();
 		try {
 
 			// execution d'une requête SQL et récupération du result dans le
@@ -143,7 +143,7 @@ public class AdresseDAO extends ATransactional implements IAdresseDAO {
                
                 i++;
                 adresseDTOCreated.setId_adresse(last_inserted_id);
-               // System.out.println(adresseDTOCreated.getId_adresse());
+               System.out.println(adresseDTOCreated.getId_adresse());
                 
             }
 			

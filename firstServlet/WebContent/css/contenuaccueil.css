@@ -15,6 +15,40 @@ a {
 	text-decoration: none;
 }
 
+#textconnect{
+	font-family: sans-serif;
+	font-weigt:bold;
+	font-size: small;
+	color:white;
+}
+
+
+#menurighttop2 {
+	background-color: #9A8EFE;
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+#menurighttop {
+	background-color: #9A2EFE;
+	position: absolute;
+	top: 10px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+
+#menurightbottom{
+	background-color: gray;
+	position: absolute;
+	top: 320px;
+	left: 700px;
+	height: 300px;
+	width: 200px;
+}
+
 #menurighttop {
 	background-color: #9A2EFE;
 	position: absolute;
@@ -47,8 +81,7 @@ a {
 	top: 10px;
 	left: 10px;
 	height: 300px;
-	width: 300px;
-	font-family: 
+	width: 300px; 
 }
 #squaretopleft1 /* caché */ {
 	background-color:#A9BCF5;
@@ -57,7 +90,6 @@ a {
 	left: 10px;
 	height: 300px;
 	width: 300px;
-	font-family: 
 }
 #squarebottomleft2 {
 	background-color: #2EFE2E;
@@ -113,8 +145,9 @@ a {
 	position:relative;
 	top: 70px;
 	left:30px;
-	font-family: fantasy;
+	font-family: sans-serif;
 	font-size:xx-large;
+	font-weight: bold;
 }
 .stylewhite{
 	color: white;

@@ -11,28 +11,30 @@
 </head>
 <body>
 	<%-- Récupération du document XML. --%>
-	<c:import url="fichiertest.xml" var="documentXML" />
-	<%-- Analyse du document XML récupéré. --%>
-	<x:parse var="doc" doc="${documentXML}" />
+ 	<c:import url="./XML/fichiertest.xml" varReader="documentXML" /> 
+ 	ok
+<%-- 	<%-- Analyse du document XML récupéré. --%> 
+ 	<x:parse doc="${documentXML}" var="parsedDoc" />
 
 
 
-	<form method="post" action="./ImportExcelClass">
+	
 		<%-- Parcours du document parsé pour y récupérer chaque nœud "record". --%>
-		<x:forEach var="record" select="$doc/record">
-			<c:set target="${listeuser}" property="nom">
-				<x:out select="$record/nom" />
-			</c:set>
-			<br />
-			<c:set target="${listeuser}" property="prenom">
-				<x:out select="$record/prenom" />
-			</c:set>
-			<br />
-		</x:forEach>
+<%-- 		<x:forEach var="parsedDoc" select="$documentXML/records/"> --%>
+<%-- <%-- 				<x:set select="parsedDoc/id" var=$listuser > --%> 
+<%-- <%-- 			<c:set var="nom" target="$listuser/nom"  > --%> 
+<%-- 				<x:out select="$parsedDoc/@id" /> --%>
+<%-- <%-- 				</x:set> --%> 
+<%-- <%-- 			</c:set> --%> 
+<!-- 			<br />yugyuguguygygui -->
+<%-- <%-- 			<c:set var="prenom"> --%>
+<%-- <%-- 				<x:out select="$record/prenom" /> --%> 
+<%-- <%-- 			</c:set> --%> 
+<!-- 			<br /> -->
+<%-- 		</x:forEach> --%>
 
 
-		<input type="text" /> <input type="submit" value="Envoyer" />
-	</form>
+	
 
 </body>
 </html>

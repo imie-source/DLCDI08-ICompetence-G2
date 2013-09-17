@@ -27,7 +27,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		// déclaration de la variable de statement
 		Statement statement = null;
 		// déclaration de la variable de resultset
-		System.out.println("entrée -> creerGroupeDeTravail");
 		ResultSet resultSet = null;
 		boolean cree = true;
 
@@ -150,28 +149,25 @@ public class GroupeDeTravailDAO extends ATransactional implements
 					.prepareStatement(insertInstruction1);
 			preparedStatement1.setInt(1, groupeDeTravailASupprimer.getId_gdt());
 			preparedStatement1.executeUpdate();
-			System.out.println("delete gdt utilise comp");
+			
 
 			String insertInstruction2 = "DELETE FROM utilisateur_appartient_a_gdt WHERE id_gdt =? ";
 			PreparedStatement preparedStatement2 = getConnection()
 					.prepareStatement(insertInstruction2);
 			preparedStatement2.setInt(1, groupeDeTravailASupprimer.getId_gdt());
 			preparedStatement2.executeUpdate();
-			System.out.println("delete util appartient a gdt");
 			
 			String insertInstruction3 = "DELETE FROM invitation WHERE id_gdt =? ";
 			PreparedStatement preparedStatement3 = getConnection()
 					.prepareStatement(insertInstruction3);
 			preparedStatement3.setInt(1, groupeDeTravailASupprimer.getId_gdt());
 			preparedStatement3.executeUpdate();
-			System.out.println("delete from invitation");
 			
 			String insertInstruction4 = "DELETE FROM groupe_de_travail WHERE id_gdt =? ";
 			PreparedStatement preparedStatement4 = getConnection()
 					.prepareStatement(insertInstruction4);
 			preparedStatement4.setInt(1, groupeDeTravailASupprimer.getId_gdt());
 			preparedStatement4.executeUpdate();
-			System.out.println("delete from gdt");
 			
 		} catch (SQLException e) {
 			ExceptionManager.getInstance().manageException(e);
@@ -199,7 +195,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		Boolean supp = true;
 
 		try {
-			String modifierUserGdT = "DELETE FROM util_appartient_a_gdt WHERE id_utilisateur = ? AND id_gdt = ?";
+			String modifierUserGdT = "DELETE FROM utilisateur_appartient_a_gdt WHERE id_utilisateur = ? AND id_gdt = ?";
 			PreparedStatement preparedStatement = getConnection()
 					.prepareStatement(modifierUserGdT);
 			preparedStatement.setInt(1, userDTO.getId());
@@ -214,7 +210,7 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		return supp;
 	}
 
-	public Boolean creerUserGdt(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) {
+	public Boolean creerUserGdt(UserDTO userDTO, GroupeDeTravailDTO gdtDTO) throws TransactionalConnectionException {
 
 		Boolean creer = true;
 
@@ -261,7 +257,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		List<GroupeDeTravailDTO> groupeDeTravailDTO = new ArrayList<GroupeDeTravailDTO>();
 		Statement statement = null;
 		ResultSet resultSet = null;
-		System.out.println("entrée -> afficherGroupeDeTravail");
 		try {
 			statement = getConnection().createStatement();
 			resultSet = statement
@@ -307,7 +302,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		GroupeDeTravailDTO groupeDeTravailDTO = new GroupeDeTravailDTO();
 		// affectation des attribut du UserDTO à partir des valeurs du
 		// resultset sur l'enregistrement courant
-		System.out.println("entrée -> buildDTO");
 		groupeDeTravailDTO.setNom(resultSet.getString("nom"));
 		groupeDeTravailDTO.setId_gdt(resultSet.getInt("id_gdt"));
 		groupeDeTravailDTO.setBilan(resultSet.getString("bilan"));
@@ -325,7 +319,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		
 		Statement statement = null;
 		ResultSet resultSet = null;
-		System.out.println("entrée -> CPparGdt");
 		String nomPrenomCP = null;
 		Integer id_util = gdtDTO.getId_util();
 		
@@ -339,7 +332,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 			resultSet = statement.executeQuery(query);
 
 			 while(resultSet.next()) {
-				System.out.println(resultSet.getString("nom"));
 				nomPrenomCP = resultSet.getString("nom")+ " " + resultSet.getString("prenom");
 				gdtDTO.setNomCP(nomPrenomCP);
 			 }
@@ -360,7 +352,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 		
 		Statement statement = null;
 		ResultSet resultSet = null;
-		System.out.println("entrée -> utilisateurParGroupeDeTravail");
 		List<UserDTO> listUtilDTO = new ArrayList<UserDTO>();
 		
 
@@ -374,7 +365,6 @@ public class GroupeDeTravailDAO extends ATransactional implements
 
 			while (resultSet.next()) {
 				UserDTO utilDTO = new UserDTO();
-				System.out.println(resultSet.getString("nom"));
 				utilDTO.setNom(resultSet.getString("nom"));
 				utilDTO.setPrenom(resultSet.getString("prenom"));
 				utilDTO.setIdentifiant(resultSet.getString("identifiant"));

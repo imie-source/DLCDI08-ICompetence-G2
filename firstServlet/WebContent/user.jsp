@@ -26,6 +26,7 @@
 	<title>Détails utilisateur</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<%-- recuperation du user par le context--%>
 
 	<%
@@ -210,8 +211,8 @@
 				action="./ListeUserServlet?UrlParam=suppr">
 				<input class="only_integer" id="idusersuppr" type="hidden" value="<%=currentUserDTO.getId()%>" name="idusersuppr" />
 				<fieldset>
-					<!-- <legend>supprimer un cursus</legend> -->
-					vous allez supprimer un cursus
+					<!-- <legend>supprimer un utilisateur</legend> -->
+					vous allez supprimer un utilisateur
 				</fieldset>
 				<br /> <input type="submit" value="supprimer" />
 			</form>

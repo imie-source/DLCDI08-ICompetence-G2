@@ -54,7 +54,7 @@ public class AfficherArborescence extends HttpServlet {
 		
 		
 		
-	//ss	System.out.println(">>>>>>>Servlet profil AfficherArborescence : "+leProfil);
+		System.out.println(">>>>>>>Servlet profil AfficherArborescence : "+leProfil);
 		List<CompetenceDTO> competenceDTOs = null;
 		try {			
 				
@@ -76,7 +76,38 @@ public class AfficherArborescence extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	
+		String niveau = request.getParameter("niveauParentcomp");
+		String libelle = request.getParameter("libelle");
+		String chemin = request.getParameter("chemincomp");
+		String idcomp = request.getParameter("idcomp");
+		
+		ICompetenceService competenceService = BaseConcreteFactory.getInstance().createCompetenceService(null);
+		CompetenceDTO competenceDTO = new CompetenceDTO();
+		
+			
+		if (request.getParameter("modifier") != null  ) {
+			
+			
+			
+			competenceService.updateCompetence(competenceDTO);
+			
+		} else if (request.getParameter("supprimer") != null ) {
+			
+			
+			
+			
+			
+			competenceService.deleteCompetence(competenceDTO);
+			
+		} else if (request.getParameter("ajouter") != null ) {
+			
+			
+			
+			
+			competenceService.insertCompetence(competenceDTO);
+			
+		} 
 	}
 
 }

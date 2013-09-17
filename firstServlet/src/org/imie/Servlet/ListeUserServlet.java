@@ -16,6 +16,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.imie.DAO.interfaces.IAdresseDAO;
+import org.imie.DAO.interfaces.ICompetenceDAO;
+import org.imie.DAO.interfaces.INiveauDAO;
 import org.imie.DTO.AdresseDTO;
 import org.imie.DTO.CursusDTO;
 import org.imie.DTO.UserDTO;
@@ -85,14 +87,15 @@ public class ListeUserServlet extends HttpServlet {
 		System.out.println("listeuser");
 		// recupération du paramétre de l'url
 		String ligne = request.getParameter("ligne");
-		
+
 		if (ligne != null) {
 
 			System.out.println("profil dans la servlet :" + profil);
 
 			Integer userRead = Integer.valueOf(ligne);
 			// recuperation de la liste
-			List<UserDTO> listUser = (List<UserDTO>) session.getAttribute("listUser");
+			List<UserDTO> listUser = (List<UserDTO>) session
+					.getAttribute("listUser");
 			UserDTO userChoose = listUser.get(userRead - 1);
 			session.setAttribute("userChoose", userChoose);
 
@@ -101,9 +104,14 @@ public class ListeUserServlet extends HttpServlet {
 					+ userChoose.getIdentifiant());
 			System.out.println("le login du userConnecte :"
 					+ userConnecte.getIdentifiant());
-			System.out.println(profil == 3 || userConnecte.getIdentifiant().replaceAll("\\s", "").equalsIgnoreCase(userChoose.getIdentifiant()));
-			//on n'affiche pas le détail si le user n'a pas le profil admin sauf pour sa fiche
-			if (profil == 3 || userConnecte.getIdentifiant().replaceAll("\\s", "").equalsIgnoreCase(userChoose.getIdentifiant())) {
+			System.out.println(profil == 3
+					|| userConnecte.getIdentifiant().replaceAll("\\s", "")
+							.equalsIgnoreCase(userChoose.getIdentifiant()));
+			// on n'affiche pas le détail si le user n'a pas le profil admin
+			// sauf pour sa fiche
+			if (profil == 3
+					|| userConnecte.getIdentifiant().replaceAll("\\s", "")
+							.equalsIgnoreCase(userChoose.getIdentifiant())) {
 				System.out.println("dans le test");
 				session.removeAttribute("listUser");
 				RequestDispatcher dispatcher = request
@@ -124,6 +132,10 @@ public class ListeUserServlet extends HttpServlet {
 				.createUserService(null);
 		IAdresseDAO adresseDAO = BaseConcreteFactory.getInstance()
 				.createAdresseDAO(null);
+		ICompetenceDAO competenceDAO = BaseConcreteFactory.getInstance()
+				.createCompetenceDAO(null);
+		INiveauDAO niveauDAO = BaseConcreteFactory.getInstance()
+				.createNiveauDAO(null);
 		HttpSession session = request.getSession();
 		// recupération du paramétre de l'url
 		String urlParam = request.getParameter("UrlParam");
@@ -191,8 +203,31 @@ public class ListeUserServlet extends HttpServlet {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
+					String competenceParam = request
+							.getParameter("competenceid");
+					String niveauParam = request.getParameter("niveauid");
+					System.out.println(competenceParam);
+					System.out.println(niveauParam);
+					if (competenceParam != null) {
+						Integer compentenceid = Integer
+								.valueOf(competenceParam);
+						if (niveauParam != null) {
+							Integer niveauid = Integer.valueOf(niveauParam);
+							try {
+								System.out.println("Attachementcompetence");
+								userService.attachementCompetence(
+										newUser.getId(), compentenceid,
+										niveauid);
+							} catch (TransactionalConnectionException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+						}
+					}
 					session.removeAttribute("listuser");
 					response.sendRedirect("./ListeUserServlet");
+
 				}
 			}
 		}

@@ -18,20 +18,23 @@
 <title>Accueil</title>
 </head>
 <body>
-
-
-	<p>Bonjour
-	<c:out value="${user.getPrenom()}"></c:out>
+	<jsp:include page="./header.jsp"></jsp:include>
+	<div id=textconnect>
+		<p>Bonjour
+			<c:out value="${user.getPrenom()}"></c:out>
+			<c:out value="${user.getNom()}"></c:out>
+		<p>
+			Vous êtes connecté avec le profil de niveau :
+			<c:out value="${user.getProfil()}"></c:out>
+		</p>
+		<c:set var="niveau" scope="page" value="${user.getProfil()}" />
+	</div>
 	
-	<c:out value="${user.getNom()}"></c:out>
-	<p>
-		Vous êtes connecté avec le profil de niveau :
-		<c:out value="${user.getProfil()}"></c:out>
-	</p>
-	<c:set var="niveau" scope="page" value="${user.getProfil()}" />
+	
+	
 	<div id=contenuaccueil>
 
-		<c:if test="${niveau == 3}">
+<%-- 		<c:if test="${niveau == 3}"> --%>
 
 
 
@@ -60,7 +63,7 @@
 
 
 			</div>
-		</c:if>
+<%-- 		</c:if> --%>
 
 
 

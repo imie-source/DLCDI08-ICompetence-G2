@@ -17,10 +17,9 @@
 <body>
 
 	<div class="conteneurcomp">
-	<br /> <br /> <a href="./AccueilServletClass">Accueil </a>
+		<br /> <br /> <a href="./AccueilServletClass">Accueil </a>
 		<div class="titre1">Liste des competences</div>
-		<br />
-		<br />
+		<br /> <br />
 
 		<div class="tableaucentre">
 			Chercher une compétence :
@@ -30,15 +29,38 @@
 			</form>
 			<br /> <br />
 			<div>
-				<c:forEach var="competence" items="${listecompetence}">							
-							<div class="ligneTableau" style="padding-left:<c:out value="${competence.niveauParent * 100}"></c:out>px">
-								<c:out value="${competence.id}"></c:out>
-								<c:out value="${competence.libelle}"></c:out>
-							</div>	
+				<c:forEach var="competence" items="${listecompetence}">
+					<div class="ligneTableau"
+						style="padding-left:<c:out value="${competence.niveauParent * 100}"></c:out>px">
+						<c:out value="${competence.id}"></c:out>
+						<c:out value="${competence.libelle}"></c:out>
+
+						<form id="formscomp" method="post" action="./AfficherArborescence">
+
+							<input id="idcomp" type="hidden"
+								value="<c:out value="${competence.id}"></c:out>" name="idcomp" />
+								
+							<input id="chemincomp" type="hidden"
+								value="<c:out value="${competence.chemin}"></c:out>"
+								name="chemincomp" /> 
+								
+								<input id="niveauParentcomp" type="hidden"
+								value="<c:out value="${competence.niveauParent}"></c:out>"
+								name="niveauParentcomp" /> 
+								
+								<input id="libelle" type="hidden"
+								value="<c:out value="${competence.libelle}"></c:out>"
+								name="libelle" /> 
+								
+								<input type="submit" name= "supprimer" value="supprimer" /> 
+								<input type="submit" name= "ajouter" value="ajouter une compétence" /> 
+								<input type="submit" name= "modifier" value="modifier" />
+
+						</form>
+					</div>
 					<br />
 				</c:forEach>
 			</div>
 		</div>
-	</div>
 </body>
 </html>

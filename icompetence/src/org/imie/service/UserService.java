@@ -73,8 +73,17 @@ public class UserService extends ATransactional implements IUserService {
 		return userDAO.getUser(userToFind);
 		
 	}
-
-
-
+@Override
+	public void attachementCompetence(int userid,int competenceid,int niveauid)
+			throws TransactionalConnectionException {
+		IUserDAO userDAO = BaseConcreteFactory.getInstance().createUserDAO(this);
+		userDAO.attachementCompetence(userid, competenceid, niveauid);
+	}
+@Override
+public void modifattachementCompetence(int userid, int competenceid,
+		int niveauid) throws TransactionalConnectionException {
+	IUserDAO userDAO = BaseConcreteFactory.getInstance().createUserDAO(this);
+	userDAO.modifattachementCompetence(userid, competenceid, niveauid);
+}
 
 }

@@ -20,7 +20,7 @@
 <title>Liste des compétences</title>
 </head>
 <body>
-
+<jsp:include page="./header.jsp"></jsp:include>
 	<h1>Liste des compétences</h1>
 	<div class="conteneur">
 <br /> <br /> <a href="./AccueilServletClass">Accueil </a>

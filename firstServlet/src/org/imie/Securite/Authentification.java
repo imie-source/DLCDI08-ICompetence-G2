@@ -51,15 +51,16 @@ public class Authentification extends HttpServlet {
 		// récupération et parsing de la requete
 		String path = ((HttpServletRequest) request).getRequestURI();
 		System.out.println("url demandée dans Authentification" + path);
-
+		String contextPath = request.getContextPath();
 		// la page demandée
 
 		String resource = request.getRequestURI();
 		System.out.println(resource);
 
+		Boolean connected = false;
 		// récupération de la valeur du parametre de session du loginButton qui
 		// est fixé sur la page du formulaire
-
+		String formSubmitName = request.getParameter("valider");
 		IUserService userService = BaseConcreteFactory.getInstance()
 				.createUserService(null);
 

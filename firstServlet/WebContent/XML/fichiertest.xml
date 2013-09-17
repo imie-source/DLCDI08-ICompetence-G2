@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<data-set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<records>
+			<nom>clergeau</nom>
+			<prenom>sylvie</prenom>
+			<adresse_mail>ggdfsgsdfgffr</adresse_mail>
+			<date_naissance>1974-07-30</date_naissance>
+			<rue>dfgdfgdf</rue>
+			<code_postal>49360</code_postal>
+			<ville>fdgdfg</ville>
+			<disponible>true</disponible>
+			<identifiant>sisisis</identifiant>
+			<pwd>aaa</pwd>
+	</records>
+</data-set>

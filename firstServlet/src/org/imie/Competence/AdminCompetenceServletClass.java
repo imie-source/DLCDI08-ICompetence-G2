@@ -48,6 +48,10 @@ public class AdminCompetenceServletClass extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 
+
+	
+		
+		
 		ICompetenceService competenceService = BaseConcreteFactory
 				.getInstance().createCompetenceService(null);
 
@@ -80,6 +84,12 @@ public class AdminCompetenceServletClass extends HttpServlet {
 		} catch (TransactionalConnectionException e) {
 			ExceptionManager.getInstance().manageException(e);
 		}
+		
+	
+		
+		
+		
+		
 
 	}
 

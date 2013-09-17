@@ -27,5 +27,11 @@ public interface IUserService extends ITransactional {
 	 * @throws TransactionalConnectionException 
 	 */	
 	public abstract UserDTO getUser(UserDTO userToFind) throws TransactionalConnectionException;
+
+	void attachementCompetence(int userid, int competenceid, int niveauid)
+			throws TransactionalConnectionException;
+
+	void modifattachementCompetence(int userid, int competenceid, int niveauid)
+			throws TransactionalConnectionException;
 	
 }
