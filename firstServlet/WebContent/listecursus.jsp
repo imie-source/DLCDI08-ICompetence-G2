@@ -24,6 +24,7 @@
 <title>Liste de cursus</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 		<button id="openerajout">ajouter un cursus</button><br />
 		<br /> <a href="./AccueilServletClass">Accueil </a>

@@ -22,11 +22,11 @@
 				</div>
 				
 				<div id="chemin">
-					<a href="mailto:contact@imie.fr">Accueil</a>|
-					<a href="mailto:contact@imie.fr">Les projets</a>|
-					<a href="mailto:contact@imie.fr">Les volontaires</a>|
-					<a href="mailto:contact@imie.fr">L'IMIE</a>|
-					<a href="mailto:contact@imie.fr" target="blank">Se déconnecter</a>
+					<a href="./AccueilServletClass">Accueil</a>|
+					<a href="./GroupServletClass">Les projets</a>|
+					<a href="./ListeUserServlet">Les volontaires</a>|
+					<a href="http://www.imie-ecole-informatique.fr/">L'IMIE</a>|
+					<!-- <a href="" target="blank"></a>-->Se déconnecter
 				</div>
 				
 				<div id="bloc3">

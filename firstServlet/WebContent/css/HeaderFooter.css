@@ -44,7 +44,7 @@ margin: auto;
 		#chemin{
 		display:inline-block;
 		margin-left: 20px;
-		width: 650px;
+		width: 640px;
 		height: 82px;
 		font-size: small;
 		font-family: sans-serif;
@@ -59,13 +59,13 @@ margin: auto;
 		#bloc3{
 		display:inline-block;
 		float:right;
-		margin-top:20px;
-		margin-right: 50px;
+		margin-top:10px;
+		margin-right: 30px;
 		}
 
 	/* BARRE DE MENU */
 	#menu{
-	background-image: url(../css/sources/Bande_menu.jpg );
+	background-image: url(../css/sources/barresoustitre.png );
 	width: 1000px;
 	height: 95px;
 	}

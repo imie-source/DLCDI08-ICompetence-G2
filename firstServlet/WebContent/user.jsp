@@ -26,6 +26,7 @@
 	<title>Détails utilisateur</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<%-- recuperation du user par le context--%>
 
 	<%

@@ -26,6 +26,7 @@
 		<title>liste utilisateur</title>
 </head>
 <body>
+<jsp:include page="./header.jsp"></jsp:include>
 	<div class="conteneur">
 		<div id="tableau" class=tableau>
 			<%
