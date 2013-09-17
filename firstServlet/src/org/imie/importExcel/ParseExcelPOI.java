@@ -45,7 +45,7 @@ public class ParseExcelPOI extends HttpServlet {
         // TODO Auto-generated method stub
         System.out.println("dans POI");
         final String path = getServletContext().getRealPath("/upload");
-        final String fileName = "test.xls";
+        final String fileName = "test-import.xls";
         final String fichierXLS = path + File.separator + fileName;
         /**
          * A simple POI example of opening an Excel spreadsheet and writing its
@@ -84,17 +84,17 @@ public class ParseExcelPOI extends HttpServlet {
                                     + " "
                                     + DateFormat.getDateInstance(
                                             DateFormat.DEFAULT).format(
-                                            row.getCell(3).getDateCellValue()));
+                                            row.getCell(2).getDateCellValue()));
 
                         }
                         HSSFCell cell = (HSSFCell) cells.next();
                         System.out.println("Cell #" + cell.getCellNum());
-                        if (cell.getColumnIndex() == 3) {
+                        if (cell.getColumnIndex() == 2) {
                             if (HSSFDateUtil.isCellDateFormatted(cell)) {
 
                                 System.out.println(DateFormat.getDateInstance(
                                         DateFormat.DEFAULT).format(
-                                        row.getCell(3).getDateCellValue()));
+                                        row.getCell(2).getDateCellValue()));
 
                             }
                         }
